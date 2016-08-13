@@ -101,13 +101,13 @@ function Tile(row, col, type){
 
     this.landed = function(c){
         if(type === FLOOR_SPIKE_ID){
-            // TODO kill
+            c.die();
         }
     };
 
     this.tapped = function(c){
         if(type == CEILING_SPIKE_ID){
-            // TODO kill
+            c.die();
         }
     };
 }

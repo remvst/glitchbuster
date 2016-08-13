@@ -22,9 +22,10 @@ function Character(){
 
         drawImage(this.halo, -HALO_SIZE_HALF, -HALO_SIZE_HALF);
 
+        // Legs
+        save();
         translate(-CHARACTER_WIDTH / 2 + 2, -CHARACTER_HEIGHT / 2);
 
-        // Legs
         var legAmplitude = 10,
             legPeriod = 0.3,
             legLength = (sin((G.t * PI * 2) / legPeriod) / 2) * legAmplitude + legAmplitude / 2;
@@ -35,10 +36,25 @@ function Character(){
         R.fillStyle = this.legColor;
         fillRect(12, 56, 8, leftLegLength);
         fillRect(44, 56, 8, rightLegLength);
+        restore();
+
+        // Let's bob a little
+        var bodyRotationMaxAngle = PI / 16,
+            bodyRotationPeriod = 0.5,
+            bodyRotation = (sin((G.t * PI * 2) / bodyRotationPeriod) / 2) * bodyRotationMaxAngle;
+
+        if(this.bodyRotation){
+            bodyRotation = this.bodyRotation;
+        }else if(!this.direction){
+            bodyRotation = 0;
+        }
+
+        translate(0, this.bodyOffsetY);
+        rotate(bodyRotation);
 
         // Body
         save();
-        translate(0, this.bodyOffsetY);
+        translate(-CHARACTER_WIDTH / 2 + 2, -CHARACTER_HEIGHT / 2);
         R.fillStyle = this.bodyColor;
         fillRect(0, 0, 58, 56);
 
@@ -49,6 +65,10 @@ function Character(){
             mi = p - bt / 2, // middle of the blink
             s = min(1, max(-mt + mi, mt - mi) / (bt / 2)), // scale of the eyes
             h = s * 6;
+
+        if(this.dead){
+            h = 1;
+        }
 
         if(!this.fixing){
             R.fillStyle = '#000';
@@ -85,11 +105,10 @@ function Character(){
         // Movement
         if(this.controllable){
             this.x += this.direction * PLAYER_SPEED * e;
+            this.facing = this.direction || this.facing;
         }
 
         this.y += this.vY * e;
-
-        this.facing = this.direction || this.facing;
 
         // Collisions
         var adjustments = this.readjust(before);
@@ -139,16 +158,18 @@ function Character(){
 
         tile.landed(this);
 
-        interp(this, 'bodyOffsetY', 0, 10, 0.1);
-        interp(this, 'bodyOffsetY', 10, 0, 0.1, 0.1);
+        if(!this.dead){
+            interp(this, 'bodyOffsetY', 0, 10, 0.1);
+            interp(this, 'bodyOffsetY', 10, 0, 0.1, 0.1);
 
-        for(var i = 0 ; i < 5 ; i++){
-            var x = rand(this.x - CHARACTER_WIDTH / 2, this.x + CHARACTER_WIDTH / 2);
-            particle(4, '#888', [
-                ['x', x, x, 0.3],
-                ['y', tile.y, tile.y - rand(50, 100), 0.3],
-                ['s', 15, 0, 0.3]
-            ]);
+            for(var i = 0 ; i < 5 ; i++){
+                var x = rand(this.x - CHARACTER_WIDTH / 2, this.x + CHARACTER_WIDTH / 2);
+                particle(4, '#888', [
+                    ['x', x, x, 0.3],
+                    ['y', tile.y, tile.y - rand(50, 100), 0.3],
+                    ['s', 15, 0, 0.3]
+                ]);
+            }
         }
 
         previousFloorY = tile.y;
@@ -251,5 +272,35 @@ function Character(){
         }
 
         return t;
+    };
+
+    this.die = function(){
+        this.controllable = false;
+        this.dead = true;
+
+        for(var i = 0 ; i < 40 ; i++){
+            var x = rand(this.x - CHARACTER_WIDTH / 2, this.x + CHARACTER_WIDTH / 2),
+                y = rand(this.y - CHARACTER_HEIGHT / 2, this.y + CHARACTER_HEIGHT / 2);
+            particle(4, '#900', [
+                ['x', x, x, 0.5],
+                ['y', y, y - rand(50, 100), 0.5],
+                ['s', 15, 0, 0.5]
+            ]);
+        }
+
+        for(var i = 0 ; i < 40 ; i++){
+            var x = rand(this.x - CHARACTER_WIDTH / 2, this.x + CHARACTER_WIDTH / 2),
+                y = rand(this.y, this.y + CHARACTER_HEIGHT / 2),
+                d = rand(0.5, 1);
+            particle(4, '#900', [
+                ['x', x, x, d],
+                ['y', y, this.y + CHARACTER_HEIGHT / 2, d, 0, easeOutBounce],
+                ['s', 15, 0, d]
+            ]);
+        }
+
+        this.bodyOffsetY = 10;
+
+        interp(this, 'bodyRotation', 0, -PI / 2, 0.3);
     };
 }
