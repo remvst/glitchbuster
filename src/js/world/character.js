@@ -45,7 +45,7 @@ function Character(){
 
         if(this.bodyRotation){
             bodyRotation = this.bodyRotation;
-        }else if(!this.direction){
+        }else if(!this.direction && !this.fixing){
             bodyRotation = 0;
         }
 
