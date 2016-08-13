@@ -275,6 +275,11 @@ function Character(){
     };
 
     this.die = function(){
+        // Can't die twice, avoid deaths while fixing bugs
+        if(this.dead || this.fixing){
+            return;
+        }
+
         this.controllable = false;
         this.dead = true;
 

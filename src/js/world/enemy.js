@@ -32,5 +32,10 @@ function Enemy(path){
         }
 
         this.facing = this.direction;
+
+        var d = realDist(this, P);
+        if(d < CHARACTER_WIDTH){
+            P.die();
+        }
     };
 }
