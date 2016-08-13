@@ -32,6 +32,6 @@ function renderParticles(){
     for(var i in ps){
         var p = ps[i];
         R.fillStyle = p.c;
-        R.fillRect(p.x - p.s / 2, p.y - p.s / 2, p.s, p.s);
+        fillRect(p.x - p.s / 2, p.y - p.s / 2, p.s, p.s);
     }
 }

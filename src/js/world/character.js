@@ -16,13 +16,13 @@ function Character(){
         previousFloorY;
 
     this.render = function(){
-        R.save();
-        R.translate(this.x, this.y);
-        R.scale(this.facing, 1);
+        save();
+        translate(this.x, this.y);
+        scale(this.facing, 1);
 
-        R.drawImage(this.halo, -HALO_SIZE_HALF, -HALO_SIZE_HALF);
+        drawImage(this.halo, -HALO_SIZE_HALF, -HALO_SIZE_HALF);
 
-        R.translate(-CHARACTER_WIDTH / 2 + 2, -CHARACTER_HEIGHT / 2);
+        translate(-CHARACTER_WIDTH / 2 + 2, -CHARACTER_HEIGHT / 2);
 
         // Legs
         var legAmplitude = 10,
@@ -33,14 +33,14 @@ function Character(){
         var rightLegLength = this.direction || jumpCount > 0 ? legAmplitude - legLength : legAmplitude;
 
         R.fillStyle = this.legColor;
-        R.fillRect(12, 56, 8, leftLegLength);
-        R.fillRect(44, 56, 8, rightLegLength);
+        fillRect(12, 56, 8, leftLegLength);
+        fillRect(44, 56, 8, rightLegLength);
 
         // Body
-        R.save();
-        R.translate(0, this.bodyOffsetY);
+        save();
+        translate(0, this.bodyOffsetY);
         R.fillStyle = this.bodyColor;
-        R.fillRect(0, 0, 58, 56);
+        fillRect(0, 0, 58, 56);
 
         // Eyes
         var p = 4, // blink interval
@@ -52,12 +52,12 @@ function Character(){
 
         if(!this.fixing){
             R.fillStyle = '#000';
-            R.fillRect(34, 12, 6, h);
-            R.fillRect(46, 12, 6, h);
+            fillRect(34, 12, 6, h);
+            fillRect(46, 12, 6, h);
         }
-        R.restore();
+        restore();
 
-        R.restore();
+        restore();
     };
 
     this.cycle = function(e){

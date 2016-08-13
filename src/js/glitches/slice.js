@@ -15,5 +15,5 @@ function sliceGlitch(){
         );
     }
 
-    R.drawImage(c, 0, 0);
+    drawImage(c, 0, 0);
 }

@@ -49,8 +49,8 @@ function Tile(row, col, type){
 
     this.render = function(){
         R.fillStyle = G.globalPattern || '#fff';
-        R.save();
-        R.translate(this.x, this.y);
+        save();
+        translate(this.x, this.y);
 
         if(type == TILE_ID){
             fillRect(0, 0, TILE_SIZE, TILE_SIZE);
@@ -58,45 +58,45 @@ function Tile(row, col, type){
 
         if(type == FLOOR_SPIKE_ID || type == CEILING_SPIKE_ID){
             if(type == CEILING_SPIKE_ID){
-                R.translate(0, TILE_SIZE);
-                R.scale(1, -1);
+                translate(0, TILE_SIZE);
+                scale(1, -1);
             }
 
             fillRect(0, SPIKE_HEIGHT, TILE_SIZE, TILE_SIZE - SPIKE_HEIGHT);
 
-            R.beginPath();
-            R.moveTo(0, 0 + SPIKE_HEIGHT);
+            beginPath();
+            moveTo(0, 0 + SPIKE_HEIGHT);
 
             var step = TILE_SIZE / SPIKES_PER_TILE;
             for(var x = step / 2 ; x < TILE_SIZE ; x += step){
-                R.lineTo(x, 0);
-                R.lineTo(x + step / 2, SPIKE_HEIGHT);
+                lineTo(x, 0);
+                lineTo(x + step / 2, SPIKE_HEIGHT);
             }
-            R.lineTo(TILE_SIZE, SPIKE_HEIGHT);
-            R.fill();
+            lineTo(TILE_SIZE, SPIKE_HEIGHT);
+            fill();
         }
 
         if(type == EXIT_ID){
             // Halo
-            R.drawImage(whiteHalo, TILE_SIZE / 2 - HALO_SIZE_HALF, TILE_SIZE / 2 - HALO_SIZE_HALF);
+            drawImage(whiteHalo, TILE_SIZE / 2 - HALO_SIZE_HALF, TILE_SIZE / 2 - HALO_SIZE_HALF);
 
             // Arrow
-            R.beginPath();
-            R.moveTo(TILE_SIZE / 2 - ARROW_SIZE / 2, -ARROW_SIZE / 2 + ARROW_Y_OFFSET);
-            R.lineTo(TILE_SIZE / 2 + ARROW_SIZE / 2, -ARROW_SIZE / 2 + ARROW_Y_OFFSET);
-            R.lineTo(TILE_SIZE / 2, ARROW_Y_OFFSET);
-            R.fill();
+            beginPath();
+            moveTo(TILE_SIZE / 2 - ARROW_SIZE / 2, -ARROW_SIZE / 2 + ARROW_Y_OFFSET);
+            lineTo(TILE_SIZE / 2 + ARROW_SIZE / 2, -ARROW_SIZE / 2 + ARROW_Y_OFFSET);
+            lineTo(TILE_SIZE / 2, ARROW_Y_OFFSET);
+            fill();
 
             R.fillStyle = noisePattern;
 
             var x = rand(NOISE_PATTERN_SIZE),
                 y = rand(NOISE_PATTERN_SIZE);
 
-            R.translate(x, y);
-            R.fillRect(-x, -y, TILE_SIZE, TILE_SIZE);
+            translate(x, y);
+            fillRect(-x, -y, TILE_SIZE, TILE_SIZE);
         }
 
-        R.restore();
+        restore();
     };
 
     this.landed = function(c){
