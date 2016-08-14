@@ -94,10 +94,7 @@ function Grenade(){
 
         var m = this;
         setTimeout(function(){
-            var i = W.grenades.indexOf(m);
-            if(i >= 0){
-                W.grenades.splice(i, 1);
-            }
+            remove(W.grenades, m);
         }, 0);
     };
 

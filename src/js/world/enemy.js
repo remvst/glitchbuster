@@ -56,8 +56,7 @@ function Enemy(){
 
         var s = this;
         setTimeout(function(){
-            var i = W.enemies.indexOf(s);
-            if(i >= 0) W.enemies.splice(i, 1);
+            remove(W.enemies, s);
         }, 0);
     };
 

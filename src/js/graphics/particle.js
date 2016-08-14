@@ -16,10 +16,7 @@ function particle(s, c, as){
         // Add the remove callback
         if(id === 0){
             args[7] = function(){
-                var i = ps.indexOf(p);
-                if(i >= 0){
-                    ps.splice(i, 1);
-                }
+                remove(ps, p);
             };
         }
 

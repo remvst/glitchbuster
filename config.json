@@ -7,6 +7,7 @@
             "src/js/util/resize.js",
             "src/js/util/pick.js",
             "src/js/util/between.js",
+            "src/js/util/remove.js",
             "src/js/util/cache.js",
             "src/js/util/interp.js",
             "src/js/util/shape.js",
