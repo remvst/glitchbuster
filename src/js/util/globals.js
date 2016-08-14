@@ -1,6 +1,5 @@
 var W = window,
     D = document,
-    M = Math,
     T = setTimeout,
     C, // canvas
     R, // canvas context

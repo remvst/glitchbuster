@@ -21,7 +21,7 @@ function Camera(){
         var target = this.target(),
             dist = realDist(target, this),
             speed = dist / 0.2,
-            angle = Math.atan2(target.y - this.realY, target.x - this.realX),
+            angle = atan2(target.y - this.realY, target.x - this.realX),
             appliedDist = min(speed * e, dist);
 
         this.realX += cos(angle) * appliedDist;

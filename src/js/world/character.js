@@ -218,14 +218,14 @@ function Character(){
         }
 
         else if(topLeft && topRight){
-            this.y = M.ceil(topY / TILE_SIZE) * TILE_SIZE + CHARACTER_HEIGHT / 2;
+            this.y = ceil(topY / TILE_SIZE) * TILE_SIZE + CHARACTER_HEIGHT / 2;
             t |= DOWN;
 
             if(bottomLeft){
-                this.x = M.ceil(leftX / TILE_SIZE) * TILE_SIZE + CHARACTER_WIDTH / 2;
+                this.x = ceil(leftX / TILE_SIZE) * TILE_SIZE + CHARACTER_WIDTH / 2;
                 t |= RIGHT;
             }else if(bottomRight){
-                this.x = M.floor(rightX / TILE_SIZE) * TILE_SIZE - CHARACTER_WIDTH / 2;
+                this.x = floor(rightX / TILE_SIZE) * TILE_SIZE - CHARACTER_WIDTH / 2;
                 t |= LEFT;
             }
 
@@ -233,14 +233,14 @@ function Character(){
         }
 
         else if(bottomLeft && bottomRight){
-            this.y = M.floor(bottomY / TILE_SIZE) * TILE_SIZE - CHARACTER_HEIGHT / 2;
+            this.y = floor(bottomY / TILE_SIZE) * TILE_SIZE - CHARACTER_HEIGHT / 2;
             t |= UP;
 
             if(topLeft){
-                this.x = M.ceil(leftX / TILE_SIZE) * TILE_SIZE + CHARACTER_WIDTH / 2;
+                this.x = ceil(leftX / TILE_SIZE) * TILE_SIZE + CHARACTER_WIDTH / 2;
                 t |= RIGHT;
             }else if(topRight){
-                this.x = M.floor(rightX / TILE_SIZE) * TILE_SIZE - CHARACTER_WIDTH / 2;
+                this.x = floor(rightX / TILE_SIZE) * TILE_SIZE - CHARACTER_WIDTH / 2;
                 t |= LEFT;
             }
 
@@ -249,12 +249,12 @@ function Character(){
 
         // Collision against a wall
         else if(topLeft && bottomLeft){
-            this.x = M.ceil(leftX / TILE_SIZE) * TILE_SIZE + CHARACTER_WIDTH / 2;
+            this.x = ceil(leftX / TILE_SIZE) * TILE_SIZE + CHARACTER_WIDTH / 2;
             t |= RIGHT;
         }
 
         else if(topRight && bottomRight){
-            this.x = M.floor(rightX / TILE_SIZE) * TILE_SIZE - CHARACTER_WIDTH / 2;
+            this.x = floor(rightX / TILE_SIZE) * TILE_SIZE - CHARACTER_WIDTH / 2;
             t |= LEFT;
         }
 

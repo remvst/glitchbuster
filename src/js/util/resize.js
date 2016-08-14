@@ -5,7 +5,7 @@ window.onresize = function(){
 
             availableRatio = maxWidth / maxHeight,
             baseRatio = CANVAS_WIDTH / CANVAS_HEIGHT,
-            ratioDifference = M.abs(availableRatio - baseRatio),
+            ratioDifference = abs(availableRatio - baseRatio),
             width,
             height,
             s = document.getElementById('canvascontainer').style;
@@ -21,4 +21,4 @@ window.onresize = function(){
         s.width = width + 'px';
         s.height = height + 'px';
     }, 100);
-}
+};

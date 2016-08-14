@@ -6,7 +6,7 @@ function pick(choices, results){
 
     while(res.length < results){
         res = res.concat(
-            choices.splice(~~(M.random() * choices.length), 1) // returns the array of deleted elements
+            choices.splice(~~(random() * choices.length), 1) // returns the array of deleted elements
         );
     }
 

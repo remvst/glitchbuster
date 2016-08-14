@@ -34,9 +34,9 @@ function Tile(row, col, type){
             closestDist;
 
         adjustments.forEach(function(adj){
-            var d = Math.sqrt(
-                Math.pow(adj.x - character.x, 2) +
-                Math.pow(adj.y - character.y, 2)
+            var d = sqrt(
+                pow(adj.x - character.x, 2) +
+                pow(adj.y - character.y, 2)
             );
             if(!closest || d < closestDist){
                 closest = adj;
