@@ -23,6 +23,13 @@ function Grenade(){
     };
 
     this.explode = function(){
+        var r = TILE_SIZE * 2;
+        for(var row = ~~((this.y - r) / TILE_SIZE) ; row < ~~((this.y + r) / TILE_SIZE) ; row++){
+            for(var col = ~~((this.x - r) / TILE_SIZE) ; col < ~~((this.x + r) / TILE_SIZE) ; col++){
+                W.destroyTileAt(row, col);
+            }
+        }
+
         var m = this;
         setTimeout(function(){
             var i = W.grenades.indexOf(m);

@@ -91,13 +91,13 @@ function generateWorld(id){
     var map = [];
 
     for(row = 0 ; row < maskMapRows * maskRows + 2 ; row++){
-        map[row] = [1]; // left
-        map[row][maskMapCols * maskCols + 1] = 1; // right
+        map[row] = [UNBREAKABLE_TILE_ID]; // left
+        map[row][maskMapCols * maskCols + 1] = UNBREAKABLE_TILE_ID; // right
     }
 
     for(col = 0 ; col < maskMapCols * maskCols + 2 ; col++){
-        map[0][col] = 1; // top
-        map[map.length - 1][col] = 1; // bottom
+        map[0][col] = UNBREAKABLE_TILE_ID; // top
+        map[map.length - 1][col] = UNBREAKABLE_TILE_ID; // bottom
     }
 
     for(row = 0 ; row < maskMapRows ; row++){
@@ -164,13 +164,13 @@ function generateWorld(id){
     finalMap[spawn[0] - 1][spawn[1]] = SPAWN_ID;
     finalMap[exit[0] - 1][exit[1]] = EXIT_ID;
 
-    var s = '';
+    /*var s = '';
     for(var i = 0 ; i < map.length ; i++){
         for(var j = 0 ; j < map[i].length ; j++){
             s += finalMap[i][j] || ' ';
         }
         s += '\n';
-    }
+    }*/
 
     return finalMap;
 }

@@ -30,7 +30,24 @@ function World(map){
     };
 
     this.destroyTile = function(tile){
-        this.tiles[tile.row][tile.col] = 0;
+        if(tile && tile.type != UNBREAKABLE_TILE_ID){
+            for(var i = 0 ; i < 50 ; i++){
+                var d = rand(0.5, 2),
+                    x = tile.x + rand(TILE_SIZE);
+
+                particle(4, '#fff', [
+                    ['x', x, x, d],
+                    ['y', tile.y + rand(TILE_SIZE), tile.y + TILE_SIZE, d, 0, easeOutBounce],
+                    ['s', 15, 0, d]
+                ]);
+            }
+
+            this.tiles[tile.row][tile.col] = null;
+        }
+    };
+
+    this.destroyTileAt = function(row, col){
+        this.destroyTile(this.tiles[row] && this.tiles[row][col]);
     };
 
     this.detectPaths = function(l){
@@ -39,8 +56,8 @@ function World(map){
         for(var row = 0 ; row < this.rows - 1 ; row++){ // skip the last row
             colCount = 0;
             for(var col = 0 ; col < this.cols ; col++){
-                var current = this.map[row][col] !== VOID_ID;
-                var below = this.map[row + 1][col] === TILE_ID;
+                var current = this.map[row][col] != VOID_ID;
+                var below = this.map[row + 1][col] == TILE_ID || this.map[row + 1][col] == UNBREAKABLE_TILE_ID;
 
                 if(!below || current){
                     if(colCount >= l){

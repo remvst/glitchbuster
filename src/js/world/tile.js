@@ -55,8 +55,12 @@ function Tile(row, col, type){
         save();
         translate(this.x, this.y);
 
-        if(type == TILE_ID){
+        if(type == TILE_ID || type == UNBREAKABLE_TILE_ID){
+            if(type == UNBREAKABLE_TILE_ID){
+                R.fillStyle = 'red';
+            }
             fillRect(0, 0, TILE_SIZE, TILE_SIZE);
+            R.fillStyle = '#fff';
         }
 
         if(type == FLOOR_SPIKE_ID || type == CEILING_SPIKE_ID){

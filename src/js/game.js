@@ -7,7 +7,7 @@ function Game(){
         nextGlitch = 0,
         glitchTimeleft = 0;
 
-    this.currentLevel = 0;
+    this.currentLevel = 3;
 
     this.globalPattern = null;
     this.t = 0;
