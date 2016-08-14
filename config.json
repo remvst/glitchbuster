@@ -15,6 +15,7 @@
             "src/js/world/masks.js",
             "src/js/world/generate-world.js",
             "src/js/world/grenade.js",
+            "src/js/world/grenade-item.js",
             "src/js/world/character.js",
             "src/js/world/enemy.js",
             "src/js/world/world.js",
@@ -104,8 +105,9 @@
         "SPIKES_PER_TILE": 4,
 
         "ARROW_SIZE": 20,
-        "ARROW_Y_OFFSET": -10
-
+        "ARROW_Y_OFFSET": -10,
+        "GRENADE_ARROW_Y_OFFSET": -20,
+        "GRENADE_PICKUP_RADIUS": 50
     },
     "SKIP_MANGLING": [
         "arguments",
