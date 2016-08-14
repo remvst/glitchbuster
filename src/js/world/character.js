@@ -156,7 +156,7 @@ function Character(){
         // Find the tile that was the least dangerous
         // We assume types are sorted from non lethal to most lethal
         var tile = tiles.sort(function(a, b){
-            return a.type - b.type;
+            return abs(a.center.x - P.x) - abs(b.center.x - P.x);
         })[0];
 
         tile.landed(this);
@@ -188,7 +188,7 @@ function Character(){
         // Find the tile that was the least dangerous
         // We assume types are sorted from non lethal to most lethal
         var tile = tiles.sort(function(a, b){
-            return a.type - b.type;
+            return abs(a.center.x - P.x) - abs(b.center.x - P.x);
         })[0];
 
         tile.tapped(this);
