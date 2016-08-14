@@ -34,6 +34,7 @@
             "src/js/graphics/noise-pattern.js",
             "src/js/graphics/halo.js",
             "src/js/graphics/render-world.js",
+            "src/js/graphics/mobile-controls.js",
 
             "src/js/main.js"
         ],
@@ -108,7 +109,9 @@
         "ARROW_Y_OFFSET": -10,
         "GRENADE_ARROW_Y_OFFSET": -20,
         "GRENADE_PICKUP_RADIUS": 50,
-        "GRENADE_DENSITY": 0.1
+        "GRENADE_DENSITY": 0.1,
+
+        "MOBILE_BUTTON_SIZE": 80
     },
     "SKIP_MANGLING": [
         "arguments",

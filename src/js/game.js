@@ -161,6 +161,12 @@ function Game(){
         fillText('Bugs reports  / ' + bugReports, 15, 60);
         fillText('Breakpoints   / ' + P.grenades, 15, 90);
 
+        // Mobile controls
+        drawImage(leftArrow, CANVAS_WIDTH / 5 - leftArrow.width / 2, CANVAS_HEIGHT - 100);
+        drawImage(rightArrow, CANVAS_WIDTH * 2 / 5 - rightArrow.width / 2, CANVAS_HEIGHT - 100);
+        drawImage(grenadeButton, CANVAS_WIDTH * 3 / 5 - grenadeButton.width / 2, CANVAS_HEIGHT - 100);
+        drawImage(jumpArrow, CANVAS_WIDTH * 4 / 5 - jumpArrow.width / 2, CANVAS_HEIGHT - 100);
+
         glitchEnd && glitchEnd();
     };
 
