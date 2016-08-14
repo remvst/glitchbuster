@@ -108,6 +108,8 @@ function Game(){
     this.cycle = function(e){
         this.t += e;
 
+        R.textAlign = 'center';
+
         var maxDelta = 1 / 120; // TODO adjust
 
         glitchTimeleft -= e;
@@ -135,6 +137,13 @@ function Game(){
 
         // Rendering
         renderWorld();
+
+        R.font = '20pt Courier New';
+        R.textAlign = 'left';
+
+        fillText('Bugs fixed    / 3', 15, 30);
+        fillText('Bugs reports  / 7', 15, 60);
+        fillText('Breakpoints   / 2', 15, 90);
 
         glitchEnd && glitchEnd();
     };

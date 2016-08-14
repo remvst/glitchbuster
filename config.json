@@ -111,6 +111,7 @@
         "arguments",
         "callee",
         "center",
-        "middle"
+        "middle",
+        "left"
     ]
 }
