@@ -10,7 +10,7 @@ function Character(){
     this.legColor = '#aaa';
     this.halo = whiteHalo;
 
-    this.vY = 0;
+    this.aY = 0;
 
     var jumpCount = 0,
         previousFloorY;
@@ -100,7 +100,7 @@ function Character(){
         };
 
         // Jump acceleration
-        this.vY += e * GRAVITY;
+        this.aY += e * GRAVITY;
 
         // Movement
         if(this.controllable){
@@ -108,7 +108,7 @@ function Character(){
             this.facing = this.direction || this.facing;
         }
 
-        this.y += this.vY * e;
+        this.y += this.aY * e;
 
         // Collisions
         var adjustments = this.readjust(before);
@@ -133,7 +133,7 @@ function Character(){
 
     this.jump = function(p){
         if(jumpCount++ <= 1 && this.controllable){
-            this.vY = p * PLAYER_JUMP_ACCELERATION;
+            this.aY = p * PLAYER_JUMP_ACCELERATION;
             previousFloorY = -1;
 
             var y = this.y + CHARACTER_HEIGHT / 2;
@@ -149,7 +149,7 @@ function Character(){
     };
 
     this.landOn = function(tiles){
-        this.vY = 0;
+        this.aY = 0;
 
         jumpCount = 0;
 
@@ -183,7 +183,7 @@ function Character(){
     };
 
     this.tapOn = function(tiles){
-        this.vY = 0; // prevent from pushing that tile
+        this.aY = 0; // prevent from pushing that tile
 
         // Find the tile that was the least dangerous
         // We assume types are sorted from non lethal to most lethal
