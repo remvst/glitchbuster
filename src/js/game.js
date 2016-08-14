@@ -75,10 +75,10 @@ function Game(){
             glitchEnd = sliceGlitch;
         }, function(){
             glitchEnd = noiseGlitch;
-        }, function(){
+        }/*, function(){
             glitchStart = matrixGlitch;
             glitchEnd = matrixGlitchReset;
-        }, function(){
+        }*/, function(){
             glitchStart = invertGlich;
             glitchReset = invertGlitchReset;
         }, function(){

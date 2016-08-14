@@ -22,5 +22,5 @@ var W = window,
 
 // Exposing all math functions to the global scope
 Object.getOwnPropertyNames(Math).forEach(function(n){
-    W[n] = M[n];
+    W[n] = Math[n];
 });

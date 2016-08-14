@@ -14,6 +14,17 @@ function renderWorld(){
     R.fillStyle = '#000';
     fillRect(0, 0, W.cols * TILE_SIZE, W.rows * TILE_SIZE);
 
+    R.fillStyle = '#fff';
+    R.font = '48pt Courier New';
+    R.textAlign = 'center';
+    R.textBaseline = 'middle';
+
+    if(G.currentLevel == 1){
+        fillText('Ready to dive', TILE_SIZE * 6, TILE_SIZE * 2);
+        fillText('into the code base?', TILE_SIZE * 6, TILE_SIZE * 2 + 70);
+        fillText('Find the bugs and fix them', TILE_SIZE * 16, TILE_SIZE * 16);
+    }
+
     var cameraRightX = V.x + CANVAS_WIDTH,
         cameraBottomY = V.y + CANVAS_HEIGHT;
 

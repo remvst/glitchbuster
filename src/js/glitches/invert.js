@@ -1,5 +1,5 @@
 function invertGlich(){
-    G.invert = pick(binaryPatterns);
+    G.invert = true;
 }
 
 function invertGlitchReset(){
