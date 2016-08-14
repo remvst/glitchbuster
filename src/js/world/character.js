@@ -9,6 +9,7 @@ function Character(){
     this.bodyColor = '#fff';
     this.legColor = '#aaa';
     this.halo = whiteHalo;
+    this.bubbleTailLength = 0;
 
     this.aY = 0;
 
@@ -18,9 +19,21 @@ function Character(){
     this.render = function(){
         save();
         translate(this.x, this.y);
-        scale(this.facing, 1);
 
+        // Halo
         drawImage(this.halo, -HALO_SIZE_HALF, -HALO_SIZE_HALF);
+
+        // Dialog
+        if(this.sayingTimeleft > 0){
+            R.fillStyle = '#fff';
+            fillRect(-2, -50, 4, -this.bubbleTailLength);
+
+            R.font = '20pt Arial';
+            fillText(this.saying, 0, -70 - this.bubbleTailLength);
+        }
+
+        // Facing left or right
+        scale(this.facing, 1);
 
         // Legs
         save();
@@ -91,6 +104,8 @@ function Character(){
         if(e > 0){
             this.doCycle(e % maxDelta);
         }
+
+        this.sayingTimeleft -= e;
     };
 
     this.doCycle = function(e){
@@ -302,18 +317,13 @@ function Character(){
 
         for(var i = 0 ; i < 40 ; i++){
             var x = rand(this.x - CHARACTER_WIDTH / 2, this.x + CHARACTER_WIDTH / 2),
-                y = rand(this.y - CHARACTER_HEIGHT / 2, this.y + CHARACTER_HEIGHT / 2);
+                y = rand(this.y - CHARACTER_HEIGHT / 2, this.y + CHARACTER_HEIGHT / 2),
+                d = rand(0.5, 1);
             particle(4, '#900', [
                 ['x', x, x, 0.5],
                 ['y', y, y - rand(50, 100), 0.5],
                 ['s', 15, 0, 0.5]
             ]);
-        }
-
-        for(var i = 0 ; i < 40 ; i++){
-            var x = rand(this.x - CHARACTER_WIDTH / 2, this.x + CHARACTER_WIDTH / 2),
-                y = rand(this.y, this.y + CHARACTER_HEIGHT / 2),
-                d = rand(0.5, 1);
             particle(4, '#900', [
                 ['x', x, x, d],
                 ['y', y, this.y + CHARACTER_HEIGHT / 2, d, 0, easeOutBounce],
@@ -324,5 +334,11 @@ function Character(){
         this.bodyOffsetY = 10;
 
         interp(this, 'bodyRotation', 0, -PI / 2, 0.3);
+    };
+
+    this.say = function(s){
+        this.saying = s;
+        this.sayingTimeleft = 3;
+        interp(this, 'bubbleTailLength', 0, 70, 0.3, 0, easeOutBack);
     };
 }
