@@ -108,6 +108,8 @@
     },
     "SKIP_MANGLING": [
         "arguments",
-        "callee"
+        "callee",
+        "center",
+        "middle"
     ]
 }
