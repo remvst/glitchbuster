@@ -35,6 +35,7 @@
             "src/js/graphics/halo.js",
             "src/js/graphics/render-world.js",
             "src/js/graphics/mobile-controls.js",
+            "src/js/graphics/font.js",
 
             "src/js/main.js"
         ],
