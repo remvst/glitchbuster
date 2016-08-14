@@ -39,6 +39,19 @@ function Game(){
                 }
             });
         }
+
+        if(this.currentLevel == 1){
+            setTimeout(function(){
+                P.say('Hello there!');
+            }, 500);
+            setTimeout(function(){
+                P.say('Ready to dive in the code?');
+            }, 3000);
+            setTimeout(function(){
+                P.say('Let\'s find the bugs and fix them!');
+            }, 6000);
+        }
+
         if(this.currentLevel == 2){
             var enemy = new Enemy();
             enemy.x = TILE_SIZE * 6;
