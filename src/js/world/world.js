@@ -46,8 +46,8 @@ function World(map){
         }
     };
 
-    this.destroyTileAt = function(row, col){
-        this.destroyTile(this.tiles[row] && this.tiles[row][col]);
+    this.destroyTileAt = function(x, y){
+        this.destroyTile(this.tileAt(x, y));
     };
 
     this.detectPaths = function(l){

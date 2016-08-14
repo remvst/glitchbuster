@@ -1,5 +1,6 @@
 function Grenade(){
     this.x = this.y = 0;
+    this.timer = 2;
 
     this.throw = function(angle, force){
         this.vX = cos(angle) * force;
@@ -14,6 +15,11 @@ function Grenade(){
             this.y += this.vY * e;
         }
 
+        this.timer -= e;
+        if(this.timer <= 0){
+            this.explode();
+        }
+
         var tile = W.tileAt(this.x, this.y);
         if(tile && !this.stuck){
             this.stuck = true;
@@ -23,12 +29,12 @@ function Grenade(){
     };
 
     this.explode = function(){
-        var r = TILE_SIZE * 2;
-        for(var row = ~~((this.y - r) / TILE_SIZE) ; row < ~~((this.y + r) / TILE_SIZE) ; row++){
-            for(var col = ~~((this.x - r) / TILE_SIZE) ; col < ~~((this.x + r) / TILE_SIZE) ; col++){
-                W.destroyTileAt(row, col);
-            }
-        }
+        W.destroyTileAt(this.x, this.y + TILE_SIZE);
+        W.destroyTileAt(this.x - TILE_SIZE, this.y);
+        W.destroyTileAt(this.x, this.y);
+        W.destroyTileAt(this.x + TILE_SIZE, this.y);
+        W.destroyTileAt(this.x, this.y - TILE_SIZE);
+
 
         var m = this;
         setTimeout(function(){
