@@ -11,7 +11,7 @@ function Character(){
     this.halo = whiteHalo;
     this.bubbleTailLength = 0;
 
-    this.aY = 0;
+    this.vY = 0;
 
     this.vX = 0;
 
@@ -128,7 +128,7 @@ function Character(){
         // Movement
 
         // Friction
-        var frictionFactor = (this.aY ? 3 : 4) * PLAYER_SPEED,
+        var frictionFactor = (this.vY ? 3 : 4) * PLAYER_SPEED,
             targetSpeed = this.direction * PLAYER_SPEED,
             diff = targetSpeed - this.vX,
             appliedDiff = between(-frictionFactor * e, diff, frictionFactor * e);
@@ -140,9 +140,9 @@ function Character(){
             this.facing = this.direction || this.facing;
         }
 
-        // Jump acceleration
-        this.aY += e * GRAVITY;
-        this.y += this.aY * e;
+        // Vertical movement
+        this.vY += e * GRAVITY;
+        this.y += this.vY * e;
 
         // Collisions
         var adjustments = this.readjust(before);
@@ -180,7 +180,7 @@ function Character(){
 
     this.jump = function(p){
         if(jumpCount++ <= 1 && this.controllable){
-            this.aY = p * PLAYER_JUMP_ACCELERATION;
+            this.vY = p * PLAYER_JUMP_ACCELERATION;
             previousFloorY = -1;
 
             var y = this.y + CHARACTER_HEIGHT / 2;
@@ -196,7 +196,7 @@ function Character(){
     };
 
     this.landOn = function(tiles){
-        this.aY = 0;
+        this.vY = 0;
         jumpCount = 0;
 
         // Find the tile that was the least dangerous
@@ -229,7 +229,7 @@ function Character(){
     };
 
     this.tapOn = function(tiles){
-        this.aY = 0; // prevent from pushing that tile
+        this.vY = 0; // prevent from pushing that tile
 
         // Find the tile that was the least dangerous
         // We assume types are sorted from non lethal to most lethal
