@@ -65,7 +65,7 @@ function generateWorld(id){
 
 
     var maskMapRows = 4,
-        maskMapCols = 2,
+        maskMapCols = 4,
         maskMap = [],
         downCol = -1,
         maskRows = 10,

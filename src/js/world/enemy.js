@@ -23,15 +23,15 @@ function Enemy(){
         var rightX = this.x + CHARACTER_WIDTH / 2;
         var bottomY = this.y + CHARACTER_HEIGHT / 2;
 
-        var bottomLeft = W.tileAt(leftX, bottomY).type == TILE_ID;
-        var bottomRight = W.tileAt(rightX, bottomY).type == TILE_ID;
+        var bottomLeft = W.tileAt(leftX, bottomY);
+        var bottomRight = W.tileAt(rightX, bottomY);
 
         var adjustement = this.readjust(before);
 
-        if(adjustement & LEFT || !bottomRight){
+        if(adjustement & LEFT || !bottomRight || bottomRight.type != TILE_ID){
             this.direction = -1;
         }
-        if(adjustement & RIGHT || !bottomLeft){
+        if(adjustement & RIGHT || !bottomLeft || bottomLeft.type != TILE_ID){
             this.direction = 1;
         }
 
@@ -57,8 +57,8 @@ function Enemy(){
         var s = this;
         setTimeout(function(){
             remove(W.cyclables, s);
-            remove(W.killables, s);
             remove(W.renderables, s);
+            remove(W.killables, s);
         }, 0);
     };
 
