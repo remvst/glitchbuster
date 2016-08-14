@@ -38,7 +38,7 @@ function Character(){
             fillRect(-w / 2, -85 - this.bubbleTailLength, w, 30);
             R.globalAlpha = 1;
 
-            R.fillStyle = '#fff';
+            R.fillStyle = this.bodyColor;
             fillRect(-2, -50, 4, -this.bubbleTailLength);
 
             R.font = '20pt Arial';
