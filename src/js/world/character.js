@@ -122,12 +122,12 @@ function Character(){
             this.controllable = false;
             this.fixing = true;
 
-            interp(this, 'x', this.x, W.exit.center.x, 0.3);
-            interp(W.exit, 'alpha', 1, 0, 1, 0.3);
+            interp(this, 'x', this.x, W.exit.center.x, 1);
+            interp(W.exit, 'alpha', 1, 0, 1, 1);
 
             setTimeout(function(){
                 G.startNewWorld();
-            }, 2000);
+            }, 3000);
         }
     };
 
