@@ -13,6 +13,8 @@ function Character(){
 
     this.aY = 0;
 
+    this.vX = 0;
+
     var jumpCount = 0,
         previousFloorY;
 
@@ -103,7 +105,7 @@ function Character(){
     };
 
     this.cycle = function(e){
-        var maxDelta = 1 / 50; // TODO adjust
+        var maxDelta = 1 / 120; // TODO adjust
 
         var deltas = ~~(e / maxDelta);
         for(var i = 0 ; i < deltas ; i++, e -= maxDelta){
@@ -113,8 +115,6 @@ function Character(){
         if(e > 0){
             this.doCycle(e % maxDelta);
         }
-
-        this.sayingTimeleft -= e;
     };
 
     this.doCycle = function(e){
@@ -123,15 +123,25 @@ function Character(){
             y: this.y
         };
 
-        // Jump acceleration
-        this.aY += e * GRAVITY;
+        this.sayingTimeleft -= e;
 
         // Movement
+
+        // Friction
+        var frictionFactor = (this.aY ? 3 : 4) * PLAYER_SPEED,
+            targetSpeed = this.direction * PLAYER_SPEED,
+            diff = targetSpeed - this.vX,
+            appliedDiff = between(-frictionFactor * e, diff, frictionFactor * e);
+
+        this.vX = between(-PLAYER_SPEED, this.vX + appliedDiff, PLAYER_SPEED);
+
         if(this.controllable){
-            this.x += this.direction * PLAYER_SPEED * e;
+            this.x += this.vX * e;
             this.facing = this.direction || this.facing;
         }
 
+        // Jump acceleration
+        this.aY += e * GRAVITY;
         this.y += this.aY * e;
 
         // Collisions
@@ -142,6 +152,7 @@ function Character(){
             jumpCount = max(1, jumpCount);
         }
 
+        // Exit detection
         var d = dist(this, W.exit.center);
         if(this.controllable){
             if(d < TILE_SIZE / 2){
@@ -155,12 +166,12 @@ function Character(){
 
                 setTimeout(function(){
                     P.say('Done!');
-                }, 1000);
+                }, 2000);
 
                 setTimeout(function(){
                     G.startNewWorld();
                 }, 3000);
-            }else if(d < CANVAS_WIDTH * 0.3 && !this.found){
+            }else if(d < CANVAS_WIDTH * 0.5 && !this.found){
                 this.found = true;
                 this.say('You found the bug!'); // TODO more strings
             }
@@ -186,7 +197,6 @@ function Character(){
 
     this.landOn = function(tiles){
         this.aY = 0;
-
         jumpCount = 0;
 
         // Find the tile that was the least dangerous
@@ -349,6 +359,8 @@ function Character(){
         this.bodyOffsetY = 10;
 
         interp(this, 'bodyRotation', 0, -PI / 2, 0.3);
+
+        this.say('...');
     };
 
     this.say = function(s){
