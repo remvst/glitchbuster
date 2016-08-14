@@ -24,3 +24,7 @@ var raf = (function(){
                 T(c, 1000 / 60);
             };
 })();
+
+var toBool = function(x){
+    return !!x;
+};

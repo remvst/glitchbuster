@@ -55,7 +55,7 @@
         "CANVAS_WIDTH": 640,
         "CANVAS_HEIGHT": 920,
         "TILE_SIZE": 100,
-        "CHARACTER_WIDTH": 60,
+        "CHARACTER_WIDTH": 50,
         "CHARACTER_HEIGHT": 66,
 
         "VOID_ID": 0,

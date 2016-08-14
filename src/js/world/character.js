@@ -153,10 +153,6 @@ function Character(){
 
         jumpCount = 0;
 
-        if(tiles[0].y === previousFloorY){
-            return;
-        }
-
         // Find the tile that was the least dangerous
         // We assume types are sorted from non lethal to most lethal
         var tile = tiles.sort(function(a, b){
@@ -164,6 +160,10 @@ function Character(){
         })[0];
 
         tile.landed(this);
+
+        if(tile.y === previousFloorY){
+            return;
+        }
 
         if(!this.dead){
             interp(this, 'bodyOffsetY', 0, 10, 0.1);
@@ -277,9 +277,9 @@ function Character(){
 
         // Based on the adjustment, fire some tile events
         if(t & UP){
-            this.landOn([bottomLeft || bottomRight]);
+            this.landOn([bottomLeft, bottomRight].filter(toBool));
         }else if(t & DOWN){
-            this.tapOn([topLeft || topRight]);
+            this.tapOn([topLeft, topRight].filter(toBool));
         }
 
         return t;
