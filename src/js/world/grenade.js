@@ -33,11 +33,19 @@ function Grenade(){
     };
 
     this.explode = function(){
-        W.destroyTileAt(this.x, this.y + TILE_SIZE);
-        W.destroyTileAt(this.x - TILE_SIZE, this.y);
-        W.destroyTileAt(this.x, this.y);
-        W.destroyTileAt(this.x + TILE_SIZE, this.y);
-        W.destroyTileAt(this.x, this.y - TILE_SIZE);
+        [
+            [this.x - TILE_SIZE, this.y + TILE_SIZE],
+            [this.x, this.y + TILE_SIZE],
+            [this.x + TILE_SIZE, this.y + TILE_SIZE],
+            [this.x - TILE_SIZE, this.y],
+            [this.x, this.y],
+            [this.x + TILE_SIZE, this.y],
+            [this.x - TILE_SIZE, this.y - TILE_SIZE],
+            [this.x, this.y - TILE_SIZE],
+            [this.x + TILE_SIZE, this.y - TILE_SIZE]
+        ].forEach(function(p){
+            W.destroyTileAt(p[0], p[1]);
+        });
 
         for(var i = 0 ; i < 100 ; i++){
             var d = rand(0.5, 1.5),
@@ -49,7 +57,7 @@ function Grenade(){
                 'orange',
                 'yellow'
             ]), [
-                ['x', x, x, d],
+                ['x', x, x + 10, d, 0, oscillate],
                 ['y', y, y - rand(100, 300), d, 0],
                 ['s', rand(30, 50), 0, d]
             ]);
