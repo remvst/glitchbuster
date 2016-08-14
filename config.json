@@ -107,7 +107,8 @@
         "ARROW_SIZE": 20,
         "ARROW_Y_OFFSET": -10,
         "GRENADE_ARROW_Y_OFFSET": -20,
-        "GRENADE_PICKUP_RADIUS": 50
+        "GRENADE_PICKUP_RADIUS": 50,
+        "GRENADE_DENSITY": 0.1
     },
     "SKIP_MANGLING": [
         "arguments",

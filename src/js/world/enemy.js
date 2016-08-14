@@ -57,10 +57,13 @@ function Enemy(){
         var s = this;
         setTimeout(function(){
             remove(W.cyclables, s);
-            remove(W.renderables, s);
             remove(W.killables, s);
         }, 0);
-    };
 
-    this.say = function(){};
+        setTimeout(function(){
+            remove(W.renderables, s);
+        }, 1000);
+
+        interp(this, 'scaleFactor', 1, 0, 0.5, 0.5);
+    };
 }

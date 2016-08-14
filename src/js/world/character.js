@@ -361,7 +361,10 @@ function Character(){
 
         interp(this, 'bodyRotation', 0, -PI / 2, 0.3);
 
-        this.say('...');
+        this.say(pick([
+            '...',
+            'exit(1)'
+        ]));
     };
 
     this.say = function(s){
@@ -378,6 +381,12 @@ function Character(){
             g.throw(-PI / 2 + this.facing * PI / 3, 1000);
             W.cyclables.push(g);
             W.renderables.push(g);
+        }else{
+            P.say(pick([
+                'You don\'t have any breakpoints',
+                'breakpoints.count == 0',
+                'Breakpoint not found'
+            ]));
         }
 
         this.grenades = max(0, this.grenades);
