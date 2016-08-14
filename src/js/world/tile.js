@@ -51,7 +51,7 @@ function Tile(row, col, type){
     };
 
     this.render = function(){
-        R.fillStyle = G.globalPattern || '#fff';
+        R.fillStyle = '#fff';
         save();
         translate(this.x, this.y);
 

@@ -9,7 +9,6 @@ function Game(){
 
     this.currentLevel = 0;
 
-    this.globalPattern = null;
     this.t = 0;
 
     V = new Camera();
