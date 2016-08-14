@@ -148,6 +148,10 @@ function generateWorld(id){
     var spawn = pick(floors.slice(0, floors.length * 0.1));
     var exit = pick(floors.slice(floors.length * 0.9));
 
+    finalMap[spawn[0] - 1][spawn[1]] = SPAWN_ID;
+    finalMap[exit[0] - 1][exit[1]] = EXIT_ID;
+    finalMap[exit[0]][exit[1]] = UNBREAKABLE_TILE_ID;
+
     // Add random spikes
     floors.forEach(function(f){
         if(f != exit && f != spawn && rand() < SPIKE_DENSITY){
@@ -160,9 +164,6 @@ function generateWorld(id){
             finalMap[f[0]][f[1]] = CEILING_SPIKE_ID;
         }
     });
-
-    finalMap[spawn[0] - 1][spawn[1]] = SPAWN_ID;
-    finalMap[exit[0] - 1][exit[1]] = EXIT_ID;
 
     /*var s = '';
     for(var i = 0 ; i < map.length ; i++){
