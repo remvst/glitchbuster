@@ -28,10 +28,10 @@ function Enemy(){
 
         var adjustement = this.readjust(before);
 
-        if(adjustement & LEFT || !bottomRight || bottomRight.type != TILE_ID){
+        if(adjustement & LEFT || !bottomRight || (bottomRight.type > UNBREAKABLE_TILE_ID)){
             this.direction = -1;
         }
-        if(adjustement & RIGHT || !bottomLeft || bottomLeft.type != TILE_ID){
+        if(adjustement & RIGHT || !bottomLeft || (bottomLeft.type > UNBREAKABLE_TILE_ID)){
             this.direction = 1;
         }
 
