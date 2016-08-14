@@ -28,7 +28,7 @@ function Game(){
         //this.applyGlitch();
 
         // Enemies
-        if(this.currentLevel > 2){
+        if(this.currentLevel > 3){
             W.detectPaths(ENEMY_PATH_MIN_LENGTH).forEach(function(path){
                 if(rand() < ENEMY_DENSITY){
                     var enemy = new Enemy();
