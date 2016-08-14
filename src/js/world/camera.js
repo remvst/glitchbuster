@@ -24,6 +24,10 @@ function Camera(){
             angle = atan2(target.y - this.realY, target.x - this.realX),
             appliedDist = min(speed * e, dist);
 
+        if(dist < 5){
+            appliedDist = dist;
+        }
+
         this.realX += cos(angle) * appliedDist;
         this.realY += sin(angle) * appliedDist;
 
