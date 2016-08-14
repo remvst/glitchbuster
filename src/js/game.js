@@ -36,7 +36,7 @@ function Game(){
         //this.applyGlitch();
 
         // Enemies
-        if(this.currentLevel > 3){
+        if(this.currentLevel > 2){
             W.detectPaths(ENEMY_PATH_MIN_LENGTH).forEach(function(path){
                 if(rand() < ENEMY_DENSITY){
                     var enemy = new Enemy();
@@ -161,22 +161,24 @@ function Game(){
         fillText('Bugs reports  / ' + bugReports, 15, 60);
         fillText('Breakpoints   / ' + P.grenades, 15, 90);
 
-        // Mobile controls
-        R.globalAlpha = touchButtons[0] ? 1 : 0.5;
-        drawImage(leftArrow, CANVAS_WIDTH * 0.5 / 4 - leftArrow.width / 2, CANVAS_HEIGHT - 100);
+        if(G.touch){
+            // Mobile controls
+            R.globalAlpha = touchButtons[0] ? 1 : 0.5;
+            drawImage(leftArrow, CANVAS_WIDTH * 0.5 / 4 - leftArrow.width / 2, CANVAS_HEIGHT - 100);
 
-        R.globalAlpha = touchButtons[1] ? 1 : 0.5;
-        drawImage(rightArrow, CANVAS_WIDTH * 1.5 / 4 - rightArrow.width / 2, CANVAS_HEIGHT - 100);
+            R.globalAlpha = touchButtons[1] ? 1 : 0.5;
+            drawImage(rightArrow, CANVAS_WIDTH * 1.5 / 4 - rightArrow.width / 2, CANVAS_HEIGHT - 100);
 
-        R.globalAlpha = touchButtons[2] ? 1 : 0.5;
-        drawImage(grenadeButton, CANVAS_WIDTH * 2.5 / 4 - grenadeButton.width / 2, CANVAS_HEIGHT - 100);
+            R.globalAlpha = touchButtons[2] ? 1 : 0.5;
+            drawImage(grenadeButton, CANVAS_WIDTH * 2.5 / 4 - grenadeButton.width / 2, CANVAS_HEIGHT - 100);
 
-        R.globalAlpha = touchButtons[3] ? 1 : 0.5;
-        drawImage(jumpArrow, CANVAS_WIDTH * 3.5 / 4 - jumpArrow.width / 2, CANVAS_HEIGHT - 100);
+            R.globalAlpha = touchButtons[3] ? 1 : 0.5;
+            drawImage(jumpArrow, CANVAS_WIDTH * 3.5 / 4 - jumpArrow.width / 2, CANVAS_HEIGHT - 100);
 
-        R.globalAlpha = 1;
+            R.globalAlpha = 1;
 
-        glitchEnd && glitchEnd();
+            glitchEnd && glitchEnd();
+        }
     };
 
     this.doCycle = function(e){

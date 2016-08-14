@@ -32,6 +32,7 @@ var touch = function(e){
     e.preventDefault();
 
     P.direction = 0;
+    G.touch = true;
 
     touchButtons = {};
 
