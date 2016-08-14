@@ -44,15 +44,22 @@ function Enemy(){
             if(dX < dY && P.y < this.y && P.vY > 0){
                 P.jump(0.8);
                 this.die();
-
-                var s = this;
-                setTimeout(function(){
-                    var i = W.enemies.indexOf(s);
-                    if(i >= 0) W.enemies.splice(i, 1);
-                }, 0);
             }else{
                 P.die();
             }
         }
     };
+
+    var superDie = this.die;
+    this.die = function(){
+        superDie.call(this);
+
+        var s = this;
+        setTimeout(function(){
+            var i = W.enemies.indexOf(s);
+            if(i >= 0) W.enemies.splice(i, 1);
+        }, 0);
+    };
+
+    this.say = function(){};
 }

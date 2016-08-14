@@ -52,9 +52,9 @@ function renderWorld(){
         fillRect(V.x, haloY2, CANVAS_WIDTH, cameraBottomY - haloY2);
     }
 
-    drawImage(darkHalo, haloX, haloY);
-
     renderParticles();
+
+    drawImage(darkHalo, haloX, haloY);
 
     restore();
 }

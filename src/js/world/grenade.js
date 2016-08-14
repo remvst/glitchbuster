@@ -35,6 +35,13 @@ function Grenade(){
         W.destroyTileAt(this.x + TILE_SIZE, this.y);
         W.destroyTileAt(this.x, this.y - TILE_SIZE);
 
+        for(var i in W.enemies){
+            var d = realDist(this, W.enemies[i]);
+            if(d < TILE_SIZE * 2){
+                W.enemies[i].die();
+            }
+        }
+
 
         var m = this;
         setTimeout(function(){
