@@ -9,13 +9,23 @@ function pickMask(masks, requirements){
 
 function generateWorld(id){
     if(id == 1){
-        return matrix([
-            [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
-            [1, 0, 0, CEILING_SPIKE_ID, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1],
-            [1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1],
-            [1, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 1],
-            [1, 0, SPAWN_ID, 0, 0, 1, 0, 1, 0, 1, 0, EXIT_ID, 0, 1],
-            [1, 1, 1, 1, 1, 1, FLOOR_SPIKE_ID, 1, FLOOR_SPIKE_ID, 1, 1, 1, 1, 1]
+        var m = [
+            [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
+            [1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
+            [1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
+            [1, 0, SPAWN_ID, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1]
+        ];
+        for(var i = 0 ; i < 10 ; i++){
+            m.push([1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1]);
+        }
+
+        return m.concat([
+            [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
+            [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1],
+            [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1],
+            [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 1],
+            [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 0, 0, 0, 1, 0, 1, 0, 1, 0, EXIT_ID, 0, 1],
+            [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, FLOOR_SPIKE_ID, 1, FLOOR_SPIKE_ID, 1, 1, 1, 1, 1]
         ]);
     }
 
@@ -40,7 +50,7 @@ function generateWorld(id){
         }
 
         if(row < maskMapRows - 1){
-            maskMap[row][downCol = ~~(Math.random() * maskMapCols)].push(DOWN);
+            maskMap[row][downCol = ~~(rand() * maskMapCols)].push(DOWN);
         }
     }
 
@@ -84,7 +94,7 @@ function generateWorld(id){
 
             // Probabilistic wall, let's decide now
             if(map[row][col] == PROBABLE_TILE_ID){
-                finalMap[row][col] = M.random() < PROBABLE_TILE_PROBABILITY ? 1 : 0;
+                finalMap[row][col] = rand() < PROBABLE_TILE_PROBABILITY ? 1 : 0;
             }
 
             // Detect floors and ceilings to add spikes, spawn and exit
