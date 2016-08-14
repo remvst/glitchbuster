@@ -11,8 +11,8 @@ var W = window,
     ;
 
 // Exposing all math functions to the global scope
-Object.getOwnPropertyNames(M).forEach(function(name){
-    W[name] = M[name];
+Object.getOwnPropertyNames(Math).forEach(function(n){
+    W[n] = M[n];
 });
 
 var raf = (function(){
