@@ -16,6 +16,8 @@ function Character(){
     this.vX = 0;
     this.vY = 0;
 
+    this.grenades = 0;
+
     var jumpCount = 0,
         previousFloorY;
 
@@ -369,7 +371,7 @@ function Character(){
     };
 
     this.throwGrenade = function(){
-        if(!this.dead){
+        if(!this.dead && this.grenades-- > 0){
             var g = new Grenade();
             g.x = this.x;
             g.y = this.y;
@@ -377,5 +379,7 @@ function Character(){
             W.cyclables.push(g);
             W.renderables.push(g);
         }
+
+        this.grenades = max(0, this.grenades);
     };
 }

@@ -5,7 +5,8 @@ function Game(){
         glitchEnd,
         glitchReset,
         nextGlitch = 0,
-        glitchTimeleft = 0;
+        glitchTimeleft = 0,
+        bugReports = 1;
 
     this.currentLevel = 0;
 
@@ -16,6 +17,8 @@ function Game(){
     this.startNewWorld = function(){
         // World
         W = new World(generateWorld(++this.currentLevel));
+
+        bugReports = ~~(this.currentLevel * this.currentLevel * 1.4);
 
         // Player
         P = new Character();
@@ -85,12 +88,14 @@ function Game(){
             enemy.y = TILE_SIZE * 5 - CHARACTER_HEIGHT / 2;
             W.cyclables.push(enemy);
             W.killables.push(enemy);
+            W.renderables.push(enemy);
 
             var enemy = new Enemy();
             enemy.x = TILE_SIZE * 21;
             enemy.y = TILE_SIZE * 7 - CHARACTER_HEIGHT / 2;
             W.cyclables.push(enemy);
             W.killables.push(enemy);
+            W.renderables.push(enemy);
 
             setTimeout(function(){
                 P.say('Watch out for the pointers!');
@@ -141,9 +146,9 @@ function Game(){
         R.font = '20pt Courier New';
         R.textAlign = 'left';
 
-        fillText('Bugs fixed    / 3', 15, 30);
-        fillText('Bugs reports  / 7', 15, 60);
-        fillText('Breakpoints   / 2', 15, 90);
+        fillText('Bugs fixed    / ' + (G.currentLevel - 1), 15, 30);
+        fillText('Bugs reports  / ' + bugReports, 15, 60);
+        fillText('Breakpoints   / ' + P.grenades, 15, 90);
 
         glitchEnd && glitchEnd();
     };
