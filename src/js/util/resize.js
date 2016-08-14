@@ -1,4 +1,4 @@
-window.onresize = function(){
+onresize = function(){
     T(function(){
         var maxWidth = innerWidth,
             maxHeight = innerHeight,

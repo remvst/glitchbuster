@@ -1,4 +1,4 @@
-W.onload = function(){
+onload = function(){
     C = D.querySelector('canvas');
     C.width = CANVAS_WIDTH;
     C.height = CANVAS_HEIGHT;
@@ -9,13 +9,12 @@ W.onload = function(){
     R.textAlign = 'center';
     R.textBaseline = 'middle';
 
-    Object.getOwnPropertyNames(CanvasRenderingContext2D.prototype).forEach(function(name){
-        try{
-            W[name] = CanvasRenderingContext2D.prototype[name].bind(R);
-        }catch(e){}
+    // Shortcut for all canvas methods
+    Object.getOwnPropertyNames(CanvasRenderingContext2D.prototype).forEach(function(n){
+        R[n].call && W[n] = CanvasRenderingContext2D.prototype[n].bind(R);
     });
 
-    window.onresize();
+    onresize();
 
     new Game();
 };
