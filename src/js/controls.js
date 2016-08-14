@@ -1,3 +1,5 @@
+var touchButtons = {};
+
 function reevalControls(e){
     P.direction = 0;
     if(K[37]){
@@ -31,6 +33,8 @@ var touch = function(e){
 
     P.direction = 0;
 
+    touchButtons = {};
+
     var rect = C.getBoundingClientRect();
     for(var i = 0 ; i < e.touches.length ; i++){
         var x = CANVAS_WIDTH * (e.touches[i].pageX - rect.left) / rect.width,
@@ -45,6 +49,8 @@ var touch = function(e){
         }else if(col == 3){
             P.jump(1);
         }
+
+        touchButtons[col] = true;
     }
 };
 
