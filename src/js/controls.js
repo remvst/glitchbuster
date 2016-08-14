@@ -10,7 +10,7 @@ function reevalControls(e){
 
 addEventListener('keydown', function(e){
     if(!K[38] && e.keyCode == 38){
-        P.jump();
+        P.jump(1);
     }
 
     K[e.keyCode] = true;

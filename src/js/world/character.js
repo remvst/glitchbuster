@@ -130,9 +130,9 @@ function Character(){
         }
     };
 
-    this.jump = function(){
+    this.jump = function(p){
         if(jumpCount++ <= 1 && this.controllable){
-            this.vY = PLAYER_JUMP_ACCELERATION;
+            this.vY = p * PLAYER_JUMP_ACCELERATION;
             previousFloorY = -1;
 
             var y = this.y + CHARACTER_HEIGHT / 2;

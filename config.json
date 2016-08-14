@@ -76,7 +76,7 @@
 
         "GRAVITY": 6000,
         "PLAYER_SPEED": 700,
-        "PLAYER_JUMP_ACCELERATION": -1800,
+        "PLAYER_JUMP_ACCELERATION": -1600,
 
         "ENEMY_SPEED": 150,
         "ENEMY_PATH_MIN_LENGTH": 2,
