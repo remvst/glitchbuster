@@ -39,6 +39,22 @@ function Grenade(){
         W.destroyTileAt(this.x + TILE_SIZE, this.y);
         W.destroyTileAt(this.x, this.y - TILE_SIZE);
 
+        for(var i = 0 ; i < 100 ; i++){
+            var d = rand(0.5, 1.5),
+                x = rand(-TILE_SIZE, TILE_SIZE) + this.x,
+                y = rand(-TILE_SIZE, TILE_SIZE) + this.y;
+
+            particle(4, pick([
+                'red',
+                'orange',
+                'yellow'
+            ]), [
+                ['x', x, x, d],
+                ['y', y, y - rand(100, 300), d, 0],
+                ['s', rand(30, 50), 0, d]
+            ]);
+        }
+
         for(var i in W.enemies){
             var d = realDist(this, W.enemies[i]);
             if(d < TILE_SIZE * 2){
