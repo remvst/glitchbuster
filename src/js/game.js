@@ -48,6 +48,17 @@ function Game(){
                 }
             });
 
+            W.detectPaths(1).forEach(function(path){
+                if(rand() < GRENADE_DENSITY){
+                    var g = new GrenadeItem(
+                        (~~rand(path.colLeft, path.colRight) + 0.5) * TILE_SIZE,
+                        (path.row + 0.5) * TILE_SIZE
+                    );
+                    W.renderables.push(g);
+                    W.cyclables.push(g);
+                }
+            });
+
             setTimeout(function(){
                 P.say(pick([
                     'There\'s more?!',
