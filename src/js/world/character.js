@@ -11,9 +11,8 @@ function Character(){
     this.halo = whiteHalo;
     this.bubbleTailLength = 0;
 
-    this.vY = 0;
-
     this.vX = 0;
+    this.vY = 0;
 
     var jumpCount = 0,
         previousFloorY;
