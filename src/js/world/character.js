@@ -166,6 +166,10 @@ function Character(){
                 }, 2000);
 
                 setTimeout(function(){
+                    G.applyGlitch(0, 0.5);
+                }, 2500);
+
+                setTimeout(function(){
                     G.startNewWorld();
                 }, 3000);
             }else if(d < CANVAS_WIDTH * 0.5 && !this.found){

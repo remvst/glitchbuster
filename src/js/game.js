@@ -33,10 +33,11 @@ function Game(){
         // Prevent camera from lagging behind
         V.forceCenter();
 
-        //this.applyGlitch();
+        this.applyGlitch(0, 0.5);
 
         // Enemies
-        if(this.currentLevel > 2){
+        if(this.currentLevel > 3){
+            // Add enemies
             W.detectPaths(ENEMY_PATH_MIN_LENGTH).forEach(function(path){
                 if(rand() < ENEMY_DENSITY){
                     var enemy = new Enemy();
@@ -48,6 +49,7 @@ function Game(){
                 }
             });
 
+            // Add grenades for pick up
             W.detectPaths(1).forEach(function(path){
                 if(rand() < GRENADE_DENSITY){
                     var g = new GrenadeItem(
@@ -58,7 +60,9 @@ function Game(){
                     W.cyclables.push(g);
                 }
             });
+        }
 
+        if(this.currentLevel > 2){
             setTimeout(function(){
                 P.say(pick([
                     'There\'s more?!',
@@ -176,9 +180,9 @@ function Game(){
             drawImage(jumpArrow, CANVAS_WIDTH * 3.5 / 4 - jumpArrow.width / 2, CANVAS_HEIGHT - 100);
 
             R.globalAlpha = 1;
-
-            glitchEnd && glitchEnd();
         }
+
+        glitchEnd && glitchEnd();
     };
 
     this.doCycle = function(e){
@@ -188,8 +192,8 @@ function Game(){
         }
     };
 
-    this.applyGlitch = function(){
-        pick([function(){
+    this.applyGlitch = function(id, d){
+        var l = [function(){
             glitchEnd = sliceGlitch;
         }, function(){
             glitchEnd = noiseGlitch;
@@ -202,10 +206,12 @@ function Game(){
         }, function(){
             offsetGlitchEnable();
             glitchReset = offsetGlitchReset;
-        }])();
+        }];
 
-        glitchTimeleft = rand(0.1, 0.3);
-        nextGlitch = this.currentLevel > 1 ? rand(2, 4) : 99;
+        (isNaN(id) ? pick(l) : l[id])();
+
+        glitchTimeleft = d || rand(0.1, 0.3);
+        nextGlitch = this.currentLevel > 1 ? rand(4, 8) : 99;
     };
 
     var lf = Date.now();
@@ -221,5 +227,4 @@ function Game(){
     }, 0);
 
     this.startNewWorld();
-    this.applyGlitch();
 }
