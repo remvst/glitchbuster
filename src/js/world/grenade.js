@@ -24,11 +24,32 @@ function Grenade(){
 
         var tile = W.tileAt(this.x, this.y);
         if(tile && !this.stuck){
-            this.stuck = tile;
+            this.vX *= GRENADE_BOUNCE_FACTOR;
+            this.vY *= GRENADE_BOUNCE_FACTOR;
 
-            this.vX = this.vY = 0;
+            var iterations = 0,
+                adjustments;
+            do{
+                adjustments = tile.pushAway(this, GRENADE_RADIUS_2, GRENADE_RADIUS_2);
 
-            tile.pushAway(this, GRENADE_RADIUS_2, GRENADE_RADIUS_2);
+                if(adjustments & UP){
+                    this.vY = -abs(this.vY);
+                }
+                if(adjustments & DOWN){
+                    this.vY = abs(this.vY);
+                }
+                if(adjustments & LEFT){
+                    this.vX = -abs(this.vX);
+                }
+                if(adjustments & RIGHT){
+                    this.vX = abs(this.vX);
+                }
+
+                if(max(abs(this.vX), abs(this.vY)) < 150){
+                    this.stuck = tile;
+                    this.vX = this.vY = 0;
+                }
+            }while(adjustments && iterations++ < 5);
         }
     };
 

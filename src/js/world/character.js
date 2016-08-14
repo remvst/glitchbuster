@@ -106,19 +106,6 @@ function Character(){
     };
 
     this.cycle = function(e){
-        var maxDelta = 1 / 120; // TODO adjust
-
-        var deltas = ~~(e / maxDelta);
-        for(var i = 0 ; i < deltas ; i++, e -= maxDelta){
-            this.doCycle(maxDelta);
-        }
-
-        if(e > 0){
-            this.doCycle(e % maxDelta);
-        }
-    };
-
-    this.doCycle = function(e){
         var before = {
             x: this.x,
             y: this.y
@@ -184,7 +171,11 @@ function Character(){
         }
     };
 
-    this.jump = function(p){
+    this.jump = function(p, f){
+        if(f){
+            jumpCount = 0;
+        }
+
         if(jumpCount++ <= 1 && this.controllable){
             this.vY = p * PLAYER_JUMP_ACCELERATION;
             previousFloorY = -1;

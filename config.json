@@ -81,6 +81,7 @@
 
         "GRENADE_RADIUS": 10,
         "GRENADE_RADIUS_2": 20,
+        "GRENADE_BOUNCE_FACTOR": 0.5,
 
         "ENEMY_SPEED": 150,
         "ENEMY_PATH_MIN_LENGTH": 2,

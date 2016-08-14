@@ -7,7 +7,7 @@ function Game(){
         nextGlitch = 0,
         glitchTimeleft = 0;
 
-    this.currentLevel = 3;
+    this.currentLevel = 0;
 
     this.globalPattern = null;
     this.t = 0;
@@ -100,6 +100,8 @@ function Game(){
     this.cycle = function(e){
         this.t += e;
 
+        var maxDelta = 1 / 120; // TODO adjust
+
         glitchTimeleft -= e;
         if(glitchTimeleft <= 0){
             glitchReset && glitchReset();
@@ -114,6 +116,22 @@ function Game(){
 
         glitchStart && glitchStart();
 
+        var deltas = ~~(e / maxDelta);
+        for(var i = 0 ; i < deltas ; i++, e -= maxDelta){
+            this.doCycle(maxDelta);
+        }
+
+        if(e > 0){
+            this.doCycle(e % maxDelta);
+        }
+
+        // Rendering
+        renderWorld();
+
+        glitchEnd && glitchEnd();
+    };
+
+    this.doCycle = function(e){
         // Cycles
         P.cycle(e);
         V.cycle(e);
@@ -126,11 +144,6 @@ function Game(){
         for(var i in W.grenades){
             W.grenades[i].cycle(e);
         }
-
-        // Rendering
-        renderWorld();
-
-        glitchEnd && glitchEnd();
     };
 
     this.applyGlitch = function(){
