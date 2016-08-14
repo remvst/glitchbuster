@@ -23,8 +23,8 @@ function Enemy(){
         var rightX = this.x + CHARACTER_WIDTH / 2;
         var bottomY = this.y + CHARACTER_HEIGHT / 2;
 
-        var bottomLeft = W.tileAt(leftX, bottomY);
-        var bottomRight = W.tileAt(rightX, bottomY);
+        var bottomLeft = W.tileAt(leftX, bottomY).type == TILE_ID;
+        var bottomRight = W.tileAt(rightX, bottomY).type == TILE_ID;
 
         var adjustement = this.readjust(before);
 
