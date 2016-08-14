@@ -23,10 +23,8 @@ function easeOutBounce(t, b, c, d) {
     }
 }
 
-var ts = [];
-
 function interp(o, p, a, b, d, l, f, e){
-    ts.push({
+    W.cyclables.push({
         o: o, // object
         p: p, // property
         a: a, // from
@@ -35,23 +33,19 @@ function interp(o, p, a, b, d, l, f, e){
         l: l || 0, // delay
         f: f || linear, // easing function
         e: e, // end callback
-        t: 0
-    });
-}
-
-function interpCycle(e){
-    for(var i = ts.length - 1 ; i >= 0 ; i--){
-        var tw = ts[i];
-        if(tw.l > 0){
-            tw.l -= e;
-            tw.o[tw.p] = tw.a;
-        }else{
-            tw.t = min(tw.d, tw.t + e);
-            tw.o[tw.p] = tw.f(tw.t, tw.a, tw.b - tw.a, tw.d);
-            if(tw.t == tw.d){
-                tw.e && tw.e();
-                ts.splice(i, 1);
+        t: 0,
+        cycle: function(e){
+            if(this.l > 0){
+                this.l -= e;
+                this.o[this.p] = this.a;
+            }else{
+                this.t = min(this.d, this.t + e);
+                this.o[this.p] = this.f(this.t, this.a, this.b - this.a, this.d);
+                if(this.t == this.d){
+                    this.e && this.e();
+                    remove(W.cyclables, this);
+                }
             }
         }
-    }
+    });
 }

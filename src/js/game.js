@@ -141,8 +141,6 @@ function Game(){
 
     this.doCycle = function(e){
         // Cycles
-        interpCycle(e);
-
         for(var i in W.cyclables){
             W.cyclables[i].cycle(e);
         }
