@@ -1,12 +1,14 @@
-var ps = [];
-
 function particle(s, c, as){
     var p;
 
     // Add to the list of particles
-    ps.push(p = {
+    W.renderables.push(p = {
         s: s,
-        c: c
+        c: c,
+        render: function(){
+            R.fillStyle = p.c;
+            fillRect(p.x - p.s / 2, p.y - p.s / 2, p.s, p.s);
+        }
     });
 
     // Interpolations
@@ -16,19 +18,11 @@ function particle(s, c, as){
         // Add the remove callback
         if(id === 0){
             args[7] = function(){
-                remove(ps, p);
+                remove(W.renderables, p);
             };
         }
 
         // Apply the interpolation
         interp.apply(0, args);
     });
-}
-
-function renderParticles(){
-    for(var i in ps){
-        var p = ps[i];
-        R.fillStyle = p.c;
-        fillRect(p.x - p.s / 2, p.y - p.s / 2, p.s, p.s);
-    }
 }

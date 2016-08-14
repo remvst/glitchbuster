@@ -29,8 +29,6 @@ function renderWorld(){
         W.renderables[i].render();
     }
 
-    renderParticles();
-
     var haloX = ~~P.x - DARK_HALO_SIZE_HALF,
         haloY = ~~P.y - DARK_HALO_SIZE_HALF,
         haloX2 = haloX + DARK_HALO_SIZE,
