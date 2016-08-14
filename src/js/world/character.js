@@ -16,7 +16,7 @@ function Character(){
     this.vX = 0;
     this.vY = 0;
 
-    this.grenades = 0;
+    this.grenades = P ? P.grenades : 0;
 
     var jumpCount = 0,
         previousFloorY;
