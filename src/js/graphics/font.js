@@ -311,8 +311,6 @@ function drawText(r, t, x, y, s, c){
 	for(var i = 0 ; i < t.length ; i++){
 		var def = defs[t.charAt(i)];
 
-		console.log(def);
-
 		for(var row = 0 ; row < def.length ; row++){
 			for(var col = 0 ; col < def[row].length ; col++){
 				if(def[row][col]){

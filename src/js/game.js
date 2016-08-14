@@ -9,6 +9,7 @@ function Game(){
         bugReports = 1;
 
     this.currentLevel = 0;
+    this.menu = new MainMenu();
 
     this.t = 0;
 
@@ -165,7 +166,10 @@ function Game(){
         fillText('Bugs reports  / ' + bugReports, 15, 60);
         fillText('Breakpoints   / ' + P.grenades, 15, 90);
 
-        if(G.touch){
+
+        if(this.menu){
+            this.menu.render();
+        }else if(G.touch){
             // Mobile controls
             R.globalAlpha = touchButtons[0] ? 1 : 0.5;
             drawImage(leftArrow, CANVAS_WIDTH * 0.5 / 4 - leftArrow.width / 2, CANVAS_HEIGHT - 100);
