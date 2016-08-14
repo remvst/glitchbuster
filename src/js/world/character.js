@@ -48,20 +48,22 @@ function Character(){
         scale(this.facing * this.scaleFactor, 1);
 
         // Legs
-        save();
-        translate(-CHARACTER_WIDTH / 2 + 2, -CHARACTER_HEIGHT / 2);
+        if(!this.dead){
+            save();
+            translate(-CHARACTER_WIDTH / 2 + 2, -CHARACTER_HEIGHT / 2);
 
-        var legAmplitude = 10,
-            legPeriod = 0.3,
-            legLength = (sin((G.t * PI * 2) / legPeriod) / 2) * legAmplitude + legAmplitude / 2;
+            var legAmplitude = 10,
+                legPeriod = 0.3,
+                legLength = (sin((G.t * PI * 2) / legPeriod) / 2) * legAmplitude + legAmplitude / 2;
 
-        var leftLegLength = this.direction || jumpCount > 0 ? legLength : legAmplitude;
-        var rightLegLength = this.direction || jumpCount > 0 ? legAmplitude - legLength : legAmplitude;
+            var leftLegLength = this.direction || jumpCount > 0 ? legLength : legAmplitude;
+            var rightLegLength = this.direction || jumpCount > 0 ? legAmplitude - legLength : legAmplitude;
 
-        R.fillStyle = this.legColor;
-        fillRect(12, 56, 8, leftLegLength);
-        fillRect(44, 56, 8, rightLegLength);
-        restore();
+            R.fillStyle = this.legColor;
+            fillRect(12, 56, 8, leftLegLength);
+            fillRect(44, 56, 8, rightLegLength);
+            restore();
+        }
 
         // Let's bob a little
         var bodyRotationMaxAngle = PI / 16,
