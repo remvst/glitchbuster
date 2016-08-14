@@ -2,6 +2,7 @@ function Tile(row, col, type){
     this.x = (this.col = col) * TILE_SIZE;
     this.y = (this.row = row) * TILE_SIZE;
     this.solid = [SPAWN_ID, EXIT_ID].indexOf(type) < 0;
+    this.type = type;
 
     this.alpha = 1;
 

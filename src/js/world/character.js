@@ -148,14 +148,20 @@ function Character(){
         }
     };
 
-    this.landOn = function(tile){
+    this.landOn = function(tiles){
         this.vY = 0;
 
         jumpCount = 0;
 
-        if(tile.y === previousFloorY){
+        if(tiles[0].y === previousFloorY){
             return;
         }
+
+        // Find the tile that was the least dangerous
+        // We assume types are sorted from non lethal to most lethal
+        var tile = tiles.sort(function(a, b){
+            return a.type - b.type;
+        })[0];
 
         tile.landed(this);
 
@@ -176,8 +182,14 @@ function Character(){
         previousFloorY = tile.y;
     };
 
-    this.tapOn = function(tile){
+    this.tapOn = function(tiles){
         this.vY = 0; // prevent from pushing that tile
+
+        // Find the tile that was the least dangerous
+        // We assume types are sorted from non lethal to most lethal
+        var tile = tiles.sort(function(a, b){
+            return a.type - b.type;
+        })[0];
 
         tile.tapped(this);
     };
@@ -217,8 +229,7 @@ function Character(){
                 t |= LEFT;
             }
 
-            this.tapOn(topLeft);
-            this.tapOn(topRight);
+            this.tapOn([topLeft, topRight]);
         }
 
         else if(bottomLeft && bottomRight){
@@ -233,8 +244,7 @@ function Character(){
                 t |= LEFT;
             }
 
-            this.landOn(bottomLeft);
-            this.landOn(bottomRight);
+            this.landOn([bottomLeft, bottomRight]);
         }
 
         // Collision against a wall
@@ -267,9 +277,9 @@ function Character(){
 
         // Based on the adjustment, fire some tile events
         if(t & UP){
-            this.landOn(bottomLeft || bottomRight);
+            this.landOn([bottomLeft || bottomRight]);
         }else if(t & DOWN){
-            this.tapOn(topLeft || topRight);
+            this.tapOn([topLeft || topRight]);
         }
 
         return t;
