@@ -1,4 +1,4 @@
-function Enemy(path){
+function Enemy(){
     Character.call(this);
 
     this.direction = 1;

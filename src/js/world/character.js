@@ -2,7 +2,7 @@ function Character(){
     this.x = this.y = 0;
     this.direction = 0;
     this.facing = 1;
-    this.fixing = false;
+    //this.fixing = false;
     this.controllable = true;
 
     this.bodyOffsetY = 0;
@@ -122,8 +122,14 @@ function Character(){
             this.controllable = false;
             this.fixing = true;
 
+            W.exit.label = 'Fixing...';
+
             interp(this, 'x', this.x, W.exit.center.x, 1);
             interp(W.exit, 'alpha', 1, 0, 1, 1);
+
+            setTimeout(function(){
+                W.exit.label = 'Fixed!';
+            }, 1000);
 
             setTimeout(function(){
                 G.startNewWorld();

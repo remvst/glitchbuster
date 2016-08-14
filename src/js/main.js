@@ -13,5 +13,5 @@ W.onload = function(){
 
     window.onresize();
 
-    G = new Game();
+    new Game();
 };

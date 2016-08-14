@@ -3,6 +3,7 @@ function Tile(row, col, type){
     this.y = (this.row = row) * TILE_SIZE;
     this.solid = [SPAWN_ID, EXIT_ID].indexOf(type) < 0;
     this.type = type;
+    this.label = 'Bug #' + G.currentLevel;
 
     this.alpha = 1;
 
@@ -80,7 +81,6 @@ function Tile(row, col, type){
         }
 
         if(type == EXIT_ID){
-            R.globalAlpha = this.alpha;
 
             // Halo
             drawImage(whiteHalo, TILE_SIZE / 2 - HALO_SIZE_HALF, TILE_SIZE / 2 - HALO_SIZE_HALF);
@@ -91,7 +91,7 @@ function Tile(row, col, type){
             R.textBaseline = 'middle';
 
             fillText(
-                P.fixing ? 'Fixing...' : 'Bug #' + G.currentLevel,
+                this.label,
                 TILE_SIZE / 2,
                 -ARROW_SIZE + ARROW_Y_OFFSET - 10
             );
@@ -102,6 +102,8 @@ function Tile(row, col, type){
             lineTo(TILE_SIZE / 2 + ARROW_SIZE / 2, -ARROW_SIZE / 2 + ARROW_Y_OFFSET);
             lineTo(TILE_SIZE / 2, ARROW_Y_OFFSET);
             fill();
+
+            R.globalAlpha = this.alpha;
 
             R.fillStyle = noisePattern;
 

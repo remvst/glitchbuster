@@ -1,4 +1,6 @@
 function Game(){
+    G = this;
+
     var glitchStart,
         glitchEnd,
         glitchReset,
@@ -27,14 +29,27 @@ function Game(){
         this.applyGlitch();
 
         // Enemies
-        W.detectPaths(ENEMY_PATH_MIN_LENGTH).forEach(function(path){
-            if(rand() < ENEMY_DENSITY){
-                var enemy = new Enemy(path);
-                enemy.x = TILE_SIZE * rand(path.colLeft, path.colRight);
-                enemy.y = TILE_SIZE * (path.row + 1) - CHARACTER_HEIGHT / 2;
-                W.enemies.push(enemy);
-            }
-        });
+        if(this.currentLevel > 2){
+            W.detectPaths(ENEMY_PATH_MIN_LENGTH).forEach(function(path){
+                if(rand() < ENEMY_DENSITY){
+                    var enemy = new Enemy();
+                    enemy.x = TILE_SIZE * rand(path.colLeft, path.colRight);
+                    enemy.y = TILE_SIZE * (path.row + 1) - CHARACTER_HEIGHT / 2;
+                    W.enemies.push(enemy);
+                }
+            });
+        }
+        if(this.currentLevel == 2){
+            var enemy = new Enemy();
+            enemy.x = TILE_SIZE * 6;
+            enemy.y = TILE_SIZE * 5 - CHARACTER_HEIGHT / 2;
+            W.enemies.push(enemy);
+
+            var enemy = new Enemy();
+            enemy.x = TILE_SIZE * 16;
+            enemy.y = TILE_SIZE * 7 - CHARACTER_HEIGHT / 2;
+            W.enemies.push(enemy);
+        }
     };
 
     // Game loop
