@@ -241,15 +241,15 @@ function Character(){
     };
 
     this.readjust = function(before){
-        var leftX = this.x - CHARACTER_WIDTH / 2;
-        var rightX = this.x + CHARACTER_WIDTH / 2;
-        var topY = this.y - CHARACTER_HEIGHT / 2;
-        var bottomY = this.y + CHARACTER_HEIGHT / 2;
+        var leftX = this.x - CHARACTER_WIDTH / 2,
+            rightX = this.x + CHARACTER_WIDTH / 2,
+            topY = this.y - CHARACTER_HEIGHT / 2,
+            bottomY = this.y + CHARACTER_HEIGHT / 2;
 
-        var topLeft = W.tileAt(leftX, topY);
-        var topRight = W.tileAt(rightX, topY);
-        var bottomLeft = W.tileAt(leftX, bottomY);
-        var bottomRight = W.tileAt(rightX, bottomY);
+        var topLeft = W.tileAt(leftX, topY),
+            topRight = W.tileAt(rightX, topY),
+            bottomLeft = W.tileAt(leftX, bottomY),
+            bottomRight = W.tileAt(rightX, bottomY);
 
         var t = 0;
 
