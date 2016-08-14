@@ -260,13 +260,13 @@ function Character(){
         var t = 0;
 
         if(topRight && bottomLeft && !bottomRight && !topLeft){
-            t |= topRight.pushAway(this, before);
-            t |= bottomLeft.pushAway(this, before);
+            t |= topRight.pushAway(this);
+            t |= bottomLeft.pushAway(this);
         }
 
         else if(topLeft && bottomRight && !topRight && !bottomLeft){
-            t |= topLeft.pushAway(this, before);
-            t |= bottomRight.pushAway(this, before);
+            t |= topLeft.pushAway(this);
+            t |= bottomRight.pushAway(this);
         }
 
         else if(topLeft && topRight){
@@ -312,19 +312,19 @@ function Character(){
 
         // 1 intersection
         else if(bottomLeft){
-            t |= bottomLeft.pushAway(this, before);
+            t |= bottomLeft.pushAway(this);
         }
 
         else if(bottomRight){
-            t |= bottomRight.pushAway(this, before);
+            t |= bottomRight.pushAway(this);
         }
 
         else if(topLeft){
-            t |= topLeft.pushAway(this, before);
+            t |= topLeft.pushAway(this);
         }
 
         else if(topRight){
-            t |= topRight.pushAway(this, before);
+            t |= topRight.pushAway(this);
         }
 
         // Based on the adjustment, fire some tile events
@@ -373,5 +373,13 @@ function Character(){
         this.saying = s;
         this.sayingTimeleft = 3;
         interp(this, 'bubbleTailLength', 0, 70, 0.3, 0, easeOutBack);
+    };
+
+    this.throwGrenade = function(){
+        var g = new Grenade();
+        g.x = this.x;
+        g.y = this.y;
+        g.throw(-PI / 2 + this.facing * PI / 3, 1000);
+        W.grenades.push(g);
     };
 }

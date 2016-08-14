@@ -13,6 +13,10 @@ addEventListener('keydown', function(e){
         P.jump(1);
     }
 
+    if(!K[32] && e.keyCode == 32){
+        P.throwGrenade();
+    }
+
     K[e.keyCode] = true;
     reevalControls(e);
 }, false);

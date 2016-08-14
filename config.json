@@ -13,7 +13,7 @@
 
             "src/js/world/masks.js",
             "src/js/world/generate-world.js",
-
+            "src/js/world/grenade.js",
             "src/js/world/character.js",
             "src/js/world/enemy.js",
             "src/js/world/world.js",
@@ -77,6 +77,9 @@
         "GRAVITY": 6000,
         "PLAYER_SPEED": 700,
         "PLAYER_JUMP_ACCELERATION": -1600,
+
+        "GRENADE_RADIUS": 10,
+        "GRENADE_RADIUS_2": 20,
 
         "ENEMY_SPEED": 150,
         "ENEMY_PATH_MIN_LENGTH": 2,

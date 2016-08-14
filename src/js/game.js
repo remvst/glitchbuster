@@ -123,6 +123,10 @@ function Game(){
             W.enemies[i].cycle(e);
         }
 
+        for(var i in W.grenades){
+            W.grenades[i].cycle(e);
+        }
+
         // Rendering
         renderWorld();
 

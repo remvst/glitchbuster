@@ -29,6 +29,10 @@ function renderWorld(){
         W.enemies[i].render();
     }
 
+    for(var i in W.grenades){
+        W.grenades[i].render();
+    }
+
     var haloX = ~~P.x - DARK_HALO_SIZE_HALF,
         haloY = ~~P.y - DARK_HALO_SIZE_HALF,
         haloX2 = haloX + DARK_HALO_SIZE,

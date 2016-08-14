@@ -1,5 +1,6 @@
 function World(map){
     this.enemies = [];
+    this.grenades = [];
     this.tiles = [];
     this.map = map;
 

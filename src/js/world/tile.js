@@ -11,22 +11,22 @@ function Tile(row, col, type){
         y: this.y + TILE_SIZE / 2
     };
 
-    this.pushAway = function(character, dX, dY){
+    this.pushAway = function(character, w, h){
         var adjustments = [{
-            x: this.x - CHARACTER_WIDTH / 2,
+            x: this.x - (w || CHARACTER_WIDTH) / 2,
             y: character.y,
             type: LEFT
         }, {
-            x: this.x + TILE_SIZE + CHARACTER_WIDTH / 2,
+            x: this.x + TILE_SIZE + (w || CHARACTER_WIDTH) / 2,
             y: character.y,
             type: RIGHT
         }, {
             x: character.x,
-            y: this.y - CHARACTER_HEIGHT / 2,
+            y: this.y - (h || CHARACTER_HEIGHT) / 2,
             type: UP
         }, {
             x: character.x,
-            y: this.y + TILE_SIZE + CHARACTER_HEIGHT / 2,
+            y: this.y + TILE_SIZE + (h || CHARACTER_HEIGHT) / 2,
             type: DOWN
         }];
 
