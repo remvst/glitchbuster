@@ -8,7 +8,9 @@ function Grenade(){
     };
 
     this.cycle = function(e){
-        if(!this.stuck){
+        if(!this.stuck || this.stuck.destroyed){
+            this.stuck = null;
+
             this.vY += e * GRAVITY * 0.5;
 
             this.x += this.vX * e;
@@ -22,7 +24,9 @@ function Grenade(){
 
         var tile = W.tileAt(this.x, this.y);
         if(tile && !this.stuck){
-            this.stuck = true;
+            this.stuck = tile;
+
+            this.vX = this.vY = 0;
 
             tile.pushAway(this, GRENADE_RADIUS_2, GRENADE_RADIUS_2);
         }

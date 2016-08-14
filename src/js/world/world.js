@@ -37,11 +37,12 @@ function World(map){
 
                 particle(4, '#fff', [
                     ['x', x, x, d],
-                    ['y', tile.y + rand(TILE_SIZE), tile.y + TILE_SIZE, d, 0, easeOutBounce],
+                    ['y', tile.y + rand(TILE_SIZE), this.firstYUnder(x, tile.center.y), d, 0, easeOutBounce],
                     ['s', 15, 0, d]
                 ]);
             }
 
+            tile.destroyed = true;
             this.tiles[tile.row][tile.col] = null;
         }
     };
@@ -74,5 +75,13 @@ function World(map){
             }
         }
         return paths;
+    };
+
+    this.firstYUnder = function(x, y){
+        do{
+            y += TILE_SIZE;
+        }while(y < this.rows * TILE_SIZE && !this.tileAt(x, y));
+
+        return ~~(y / TILE_SIZE) * TILE_SIZE;
     };
 }

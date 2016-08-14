@@ -376,10 +376,12 @@ function Character(){
     };
 
     this.throwGrenade = function(){
-        var g = new Grenade();
-        g.x = this.x;
-        g.y = this.y;
-        g.throw(-PI / 2 + this.facing * PI / 3, 1000);
-        W.grenades.push(g);
+        if(!this.dead){
+            var g = new Grenade();
+            g.x = this.x;
+            g.y = this.y;
+            g.throw(-PI / 2 + this.facing * PI / 3, 1000);
+            W.grenades.push(g);
+        }
     };
 }

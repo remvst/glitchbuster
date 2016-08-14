@@ -33,6 +33,8 @@ function renderWorld(){
         W.grenades[i].render();
     }
 
+    renderParticles();
+
     var haloX = ~~P.x - DARK_HALO_SIZE_HALF,
         haloY = ~~P.y - DARK_HALO_SIZE_HALF,
         haloX2 = haloX + DARK_HALO_SIZE,
@@ -51,8 +53,6 @@ function renderWorld(){
     if(haloY2 < cameraBottomY){
         fillRect(V.x, haloY2, CANVAS_WIDTH, cameraBottomY - haloY2);
     }
-
-    renderParticles();
 
     drawImage(darkHalo, haloX, haloY);
 
