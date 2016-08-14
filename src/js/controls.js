@@ -8,7 +8,7 @@ function reevalControls(e){
     }
 }
 
-addEventListener('keydown', function(e){
+onkeydown = function(e){
     if(!K[38] && e.keyCode == 38){
         P.jump(1);
     }
@@ -19,9 +19,9 @@ addEventListener('keydown', function(e){
 
     K[e.keyCode] = true;
     reevalControls(e);
-}, false);
+};
 
-addEventListener('keyup', function(e){
+onkeyup = function(e){
     K[e.keyCode] = false;
     reevalControls(e);
-}, false);
+};
