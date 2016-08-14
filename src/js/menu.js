@@ -31,8 +31,12 @@ function Menu(){
 function MainMenu(){
     Menu.call(this);
 
-    this.button(playButton, 0, 460);
-    this.button(tutorialButton, 0, 600);
+    this.button(playButton, 0, 460, function(){
+        G.newGame();
+    });
+    this.button(tutorialButton, 0, 600, function(){
+        G.newGame(true);
+    });
 
     var titleX = (CANVAS_WIDTH - title.width) / 2;
     this.button(title, titleX, titleX);

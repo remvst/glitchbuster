@@ -15,6 +15,12 @@ function Game(){
 
     V = new Camera();
 
+    this.newGame = function(tutorial){
+        this.currentLevel = tutorial ? 0 : 3;
+        this.startNewWorld();
+        this.menu = null;
+    };
+
     this.startNewWorld = function(){
         // World
         W = new World(generateWorld(++this.currentLevel));
