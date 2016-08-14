@@ -123,6 +123,7 @@ function Character(){
             this.fixing = true;
 
             interp(this, 'x', this.x, W.exit.center.x, 0.3);
+            interp(W.exit, 'alpha', 1, 0, 1, 0.3);
 
             setTimeout(function(){
                 G.startNewWorld();

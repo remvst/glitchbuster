@@ -3,9 +3,9 @@ function Game(){
         glitchEnd,
         glitchReset,
         nextGlitch = 0,
-        glitchTimeleft = 0,
+        glitchTimeleft = 0;
 
-        currentLevel = 0;
+    this.currentLevel = 0;
 
     this.globalPattern = null;
     this.t = 0;
@@ -14,7 +14,7 @@ function Game(){
 
     this.startNewWorld = function(){
         // World
-        W = new World(generateWorld(currentLevel++));
+        W = new World(generateWorld(++this.currentLevel));
 
         // Player
         P = new Character();

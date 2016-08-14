@@ -3,6 +3,8 @@ function Tile(row, col, type){
     this.y = (this.row = row) * TILE_SIZE;
     this.solid = [SPAWN_ID, EXIT_ID].indexOf(type) < 0;
 
+    this.alpha = 1;
+
     this.center = {
         x: this.x + TILE_SIZE / 2,
         y: this.y + TILE_SIZE / 2
@@ -77,8 +79,21 @@ function Tile(row, col, type){
         }
 
         if(type == EXIT_ID){
+            R.globalAlpha = this.alpha;
+
             // Halo
             drawImage(whiteHalo, TILE_SIZE / 2 - HALO_SIZE_HALF, TILE_SIZE / 2 - HALO_SIZE_HALF);
+
+            // Bug ID
+            R.font = '14pt Courier New';
+            R.textAlign = 'center';
+            R.textBaseline = 'middle';
+
+            fillText(
+                P.fixing ? 'Fixing...' : 'Bug #' + G.currentLevel,
+                TILE_SIZE / 2,
+                -ARROW_SIZE + ARROW_Y_OFFSET - 10
+            );
 
             // Arrow
             beginPath();

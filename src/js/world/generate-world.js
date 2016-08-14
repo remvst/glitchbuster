@@ -8,7 +8,7 @@ function pickMask(masks, requirements){
 
 
 function generateWorld(id){
-    if(!id){
+    if(id == 1){
         return matrix([
             [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
             [1, 0, 0, CEILING_SPIKE_ID, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1],
@@ -100,21 +100,22 @@ function generateWorld(id){
         }
     }
 
+    // Add a random spawn and a random exit
+    var spawn = pick(floors.slice(0, floors.length * 0.1));
+    var exit = pick(floors.slice(floors.length * 0.9));
+
+    // Add random spikes
     floors.forEach(function(f){
-        if(rand() < SPIKE_DENSITY){
+        if(f != exit && f != spawn && rand() < SPIKE_DENSITY){
             finalMap[f[0]][f[1]] = FLOOR_SPIKE_ID;
         }
     });
 
     ceilings.forEach(function(f){
-        if(rand() < SPIKE_DENSITY){
+        if(f != exit && f != spawn && rand() < SPIKE_DENSITY){
             finalMap[f[0]][f[1]] = CEILING_SPIKE_ID;
         }
     });
-
-    // Add a random spawn and a random exit
-    var spawn = pick(floors.slice(0, floors.length * 0.1));
-    var exit = pick(floors.slice(floors.length * 0.9));
 
     finalMap[spawn[0] - 1][spawn[1]] = SPAWN_ID;
     finalMap[exit[0] - 1][exit[1]] = EXIT_ID;
