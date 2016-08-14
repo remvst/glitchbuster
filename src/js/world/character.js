@@ -11,6 +11,8 @@ function Character(){
     this.halo = whiteHalo;
     this.bubbleTailLength = 0;
 
+    this.scaleFactor = 1;
+
     this.vX = 0;
     this.vY = 0;
 
@@ -43,7 +45,7 @@ function Character(){
         }
 
         // Facing left or right
-        scale(this.facing, 1);
+        scale(this.facing * this.scaleFactor, 1);
 
         // Legs
         save();
@@ -136,6 +138,11 @@ function Character(){
 
         if(this.controllable){
             this.x += this.vX * e;
+
+            if(this.direction == -this.facing){
+                interp(this, 'scaleFactor', -1, 1, 0.1);
+            }
+
             this.facing = this.direction || this.facing;
         }
 
