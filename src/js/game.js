@@ -26,7 +26,7 @@ function Game(){
         // Prevent camera from lagging behind
         V.forceCenter();
 
-        this.applyGlitch();
+        //this.applyGlitch();
 
         // Enemies
         if(this.currentLevel > 2){
@@ -162,4 +162,5 @@ function Game(){
     }, 0);
 
     this.startNewWorld();
+    this.applyGlitch();
 }

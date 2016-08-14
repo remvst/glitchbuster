@@ -13,8 +13,8 @@ function Camera(){
     // Instantly moves the camera to the position where it's supposed to be
     this.forceCenter = function(e){
         var t = this.target();
-        this.realX = t.x;
-        this.realY = t.y;
+        this.realX = this.x = t.x;
+        this.realY = this.y = t.y;
     };
 
     this.cycle = function(e){
