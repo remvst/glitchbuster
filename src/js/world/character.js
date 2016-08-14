@@ -363,7 +363,9 @@ function Character(){
 
         this.say(pick([
             '...',
-            'exit(1)'
+            'exit(1)',
+            'NULL',
+            'Fatal error'
         ]));
     };
 

@@ -7,45 +7,49 @@ function Enemy(){
     this.legColor = '#b22';
     this.halo = redHalo;
 
+    this.sayingTimeleft = 0;
+
     this.cycle = function(e){
-        if(this.dead){
-            return;
-        }
+        if(!this.dead){
+            if((this.sayingTimeleft -= e) <= 0){
+                this.say('0x' + (~~rand(0x100000, 0xffffff)).toString(16));
+            }
 
-        var before = {
-            x: this.x,
-            y: this.y
-        };
+            var before = {
+                x: this.x,
+                y: this.y
+            };
 
-        this.x += this.direction * ENEMY_SPEED * e;
+            this.x += this.direction * ENEMY_SPEED * e;
 
-        var leftX = this.x - CHARACTER_WIDTH / 2;
-        var rightX = this.x + CHARACTER_WIDTH / 2;
-        var bottomY = this.y + CHARACTER_HEIGHT / 2;
+            var leftX = this.x - CHARACTER_WIDTH / 2;
+            var rightX = this.x + CHARACTER_WIDTH / 2;
+            var bottomY = this.y + CHARACTER_HEIGHT / 2;
 
-        var bottomLeft = W.tileAt(leftX, bottomY);
-        var bottomRight = W.tileAt(rightX, bottomY);
+            var bottomLeft = W.tileAt(leftX, bottomY);
+            var bottomRight = W.tileAt(rightX, bottomY);
 
-        var adjustement = this.readjust(before);
+            var adjustement = this.readjust(before);
 
-        if(adjustement & LEFT || !bottomRight || (bottomRight.type > UNBREAKABLE_TILE_ID)){
-            this.direction = -1;
-        }
-        if(adjustement & RIGHT || !bottomLeft || (bottomLeft.type > UNBREAKABLE_TILE_ID)){
-            this.direction = 1;
-        }
+            if(adjustement & LEFT || !bottomRight || (bottomRight.type > UNBREAKABLE_TILE_ID)){
+                this.direction = -1;
+            }
+            if(adjustement & RIGHT || !bottomLeft || (bottomLeft.type > UNBREAKABLE_TILE_ID)){
+                this.direction = 1;
+            }
 
-        this.facing = this.direction;
+            this.facing = this.direction;
 
-        var dX = abs(P.x - this.x),
-            dY = abs(P.y - this.y);
-        if(dX < CHARACTER_WIDTH && dY < CHARACTER_HEIGHT){
-            // Okay there's a collision, but is he landing on me or is he colliding with me?
-            if(dX < dY && P.y < this.y && P.vY > 0){
-                P.jump(0.8, true);
-                this.die();
-            }else{
-                P.die();
+            var dX = abs(P.x - this.x),
+                dY = abs(P.y - this.y);
+            if(dX < CHARACTER_WIDTH && dY < CHARACTER_HEIGHT){
+                // Okay there's a collision, but is he landing on me or is he colliding with me?
+                if(dX < dY && P.y < this.y && P.vY > 0){
+                    P.jump(0.8, true);
+                    this.die();
+                }else{
+                    P.die();
+                }
             }
         }
     };
@@ -62,8 +66,8 @@ function Enemy(){
 
         setTimeout(function(){
             remove(W.renderables, s);
-        }, 1000);
+        }, 3000);
 
-        interp(this, 'scaleFactor', 1, 0, 0.5, 0.5);
+        interp(this, 'scaleFactor', 1, 0, 2.5, 0.5);
     };
 }
