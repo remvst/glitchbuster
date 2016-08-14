@@ -3,7 +3,6 @@ function Tile(row, col, type){
     this.y = (this.row = row) * TILE_SIZE;
     this.solid = [SPAWN_ID, EXIT_ID].indexOf(type) < 0;
     this.type = type;
-    this.label = 'Bug #' + G.currentLevel;
 
     this.alpha = 1;
 
@@ -85,23 +84,25 @@ function Tile(row, col, type){
             // Halo
             drawImage(whiteHalo, TILE_SIZE / 2 - HALO_SIZE_HALF, TILE_SIZE / 2 - HALO_SIZE_HALF);
 
-            // Bug ID
-            R.font = '14pt Courier New';
-            R.textAlign = 'center';
-            R.textBaseline = 'middle';
+            if(this.alpha == 1){
+                // Bug ID
+                R.font = '14pt Courier New';
+                R.textAlign = 'center';
+                R.textBaseline = 'middle';
 
-            fillText(
-                this.label,
-                TILE_SIZE / 2,
-                -ARROW_SIZE + ARROW_Y_OFFSET - 10
-            );
+                fillText(
+                    'Bug #' + G.currentLevel,
+                    TILE_SIZE / 2,
+                    -ARROW_SIZE + ARROW_Y_OFFSET - 10
+                );
 
-            // Arrow
-            beginPath();
-            moveTo(TILE_SIZE / 2 - ARROW_SIZE / 2, -ARROW_SIZE / 2 + ARROW_Y_OFFSET);
-            lineTo(TILE_SIZE / 2 + ARROW_SIZE / 2, -ARROW_SIZE / 2 + ARROW_Y_OFFSET);
-            lineTo(TILE_SIZE / 2, ARROW_Y_OFFSET);
-            fill();
+                // Arrow
+                beginPath();
+                moveTo(TILE_SIZE / 2 - ARROW_SIZE / 2, -ARROW_SIZE / 2 + ARROW_Y_OFFSET);
+                lineTo(TILE_SIZE / 2 + ARROW_SIZE / 2, -ARROW_SIZE / 2 + ARROW_Y_OFFSET);
+                lineTo(TILE_SIZE / 2, ARROW_Y_OFFSET);
+                fill();
+            }
 
             R.globalAlpha = this.alpha;
 

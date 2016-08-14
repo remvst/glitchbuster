@@ -38,6 +38,14 @@ function Game(){
                     W.enemies.push(enemy);
                 }
             });
+
+            setTimeout(function(){
+                P.say(pick([
+                    'There\'s more?!',
+                    'Yay more bugs',
+                    'Okay one more bug...'
+                ]));
+            }, 500);
         }
 
         if(this.currentLevel == 1){
@@ -53,15 +61,38 @@ function Game(){
         }
 
         if(this.currentLevel == 2){
+            setTimeout(function(){
+                P.say('Wait what?');
+            }, 500);
+            setTimeout(function(){
+                P.say('Seems like we created more bugs');
+            }, 3000);
+            setTimeout(function(){
+                P.say('Let\'s dig a little deeper...');
+            }, 6000);
+        }
+
+        if(this.currentLevel == 3){
+            // Put the enemies at the right spots
             var enemy = new Enemy();
-            enemy.x = TILE_SIZE * 6;
+            enemy.x = TILE_SIZE * 11;
             enemy.y = TILE_SIZE * 5 - CHARACTER_HEIGHT / 2;
             W.enemies.push(enemy);
 
             var enemy = new Enemy();
-            enemy.x = TILE_SIZE * 16;
+            enemy.x = TILE_SIZE * 21;
             enemy.y = TILE_SIZE * 7 - CHARACTER_HEIGHT / 2;
             W.enemies.push(enemy);
+
+            setTimeout(function(){
+                P.say('Watch out for the pointers!');
+            }, 3000);
+            setTimeout(function(){
+                P.say('They\'re super dangerous!');
+            }, 6000);
+            setTimeout(function(){
+                P.say('Either avoid them or kill them');
+            }, 9000);
         }
     };
 
@@ -115,7 +146,7 @@ function Game(){
         }])();
 
         glitchTimeleft = rand(0.1, 0.3);
-        nextGlitch = rand(2, 4);
+        nextGlitch = this.currentLevel > 1 ? rand(2, 4) : 99;
     };
 
     var lf = Date.now();

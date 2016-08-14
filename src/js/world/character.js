@@ -25,11 +25,20 @@ function Character(){
 
         // Dialog
         if(this.sayingTimeleft > 0){
+            R.font = '20pt Arial';
+
+            var w = measureText(this.saying).width + 10;
+            R.fillStyle = '#000';
+            R.globalAlpha = 0.5;
+            fillRect(-w / 2, -85 - this.bubbleTailLength, w, 30);
+            R.globalAlpha = 1;
+
             R.fillStyle = '#fff';
             fillRect(-2, -50, 4, -this.bubbleTailLength);
 
             R.font = '20pt Arial';
             fillText(this.saying, 0, -70 - this.bubbleTailLength);
+            //strokeText(this.saying, 2, -68 - this.bubbleTailLength);
         }
 
         // Facing left or right
@@ -133,22 +142,28 @@ function Character(){
             jumpCount = max(1, jumpCount);
         }
 
-        if(this.controllable && dist(this, W.exit.center) < TILE_SIZE / 2){
-            this.controllable = false;
-            this.fixing = true;
+        var d = dist(this, W.exit.center);
+        if(this.controllable){
+            if(d < TILE_SIZE / 2){
+                this.controllable = false;
+                this.fixing = true;
 
-            W.exit.label = 'Fixing...';
+                this.say('Let\'s fix this...');
 
-            interp(this, 'x', this.x, W.exit.center.x, 1);
-            interp(W.exit, 'alpha', 1, 0, 1, 1);
+                interp(this, 'x', this.x, W.exit.center.x, 1);
+                interp(W.exit, 'alpha', 1, 0, 2);
 
-            setTimeout(function(){
-                W.exit.label = 'Fixed!';
-            }, 1000);
+                setTimeout(function(){
+                    P.say('Done!');
+                }, 1000);
 
-            setTimeout(function(){
-                G.startNewWorld();
-            }, 3000);
+                setTimeout(function(){
+                    G.startNewWorld();
+                }, 3000);
+            }else if(d < CANVAS_WIDTH * 0.3 && !this.found){
+                this.found = true;
+                this.say('You found the bug!'); // TODO more strings
+            }
         }
     };
 
