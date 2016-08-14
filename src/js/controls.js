@@ -25,3 +25,29 @@ onkeyup = function(e){
     K[e.keyCode] = false;
     reevalControls(e);
 };
+
+var touch = function(e){
+    e.preventDefault();
+
+    P.direction = 0;
+
+    var rect = C.getBoundingClientRect();
+    for(var i = 0 ; i < e.touches.length ; i++){
+        var x = CANVAS_WIDTH * (e.touches[i].pageX - rect.left) / rect.width,
+            col = ~~(x / (CANVAS_WIDTH / 4));
+
+        if(!col){
+            P.direction = -1;
+        }else if(col == 1){
+            P.direction = 1;
+        }else if(col == 2){
+            P.throwGrenade();
+        }else if(col == 3){
+            P.jump(1);
+        }
+    }
+};
+
+addEventListener('touchstart', touch);
+addEventListener('touchmove', touch);
+addEventListener('touchend', touch);
