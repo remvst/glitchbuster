@@ -22,6 +22,11 @@ function Game(){
         P.x = W.spawn.x + TILE_SIZE / 2;
         P.y = W.spawn.y + TILE_SIZE - CHARACTER_WIDTH / 2;
 
+        W.cyclables.push(P);
+        W.cyclables.push(V);
+        W.renderables.push(P);
+        W.killables.push(P);
+
         // Prevent camera from lagging behind
         V.forceCenter();
 
@@ -34,7 +39,9 @@ function Game(){
                     var enemy = new Enemy();
                     enemy.x = TILE_SIZE * rand(path.colLeft, path.colRight);
                     enemy.y = TILE_SIZE * (path.row + 1) - CHARACTER_HEIGHT / 2;
-                    W.enemies.push(enemy);
+                    W.cyclables.push(enemy);
+                    W.renderables.push(enemy);
+                    W.killables.push(enemy);
                 }
             });
 
@@ -76,12 +83,14 @@ function Game(){
             var enemy = new Enemy();
             enemy.x = TILE_SIZE * 11;
             enemy.y = TILE_SIZE * 5 - CHARACTER_HEIGHT / 2;
-            W.enemies.push(enemy);
+            W.cyclables.push(enemy);
+            W.killables.push(enemy);
 
             var enemy = new Enemy();
             enemy.x = TILE_SIZE * 21;
             enemy.y = TILE_SIZE * 7 - CHARACTER_HEIGHT / 2;
-            W.enemies.push(enemy);
+            W.cyclables.push(enemy);
+            W.killables.push(enemy);
 
             setTimeout(function(){
                 P.say('Watch out for the pointers!');
@@ -132,16 +141,10 @@ function Game(){
 
     this.doCycle = function(e){
         // Cycles
-        P.cycle(e);
-        V.cycle(e);
         interpCycle(e);
 
-        for(var i in W.enemies){
-            W.enemies[i].cycle(e);
-        }
-
-        for(var i in W.grenades){
-            W.grenades[i].cycle(e);
+        for(var i in W.cyclables){
+            W.cyclables[i].cycle(e);
         }
     };
 

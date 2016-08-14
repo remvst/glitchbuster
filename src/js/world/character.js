@@ -374,7 +374,8 @@ function Character(){
             g.x = this.x;
             g.y = this.y;
             g.throw(-PI / 2 + this.facing * PI / 3, 1000);
-            W.grenades.push(g);
+            W.cyclables.push(g);
+            W.renderables.push(g);
         }
     };
 }

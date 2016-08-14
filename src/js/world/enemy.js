@@ -56,7 +56,9 @@ function Enemy(){
 
         var s = this;
         setTimeout(function(){
-            remove(W.enemies, s);
+            remove(W.cyclables, s);
+            remove(W.killables, s);
+            remove(W.renderables, s);
         }, 0);
     };
 

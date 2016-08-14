@@ -84,17 +84,18 @@ function Grenade(){
             ]);
         }
 
-        for(var i in W.enemies){
-            var d = realDist(this, W.enemies[i]);
+        for(var i in W.killables){
+            var d = realDist(this, W.killables[i]);
             if(d < TILE_SIZE * 2){
-                W.enemies[i].die();
+                W.killables[i].die();
             }
         }
 
 
         var m = this;
         setTimeout(function(){
-            remove(W.grenades, m);
+            remove(W.cyclables, m);
+            remove(W.renderables, m);
         }, 0);
     };
 

@@ -25,12 +25,8 @@ function renderWorld(){
 
     P.render();
 
-    for(var i in W.enemies){
-        W.enemies[i].render();
-    }
-
-    for(var i in W.grenades){
-        W.grenades[i].render();
+    for(var i in W.renderables){
+        W.renderables[i].render();
     }
 
     renderParticles();
