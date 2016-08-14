@@ -30,7 +30,7 @@ function interp(o, p, a, b, d, l, f, e){
         d: d, // duration
         l: l || 0, // delay
         f: f || linear, // easing function
-        e: e || noop, // end callback
+        e: e, // end callback
         t: 0
     });
 }
@@ -45,7 +45,7 @@ function interpCycle(e){
             tw.t = min(tw.d, tw.t + e);
             tw.o[tw.p] = tw.f(tw.t, tw.a, tw.b - tw.a, tw.d);
             if(tw.t == tw.d){
-                tw.e();
+                tw.e && tw.e();
                 ts.splice(i, 1);
             }
         }

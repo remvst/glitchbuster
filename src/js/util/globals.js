@@ -7,7 +7,6 @@ var W = window,
     P, // player
     V, // camera,
     K = {}, // keyboard
-    noop = function(){},
     raf = (function(){
         return  W.requestAnimationFrame       ||
                 W.webkitRequestAnimationFrame ||
