@@ -122,7 +122,7 @@ function Character(){
         // Movement
 
         // Friction
-        var frictionFactor = (this.vY ? 3 : 4) * PLAYER_SPEED,
+        var frictionFactor = 4 * PLAYER_SPEED,
             targetSpeed = this.direction * PLAYER_SPEED,
             diff = targetSpeed - this.vX,
             appliedDiff = between(-frictionFactor * e, diff, frictionFactor * e);

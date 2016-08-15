@@ -73,7 +73,7 @@
         "CEILING_SPIKE_ID": 7,
 
         "PROBABLE_TILE_PROBABILITY": 0.5,
-        "SPIKE_DENSITY": 0.1,
+        "SPIKE_DENSITY": 0.05,
 
         "UP": 1,
         "DOWN": 2,
