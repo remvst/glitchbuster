@@ -316,14 +316,6 @@ function drawText(r, t, x, y, s, c){
 	}
 }
 
-var title = cache(460, 230, function(c, r){
-	drawText(r, 'glitch', 0, 10, 20, '#444');
-	drawText(r, 'glitch', 0, 0, 20, '#fff');
-
-	drawText(r, 'buster', 0, 130, 20, '#444');
-	drawText(r, 'buster', 0, 120, 20, '#fff');
-});
-
 function button(t){
 	return cache(440, 100, function(c, r){
 		r.fillStyle = '#444';
