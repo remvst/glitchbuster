@@ -124,13 +124,13 @@ function Tile(row, col, type){
 
     this.landed = function(c){
         if(type === FLOOR_SPIKE_ID){
-            c.die();
+            c.hurt(this.center);
         }
     };
 
     this.tapped = function(c){
         if(type == CEILING_SPIKE_ID){
-            c.die();
+            c.hurt(this.center);
         }
     };
 }

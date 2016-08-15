@@ -233,7 +233,7 @@ function Character(){
             this.throw(atan2(
                 this.y - source.y,
                 this.x - source.x
-            ), 1000);
+            ), 1500);
 
             this.recoveryTime = 2;
         }
@@ -243,8 +243,7 @@ function Character(){
         this.vY = 0;
         jumpCount = 0;
 
-        // Find the tile that was the least dangerous
-        // We assume types are sorted from non lethal to most lethal
+        // Find the tile that is the closest
         var tile = tiles.sort(function(a, b){
             return abs(a.center.x - P.x) - abs(b.center.x - P.x);
         })[0];
@@ -319,7 +318,7 @@ function Character(){
                 t |= LEFT;
             }
 
-            this.tapOn([topLeft, topRight]);
+            //this.tapOn([topLeft, topRight]);
         }
 
         else if(bottomLeft && bottomRight){
@@ -334,7 +333,7 @@ function Character(){
                 t |= LEFT;
             }
 
-            this.landOn([bottomLeft, bottomRight]);
+            //this.landOn([bottomLeft, bottomRight]);
         }
 
         // Collision against a wall
