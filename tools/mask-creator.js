@@ -159,7 +159,7 @@ window.addEventListener('load', function(){
                 '    "mask": matrix([\n' +
                     m.mask.map(function(row){
                         return '        [' + row.join(', ') + ']';
-                    }).join(',\n') + ',\n' +
+                    }).join(',\n') + '\n' +
                 '    ]),\n' +
                 '    "exits": [' + m.exits.map(function(e){
                         if(e == DOWN) return 'DOWN';
