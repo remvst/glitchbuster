@@ -223,6 +223,11 @@ function Character(){
         if(this.recoveryTime <= 0 && !this.dead){
             if(--this.health <= 0){
                 this.die();
+            }else{
+                this.say(pick([
+                    'Ouch!',
+                    'health--'
+                ]));
             }
 
             this.throw(atan2(
@@ -231,8 +236,6 @@ function Character(){
             ), 1000);
 
             this.recoveryTime = 2;
-
-            this.say('Ouch!');
         }
     };
 
