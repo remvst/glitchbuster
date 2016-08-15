@@ -33,26 +33,21 @@ window.addEventListener('load', function(){
 
         },
         '1': function(row, col){
+            // Tile
             ctx.fillStyle = '#fff';
             ctx.fillRect(col * P.cellSize, row * P.cellSize, P.cellSize, P.cellSize);
         },
         '2': function(row, col){
+            // Unbreakable tile
+            ctx.fillStyle = '#f00';
+            ctx.fillRect(col * P.cellSize, row * P.cellSize, P.cellSize, P.cellSize);
+        },
+        '3': function(row, col){
+            // Probable tile
             ctx.globalAlpha = 0.5;
             ctx.fillStyle = '#fff';
             ctx.fillRect(col * P.cellSize, row * P.cellSize, P.cellSize, P.cellSize);
             ctx.globalAlpha = 1;
-        },
-        '3': function(row, col){
-            ctx.fillStyle = '#fff';
-            ctx.fillRect(col * P.cellSize, row * P.cellSize, P.cellSize, P.cellSize);
-            ctx.fillStyle = '#f00';
-            ctx.fillRect(col * P.cellSize, row * P.cellSize, P.cellSize, P.cellSize / 4);
-        },
-        '4': function(row, col){
-            ctx.fillStyle = '#fff';
-            ctx.fillRect(col * P.cellSize, row * P.cellSize, P.cellSize, P.cellSize);
-            ctx.fillStyle = '#f00';
-            ctx.fillRect(col * P.cellSize, row * P.cellSize + P.cellSize * 3 / 4, P.cellSize, P.cellSize / 4);
         }
     };
 
@@ -97,7 +92,9 @@ window.addEventListener('load', function(){
 
         var diff = e.which === 1 ? 1 : -1;
 
-        mask[row][col] = (mask[row][col] + diff + 5) % 5;
+        //while(mask[row][col] === 2){
+            mask[row][col] = (mask[row][col] + diff + 4) % 4;
+        //}
 
         render();
         updateTextArea();
