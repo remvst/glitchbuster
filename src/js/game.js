@@ -17,7 +17,9 @@ function Game(){
     this.newGame = function(tutorial){
         this.currentLevel = tutorial ? 0 : 3;
         this.startNewWorld();
-        this.menu = null;
+        interp(this.menu, 'alpha', 1, 0, 0.5, 0, 0, function(){
+            G.menu = null;
+        });
     };
 
     this.startNewWorld = function(){

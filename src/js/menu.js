@@ -1,6 +1,8 @@
 function Menu(){
     this.buttons = [];
 
+    this.alpha = 1;
+
     this.button = function(d, x, y, a){
         this.buttons.push({
             d: d, // drawable
@@ -20,11 +22,13 @@ function Menu(){
     };
 
     this.render = function(){
+        R.globalAlpha = this.alpha;
+
         R.fillStyle = '#000';
         fillRect(0, 0, CANVAS_WIDTH, CANVAS_HEIGHT);
 
         this.buttons.forEach(function(b){
-            R.globalAlpha = b.o;
+            R.globalAlpha = this.alpha * b.o;
             drawImage(b.d, b.x, b.y);
         });
 
