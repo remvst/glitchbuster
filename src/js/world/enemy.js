@@ -49,6 +49,7 @@ function Enemy(){
                     this.die();
                 }else{
                     P.hurt(this);
+                    this.direction = this.x > P.x ? 1 : -1;
                 }
             }
         }

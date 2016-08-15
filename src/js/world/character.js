@@ -383,6 +383,7 @@ function Character(){
 
         this.controllable = false;
         this.dead = true;
+        this.health = 0;
 
         for(var i = 0 ; i < 40 ; i++){
             var x = rand(this.x - CHARACTER_WIDTH / 2, this.x + CHARACTER_WIDTH / 2),
