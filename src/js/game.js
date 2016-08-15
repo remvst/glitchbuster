@@ -13,8 +13,11 @@ function Game(){
     this.t = 0;
 
     V = new Camera();
+    P = new Character();
 
     this.newGame = function(tutorial){
+        P = new Character();
+
         this.currentLevel = tutorial ? 0 : 3;
         this.startNewWorld();
         interp(this.menu, 'alpha', 1, 0, 0.5, 0, 0, function(){
@@ -35,9 +38,10 @@ function Game(){
         bugReports = ~~(this.currentLevel * this.currentLevel * 1.4);
 
         // Player
-        P = new Character();
         P.x = W.spawn.x + TILE_SIZE / 2;
         P.y = W.spawn.y + TILE_SIZE - CHARACTER_WIDTH / 2;
+        P.controllable = true;
+        P.fixing = false;
 
         G.cyclables.push(P);
         G.cyclables.push(V);

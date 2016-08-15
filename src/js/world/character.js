@@ -18,7 +18,7 @@ function Character(){
     this.vX = 0;
     this.vY = 0;
 
-    this.grenades = P ? P.grenades : 0;
+    this.grenades = 0;
 
     var jumpCount = 0,
         previousFloorY;
@@ -220,7 +220,7 @@ function Character(){
     };
 
     this.hurt = function(source){
-        if(this.recoveryTime <= 0 && !this.dead){
+        if(this.recoveryTime <= 0 && !this.dead && !this.fixing){
             if(--this.health <= 0){
                 this.die();
             }else{
