@@ -1,4 +1,4 @@
-function pick(choices, results){
+function pick(choices, results, forceArray){
     choices = choices.slice(0);
     results = results || 1;
 
@@ -10,5 +10,5 @@ function pick(choices, results){
         );
     }
 
-    return results === 1 ? res[0] : res;
+    return results === 1 && !forceArray ? res[0] : res;
 }

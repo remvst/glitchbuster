@@ -1,8 +1,9 @@
 function pickMask(masks, requirements){
     return pick(masks.filter(function(m){
-        return requirements.filter(function(req){
-            return m.exits.indexOf(req) >= 0;
-        }).length === requirements.length;
+        return requirements.length == m.exits.length
+            && requirements.filter(function(r){
+                return m.exits.indexOf(r) >= 0;
+            }).length == requirements.length;
     }));
 }
 
@@ -66,32 +67,42 @@ function generateWorld(id){
     // Mirror all the masks to have more possibilities
     var usedMasks = masks.concat(masks.map(mirrorMask));
 
-    var maskMapRows = 3,
+    var maskMapRows = 4,
         maskMapCols = 5,
         maskMap = [],
-        downCol = -1,
         maskRows = 10,
         maskCols = 10,
         col,
-        row;
+        row,
+        downCols = [],
+        cols = [];
+
+    for(col = 0 ; col < maskMapCols ; col++){
+        cols.push(col);
+    }
 
     for(row = 0 ; row < maskMapRows ; row++){
         maskMap.push([]);
 
         for(col = 0 ; col < maskMapCols ; col++){
             maskMap[row][col] = [];
-            col === downCol && maskMap[row][downCol].push(UP);
+
+            // The tile above was going down, need to ensure there's a to this one
+            downCols.indexOf(col) >= 0 && maskMap[row][col].push(UP);
+
+            // Need to connect left if we're not on the far left
             col > 0 && maskMap[row][col].push(LEFT);
+
+            // Need to connect right if we're not on the far right
             col < maskMapCols - 1 && maskMap[row][col].push(RIGHT);
         }
 
         // Generate the link to the lower row
         if(row < maskMapRows - 1){
-            // Avoid having two links down in a row
-            var tmpCol = downCol;
-            while((downCol = ~~(rand() * maskMapCols)) == tmpCol);
-
-            maskMap[row][downCol = ~~(rand() * maskMapCols)].push(DOWN);
+            downCols = pick(cols, pick([1, 2, 3]), true);
+            downCols.forEach(function(col){
+                maskMap[row][col].push(DOWN);
+            });
         }
     }
 
@@ -110,7 +121,12 @@ function generateWorld(id){
     for(row = 0 ; row < maskMapRows ; row++){
         for(col = 0 ; col < maskMapCols ; col++){
 
-            var mask = pickMask(usedMasks, maskMap[row][col]).mask;
+            try{
+                var mask = pickMask(usedMasks, maskMap[row][col]).mask;
+            }catch(e){
+                console.log(maskMap[row][col]);
+                throw e;
+            }
 
             // Apply mask
             for(var maskRow = 0 ; maskRow < maskRows ; maskRow++){
