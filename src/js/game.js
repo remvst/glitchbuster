@@ -150,7 +150,7 @@ function Game(){
 
             nextGlitch -= e;
             if(nextGlitch <= 0){
-                this.applyGlitch();
+                this.applyGlitch(this.menu ? 0 : '');
             }
         }
 
@@ -224,7 +224,10 @@ function Game(){
         (isNaN(id) ? pick(l) : l[id])();
 
         glitchTimeleft = d || rand(0.1, 0.3);
-        nextGlitch = this.currentLevel > 1 || this.menu ? rand(4, 8) : 99;
+        nextGlitch = this.currentLevel > 2 ? rand(4, 8) : 99;
+        if(this.menu){
+            nextGlitch = 2;
+        }
     };
 
     var lf = Date.now();
@@ -243,4 +246,5 @@ function Game(){
     this.menu = new MainMenu();
 
     glitchTimeleft = 0;
+    nextGlitch = 1;
 }
