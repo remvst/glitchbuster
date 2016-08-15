@@ -10,8 +10,10 @@ function Character(){
     this.legColor = '#aaa';
     this.halo = whiteHalo;
     this.bubbleTailLength = 0;
+    this.health = 3;
 
     this.scaleFactor = 1;
+    this.recoveryTime = 0;
 
     this.vX = 0;
     this.vY = 0;
@@ -22,6 +24,10 @@ function Character(){
         previousFloorY;
 
     this.render = function(){
+        if(this.recoveryTime > 0 && ~~((this.recoveryTime * 2 * 4) % 2)){
+            return;
+        }
+
         save();
         translate(this.x, this.y);
 
@@ -117,7 +123,13 @@ function Character(){
             y: this.y
         };
 
+        this.recoveryTime -= e;
+
         this.sayingTimeleft -= e;
+
+        if(this.dead || !this.controllable){
+            this.direction = 0;
+        }
 
         // Movement
 
@@ -129,15 +141,13 @@ function Character(){
 
         this.vX = between(-PLAYER_SPEED, this.vX + appliedDiff, PLAYER_SPEED);
 
-        if(this.controllable){
-            this.x += this.vX * e;
+        this.x += this.vX * e;
 
-            if(this.direction == -this.facing){
-                interp(this, 'scaleFactor', -1, 1, 0.1);
-            }
-
-            this.facing = this.direction || this.facing;
+        if(this.direction == -this.facing){
+            interp(this, 'scaleFactor', -1, 1, 0.1);
         }
+
+        this.facing = this.direction || this.facing;
 
         // Vertical movement
         this.vY += e * GRAVITY;
@@ -200,6 +210,29 @@ function Character(){
                     ['s', 15, 0, 0.3]
                 ]);
             }
+        }
+    };
+
+    this.throw = function(angle, force){
+        this.vX = cos(angle) * force;
+        this.vY = sin(angle) * force;
+        this.facing = this.vX < 0 ? -1 : 1;
+    };
+
+    this.hurt = function(source){
+        if(this.recoveryTime <= 0 && !this.dead){
+            if(--this.health <= 0){
+                this.die();
+            }
+
+            this.throw(atan2(
+                this.y - source.y,
+                this.x - source.x
+            ), 1000);
+
+            this.recoveryTime = 2;
+
+            this.say('Ouch!');
         }
     };
 

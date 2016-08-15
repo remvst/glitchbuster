@@ -48,7 +48,7 @@ function Enemy(){
                     P.jump(0.8, true);
                     this.die();
                 }else{
-                    P.die();
+                    P.hurt(this);
                 }
             }
         }
