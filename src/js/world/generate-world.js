@@ -67,8 +67,8 @@ function generateWorld(id){
     // Mirror all the masks to have more possibilities
     var usedMasks = masks.concat(masks.map(mirrorMask));
 
-    var maskMapRows = 4,
-        maskMapCols = 5,
+    var maskMapRows = !id ? 4 : round((id - 3) * 0.2 + 2),
+        maskMapCols = !id ? 5 : round((id - 3) * 0.1 + 3),
         maskMap = [],
         maskRows = 10,
         maskCols = 10,

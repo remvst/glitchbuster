@@ -10,7 +10,7 @@ function Character(){
     this.legColor = '#aaa';
     this.halo = whiteHalo;
     this.bubbleTailLength = 0;
-    this.health = 3;
+    this.health = 5;
 
     this.scaleFactor = 1;
     this.recoveryTime = 0;

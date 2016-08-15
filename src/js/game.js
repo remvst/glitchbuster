@@ -25,7 +25,7 @@ function Game(){
         });
     };
 
-    this.startNewWorld = function(){
+    this.startNewWorld = function(dummy){
         this.hideTiles = false;
 
         this.cyclables = [];
@@ -52,6 +52,10 @@ function Game(){
         V.forceCenter();
 
         this.applyGlitch(0, 0.5);
+
+        if(dummy){
+            return;
+        }
 
         // Enemies
         if(this.currentLevel > 3){
@@ -274,7 +278,7 @@ function Game(){
         raf(arguments.callee);
     }, 0);
 
-    this.startNewWorld();
+    this.startNewWorld(true);
     this.mainMenu();
 
     glitchTimeleft = 0;
