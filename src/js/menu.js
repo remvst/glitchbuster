@@ -35,22 +35,22 @@ function Menu(){
 function MainMenu(){
     Menu.call(this);
 
-    this.button(tutorialButton, 0, 460, function(){
+    this.button(tutorialButton, 0, 420, function(){
         G.newGame(true);
     });
-    this.button(playButton, 0, 600, function(){
+    this.button(playButton, 0, 560, function(){
         G.newGame();
     });
-    this.button(authorButton, 0, 740, function(){
+    this.button(authorButton, 0, 700, function(){
         open('http://twitter.com/remvst');
     });
 
     this.buttons.forEach(function(b, i){
-        interp(b, 'x', -b.d.width, 0, 0.5, i * 0.5 + 1);
+        interp(b, 'x', -b.d.width, 0, 0.25, i * 0.25 + 0.5);
     });
 
     var titleX = (CANVAS_WIDTH - title.width) / 2;
     this.button(title, titleX, titleX);
 
-    interp(this.buttons[this.buttons.length - 1], 'o', 0, 1, 0.5, 0.5);
+    interp(this.buttons[this.buttons.length - 1], 'o', 0, 1, 0.25, 0.5);
 }

@@ -150,7 +150,7 @@ function Game(){
 
             nextGlitch -= e;
             if(nextGlitch <= 0){
-                this.applyGlitch(this.menu ? 0 : '');
+                this.applyGlitch(this.menu ? 0 : NaN);
             }
         }
 
