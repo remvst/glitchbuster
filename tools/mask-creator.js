@@ -7,22 +7,6 @@ var P = {
     simulationCellSize: 10
 };
 
-var UP = 1,
-    DOWN = 2,
-    LEFT = 4,
-    RIGHT = 8;
-
-var VOID_ID = 0;
-var TILE_ID = 1;
-var UNBREAKABLE_TILE_ID = 2;
-var PROBABLE_TILE_ID = 3;
-var SPAWN_ID = 4;
-var EXIT_ID = 5;
-var FLOOR_SPIKE_ID = 6;
-var CEILING_SPIKE_ID = 7;
-
-var SPIKE_DENSITY = 0.05;
-
 window.addEventListener('load', function(){
     var textArea = document.querySelector('textarea');
 
@@ -170,6 +154,22 @@ window.addEventListener('load', function(){
     function updateUI(){
         textArea.value = JSON.stringify(masks, null, 4);
 
+        textArea.value = '[' + masks.map(function(m){
+            return '{\n' +
+                '    "mask": matrix([\n' +
+                    m.mask.map(function(row){
+                        return '        [' + row.join(', ') + ']';
+                    }).join(',\n') + ',\n' +
+                '    ]),\n' +
+                '    "exits": [' + m.exits.map(function(e){
+                        if(e == DOWN) return 'DOWN';
+                        if(e == UP) return 'UP';
+                        if(e == LEFT) return 'LEFT';
+                        if(e == RIGHT) return 'RIGHT';
+                    }) + ']\n' +
+            '}';
+        }).join(', ') + ']';
+
         select.innerHTML = '';
         for(var i = 0 ; i < masks.length ; i++){
             var option = document.createElement('option');
@@ -224,7 +224,7 @@ window.addEventListener('load', function(){
 
     textArea.addEventListener('keyup', function(){
         try{
-            masks = JSON.parse(this.value);
+            masks = eval(this.value);
         }catch(e){
             console.error(e);
         }

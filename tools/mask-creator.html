@@ -3,10 +3,32 @@
     <head>
         <title>Mask creator</title>
 
-        <script src="masks.js"></script>
+        <script>
+        function matrix(m){
+            return m;
+        }
+
+
+        var UP = 1,
+            DOWN = 2,
+            LEFT = 4,
+            RIGHT = 8;
+
+        var VOID_ID = 0;
+        var TILE_ID = 1;
+        var UNBREAKABLE_TILE_ID = 2;
+        var PROBABLE_TILE_ID = 3;
+        var SPAWN_ID = 4;
+        var EXIT_ID = 5;
+        var FLOOR_SPIKE_ID = 6;
+        var CEILING_SPIKE_ID = 7;
+
+        var SPIKE_DENSITY = 0.05;
+        </script>
         <script src="../src/js/util/globals.js"></script>
         <script src="../src/js/util/rand.js"></script>
         <script src="../src/js/util/pick.js"></script>
+        <script src="../src/js/world/masks.js"></script>
         <script src="../src/js/world/mirror-mask.js"></script>
         <script src="../src/js/world/generate-world.js"></script>
         <script src="mask-creator.js"></script>
