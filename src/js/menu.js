@@ -16,7 +16,7 @@ function Menu(){
     this.click = function(x, y){
         this.buttons.forEach(function(b){
             if(x > b.x && y > b.y && x < b.x + b.d.width && y < b.y + b.d.height && b.a){
-                b.a();
+                b.a.call(b);
             }
         });
     };
@@ -74,6 +74,11 @@ function GameOverMenu(){
     });
     this.button(button('back'), 0, 560, function(){
         G.mainMenu();
+    });
+
+    var b;
+    this.button(button('foo'), 0, 700, function(){
+        this.d = button((b = !b) ? 'bar' : 'foo');
     });
 
     this.buttons.forEach(function(b, i){
