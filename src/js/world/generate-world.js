@@ -63,6 +63,8 @@ function generateWorld(id){
         ]);
     }
 
+    // Mirror all the masks to have more possibilities
+    var usedMasks = masks.concat(masks.map(mirrorMask));
 
     var maskMapRows = 3,
         maskMapCols = 5,
@@ -108,7 +110,7 @@ function generateWorld(id){
     for(row = 0 ; row < maskMapRows ; row++){
         for(col = 0 ; col < maskMapCols ; col++){
 
-            var mask = pickMask(masks, maskMap[row][col]).mask;
+            var mask = pickMask(usedMasks, maskMap[row][col]).mask;
 
             // Apply mask
             for(var maskRow = 0 ; maskRow < maskRows ; maskRow++){

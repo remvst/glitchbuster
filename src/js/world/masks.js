@@ -153,5 +153,3 @@ var masks = [{
     ]),
     'exits': [UP, LEFT, DOWN, RIGHT]
 }];
-
-masks = masks.concat(masks.map(mirrorMask));
