@@ -3,8 +3,25 @@ var P = {
     height: 400,
     gridRows: 10,
     gridCols: 10,
-    cellSize: 40
+    cellSize: 40,
+    simulationCellSize: 10
 };
+
+var UP = 1,
+    DOWN = 2,
+    LEFT = 4,
+    RIGHT = 8;
+
+var VOID_ID = 0;
+var TILE_ID = 1;
+var UNBREAKABLE_TILE_ID = 2;
+var PROBABLE_TILE_ID = 3;
+var SPAWN_ID = 4;
+var EXIT_ID = 5;
+var FLOOR_SPIKE_ID = 6;
+var CEILING_SPIKE_ID = 7;
+
+var SPIKE_DENSITY = 0.05;
 
 window.addEventListener('load', function(){
     var textArea = document.querySelector('textarea');
@@ -13,69 +30,170 @@ window.addEventListener('load', function(){
     can.width = P.width;
     can.height = P.height;
 
+    var select = document.querySelector('select');
+    document.querySelector('#add').onclick = function(){
+        masks.push({
+            'mask': [
+                [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+                [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+                [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+                [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+                [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+                [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+                [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+                [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+                [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+                [0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
+            ],
+            'exits': []
+        });
+
+        updateUI();
+    };
+
+    document.querySelector('#delete').onclick = function(){
+        masks.splice(currentMaskId, 1);
+
+        currentMaskId--;
+        updateUI();
+        render();
+    };
+
+    document.querySelector('#simulate').onclick = function(){
+        var w = generateWorld();
+
+        var can = document.querySelector('#simulation-canvas');
+        can.width = w[0].length * P.simulationCellSize;
+        can.height = w.length * P.simulationCellSize;
+
+        var c = can.getContext('2d');
+
+        renderGrid(w, c, P.simulationCellSize);
+    };
+
+    var leftCB = document.querySelector('#left');
+    var rightCB = document.querySelector('#right');
+    var upCB = document.querySelector('#up');
+    var downCB = document.querySelector('#down');
+
+    downCB.onchange = rightCB.onchange = upCB.onchange = leftCB.onchange = function(){
+        var mask = masks[currentMaskId];
+        mask.exits = [];
+
+        if(leftCB.checked) mask.exits.push(LEFT);
+        if(rightCB.checked) mask.exits.push(RIGHT);
+        if(upCB.checked) mask.exits.push(UP);
+        if(downCB.checked) mask.exits.push(DOWN);
+
+        updateUI();
+    };
+
     var ctx = can.getContext('2d');
 
-    var mask = [
-        [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-        [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-        [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-        [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-        [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-        [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-        [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-        [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-        [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-        [0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
-    ];
+    var currentMaskId = 0;
 
     var tileRenderMap = {
         '0': function(){
 
         },
-        '1': function(row, col){
+        '1': function(ctx, row, col, s){
             // Tile
             ctx.fillStyle = '#fff';
-            ctx.fillRect(col * P.cellSize, row * P.cellSize, P.cellSize, P.cellSize);
+            ctx.fillRect(col * s, row * s, s, s);
         },
-        '2': function(row, col){
+        '2': function(ctx, row, col, s){
             // Unbreakable tile
             ctx.fillStyle = '#f00';
-            ctx.fillRect(col * P.cellSize, row * P.cellSize, P.cellSize, P.cellSize);
+            ctx.fillRect(col * s, row * s, s, s);
         },
-        '3': function(row, col){
+        '3': function(ctx, row, col, s){
             // Probable tile
             ctx.globalAlpha = 0.5;
             ctx.fillStyle = '#fff';
-            ctx.fillRect(col * P.cellSize, row * P.cellSize, P.cellSize, P.cellSize);
+            ctx.fillRect(col * s, row * s, s, s);
             ctx.globalAlpha = 1;
+        },
+        '4': function(ctx, row, col, s){
+            // Spawn
+            ctx.fillStyle = 'blue';
+            ctx.fillRect(col * s, row * s, s, s);
+        },
+        '5': function(ctx, row, col, s){
+            // Exit
+            ctx.fillStyle = 'blue';
+            ctx.fillRect(col * s, row * s, s, s);
+        },
+        '6': function(ctx, row, col, s){
+            // Floor spikes
+            ctx.fillStyle = '#fff';
+            ctx.fillRect(col * s, row * s, s, s);
+
+            ctx.fillStyle = '#f00';
+            ctx.fillRect(col * s, row * s, s, s * 0.25);
+        },
+        '7': function(ctx, row, col, s){
+            // Ceiling spikes
+            ctx.fillStyle = '#fff';
+            ctx.fillRect(col * s, row * s, s, s);
+
+            ctx.fillStyle = '#f00';
+            ctx.fillRect(col * s, (row + 0.75) * s, s, s * 0.25);
         }
     };
 
-    function render(){
+    function renderGrid(grid, ctx, s){
         ctx.fillStyle = '#000';
-        ctx.fillRect(0, 0, P.width, P.height);
+        ctx.fillRect(0, 0, grid[0].length * s, grid.length * s);
 
-        ctx.fillStyle = '#fff';
-        for(var row = 0 ; row < P.gridRows ; row++){
-            for(var col = 0 ; col < P.gridCols ; col++){
-                tileRenderMap[mask[row][col]](row, col);
+        // Render the tiles
+        for(var row = 0 ; row < grid.length ; row++){
+            for(var col = 0 ; col < grid[0].length ; col++){
+                tileRenderMap[grid[row][col]](ctx, row, col, s);
             }
         }
 
+        // Render a grid
         ctx.fillStyle = '#f00';
-        for(var col = 0 ; col < P.gridCols ; col++){
-            ctx.fillRect(col * P.cellSize, 0, 1, P.height);
+        for(var col = 0 ; col < grid[0].length ; col++){
+            ctx.fillRect(col * s, 0, 1, grid.length * s);
         }
-        for(var row = 0 ; row < P.gridRows ; row++){
-            ctx.fillRect(0, row * P.cellSize, P.width, 1);
+        for(var row = 0 ; row < grid.length ; row++){
+            ctx.fillRect(0, row * s, grid[0].length * s, 1);
         }
     }
 
-    function updateTextArea(){
-        textArea.value = '[\n' + mask.map(function(row){
-            return '    [' + row.join(',') + ']';
-        }).join(',\n') + '\n]';
+    function render(){
+        var mask = masks[currentMaskId].mask;
+        renderGrid(mask, ctx, P.cellSize);
     }
+
+    function updateUI(){
+        textArea.value = JSON.stringify(masks, null, 4);
+
+        select.innerHTML = '';
+        for(var i = 0 ; i < masks.length ; i++){
+            var option = document.createElement('option');
+            option.setAttribute('data-mask-id', i);
+            option.innerHTML = 'Mask #' + i;
+            option.value = i;
+            option.selected = (i == currentMaskId ? 'selected' : '');
+            select.appendChild(option);
+        }
+
+        select.value = currentMaskId;
+
+        var mask = masks[currentMaskId];
+        rightCB.checked = mask.exits.indexOf(RIGHT) >= 0;
+        leftCB.checked = mask.exits.indexOf(LEFT) >= 0;
+        upCB.checked = mask.exits.indexOf(UP) >= 0;
+        downCB.checked = mask.exits.indexOf(DOWN) >= 0;
+    }
+
+    select.onchange = function(){
+        currentMaskId = parseInt(this.value);
+        updateUI();
+        render();
+    };
 
     render();
 
@@ -92,12 +210,11 @@ window.addEventListener('load', function(){
 
         var diff = e.which === 1 ? 1 : -1;
 
-        //while(mask[row][col] === 2){
-            mask[row][col] = (mask[row][col] + diff + 4) % 4;
-        //}
+        var mask = masks[currentMaskId].mask;
+        mask[row][col] = (mask[row][col] + diff + 4) % 4;
 
         render();
-        updateTextArea();
+        updateUI();
     }
 
     can.addEventListener('mousedown', mouseEvent, false);
@@ -107,11 +224,13 @@ window.addEventListener('load', function(){
 
     textArea.addEventListener('keyup', function(){
         try{
-            mask = JSON.parse(this.value);
+            masks = JSON.parse(this.value);
         }catch(e){
             console.error(e);
         }
 
         render();
     });
+
+    updateUI();
 }, false);

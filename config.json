@@ -12,6 +12,7 @@
             "src/js/util/interp.js",
             "src/js/util/shape.js",
 
+            "src/js/world/mirror-mask.js",
             "src/js/world/masks.js",
             "src/js/world/generate-world.js",
             "src/js/world/grenade.js",

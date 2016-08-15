@@ -83,7 +83,12 @@ function generateWorld(id){
             col < maskMapCols - 1 && maskMap[row][col].push(RIGHT);
         }
 
+        // Generate the link to the lower row
         if(row < maskMapRows - 1){
+            // Avoid having two links down in a row
+            var tmpCol = downCol;
+            while((downCol = ~~(rand() * maskMapCols)) == tmpCol);
+
             maskMap[row][downCol = ~~(rand() * maskMapCols)].push(DOWN);
         }
     }

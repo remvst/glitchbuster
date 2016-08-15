@@ -3,6 +3,12 @@
     <head>
         <title>Mask creator</title>
 
+        <script src="masks.js"></script>
+        <script src="../src/js/util/globals.js"></script>
+        <script src="../src/js/util/rand.js"></script>
+        <script src="../src/js/util/pick.js"></script>
+        <script src="../src/js/world/mirror-mask.js"></script>
+        <script src="../src/js/world/generate-world.js"></script>
         <script src="mask-creator.js"></script>
     </head>
 
@@ -11,8 +17,32 @@
             <canvas></canvas>
         </div>
 
+        <select></select>
+
+        <label>
+            <input type="checkbox" id="left" /> Left
+        </label>
+
+        <label>
+            <input type="checkbox" id="right" /> Right
+        </label>
+
+        <label>
+            <input type="checkbox" id="up" /> Up
+        </label>
+
+        <label>
+            <input type="checkbox" id="down" /> Down
+        </label>
+
+        <button id="add">Add</button>
+        <button id="delete">Delete</button>
+        <button id="simulate">Simulate</button>
+
         <div>
             <textarea cols="40" rows="12"></textarea>
         </div>
+
+        <canvas id="simulation-canvas"></canvas>
     </body>
 </html>
