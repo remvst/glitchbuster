@@ -60,12 +60,12 @@ function Enemy(){
 
         var s = this;
         setTimeout(function(){
-            remove(W.cyclables, s);
-            remove(W.killables, s);
+            remove(G.cyclables, s);
+            remove(G.killables, s);
         }, 0);
 
         setTimeout(function(){
-            remove(W.renderables, s);
+            remove(G.renderables, s);
         }, 3000);
 
         interp(this, 'scaleFactor', 1, 0, 2.5, 0.5);

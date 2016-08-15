@@ -25,8 +25,8 @@ function renderWorld(){
 
     P.render();
 
-    for(var i in W.renderables){
-        W.renderables[i].render();
+    for(var i in G.renderables){
+        G.renderables[i].render();
     }
 
     var haloX = ~~P.x - DARK_HALO_SIZE_HALF,

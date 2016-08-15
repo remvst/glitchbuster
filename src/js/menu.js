@@ -38,6 +38,10 @@ function MainMenu(){
         G.newGame(true);
     });
 
+    this.buttons.forEach(function(b, i){
+        interp(b, 'x', -b.d.width, 0, 0.5, i * 0.5);
+    });
+
     var titleX = (CANVAS_WIDTH - title.width) / 2;
     this.button(title, titleX, titleX);
 }

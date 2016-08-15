@@ -1,7 +1,4 @@
 function World(map){
-    this.cyclables = [];
-    this.killables = [];
-    this.renderables = [];
     this.tiles = [];
     this.map = map;
 

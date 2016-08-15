@@ -2,7 +2,7 @@ function particle(s, c, as){
     var p;
 
     // Add to the list of particles
-    W.renderables.push(p = {
+    G.renderables.push(p = {
         s: s,
         c: c,
         render: function(){
@@ -18,7 +18,7 @@ function particle(s, c, as){
         // Add the remove callback
         if(id === 0){
             args[7] = function(){
-                remove(W.renderables, p);
+                remove(G.renderables, p);
             };
         }
 

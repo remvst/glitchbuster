@@ -24,7 +24,7 @@ function easeOutBounce(t, b, c, d) {
 }
 
 function interp(o, p, a, b, d, l, f, e){
-    W.cyclables.push({
+    G.cyclables.push({
         o: o, // object
         p: p, // property
         a: a, // from
@@ -43,7 +43,7 @@ function interp(o, p, a, b, d, l, f, e){
                 this.o[this.p] = this.f(this.t, this.a, this.b - this.a, this.d);
                 if(this.t == this.d){
                     this.e && this.e();
-                    remove(W.cyclables, this);
+                    remove(G.cyclables, this);
                 }
             }
         }

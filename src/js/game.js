@@ -9,7 +9,6 @@ function Game(){
         bugReports = 1;
 
     this.currentLevel = 0;
-    this.menu = new MainMenu();
 
     this.t = 0;
 
@@ -22,6 +21,10 @@ function Game(){
     };
 
     this.startNewWorld = function(){
+        this.cyclables = [];
+        this.killables = [];
+        this.renderables = [];
+
         // World
         W = new World(generateWorld(++this.currentLevel));
 
@@ -32,10 +35,10 @@ function Game(){
         P.x = W.spawn.x + TILE_SIZE / 2;
         P.y = W.spawn.y + TILE_SIZE - CHARACTER_WIDTH / 2;
 
-        W.cyclables.push(P);
-        W.cyclables.push(V);
-        W.renderables.push(P);
-        W.killables.push(P);
+        G.cyclables.push(P);
+        G.cyclables.push(V);
+        G.renderables.push(P);
+        G.killables.push(P);
 
         // Prevent camera from lagging behind
         V.forceCenter();
@@ -50,9 +53,9 @@ function Game(){
                     var enemy = new Enemy();
                     enemy.x = TILE_SIZE * rand(path.colLeft, path.colRight);
                     enemy.y = TILE_SIZE * (path.row + 1) - CHARACTER_HEIGHT / 2;
-                    W.cyclables.push(enemy);
-                    W.renderables.push(enemy);
-                    W.killables.push(enemy);
+                    G.cyclables.push(enemy);
+                    G.renderables.push(enemy);
+                    G.killables.push(enemy);
                 }
             });
 
@@ -63,8 +66,8 @@ function Game(){
                         (~~rand(path.colLeft, path.colRight) + 0.5) * TILE_SIZE,
                         (path.row + 0.5) * TILE_SIZE
                     );
-                    W.renderables.push(g);
-                    W.cyclables.push(g);
+                    G.renderables.push(g);
+                    G.cyclables.push(g);
                 }
             });
         }
@@ -108,16 +111,16 @@ function Game(){
             var enemy = new Enemy();
             enemy.x = TILE_SIZE * 11;
             enemy.y = TILE_SIZE * 5 - CHARACTER_HEIGHT / 2;
-            W.cyclables.push(enemy);
-            W.killables.push(enemy);
-            W.renderables.push(enemy);
+            G.cyclables.push(enemy);
+            G.killables.push(enemy);
+            G.renderables.push(enemy);
 
             var enemy = new Enemy();
             enemy.x = TILE_SIZE * 21;
             enemy.y = TILE_SIZE * 7 - CHARACTER_HEIGHT / 2;
-            W.cyclables.push(enemy);
-            W.killables.push(enemy);
-            W.renderables.push(enemy);
+            G.cyclables.push(enemy);
+            G.killables.push(enemy);
+            G.renderables.push(enemy);
 
             setTimeout(function(){
                 P.say('Watch out for the pointers!');
@@ -197,8 +200,8 @@ function Game(){
 
     this.doCycle = function(e){
         // Cycles
-        for(var i in W.cyclables){
-            W.cyclables[i].cycle(e);
+        for(var i in G.cyclables){
+            G.cyclables[i].cycle(e);
         }
     };
 
@@ -221,7 +224,7 @@ function Game(){
         (isNaN(id) ? pick(l) : l[id])();
 
         glitchTimeleft = d || rand(0.1, 0.3);
-        nextGlitch = this.currentLevel > 1 ? rand(4, 8) : 99;
+        nextGlitch = this.currentLevel > 1 || this.menu ? rand(4, 8) : 99;
     };
 
     var lf = Date.now();
@@ -237,4 +240,7 @@ function Game(){
     }, 0);
 
     this.startNewWorld();
+    this.menu = new MainMenu();
+
+    glitchTimeleft = 0;
 }

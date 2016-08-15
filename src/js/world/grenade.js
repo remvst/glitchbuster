@@ -84,18 +84,18 @@ function Grenade(){
             ]);
         }
 
-        for(var i in W.killables){
-            var d = realDist(this, W.killables[i]);
+        for(var i in G.killables){
+            var d = realDist(this, G.killables[i]);
             if(d < TILE_SIZE * 2){
-                W.killables[i].die();
+                G.killables[i].die();
             }
         }
 
 
         var m = this;
         setTimeout(function(){
-            remove(W.cyclables, m);
-            remove(W.renderables, m);
+            remove(G.cyclables, m);
+            remove(G.renderables, m);
         }, 0);
     };
 

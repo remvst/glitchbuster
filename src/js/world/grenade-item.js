@@ -26,8 +26,8 @@ function GrenadeItem(x, y){
         if(realDist(this, P) < GRENADE_PICKUP_RADIUS && !this.pickedUp){
             var m = this;
             setTimeout(function(){
-                remove(W.cyclables, m);
-                remove(W.renderables, m);
+                remove(G.cyclables, m);
+                remove(G.renderables, m);
             }, 0);
 
             P.grenades++;
