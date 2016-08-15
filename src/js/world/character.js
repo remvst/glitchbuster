@@ -150,8 +150,8 @@ function Character(){
         }
 
         // Exit detection
-        var d = dist(this, W.exit.center);
         if(this.controllable){
+            var d = dist(this, W.exit.center);
             if(d < TILE_SIZE / 2){
                 this.controllable = false;
                 this.fixing = true;
@@ -167,6 +167,7 @@ function Character(){
 
                 setTimeout(function(){
                     G.applyGlitch(0, 0.5);
+                    G.hideTiles = true;
                 }, 2500);
 
                 setTimeout(function(){

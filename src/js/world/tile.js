@@ -51,6 +51,10 @@ function Tile(row, col, type){
     };
 
     this.render = function(){
+        if(G.hideTiles){
+            return;
+        }
+
         R.fillStyle = '#fff';
         save();
         translate(this.x, this.y);

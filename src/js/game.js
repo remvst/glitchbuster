@@ -23,6 +23,8 @@ function Game(){
     };
 
     this.startNewWorld = function(){
+        this.hideTiles = false;
+
         this.cyclables = [];
         this.killables = [];
         this.renderables = [];

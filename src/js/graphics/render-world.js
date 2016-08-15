@@ -1,5 +1,5 @@
 function renderWorld(){
-    R.fillStyle = '#fff';
+    R.fillStyle = G.hideTiles ? '#000' : '#fff';
     fillRect(0, 0, CANVAS_WIDTH, CANVAS_HEIGHT);
 
     save();
