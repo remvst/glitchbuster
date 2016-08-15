@@ -22,6 +22,7 @@
             "src/js/world/camera.js",
             "src/js/world/tile.js",
 
+            "src/js/menu.js",
             "src/js/controls.js",
             "src/js/game.js",
 
@@ -96,8 +97,8 @@
 
         "HALO_SIZE": 200,
         "HALO_SIZE_HALF": 100,
-        "DARK_HALO_SIZE": 800,
-        "DARK_HALO_SIZE_HALF": 400,
+        "DARK_HALO_SIZE": 1000,
+        "DARK_HALO_SIZE_HALF": 500,
 
         "FILLSTYLE": 1,
         "FILLRECT": 2,

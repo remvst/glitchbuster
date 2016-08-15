@@ -168,31 +168,38 @@ function Game(){
         // Rendering
         renderWorld();
 
-        R.font = '20pt Courier New';
-        R.textAlign = 'left';
-
-        fillText('Bugs fixed    / ' + (G.currentLevel - 1), 15, 30);
-        fillText('Bugs reports  / ' + bugReports, 15, 60);
-        fillText('Breakpoints   / ' + P.grenades, 15, 90);
-
 
         if(this.menu){
             this.menu.render();
-        }else if(G.touch){
-            // Mobile controls
-            R.globalAlpha = touchButtons[0] ? 1 : 0.5;
-            drawImage(leftArrow, CANVAS_WIDTH * 0.5 / 4 - leftArrow.width / 2, CANVAS_HEIGHT - 100);
+        }else{
+            // HUD
+            R.font = '20pt Courier New';
+            R.textAlign = 'left';
 
-            R.globalAlpha = touchButtons[1] ? 1 : 0.5;
-            drawImage(rightArrow, CANVAS_WIDTH * 1.5 / 4 - rightArrow.width / 2, CANVAS_HEIGHT - 100);
+            /*fillText('Bugs fixed    / ' + (G.currentLevel - 1), 15, 30);
+            fillText('Bugs reports  / ' + bugReports, 15, 60);
+            fillText('Breakpoints   / ' + P.grenades, 15, 90);*/
 
-            R.globalAlpha = touchButtons[2] ? 1 : 0.5;
-            drawImage(grenadeButton, CANVAS_WIDTH * 2.5 / 4 - grenadeButton.width / 2, CANVAS_HEIGHT - 100);
+            drawText(R, 'bugs fixed: ' + (G.currentLevel - 1), 10, 10, 4, '#fff');
+            drawText(R, 'bugs reports: ' + bugReports, 10, 40, 4, '#fff');
+            drawText(R, 'breakpoints: ' + P.grenades, 10, 70, 4, '#fff');
 
-            R.globalAlpha = touchButtons[3] ? 1 : 0.5;
-            drawImage(jumpArrow, CANVAS_WIDTH * 3.5 / 4 - jumpArrow.width / 2, CANVAS_HEIGHT - 100);
+            if(G.touch){
+                // Mobile controls
+                R.globalAlpha = touchButtons[0] ? 1 : 0.5;
+                drawImage(leftArrow, CANVAS_WIDTH * 0.5 / 4 - leftArrow.width / 2, CANVAS_HEIGHT - 100);
 
-            R.globalAlpha = 1;
+                R.globalAlpha = touchButtons[1] ? 1 : 0.5;
+                drawImage(rightArrow, CANVAS_WIDTH * 1.5 / 4 - rightArrow.width / 2, CANVAS_HEIGHT - 100);
+
+                R.globalAlpha = touchButtons[2] ? 1 : 0.5;
+                drawImage(grenadeButton, CANVAS_WIDTH * 2.5 / 4 - grenadeButton.width / 2, CANVAS_HEIGHT - 100);
+
+                R.globalAlpha = touchButtons[3] ? 1 : 0.5;
+                drawImage(jumpArrow, CANVAS_WIDTH * 3.5 / 4 - jumpArrow.width / 2, CANVAS_HEIGHT - 100);
+
+                R.globalAlpha = 1;
+            }
         }
 
         glitchEnd && glitchEnd();
