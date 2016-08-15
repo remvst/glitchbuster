@@ -171,3 +171,5 @@ function mirrorMask(mask){
         })
     };
 }
+
+masks = masks.concat(masks.map(mirrorMask));

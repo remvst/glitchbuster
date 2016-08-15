@@ -99,10 +99,12 @@ function Character(){
             h = 1;
         }
 
+        var eyesY = this.lookingDown ? 30 : 12;
+
         if(!this.fixing){
             R.fillStyle = '#000';
-            fillRect(34, 12, 6, h);
-            fillRect(46, 12, 6, h);
+            fillRect(34, eyesY, 6, h);
+            fillRect(46, eyesY, 6, h);
         }
         restore();
 

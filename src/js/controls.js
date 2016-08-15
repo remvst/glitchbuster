@@ -8,6 +8,7 @@ function reevalControls(e){
     if(K[39]){
         P.direction = 1;
     }
+    P.lookingDown = K[40];
 }
 
 onkeydown = function(e){
