@@ -241,6 +241,17 @@ function Game(){
         }
     };
 
+    this.playerDied = function(){
+        setTimeout(function(){
+            G.menu = new GameOverMenu();
+            interp(G.menu, 'alpha', 0, 1, 0.5);
+        }, 2000);
+    };
+
+    this.mainMenu = function(){
+        this.menu = new MainMenu();
+    };
+
     var lf = Date.now();
     T(function(){
         var n = Date.now();
@@ -254,7 +265,7 @@ function Game(){
     }, 0);
 
     this.startNewWorld();
-    this.menu = new MainMenu();
+    this.mainMenu();
 
     glitchTimeleft = 0;
     nextGlitch = 1;

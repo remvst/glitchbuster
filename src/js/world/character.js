@@ -374,6 +374,10 @@ function Character(){
             'NULL',
             'Fatal error'
         ]));
+
+        if(this == P){
+            G.playerDied();
+        }
     };
 
     this.say = function(s){

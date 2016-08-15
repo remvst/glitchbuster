@@ -341,7 +341,3 @@ function button(t){
 		r.fill();
 	});
 }
-
-var playButton = button('start'),
-	tutorialButton = button('learn'),
-	authorButton = button('whois');
