@@ -31,11 +31,14 @@ function Menu(){
 function MainMenu(){
     Menu.call(this);
 
-    this.button(playButton, 0, 460, function(){
+    this.button(tutorialButton, 0, 460, function(){
+        G.newGame(true);
+    });
+    this.button(playButton, 0, 600, function(){
         G.newGame();
     });
-    this.button(tutorialButton, 0, 600, function(){
-        G.newGame(true);
+    this.button(authorButton, 0, 740, function(){
+        open('http://twitter.com/remvst');
     });
 
     this.buttons.forEach(function(b, i){

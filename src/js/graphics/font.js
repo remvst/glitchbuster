@@ -349,5 +349,6 @@ function button(t){
 	});
 }
 
-var playButton = button('play'),
-	tutorialButton = button('learn');
+var playButton = button('start'),
+	tutorialButton = button('learn'),
+	authorButton = button('whois');
