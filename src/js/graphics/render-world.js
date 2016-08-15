@@ -29,8 +29,13 @@ function renderWorld(){
         G.renderables[i].render();
     }
 
-    var haloX = ~~P.x - DARK_HALO_SIZE_HALF,
-        haloY = ~~P.y - DARK_HALO_SIZE_HALF,
+    var px = P.x,
+        py = P.y + (P.lookingDown ? 200 : 0);
+
+    px = V.x + CANVAS_WIDTH / 2;
+    py = V.y + CANVAS_HEIGHT / 2;
+    var haloX = ~~px - DARK_HALO_SIZE_HALF,
+        haloY = ~~py - DARK_HALO_SIZE_HALF,
         haloX2 = haloX + DARK_HALO_SIZE,
         haloY2 = haloY + DARK_HALO_SIZE;
 
