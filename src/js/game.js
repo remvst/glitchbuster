@@ -87,34 +87,34 @@ function Game(){
         if(this.currentLevel > 2){
             setTimeout(function(){
                 P.say(pick([
-                    'There\'s more?!',
-                    'Yay more bugs',
-                    'Okay one more bug...'
+                    string('There\'s more?!'),
+                    string('Yay more bugs'),
+                    string('Okay one more bug...')
                 ]));
             }, 500);
         }
 
         if(this.currentLevel == 1){
             setTimeout(function(){
-                P.say('Hello there!');
+                P.say(string('Hello there!'));
             }, 500);
             setTimeout(function(){
-                P.say('Ready to dive in the code?');
+                P.say(string('Ready to dive in the code?'));
             }, 3000);
             setTimeout(function(){
-                P.say('Let\'s find the bugs and fix them!');
+                P.say(string('Let\'s find the bugs and fix them!'));
             }, 6000);
         }
 
         if(this.currentLevel == 2){
             setTimeout(function(){
-                P.say('Wait what?');
+                P.say(string('Wait what?'));
             }, 500);
             setTimeout(function(){
-                P.say('Seems like we created more bugs');
+                P.say(string('Seems like we created more bugs'));
             }, 3000);
             setTimeout(function(){
-                P.say('Let\'s dig a little deeper...');
+                P.say(string('Let\'s dig a little deeper...'));
             }, 6000);
         }
 
@@ -135,13 +135,13 @@ function Game(){
             G.renderables.push(enemy);
 
             setTimeout(function(){
-                P.say('Watch out for the pointers!');
+                P.say(string('Watch out for the pointers!'));
             }, 3000);
             setTimeout(function(){
-                P.say('They\'re super dangerous!');
+                P.say(string('They\'re super dangerous!'));
             }, 6000);
             setTimeout(function(){
-                P.say('Either avoid them or kill them');
+                P.say(string('Either avoid them or kill them'));
             }, 9000);
         }
     };
@@ -197,8 +197,8 @@ function Game(){
                 health += '!';
             }
 
-            drawText(R, 'mental health: ' + health, 10, 10, 4, '#fff');
-            drawText(R, 'breakpoints: ' + P.grenades, 10, 40, 4, '#fff');
+            drawText(R, string('mental health: ') + health, 10, 10, 4, '#fff');
+            drawText(R, string('breakpoints: ') + P.grenades, 10, 40, 4, '#fff');
 
             if(G.touch){
                 // Mobile controls

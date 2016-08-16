@@ -53,7 +53,8 @@
     },
     "VERBOSE": true,
     "MACROS": {
-        "matrix": "matrix"
+        "matrix": "matrix",
+        "string": "string"
     },
     "CONSTANTS": {
         "true": 1,
@@ -121,6 +122,7 @@
         "callee",
         "center",
         "middle",
-        "left"
+        "left",
+        "px"
     ]
 }

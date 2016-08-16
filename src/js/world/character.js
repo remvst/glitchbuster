@@ -168,13 +168,13 @@ function Character(){
                 this.controllable = false;
                 this.fixing = true;
 
-                this.say('Let\'s fix this...');
+                this.say(string('Let\'s fix this...'));
 
                 interp(this, 'x', this.x, W.exit.center.x, 1);
                 interp(W.exit, 'alpha', 1, 0, 2);
 
                 setTimeout(function(){
-                    P.say('Done!');
+                    P.say(string('Done!'));
                 }, 2000);
 
                 setTimeout(function(){
@@ -187,7 +187,7 @@ function Character(){
                 }, 3000);
             }else if(d < CANVAS_WIDTH * 0.5 && !this.found){
                 this.found = true;
-                this.say('You found the bug!'); // TODO more strings
+                this.say(string('You found the bug!')); // TODO more strings
             }
         }
     };
@@ -225,8 +225,8 @@ function Character(){
                 this.die();
             }else{
                 this.say(pick([
-                    'Ouch!',
-                    'health--'
+                    string('Ouch!'),
+                    string('health--')
                 ]));
             }
 
@@ -405,10 +405,10 @@ function Character(){
         interp(this, 'bodyRotation', 0, -PI / 2, 0.3);
 
         this.say(pick([
-            '...',
-            'exit(1)',
-            'NULL',
-            'Fatal error'
+            string('...'),
+            string('exit(1)'),
+            string('NULL'),
+            string('Fatal error')
         ]));
 
         if(this == P){
@@ -432,9 +432,9 @@ function Character(){
             G.renderables.push(g);
         }else{
             P.say(pick([
-                'You don\'t have any breakpoints',
-                'breakpoints.count == 0',
-                'Breakpoint not found'
+                string('You don\'t have any breakpoints'),
+                string('breakpoints.count == 0'),
+                string('Breakpoint not found')
             ]));
         }
 

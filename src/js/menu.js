@@ -40,14 +40,14 @@ function Menu(){
 function MainMenu(){
     Menu.call(this);
 
-    this.button(button('learn'), 0, 420, function(){
+    this.button(button(string('learn')), 0, 420, function(){
         G.newGame(true);
     });
-    this.button(button('start'), 0, 560, function(){
+    this.button(button(string('start')), 0, 560, function(){
         G.newGame();
     });
-    this.button(button('whois'), 0, 700, function(){
-        open('http://twitter.com/remvst');
+    this.button(button(string('whois')), 0, 700, function(){
+        open(string('http://twitter.com/remvst'));
     });
 
     this.buttons.forEach(function(b, i){
@@ -69,15 +69,15 @@ function MainMenu(){
 function GameOverMenu(){
     Menu.call(this);
 
-    this.button(button('retry'), 0, 420, function(){
+    this.button(button(string('retry')), 0, 420, function(){
         G.newGame();
     });
-    this.button(button('back'), 0, 560, function(){
+    this.button(button(string('back')), 0, 560, function(){
         G.mainMenu();
     });
 
     var b;
-    this.button(button('foo'), 0, 700, function(){
+    this.button(button(string('foo')), 0, 700, function(){
         this.d = button((b = !b) ? 'bar' : 'foo');
     });
 
@@ -85,7 +85,7 @@ function GameOverMenu(){
         interp(b, 'x', -b.d.width, 0, 0.25, i * 0.25 + 0.5);
     });
 
-    var s1 = 'busted glitches',
+    var s1 = string('busted glitches'),
         t1 = 5,
         w1 = s1.length * 3 * t1 + (s1.length - 1) * t1,
         s2 = (G.currentLevel - 1).toString(),
