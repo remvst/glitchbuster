@@ -197,10 +197,8 @@ function Game(){
                 health += '!';
             }
 
-            drawText(R, 'glitches busted: ' + (G.currentLevel - 1), 10, 10, 4, '#fff');
-            drawText(R, 'glitch reports: ' + bugReports, 10, 40, 4, '#fff');
-            drawText(R, 'breakpoints: ' + P.grenades, 10, 70, 4, '#fff');
-            drawText(R, 'mental health: ' + health, 10, 100, 4, '#fff');
+            drawText(R, 'mental health: ' + health, 10, 10, 4, '#fff');
+            drawText(R, 'breakpoints: ' + P.grenades, 10, 40, 4, '#fff');
 
             if(G.touch){
                 // Mobile controls
