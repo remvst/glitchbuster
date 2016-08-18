@@ -19,12 +19,13 @@ function Character(){
     this.vY = 0;
 
     this.grenades = 0;
+    this.visible = true;
 
     var jumpCount = 0,
         previousFloorY;
 
     this.render = function(){
-        if(this.recoveryTime > 0 && ~~((this.recoveryTime * 2 * 4) % 2)){
+        if(this.recoveryTime > 0 && ~~((this.recoveryTime * 2 * 4) % 2) || !this.visible){
             return;
         }
 

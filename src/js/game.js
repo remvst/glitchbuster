@@ -23,6 +23,8 @@ function Game(){
         interp(this.menu, 'alpha', 1, 0, 0.5, 0, 0, function(){
             G.menu = null;
         });
+
+        G.renderables.push(new SpawnAnimation(P.x, P.y));
     };
 
     this.startNewWorld = function(dummy){
