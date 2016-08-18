@@ -35,7 +35,6 @@
             "src/js/graphics/particle.js",
             "src/js/graphics/noise-pattern.js",
             "src/js/graphics/halo.js",
-            "src/js/graphics/render-world.js",
             "src/js/graphics/mobile-controls.js",
             "src/js/graphics/font.js",
             "src/js/graphics/spawn-animation.js",
