@@ -6,6 +6,7 @@ function Enemy(){
     this.bodyColor = '#f00';
     this.legColor = '#b22';
     this.halo = redHalo;
+    this.health = 1;
 
     this.sayingTimeleft = 0;
 

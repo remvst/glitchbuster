@@ -220,9 +220,9 @@ function Character(){
         this.facing = this.vX < 0 ? -1 : 1;
     };
 
-    this.hurt = function(source){
+    this.hurt = function(source, power){
         if(this.recoveryTime <= 0 && !this.dead && !this.fixing){
-            if(--this.health <= 0){
+            if((this.health -= power || 1) <= 0){
                 this.die();
             }else{
                 this.say(pick([
