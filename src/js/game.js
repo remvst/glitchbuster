@@ -5,8 +5,7 @@ function Game(){
         glitchEnd,
         glitchReset,
         nextGlitch = 0,
-        glitchTimeleft = 0,
-        bugReports = 1;
+        glitchTimeleft = 0;
 
     this.currentLevel = 0;
 
@@ -36,8 +35,6 @@ function Game(){
 
         // World
         W = new World(generateWorld(++this.currentLevel));
-
-        bugReports = ~~(this.currentLevel * this.currentLevel * 1.4);
 
         // Player
         P.x = W.spawn.x + TILE_SIZE / 2;
