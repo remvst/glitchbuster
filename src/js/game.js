@@ -177,7 +177,7 @@ function Game(){
         }
 
         // Rendering
-        renderWorld();
+        W.render();
 
 
         if(this.menu){
