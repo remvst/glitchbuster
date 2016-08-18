@@ -21,6 +21,10 @@ function Character(){
     this.grenades = 0;
     this.visible = true;
 
+    this.lastAdjustment = 0;
+
+    this.speed = PLAYER_SPEED;
+
     var jumpCount = 0,
         previousFloorY;
 
@@ -135,12 +139,12 @@ function Character(){
         // Movement
 
         // Friction
-        var frictionFactor = 4 * PLAYER_SPEED,
-            targetSpeed = this.direction * PLAYER_SPEED,
+        var frictionFactor = 4 * this.speed,
+            targetSpeed = this.direction * this.speed,
             diff = targetSpeed - this.vX,
             appliedDiff = between(-frictionFactor * e, diff, frictionFactor * e);
 
-        this.vX = between(-PLAYER_SPEED, this.vX + appliedDiff, PLAYER_SPEED);
+        this.vX = between(-this.speed, this.vX + appliedDiff, this.speed);
 
         this.x += this.vX * e;
 
@@ -155,10 +159,10 @@ function Character(){
         this.y += this.vY * e;
 
         // Collisions
-        var adjustments = this.readjust(before);
+        this.lastAdjustment = this.readjust(before);
 
         // If there has been no adjustment for up or down, it means we're in the air
-        if(!(adjustments & DOWN) && !(adjustments & UP)){
+        if(!(this.lastAdjustment & DOWN) && !(this.lastAdjustment & UP)){
             jumpCount = max(1, jumpCount);
         }
 
