@@ -12,10 +12,10 @@ function Game(){
     this.t = 0;
 
     V = new Camera();
-    P = new Character();
+    P = new Player();
 
     this.newGame = function(tutorial){
-        P = new Character();
+        P = new Player();
 
         this.currentLevel = tutorial ? 0 : 3;
         this.startNewWorld();
@@ -61,7 +61,7 @@ function Game(){
             // Add enemies
             W.detectPaths(ENEMY_PATH_MIN_LENGTH).forEach(function(path){
                 if(rand() < ENEMY_DENSITY){
-                    var enemy = new Enemy();
+                    var enemy = new (pick([WalkingEnemy, JumpingEnemy]))();
                     enemy.x = TILE_SIZE * rand(path.colLeft, path.colRight);
                     enemy.y = TILE_SIZE * (path.row + 1) - CHARACTER_HEIGHT / 2;
                     G.cyclables.push(enemy);
@@ -119,14 +119,14 @@ function Game(){
 
         if(this.currentLevel == 3){
             // Put the enemies at the right spots
-            var enemy = new Enemy();
+            var enemy = new WalkingEnemy();
             enemy.x = TILE_SIZE * 11;
             enemy.y = TILE_SIZE * 5 - CHARACTER_HEIGHT / 2;
             G.cyclables.push(enemy);
             G.killables.push(enemy);
             G.renderables.push(enemy);
 
-            var enemy = new Enemy();
+            var enemy = new JumpingEnemy();
             enemy.x = TILE_SIZE * 21;
             enemy.y = TILE_SIZE * 7 - CHARACTER_HEIGHT / 2;
             G.cyclables.push(enemy);

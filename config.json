@@ -21,6 +21,7 @@
             "src/js/world/enemy.js",
             "src/js/world/walking-enemy.js",
             "src/js/world/jumping-enemy.js",
+            "src/js/world/player.js",
             "src/js/world/world.js",
             "src/js/world/camera.js",
             "src/js/world/tile.js",
@@ -92,7 +93,8 @@
         "GRENADE_RADIUS_2": 20,
         "GRENADE_BOUNCE_FACTOR": 0.5,
 
-        "ENEMY_SPEED": 150,
+        "WALKING_ENEMY_SPEED": 150,
+        "JUMPING_ENEMY_SPEED": 600,
         "ENEMY_PATH_MIN_LENGTH": 2,
         "ENEMY_DENSITY": 0.2,
 

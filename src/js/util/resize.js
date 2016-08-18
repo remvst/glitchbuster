@@ -8,7 +8,7 @@ onresize = function(){
             ratioDifference = abs(availableRatio - baseRatio),
             width,
             height,
-            s = document.getElementById('canvascontainer').style;
+            s = D.querySelector('#canvascontainer').style;
 
         if(availableRatio <= baseRatio){
             width = maxWidth;

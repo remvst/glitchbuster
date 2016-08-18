@@ -2,28 +2,20 @@ function Character(){
     this.x = this.y = 0;
     this.direction = 0;
     this.facing = 1;
-    //this.fixing = false;
-    this.controllable = true;
+
+    this.visible = true;
 
     this.bodyOffsetY = 0;
-    this.bodyColor = '#fff';
-    this.legColor = '#aaa';
-    this.halo = whiteHalo;
     this.bubbleTailLength = 0;
-    this.health = 5;
 
     this.scaleFactor = 1;
     this.recoveryTime = 0;
+    this.frictionFactor = 4;
 
     this.vX = 0;
     this.vY = 0;
 
-    this.grenades = 0;
-    this.visible = true;
-
     this.lastAdjustment = 0;
-
-    this.speed = PLAYER_SPEED;
 
     var jumpCount = 0,
         previousFloorY;
@@ -54,7 +46,6 @@ function Character(){
 
             R.font = '20pt Arial';
             fillText(this.saying, 0, -70 - this.bubbleTailLength);
-            //strokeText(this.saying, 2, -68 - this.bubbleTailLength);
         }
 
         // Facing left or right
@@ -129,17 +120,16 @@ function Character(){
         };
 
         this.recoveryTime -= e;
-
         this.sayingTimeleft -= e;
 
-        if(this.dead || !this.controllable){
+        if(this.dead){
             this.direction = 0;
         }
 
         // Movement
 
         // Friction
-        var frictionFactor = 4 * this.speed,
+        var frictionFactor = this.frictionFactor * this.speed,
             targetSpeed = this.direction * this.speed,
             diff = targetSpeed - this.vX,
             appliedDiff = between(-frictionFactor * e, diff, frictionFactor * e);
@@ -165,36 +155,6 @@ function Character(){
         if(!(this.lastAdjustment & DOWN) && !(this.lastAdjustment & UP)){
             jumpCount = max(1, jumpCount);
         }
-
-        // Exit detection
-        if(this.controllable){
-            var d = dist(this, W.exit.center);
-            if(d < TILE_SIZE / 2){
-                this.controllable = false;
-                this.fixing = true;
-
-                this.say(string('Let\'s fix this...'));
-
-                interp(this, 'x', this.x, W.exit.center.x, 1);
-                interp(W.exit, 'alpha', 1, 0, 2);
-
-                setTimeout(function(){
-                    P.say(string('Done!'));
-                }, 2000);
-
-                setTimeout(function(){
-                    G.applyGlitch(0, 0.5);
-                    G.hideTiles = true;
-                }, 2500);
-
-                setTimeout(function(){
-                    G.startNewWorld();
-                }, 3000);
-            }else if(d < CANVAS_WIDTH * 0.5 && !this.found){
-                this.found = true;
-                this.say(string('You found the bug!')); // TODO more strings
-            }
-        }
     };
 
     this.jump = function(p, f){
@@ -202,7 +162,7 @@ function Character(){
             jumpCount = 0;
         }
 
-        if(jumpCount++ <= 1 && this.controllable){
+        if(jumpCount++ <= 1){
             this.vY = p * PLAYER_JUMP_ACCELERATION;
             previousFloorY = -1;
 
@@ -415,34 +375,11 @@ function Character(){
             string('NULL'),
             string('Fatal error')
         ]));
-
-        if(this == P){
-            G.playerDied();
-        }
     };
 
     this.say = function(s){
         this.saying = s;
         this.sayingTimeleft = 3;
         interp(this, 'bubbleTailLength', 0, 70, 0.3, 0, easeOutBack);
-    };
-
-    this.throwGrenade = function(){
-        if(!this.dead && this.grenades-- > 0){
-            var g = new Grenade();
-            g.x = this.x;
-            g.y = this.y;
-            g.throw(-PI / 2 + this.facing * PI / 3, 1000);
-            G.cyclables.push(g);
-            G.renderables.push(g);
-        }else{
-            P.say(pick([
-                string('You don\'t have any breakpoints'),
-                string('breakpoints.count == 0'),
-                string('Breakpoint not found')
-            ]));
-        }
-
-        this.grenades = max(0, this.grenades);
     };
 }
