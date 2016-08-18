@@ -19,7 +19,7 @@ function Camera(){
 
     this.cycle = function(e){
         var target = this.target(),
-            dist = realDist(target, this),
+            dist = dist(target, this),
             speed = max(1, dist / 0.2),
             angle = atan2(target.y - this.realY, target.x - this.realX),
             appliedDist = min(speed * e, dist);
