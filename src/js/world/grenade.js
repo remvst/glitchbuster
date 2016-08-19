@@ -1,6 +1,7 @@
 function Grenade(){
     this.x = this.y = 0;
     this.timer = 2;
+    this.rotation = 0;
 
     this.throw = function(angle, force){
         this.vX = cos(angle) * force;
@@ -20,6 +21,30 @@ function Grenade(){
 
             this.x += this.vX * e;
             this.y += this.vY * e;
+
+            this.rotation += PI * 4 * e;
+
+            var after = {
+                x: this.x,
+                y: this.y
+            };
+
+            var trail = {
+                alpha: 1,
+                render: function(){
+                    R.strokeStyle = 'rgba(255, 0, 0, ' + this.alpha + ')';
+                    R.lineWidth = 8;
+                    beginPath();
+                    moveTo(before.x, before.y);
+                    lineTo(after.x, after.y);
+                    stroke();
+                }
+            };
+            G.renderables.push(trail);
+
+            interp(trail, 'alpha', 1, 0, 0.3, 0, null, function(){
+                remove(G.renderables, trail);
+            });
         }
 
         this.timer -= e;
@@ -56,28 +81,6 @@ function Grenade(){
                 }
             }while(adjustments && iterations++ < 5);
         }
-
-        var after = {
-            x: this.x,
-            y: this.y
-        };
-
-        var trail = {
-            alpha: 1,
-            render: function(){
-                R.strokeStyle = 'rgba(255, 0, 0, ' + this.alpha + ')';
-                R.lineWidth = 4;
-                beginPath();
-                moveTo(before.x, before.y);
-                lineTo(after.x, after.y);
-                stroke();
-            }
-        };
-        G.renderables.push(trail);
-
-        interp(trail, 'alpha', 1, 0, 0.3, 0, null, function(){
-            remove(G.renderables, trail);
-        });
     };
 
     this.explode = function(){
@@ -127,7 +130,11 @@ function Grenade(){
     };
 
     this.render = function(){
+        save();
+        translate(this.x, this.y);
+        rotate(this.rotation);
         R.fillStyle = 'red';
-        R.fillRect(this.x - GRENADE_RADIUS, this.y - GRENADE_RADIUS, GRENADE_RADIUS_2, GRENADE_RADIUS_2);
+        fillRect(-GRENADE_RADIUS, -GRENADE_RADIUS, GRENADE_RADIUS_2, GRENADE_RADIUS_2);
+        restore();
     };
 }
