@@ -14,10 +14,7 @@ var W = window,
                 function(c){
                     T(c, 1000 / 60);
                 };
-    })(),
-    toBool = function(x){
-        return !!x;
-    };
+    })();
 
 // Exposing all math functions to the global scope
 Object.getOwnPropertyNames(Math).forEach(function(n){

@@ -331,9 +331,9 @@ function Character(){
 
         // Based on the adjustment, fire some tile events
         if(t & UP){
-            this.landOn([bottomLeft, bottomRight].filter(toBool));
+            this.landOn([bottomLeft, bottomRight].filter(Boolean));
         }else if(t & DOWN){
-            this.tapOn([topLeft, topRight].filter(toBool));
+            this.tapOn([topLeft, topRight].filter(Boolean));
         }
 
         return t;
