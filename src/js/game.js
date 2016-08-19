@@ -180,10 +180,6 @@ function Game(){
             R.font = '20pt Courier New';
             R.textAlign = 'left';
 
-            /*fillText('Bugs fixed    / ' + (G.currentLevel - 1), 15, 30);
-            fillText('Bugs reports  / ' + bugReports, 15, 60);
-            fillText('Breakpoints   / ' + P.grenades, 15, 90);*/
-
             var health = '';
             for(var i = 0 ; i < P.health ; i++){
                 health += '!';
