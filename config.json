@@ -29,9 +29,9 @@
             "src/js/menu.js",
             "src/js/controls.js",
             "src/js/game.js",
+            "src/js/tutorial-level.js",
 
             "src/js/glitches/slice.js",
-            "src/js/glitches/invert.js",
             "src/js/glitches/offset.js",
             "src/js/glitches/noise.js",
 

@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Level creator</title>
+
+        <script>
+        function matrix(m){
+            return m;
+        }
+
+        var VOID_ID = 0;
+        var TILE_ID = 1;
+        var UNBREAKABLE_TILE_ID = 2;
+        var PROBABLE_TILE_ID = 3;
+        var SPAWN_ID = 4;
+        var EXIT_ID = 5;
+        var CEILING_SPIKE_ID = 6;
+        var FLOOR_SPIKE_ID = 7;
+
+        var SPIKE_DENSITY = 0.05;
+        </script>
+        <script src="../src/js/tutorial-level.js"></script>
+        <script src="tile-render-map.js"></script>
+        <script src="level-creator.js"></script>
+    </head>
+
+    <body>
+        <div>
+            <canvas></canvas>
+        </div>
+
+        <div>
+            <textarea cols="40" rows="12"></textarea>
+        </div>
+    </body>
+</html>

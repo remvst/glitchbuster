@@ -103,45 +103,38 @@ function Game(){
             setTimeout(function(){
                 P.say(string('Let\'s find the bugs and fix them!'));
             }, 6000);
-        }
 
-        if(this.currentLevel == 2){
-            setTimeout(function(){
-                P.say(string('Wait what?'));
-            }, 500);
-            setTimeout(function(){
-                P.say(string('Seems like we created more bugs'));
-            }, 3000);
-            setTimeout(function(){
-                P.say(string('Let\'s dig a little deeper...'));
-            }, 6000);
-        }
-
-        if(this.currentLevel == 3){
             // Put the enemies at the right spots
-            var enemy = new WalkingEnemy();
-            enemy.x = TILE_SIZE * 11;
-            enemy.y = TILE_SIZE * 5 - CHARACTER_HEIGHT / 2;
-            G.cyclables.push(enemy);
-            G.killables.push(enemy);
-            G.renderables.push(enemy);
+            var enemy1 = new WalkingEnemy();
+            enemy1.x = 4900;
+            enemy1.y = 500;
+            G.cyclables.push(enemy1);
+            G.killables.push(enemy1);
+            G.renderables.push(enemy1);
 
-            var enemy = new JumpingEnemy();
-            enemy.x = TILE_SIZE * 21;
-            enemy.y = TILE_SIZE * 7 - CHARACTER_HEIGHT / 2;
-            G.cyclables.push(enemy);
-            G.killables.push(enemy);
-            G.renderables.push(enemy);
+            var enemy2 = new JumpingEnemy();
+            enemy2.x = 6500;
+            enemy2.y = 500;
+            G.cyclables.push(enemy2);
+            G.killables.push(enemy2);
+            G.renderables.push(enemy2);
 
-            setTimeout(function(){
-                P.say(string('Watch out for the pointers!'));
-            }, 3000);
-            setTimeout(function(){
-                P.say(string('They\'re super dangerous!'));
-            }, 6000);
-            setTimeout(function(){
-                P.say(string('Either avoid them or kill them'));
-            }, 9000);
+            var metEnemy;
+            G.cyclables.push({
+                cycle: function(){
+                    if(!metEnemy && abs(P.x - enemy1.x) < CANVAS_WIDTH){
+                        metEnemy = true;
+
+                        P.say(string('Watch out for the pointers!'));
+                        setTimeout(function(){
+                            P.say(string('They\'re super dangerous!'));
+                        }, 3000);
+                        setTimeout(function(){
+                            P.say(string('Either avoid them or kill them'));
+                        }, 6000);
+                    }
+                }
+            });
         }
     };
 
@@ -235,10 +228,10 @@ function Game(){
         }/*, function(){
             glitchStart = matrixGlitch;
             glitchEnd = matrixGlitchReset;
-        }*/, function(){
+        }*//*, function(){
             glitchStart = invertGlich;
             glitchReset = invertGlitchReset;
-        }, function(){
+        }*/, function(){
             offsetGlitchEnable();
             glitchReset = offsetGlitchReset;
         }];

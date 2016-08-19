@@ -1,6 +1,6 @@
 function offsetGlitchEnable(){
-    V.offsetX = ~~rand(-200, 200);
-    V.offsetY = ~~rand(-200, 200);
+    V.offsetX = ~~rand(-100, 100);
+    V.offsetY = ~~rand(-100, 100);
 }
 
 function offsetGlitchReset(){
