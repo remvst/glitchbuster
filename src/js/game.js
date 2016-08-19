@@ -17,7 +17,7 @@ function Game(){
     this.newGame = function(tutorial){
         P = new Player();
 
-        this.currentLevel = tutorial ? 0 : 3;
+        this.currentLevel = tutorial ? 0 : 1;
         this.startNewWorld();
         interp(this.menu, 'alpha', 1, 0, 0.5, 0, 0, function(){
             G.menu = null;
@@ -83,16 +83,6 @@ function Game(){
             });
         }
 
-        if(this.currentLevel > 2){
-            setTimeout(function(){
-                P.say(pick([
-                    string('There\'s more?!'),
-                    string('Yay more bugs'),
-                    string('Okay one more bug...')
-                ]));
-            }, 500);
-        }
-
         if(this.currentLevel == 1){
             setTimeout(function(){
                 P.say(string('Hello there!'));
@@ -135,6 +125,14 @@ function Game(){
                     }
                 }
             });
+        }else{
+            setTimeout(function(){
+                P.say(pick([
+                    string('There\'s more?!'),
+                    string('Yay more bugs'),
+                    string('Okay one more bug...')
+                ]));
+            }, 500);
         }
     };
 
@@ -171,7 +169,6 @@ function Game(){
 
         // Rendering
         W.render();
-
 
         if(this.menu){
             this.menu.render();
