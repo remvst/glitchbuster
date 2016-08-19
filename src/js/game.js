@@ -57,32 +57,6 @@ function Game(){
         }
 
         // Enemies
-        if(this.currentLevel > 3){
-            // Add enemies
-            W.detectPaths(ENEMY_PATH_MIN_LENGTH).forEach(function(path){
-                if(rand() < ENEMY_DENSITY){
-                    var enemy = new (pick([WalkingEnemy, JumpingEnemy]))();
-                    enemy.x = TILE_SIZE * rand(path.colLeft, path.colRight);
-                    enemy.y = TILE_SIZE * (path.row + 1) - CHARACTER_HEIGHT / 2;
-                    G.cyclables.push(enemy);
-                    G.renderables.push(enemy);
-                    G.killables.push(enemy);
-                }
-            });
-
-            // Add grenades for pick up
-            W.detectPaths(1).forEach(function(path){
-                if(rand() < GRENADE_DENSITY){
-                    var g = new GrenadeItem(
-                        (~~rand(path.colLeft, path.colRight) + 0.5) * TILE_SIZE,
-                        (path.row + 0.5) * TILE_SIZE
-                    );
-                    G.renderables.push(g);
-                    G.cyclables.push(g);
-                }
-            });
-        }
-
         if(this.currentLevel == 1){
             setTimeout(function(){
                 P.say(string('Hello there!'));
@@ -133,6 +107,30 @@ function Game(){
                     string('Okay one more bug...')
                 ]));
             }, 500);
+
+            // Add enemies
+            W.detectPaths(ENEMY_PATH_MIN_LENGTH).forEach(function(path){
+                if(rand() < ENEMY_DENSITY){
+                    var enemy = new (pick([WalkingEnemy, JumpingEnemy]))();
+                    enemy.x = TILE_SIZE * rand(path.colLeft, path.colRight);
+                    enemy.y = TILE_SIZE * (path.row + 1) - CHARACTER_HEIGHT / 2;
+                    G.cyclables.push(enemy);
+                    G.renderables.push(enemy);
+                    G.killables.push(enemy);
+                }
+            });
+
+            // Add grenades for pick up
+            W.detectPaths(1).forEach(function(path){
+                if(rand() < GRENADE_DENSITY){
+                    var g = new GrenadeItem(
+                        (~~rand(path.colLeft, path.colRight) + 0.5) * TILE_SIZE,
+                        (path.row + 0.5) * TILE_SIZE
+                    );
+                    G.renderables.push(g);
+                    G.cyclables.push(g);
+                }
+            });
         }
     };
 

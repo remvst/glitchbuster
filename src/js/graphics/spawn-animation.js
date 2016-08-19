@@ -28,7 +28,7 @@ function SpawnAnimation(){
                 ['x', x, x, d, 0, oscillate],
                 ['y', y, y + rand(100, 300), d, 0],
                 ['s', rand(10, 20), 0, d]
-            ]);
+            ], true);
         }
     });
 

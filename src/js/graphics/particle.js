@@ -1,5 +1,5 @@
-function particle(s, c, as){
-    var p;
+function particle(s, c, as, numeric){
+    var p, n = pick([0, 1]);
 
     // Add to the list of particles
     G.renderables.push(p = {
@@ -7,7 +7,7 @@ function particle(s, c, as){
         c: c,
         render: function(){
             R.fillStyle = p.c;
-            fillRect(p.x - p.s / 2, p.y - p.s / 2, p.s, p.s);
+            numeric ? fillText(n.toString(), p.x, p.y):fillRect(p.x - p.s / 2, p.y - p.s / 2, p.s, p.s);
         }
     });
 
