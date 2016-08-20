@@ -41,6 +41,7 @@
             "src/js/graphics/mobile-controls.js",
             "src/js/graphics/font.js",
             "src/js/graphics/spawn-animation.js",
+            "src/js/graphics/code-pattern.js",
 
             "src/js/main.js"
         ],
