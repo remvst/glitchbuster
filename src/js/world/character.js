@@ -107,8 +107,9 @@ function Character(){
 
         if(!this.fixing){
             R.fillStyle = '#000';
-            fillRect(34, eyesY, 6, h);
-            fillRect(46, eyesY, 6, h);
+            var offset = this.talking ? -12 : 0;
+            fillRect(34 + offset, eyesY, 6, h);
+            fillRect(46 + offset, eyesY, 6, h);
         }
         restore();
 

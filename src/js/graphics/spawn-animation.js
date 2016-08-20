@@ -33,6 +33,7 @@ function SpawnAnimation(){
     });
 
     P.visible = P.controllable = false;
+    P.talking = true;
     G.hideTiles = true;
 
     setTimeout(function(){
@@ -45,6 +46,7 @@ function SpawnAnimation(){
     }, 500);
 
     setTimeout(function(){
+        P.talking = false;
         P.controllable = true;
         G.hideTiles = false;
     }, 10000);

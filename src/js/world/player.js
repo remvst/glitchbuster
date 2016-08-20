@@ -14,8 +14,6 @@ function Player(){
 
     var superCycle = this.cycle;
     this.cycle = function(e){
-        superCycle.call(this, e);
-
         if(!this.controllable){
             this.direction = 0;
         }else{
@@ -24,28 +22,29 @@ function Player(){
                 this.controllable = false;
                 this.fixing = true;
 
-                this.say(string('Let\'s fix this...'));
+                this.say([
+                    string('Let\'s fix this...'),
+                    string('Done!')
+                ]);
 
                 interp(this, 'x', this.x, W.exit.center.x, 1);
-                interp(W.exit, 'alpha', 1, 0, 2);
-
-                setTimeout(function(){
-                    P.say(string('Done!'));
-                }, 2000);
+                interp(W.exit, 'alpha', 1, 0, 3);
 
                 setTimeout(function(){
                     G.applyGlitch(0, 0.5);
                     G.hideTiles = true;
-                }, 2500);
+                }, 3500);
 
                 setTimeout(function(){
                     G.startNewWorld();
-                }, 3000);
+                }, 4000);
             }else if(d < CANVAS_WIDTH * 0.5 && !this.found){
                 this.found = true;
                 this.say(string('You found the bug!')); // TODO more strings
             }
         }
+
+        superCycle.call(this, e);
     };
 
     var superDie = this.die;
