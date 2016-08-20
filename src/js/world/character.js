@@ -7,6 +7,7 @@ function Character(){
 
     this.bodyOffsetY = 0;
     this.bubbleTailLength = 0;
+    this.saying = [];
 
     this.scaleFactor = 1;
     this.recoveryTime = 0;
@@ -32,10 +33,11 @@ function Character(){
         drawImage(this.halo, -HALO_SIZE_HALF, -HALO_SIZE_HALF);
 
         // Dialog
-        if(this.sayingTimeleft > 0){
+        if(this.sayingTimeleft > 0 && this.saying.length){
             R.font = '20pt Arial';
 
-            var w = measureText(this.saying).width + 10;
+            var t = this.saying[0];
+            var w = measureText(t).width + 10;
             R.fillStyle = '#000';
             R.globalAlpha = 0.5;
             fillRect(-w / 2, -85 - this.bubbleTailLength, w, 30);
@@ -45,7 +47,7 @@ function Character(){
             fillRect(-2, -50, 4, -this.bubbleTailLength);
 
             R.font = '20pt Arial';
-            fillText(this.saying, 0, -70 - this.bubbleTailLength);
+            fillText(t, 0, -70 - this.bubbleTailLength);
         }
 
         // Facing left or right
@@ -120,7 +122,10 @@ function Character(){
         };
 
         this.recoveryTime -= e;
-        this.sayingTimeleft -= e;
+
+        if((this.sayingTimeleft -= e) <= 0){
+            this.say(this.saying.slice(1));
+        }
 
         if(this.dead){
             this.direction = 0;
@@ -378,7 +383,7 @@ function Character(){
     };
 
     this.say = function(s){
-        this.saying = s;
+        this.saying = s.push ? s : [s];
         this.sayingTimeleft = 3;
         interp(this, 'bubbleTailLength', 0, 70, 0.3, 0, easeOutBack);
     };
