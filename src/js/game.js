@@ -58,16 +58,6 @@ function Game(){
 
         // Enemies
         if(this.currentLevel == 1){
-            setTimeout(function(){
-                P.say(string('Hello there!'));
-            }, 500);
-            setTimeout(function(){
-                P.say(string('Ready to dive in the code?'));
-            }, 3000);
-            setTimeout(function(){
-                P.say(string('Let\'s find the bugs and fix them!'));
-            }, 6000);
-
             // Put the enemies at the right spots
             var enemy1 = new WalkingEnemy();
             enemy1.x = 4900;
@@ -89,13 +79,11 @@ function Game(){
                     if(!metEnemy && abs(P.x - enemy1.x) < CANVAS_WIDTH){
                         metEnemy = true;
 
-                        P.say(string('Watch out for the pointers!'));
-                        setTimeout(function(){
-                            P.say(string('They\'re super dangerous!'));
-                        }, 3000);
-                        setTimeout(function(){
-                            P.say(string('Either avoid them or kill them'));
-                        }, 6000);
+                        P.say([
+                            string('Watch out for the pointers!'),
+                            string('They\'re super dangerous!'),
+                            string('Either avoid them or kill them')
+                        ]);
                     }
                 }
             });

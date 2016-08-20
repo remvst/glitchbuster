@@ -34,15 +34,11 @@ function GrenadeItem(x, y){
 
             this.pickedUp = true;
 
-            P.say(pick([
+            P.say([pick([
                 string('Here\'s a breakpoint!'),
                 string('You found a breakpoint!'),
                 string('That\'s a breakpoint!')
-            ]));
-
-            setTimeout(function(){
-                P.say(string('Press SPACE to throw it'));
-            }, 3000);
+            ]), string('Press SPACE to throw it')]);
         }
     };
 }

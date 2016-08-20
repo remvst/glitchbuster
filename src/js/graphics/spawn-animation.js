@@ -36,17 +36,13 @@ function SpawnAnimation(){
     G.hideTiles = true;
 
     setTimeout(function(){
-        P.say(string('Hello there!'));
+        P.say([
+            string('Hello there!'),
+            string('This code looks pretty dirty'),
+            string('Plenty of bugs have been reported'),
+            string('Help me find them!')
+        ]);
     }, 500);
-    setTimeout(function(){
-        P.say(string('This code looks pretty dirty'));
-    }, 3000);
-    setTimeout(function(){
-        P.say(string('Plenty of bugs have been reported'));
-    }, 6000);
-    setTimeout(function(){
-        P.say(string('Help me find them!'));
-    }, 9000);
 
     setTimeout(function(){
         P.controllable = true;
