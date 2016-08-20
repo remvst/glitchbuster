@@ -38,10 +38,10 @@ function SpawnAnimation(){
 
     setTimeout(function(){
         P.say([
-            string('Hello there!'),
-            string('This code looks pretty dirty'),
-            string('Plenty of bugs have been reported'),
-            string('Help me find them!')
+            nomangle('Hello there!'),
+            nomangle('This code looks pretty dirty'),
+            nomangle('Plenty of bugs have been reported'),
+            nomangle('Help me find them!')
         ]);
     }, 500);
 

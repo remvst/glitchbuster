@@ -23,8 +23,8 @@ function Player(){
                 this.fixing = true;
 
                 this.say([
-                    string('Let\'s fix this...'),
-                    string('Done!')
+                    nomangle('Let\'s fix this...'),
+                    nomangle('Done!')
                 ]);
 
                 interp(this, 'x', this.x, W.exit.center.x, 1);
@@ -40,7 +40,7 @@ function Player(){
                 }, 4000);
             }else if(d < CANVAS_WIDTH * 0.5 && !this.found){
                 this.found = true;
-                this.say(string('You found the bug!')); // TODO more strings
+                this.say(nomangle('You found the bug!')); // TODO more strings
             }
         }
 
@@ -70,9 +70,9 @@ function Player(){
             G.renderables.push(g);
         }else{
             P.say(pick([
-                string('You don\'t have any breakpoints'),
-                string('breakpoints.count == 0'),
-                string('Breakpoint not found')
+                nomangle('You don\'t have any breakpoints'),
+                nomangle('breakpoints.count == 0'),
+                nomangle('Breakpoint not found')
             ]));
         }
 

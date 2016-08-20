@@ -196,8 +196,8 @@ function Character(){
                 this.die();
             }else{
                 this.say(pick([
-                    string('Ouch!'),
-                    string('health--')
+                    nomangle('Ouch!'),
+                    nomangle('health--')
                 ]));
             }
 
@@ -376,10 +376,10 @@ function Character(){
         interp(this, 'bodyRotation', 0, -PI / 2, 0.3);
 
         this.say(pick([
-            string('...'),
-            string('exit(1)'),
-            string('NULL'),
-            string('Fatal error')
+            nomangle('...'),
+            nomangle('exit(1)'),
+            nomangle('NULL'),
+            nomangle('Fatal error')
         ]));
     };
 

@@ -58,7 +58,8 @@
     "VERBOSE": true,
     "MACROS": {
         "matrix": "matrix",
-        "string": "string"
+        "string": "string",
+        "nomangle": "nomangle"
     },
     "CONSTANTS": {
         "true": 1,

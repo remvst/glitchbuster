@@ -35,10 +35,10 @@ function GrenadeItem(x, y){
             this.pickedUp = true;
 
             P.say([pick([
-                string('Here\'s a breakpoint!'),
-                string('You found a breakpoint!'),
-                string('That\'s a breakpoint!')
-            ]), string('Press SPACE to throw it')]);
+                nomangle('Here\'s a breakpoint!'),
+                nomangle('You found a breakpoint!'),
+                nomangle('That\'s a breakpoint!')
+            ]), nomangle('Press SPACE to throw it')]);
         }
     };
 }

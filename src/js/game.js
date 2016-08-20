@@ -80,9 +80,9 @@ function Game(){
                         metEnemy = true;
 
                         P.say([
-                            string('Watch out for the pointers!'),
-                            string('They\'re super dangerous!'),
-                            string('Either avoid them or kill them')
+                            nomangle('Watch out for the pointers!'),
+                            nomangle('They\'re super dangerous!'),
+                            nomangle('Either avoid them or kill them')
                         ]);
                     }
                 }
@@ -90,9 +90,9 @@ function Game(){
         }else{
             setTimeout(function(){
                 P.say(pick([
-                    string('There\'s more?!'),
-                    string('Yay more bugs'),
-                    string('Okay one more bug...')
+                    nomangle('There\'s more?!'),
+                    nomangle('Yay more bugs'),
+                    nomangle('Okay one more bug...')
                 ]));
             }, 500);
 
@@ -168,8 +168,8 @@ function Game(){
                 health += '!';
             }
 
-            drawText(R, string('mental health: ') + health, 10, 10, 4, '#fff');
-            drawText(R, string('breakpoints: ') + P.grenades, 10, 40, 4, '#fff');
+            drawText(R, nomangle('mental health: ') + health, 10, 10, 4, '#fff');
+            drawText(R, nomangle('breakpoints: ') + P.grenades, 10, 40, 4, '#fff');
 
             if(G.touch){
                 // Mobile controls
