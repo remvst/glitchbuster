@@ -15,7 +15,7 @@ function SpawnAnimation(){
 
     interp(this, 'radius', 400, 0, 0.4, 1);
     interp(this, 'alpha', 0, 1, 0.4, 1, null, function(){
-        P.visible = P.controllable = true;
+        P.visible = true;
 
         for(var i = 0 ; i < 50 ; i++){
             var d = rand(0.5, 1.5),
@@ -33,4 +33,23 @@ function SpawnAnimation(){
     });
 
     P.visible = P.controllable = false;
+    G.hideTiles = true;
+
+    setTimeout(function(){
+        P.say(string('Hello there!'));
+    }, 500);
+    setTimeout(function(){
+        P.say(string('This code looks pretty dirty'));
+    }, 3000);
+    setTimeout(function(){
+        P.say(string('Plenty of bugs have been reported'));
+    }, 6000);
+    setTimeout(function(){
+        P.say(string('Help me find them!'));
+    }, 9000);
+
+    setTimeout(function(){
+        P.controllable = true;
+        G.hideTiles = false;
+    }, 10000);
 }
