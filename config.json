@@ -12,7 +12,7 @@
             "src/js/util/interp.js",
             "src/js/util/shape.js",
 
-            "src/js/jsfxr2.js",
+            "src/js/jsfxr.js",
 
             "src/js/world/mirror-mask.js",
             "src/js/world/masks.js",
