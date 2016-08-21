@@ -5,18 +5,18 @@
     </head>
 
     <body>
-        <script src="../src/js/jsfxr.js"></script>
+        <script src="../src/js/jsfxr2.js"></script>
         <script src="../src/js/riffwave.js"></script>
 
         <script>
-            var knobs = [2,,0.2,,0.1753,0.64,,-0.5261,,,,,,0.5522,-0.564,,,,1,,,,,0.25];
+            var knobs = [0,,0.3964,,0.1599,0.5351,,0.1451,,,,,,0.4277,,,,,0.7854,,,,,0.5];
 
-            
+            //var converted = convert(knobs);
 
-            var sound = new SoundEffect(defaultKnobs);
-            var audio = sound.generate();
-            //var audio = new Audio();
-            //audio.src = generated.dataURI;
+            //var sound = new SoundEffect(converted);
+            //var audio = sound.generate();
+            var audio = new Audio();
+            audio.src = jsfxr(knobs);
         </script>
     </body>
 </html>

@@ -54,45 +54,51 @@ var defaultKnobs = {
 };
 
 function convert(a){
+    for(var i = 0 ; i < a.length ; i++){
+        a[i] = a[i] || 0;
+    }
+
+    console.log(a.length);
+
     return {
-        shape: SQUARE, // SQUARE/SAWTOOTH/SINE/NOISE
+        shape: a[0], // SQUARE/SAWTOOTH/SINE/NOISE
 
-        attack:  0,   // sec
-        sustain: 0.2, // sec
-        punch:   0,   // proportion
-        decay:   0.2, // sec
+        attack:  a[1],   // sec
+        sustain: a[2], // sec
+        punch:   a[3],   // proportion
+        decay:   a[3], // sec
 
-        frequency:        1000, // Hz
-        frequencyMin:        0, // Hz
-        frequencySlide:      0, // 8va/sec
-        frequencySlideSlide: 0, // 8va/sec/sec
+        frequency:        a[4], // Hz
+        frequencyMin:        a[5], // Hz
+        frequencySlide:      a[6], // 8va/sec
+        frequencySlideSlide: a[7], // 8va/sec/sec
 
-        vibratoDepth:  0, // proportion
-        vibratoRate:  10, // Hz
+        vibratoDepth:  a[8], // proportion
+        vibratoRate:  a[9], // Hz
 
-        arpeggioFactor: 1,   // multiple of frequency
-        arpeggioDelay:  0.1, // sec
+        arpeggioFactor: a[10],   // multiple of frequency
+        arpeggioDelay:  a[11], // sec
 
-        dutyCycle:      0.5, // proportion of wavelength
-        dutyCycleSweep: 0,   // proportion/second
+        dutyCycle:      a[12], // proportion of wavelength
+        dutyCycleSweep: a[13],   // proportion/second
 
-        retriggerRate: 0, // Hz
+        retriggerRate: a[14], // Hz
 
-        flangerOffset: 0, // sec
-        flangerSweep:  0, // offset/sec
+        flangerOffset: a[15], // sec
+        flangerSweep:  a[16], // offset/sec
 
-        lowPassFrequency: 44100, // Hz
-        lowPassSweep:     1,     // ^sec
-        lowPassResonance: 0.5,   // proportion
+        lowPassFrequency: a[17], // Hz
+        lowPassSweep:     a[18],     // ^sec
+        lowPassResonance: a[19],   // proportion
 
-        highPassFrequency: 0, // Hz
-        highPassSweep:     0, // ^sec
+        highPassFrequency: a[20], // Hz
+        highPassSweep:     a[21], // ^sec
 
-        gain: -10, // dB
+        gain: a[22], // dB
 
         sampleRate: 44100, // Hz
         sampleSize: 8,     // bits per channel
-    }
+    };
 }
 
 
@@ -103,19 +109,22 @@ function SoundEffect(ps) {
     // generator
     //
 
-    this.elapsedSinceRepeat = 0;
+    this.initForRepeat = function(){
+        this.elapsedSinceRepeat = 0;
 
-    this.period = OVERSAMPLING * 44100 / ps.frequency;
-    this.periodMax = OVERSAMPLING * 44100 / ps.frequencyMin;
-    this.enableFrequencyCutoff = (ps.frequencyMin > 0);
-    this.periodMult = Math.pow(0.5, ps.frequencySlide / 44100);
-    this.periodMultSlide = ps.frequencySlideSlide * Math.pow(2, -44101/44100) / 44100;
+        this.period = OVERSAMPLING * 44100 / ps.frequency;
+        this.periodMax = OVERSAMPLING * 44100 / ps.frequencyMin;
+        this.enableFrequencyCutoff = (ps.frequencyMin > 0);
+        this.periodMult = Math.pow(0.5, ps.frequencySlide / 44100);
+        this.periodMultSlide = ps.frequencySlideSlide * Math.pow(2, -44101/44100) / 44100;
 
-    this.dutyCycle = ps.dutyCycle;
-    this.dutyCycleSlide = ps.dutyCycleSweep / (OVERSAMPLING * 44100);
+        this.dutyCycle = ps.dutyCycle;
+        this.dutyCycleSlide = ps.dutyCycleSweep / (OVERSAMPLING * 44100);
 
-    this.arpeggioMultiplier = 1 / ps.arpeggioFactor;
-    this.arpeggioTime = ps.arpeggioDelay * 44100;
+        this.arpeggioMultiplier = 1 / ps.arpeggioFactor;
+        this.arpeggioTime = ps.arpeggioDelay * 44100;
+    };
+    this.initForRepeat();
 
     // Waveform shape
     this.waveShape = ps.shape;
