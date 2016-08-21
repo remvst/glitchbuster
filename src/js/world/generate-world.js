@@ -9,7 +9,7 @@ function pickMask(masks, requirements){
 
 
 function generateWorld(id){
-    if(id == 1){
+    if(!id){
         return tutorialLevel;
     }
 

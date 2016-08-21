@@ -17,7 +17,7 @@ function Game(){
     this.newGame = function(tutorial){
         P = new Player();
 
-        this.currentLevel = tutorial ? 0 : 1;
+        this.currentLevel = tutorial ? -1 : 0;
         this.startNewWorld();
         interp(this.menu, 'alpha', 1, 0, 0.5, 0, 0, function(){
             G.menu = null;
@@ -57,7 +57,7 @@ function Game(){
         }
 
         // Enemies
-        if(this.currentLevel == 1){
+        if(!this.currentLevel){
             // Put the enemies at the right spots
             var enemy1 = new WalkingEnemy();
             enemy1.x = 4900;

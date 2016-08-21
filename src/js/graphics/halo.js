@@ -8,10 +8,8 @@ function halo(s, c1, c2){
         g.addColorStop(0, c1);
         g.addColorStop(1, c2);
 
-        shape(r, [
-            [FILLSTYLE, g],
-            [FILLRECT, 0, 0, s, s]
-        ]);
+        r.fillStyle = g;
+        r.fillRect(0, 0, s, s);
     });
 }
 
