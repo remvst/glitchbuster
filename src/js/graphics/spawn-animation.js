@@ -37,16 +37,16 @@ function SpawnAnimation(){
     G.hideTiles = true;
 
     T(function(){
-        T(function(){
-            spawnSound.play();
-        }, 500);
-
         P.say([
             nomangle('Hello there!'),
             nomangle('This code looks pretty dirty'),
             nomangle('Plenty of bugs have been reported'),
             nomangle('Help me find them!')
         ]);
+    }, 2000);
+
+    T(function(){
+        spawnSound.play();
     }, 500);
 
     T(function(){

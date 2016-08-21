@@ -79,4 +79,12 @@ function Player(){
 
         this.grenades = max(0, this.grenades);
     };
+
+    var superSay = this.say;
+    this.say = function(a){
+        superSay.call(this, a);
+        if(a && a.length){
+            saySound.play();
+        }
+    };
 }
