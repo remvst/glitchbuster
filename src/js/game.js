@@ -134,7 +134,9 @@ function Game(){
 
         glitchTimeleft -= e;
         if(glitchTimeleft <= 0){
-            glitchReset && glitchReset();
+            if(glitchReset){
+                glitchReset();
+            }
             glitchEnd = null;
             glitchStart = null;
 
@@ -144,7 +146,9 @@ function Game(){
             }
         }
 
-        glitchStart && glitchStart();
+        if(glitchStart){
+            glitchStart();
+        }
 
         var deltas = ~~(e / maxDelta);
         for(var i = 0 ; i < deltas ; i++, e -= maxDelta){
@@ -195,7 +199,9 @@ function Game(){
             }
         }
 
-        glitchEnd && glitchEnd();
+        if(glitchEnd){
+            glitchEnd();
+        }
     };
 
     this.doCycle = function(e){
