@@ -23,6 +23,8 @@ function Game(){
             G.menu = null;
         });
 
+        G.timeLeft = 13 * 60;
+
         G.renderables.push(new SpawnAnimation(P.x, P.y));
     };
 
@@ -160,16 +162,20 @@ function Game(){
             this.menu.render();
         }else{
             // HUD
-            R.font = '20pt Courier New';
-            R.textAlign = 'left';
-
-            var health = '';
-            for(var i = 0 ; i < P.health ; i++){
-                health += '!';
+            var s = '';
+            for(i = 0 ; i < P.health ; i++){
+                s += '!';
             }
 
-            drawText(R, nomangle('mental health: ') + health, 10, 10, 4, '#fff');
-            drawText(R, nomangle('breakpoints: ') + P.grenades, 10, 40, 4, '#fff');
+            var mins = ~~(G.timeLeft / 60),
+                secs = ~~(G.timeLeft % 60);
+            if(secs < 10){
+                secs = '0' + secs;
+            }
+
+            drawText(R, nomangle('time left: ') + mins + ':' + secs, 10, 10, 4, '#fff');
+            drawText(R, nomangle('mental health: ') + s, 10, 40, 4, '#fff');
+            drawText(R, nomangle('breakpoints: ') + P.grenades, 10, 70, 4, '#fff');
 
             if(G.touch){
                 // Mobile controls
@@ -196,6 +202,10 @@ function Game(){
         // Cycles
         for(var i in G.cyclables){
             G.cyclables[i].cycle(e);
+        }
+
+        if((G.timeLeft -= e) <= 0){
+            console.log('out of time');
         }
     };
 
