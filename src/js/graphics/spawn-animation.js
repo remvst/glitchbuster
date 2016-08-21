@@ -42,7 +42,7 @@ function SpawnAnimation(){
             P.say([
                 nomangle('Hello there!'),
                 nomangle('This code is falling apart!'),
-                nomangle('Help me find the bugs before it\'s too late!')
+                nomangle('Let\'s fix the glitches before it\'s too late!')
             ]);
         }, 2000);
         tUnlock = 9000;
