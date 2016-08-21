@@ -41,12 +41,11 @@ function SpawnAnimation(){
         T(function(){
             P.say([
                 nomangle('Hello there!'),
-                nomangle('This code looks pretty dirty'),
-                nomangle('Plenty of bugs have been reported'),
-                nomangle('Help me find them!')
+                nomangle('This code is falling apart!'),
+                nomangle('Help me find the bugs before it\'s too late!')
             ]);
         }, 2000);
-        tUnlock = 12000;
+        tUnlock = 9000;
     }
 
     T(function(){

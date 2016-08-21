@@ -67,7 +67,7 @@ function MainMenu(){
     interp(this.buttons[this.buttons.length - 1], 'o', 0, 1, 0.25, 0.5);
 }
 
-function GameOverMenu(){
+function GameOverMenu(success){
     Menu.call(this);
 
     this.button(button(nomangle('retry')), 0, 420, function(){
@@ -86,8 +86,8 @@ function GameOverMenu(){
         interp(b, 'x', -b.d.width, 0, 0.25, i * 0.25 + 0.5);
     });
 
-    var s1 = nomangle('busted glitches'),
-        t1 = 5,
+    var s1 = success ? nomangle('success!') : nomangle('game over'),
+        t1 = 10,
         w1 = s1.length * 3 * t1 + (s1.length - 1) * t1,
         s2 = (G.currentLevel - 1).toString(),
         t2 = 20,
@@ -96,10 +96,10 @@ function GameOverMenu(){
     this.button(cache(w1, t1 * 5 + 5, function(c, r){
     	drawText(r, s1, 0, 5, t1, '#444');
         drawText(r, s1, 0, 0, t1, '#fff');
-    }), (CANVAS_WIDTH - w1) / 2, 120);
+    }), (CANVAS_WIDTH - w1) / 2, 160);
 
-    this.button(cache(w2, t2 * 5 + 10, function(c, r){
+    /*this.button(cache(w2, t2 * 5 + 10, function(c, r){
         drawText(r, s2, 0, 10, t2, '#444');
         drawText(r, s2, 0, 0, t2, '#fff');
-    }), (CANVAS_WIDTH - w2) / 2, 200);
+    }), (CANVAS_WIDTH - w2) / 2, 200);*/
 }

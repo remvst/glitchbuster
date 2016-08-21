@@ -24,8 +24,6 @@ function Game(){
             G.menu = null;
         });
 
-        G.timeLeft = 13 * 60;
-
         G.renderables.push(new SpawnAnimation(P.x, P.y));
     };
 
@@ -35,6 +33,8 @@ function Game(){
         this.cyclables = [];
         this.killables = [];
         this.renderables = [];
+
+        this.timeLeft = 60;
 
         // World
         W = new World(generateWorld(++this.currentLevel));
@@ -172,15 +172,22 @@ function Game(){
                 s += '!';
             }
 
-            var mins = ~~(G.timeLeft / 60),
+            var mins = '0' + ~~(G.timeLeft / 60),
                 secs = ~~(G.timeLeft % 60);
             if(secs < 10){
                 secs = '0' + secs;
             }
 
-            drawText(R, nomangle('time left: ') + mins + ':' + secs, 10, 10, 4, '#fff');
-            drawText(R, nomangle('mental health: ') + s, 10, 40, 4, '#fff');
-            drawText(R, nomangle('breakpoints: ') + P.grenades, 10, 70, 4, '#fff');
+            var p = '';
+            for(i = 0 ; i < 13 ; i++){
+                p += (i < G.currentLevel) ? '?' : '-';
+            }
+
+            drawText(R, nomangle('progress: ') + p, 10, 10, 4, '#fff');
+            drawText(R, nomangle('time left: ') + mins + ':' + secs, 10, 40, 4, G.timeLeft < 15 ? '#f00' : '#fff');
+
+            drawText(R, nomangle('mental health: ') + s, 10, 70, 4, '#fff');
+            drawText(R, nomangle('breakpoints: ') + P.grenades, 10, 100, 4, '#fff');
 
             if(G.touch){
                 // Mobile controls
@@ -211,8 +218,10 @@ function Game(){
             G.cyclables[i].cycle(e);
         }
 
-        if((G.timeLeft -= e) <= 0){
-            console.log('out of time');
+        if(!G.menu && P.controllable && (G.timeLeft -= e) <= 0){
+            G.timeLeft = 0;
+            G.menu = new GameOverMenu();
+            interp(G.menu, 'alpha', 0, 1, 0.5);
         }
     };
 
