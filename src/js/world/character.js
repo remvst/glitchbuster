@@ -242,6 +242,8 @@ function Character(){
         }
 
         previousFloorY = tile.y;
+
+        return true;
     };
 
     this.tapOn = function(tiles){

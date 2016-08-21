@@ -82,4 +82,11 @@ function Player(){
             saySound.play();
         }
     };
+
+    var superLand = this.landOn;
+    this.landOn = function(t){
+        if(superLand.call(this, t)){
+            landSound.play();
+        }
+    };
 }
