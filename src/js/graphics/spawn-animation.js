@@ -36,14 +36,18 @@ function SpawnAnimation(){
     P.talking = true;
     G.hideTiles = true;
 
-    T(function(){
-        P.say([
-            nomangle('Hello there!'),
-            nomangle('This code looks pretty dirty'),
-            nomangle('Plenty of bugs have been reported'),
-            nomangle('Help me find them!')
-        ]);
-    }, 2000);
+    var tUnlock = 500;
+    if(!G.currentLevel){
+        T(function(){
+            P.say([
+                nomangle('Hello there!'),
+                nomangle('This code looks pretty dirty'),
+                nomangle('Plenty of bugs have been reported'),
+                nomangle('Help me find them!')
+            ]);
+        }, 2000);
+        tUnlock = 12000;
+    }
 
     T(function(){
         spawnSound.play();
@@ -53,5 +57,5 @@ function SpawnAnimation(){
         P.talking = false;
         P.controllable = true;
         G.hideTiles = false;
-    }, 10000);
+    }, tUnlock);
 }
