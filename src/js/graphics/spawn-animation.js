@@ -36,7 +36,11 @@ function SpawnAnimation(){
     P.talking = true;
     G.hideTiles = true;
 
-    setTimeout(function(){
+    T(function(){
+        T(function(){
+            spawnSound.play();
+        }, 500);
+
         P.say([
             nomangle('Hello there!'),
             nomangle('This code looks pretty dirty'),
@@ -45,7 +49,7 @@ function SpawnAnimation(){
         ]);
     }, 500);
 
-    setTimeout(function(){
+    T(function(){
         P.talking = false;
         P.controllable = true;
         G.hideTiles = false;

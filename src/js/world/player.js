@@ -30,12 +30,12 @@ function Player(){
                 interp(this, 'x', this.x, W.exit.center.x, 1);
                 interp(W.exit, 'alpha', 1, 0, 3);
 
-                setTimeout(function(){
+                T(function(){
                     G.applyGlitch(0, 0.5);
                     G.hideTiles = true;
                 }, 3500);
 
-                setTimeout(function(){
+                T(function(){
                     G.startNewWorld();
                 }, 4000);
             }else if(d < CANVAS_WIDTH * 0.5 && !this.found){
@@ -57,6 +57,7 @@ function Player(){
     this.jump = function(p, f){
         if(this.controllable){
             superJump.call(this, p, f);
+            jumpSound.play();
         }
     };
 

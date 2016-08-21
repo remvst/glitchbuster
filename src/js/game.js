@@ -88,7 +88,7 @@ function Game(){
                 }
             });
         }else{
-            setTimeout(function(){
+            T(function(){
                 P.say(pick([
                     nomangle('There\'s more?!'),
                     nomangle('Yay more bugs'),
@@ -225,7 +225,7 @@ function Game(){
     };
 
     this.playerDied = function(){
-        setTimeout(function(){
+        T(function(){
             G.menu = new GameOverMenu();
             interp(G.menu, 'alpha', 0, 1, 0.5);
         }, 2000);

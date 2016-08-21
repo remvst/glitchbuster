@@ -12,7 +12,8 @@
             "src/js/util/interp.js",
             "src/js/util/shape.js",
 
-            "src/js/jsfxr.js",
+            "src/js/sound/jsfxr.js",
+            "src/js/sound/sounds.js",
 
             "src/js/world/mirror-mask.js",
             "src/js/world/masks.js",

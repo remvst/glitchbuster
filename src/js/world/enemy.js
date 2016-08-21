@@ -23,7 +23,7 @@ function Enemy(){
                 // Okay there's a collision, but is he landing on me or is he colliding with me?
                 if(dX < dY && P.y < this.y && P.vY > 0){
                     P.jump(0.8, true);
-                    this.die();
+                    this.hurt(P);
                 }else{
                     P.hurt(this);
                     this.direction = this.x > P.x ? 1 : -1;
@@ -37,12 +37,12 @@ function Enemy(){
         superDie.call(this);
 
         var s = this;
-        setTimeout(function(){
+        T(function(){
             remove(G.cyclables, s);
             remove(G.killables, s);
         }, 0);
 
-        setTimeout(function(){
+        T(function(){
             remove(G.renderables, s);
         }, 3000);
 

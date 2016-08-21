@@ -25,7 +25,7 @@ function GrenadeItem(x, y){
     this.cycle = function(){
         if(dist(this, P) < GRENADE_PICKUP_RADIUS && !this.pickedUp){
             var m = this;
-            setTimeout(function(){
+            T(function(){
                 remove(G.cyclables, m);
                 remove(G.renderables, m);
             }, 0);
@@ -33,6 +33,8 @@ function GrenadeItem(x, y){
             P.grenades++;
 
             this.pickedUp = true;
+
+            pickupSound.play();
 
             P.say([pick([
                 nomangle('Here\'s a breakpoint!'),

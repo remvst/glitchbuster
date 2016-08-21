@@ -192,6 +192,8 @@ function Character(){
 
     this.hurt = function(source, power){
         if(this.recoveryTime <= 0 && !this.dead && !this.fixing){
+            hitSound.play();
+
             if((this.health -= power || 1) <= 0){
                 this.die();
             }else{

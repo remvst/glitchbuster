@@ -494,5 +494,8 @@ var jsfxr = function(settings) {
         var a = data[i] << 16 | data[i + 1] << 8 | data[i + 2];
         output += base64Characters[a >> 18] + base64Characters[a >> 12 & 63] + base64Characters[a >> 6 & 63] + base64Characters[a & 63];
     }
-    return output;
+
+    var audio = new Audio();
+    audio.src = output;
+    return audio;
 };

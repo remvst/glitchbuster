@@ -114,7 +114,7 @@ function Grenade(){
             ]);
         }
 
-        for(var i in G.killables){
+        for(i in G.killables){
             var d = dist(this, G.killables[i]);
             if(d < TILE_SIZE * 2){
                 G.killables[i].hurt(this, 3);
@@ -123,10 +123,12 @@ function Grenade(){
 
 
         var m = this;
-        setTimeout(function(){
+        T(function(){
             remove(G.cyclables, m);
             remove(G.renderables, m);
         }, 0);
+
+        explosionSound.play();
     };
 
     this.render = function(){
