@@ -220,7 +220,7 @@ function Game(){
 
         if(!G.menu && P.controllable && (G.timeLeft -= e) <= 0){
             G.timeLeft = 0;
-            G.menu = new GameOverMenu();
+            G.menu = new GameOverMenu(GAME_OVER_TIME);
             interp(G.menu, 'alpha', 0, 1, 0.5);
         }
     };
@@ -252,9 +252,17 @@ function Game(){
 
     this.playerDied = function(){
         T(function(){
-            G.menu = new GameOverMenu();
+            G.menu = new GameOverMenu(GAME_OVER_DEATH);
             interp(G.menu, 'alpha', 0, 1, 0.5);
         }, 2000);
+    };
+
+    this.bugFixed = function(){
+        G.applyGlitch(0, 0.5);
+        G.hideTiles = true;
+        setTimeout(function(){
+            G.startNewWorld();
+        }, 500);
     };
 
     this.mainMenu = function(){

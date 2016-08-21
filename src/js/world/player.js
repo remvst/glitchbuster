@@ -31,13 +31,8 @@ function Player(){
                 interp(W.exit, 'alpha', 1, 0, 3);
 
                 T(function(){
-                    G.applyGlitch(0, 0.5);
-                    G.hideTiles = true;
+                    G.bugFixed();
                 }, 3500);
-
-                T(function(){
-                    G.startNewWorld();
-                }, 4000);
             }else if(d < CANVAS_WIDTH * 0.5 && !this.found){
                 this.found = true;
                 this.say(nomangle('You found the bug!')); // TODO more strings

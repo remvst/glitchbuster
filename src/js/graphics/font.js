@@ -20,13 +20,13 @@ var defs = {
         [1,0,0],
         [1,1,1]
     ]),
-    /*d: matrix([
+    d: matrix([
         [1,1,0],
         [1,0,1],
         [1,0,1],
         [1,0,1],
         [1,1,1]
-    ]),*/
+    ]),
     e: matrix([
         [1,1,1],
         [1,0,0],
@@ -326,6 +326,14 @@ function drawText(r, t, x, y, s, c){
 
         x += def[0].length * s + s;
     }
+}
+
+function requiredCells(t, s){
+    var r = 0;
+    for(var i = 0 ; i < t.length ; i++){
+        r += defs[t.charAt(i)][0].length + 1;
+    }
+    return r - 1;
 }
 
 function button(t){

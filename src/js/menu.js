@@ -67,7 +67,7 @@ function MainMenu(){
     interp(this.buttons[this.buttons.length - 1], 'o', 0, 1, 0.25, 0.5);
 }
 
-function GameOverMenu(success){
+function GameOverMenu(reason){
     Menu.call(this);
 
     this.button(button(nomangle('retry')), 0, 420, function(){
@@ -86,17 +86,26 @@ function GameOverMenu(success){
         interp(b, 'x', -b.d.width, 0, 0.25, i * 0.25 + 0.5);
     });
 
-    var s1 = success ? nomangle('code fixed') : nomangle('game over'),
+    var ss = {
+        GAME_OVER_DEATH: [nomangle('critical'), nomangle('mental health')],
+        GAME_OVER_TIME: [nomangle('time'), nomangle('expired')],
+        GAME_OVER_SUCCESS: [nomangle('code fixed'), '!!!']
+    }[reason];
+
+    var s1 = ss[0],
         t1 = 10,
-        w1 = s1.length * 3 * t1 + (s1.length - 1) * t1
+        w1 = requiredCells(s1) * t1,
+        s2 = ss[1],
+        t2 = 10,
+        w2 = requiredCells(s2) * t2;
 
     this.button(cache(w1, t1 * 5 + 5, function(c, r){
     	drawText(r, s1, 0, 5, t1, '#444');
         drawText(r, s1, 0, 0, t1, '#fff');
-    }), (CANVAS_WIDTH - w1) / 2, 160);
+    }), (CANVAS_WIDTH - w1) / 2, 120);
 
-    /*this.button(cache(w2, t2 * 5 + 10, function(c, r){
-        drawText(r, s2, 0, 10, t2, '#444');
+    this.button(cache(w2, t2 * 5 + 5, function(c, r){
+        drawText(r, s2, 0, 5, t2, '#444');
         drawText(r, s2, 0, 0, t2, '#fff');
-    }), (CANVAS_WIDTH - w2) / 2, 200);*/
+    }), (CANVAS_WIDTH - w2) / 2, 200);
 }
