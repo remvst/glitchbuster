@@ -186,7 +186,7 @@ function Game(){
             drawText(R, nomangle('progress: ') + p, 10, 10, 4, '#fff');
             drawText(R, nomangle('time left: ') + mins + ':' + secs, 10, 40, 4, G.timeLeft < 15 ? '#f00' : '#fff');
 
-            drawText(R, nomangle('mental health: ') + s, 10, 70, 4, '#fff');
+            drawText(R, nomangle('mental health: ') + s, 10, 70, 4, P.health < 3 ? '#f00' : '#fff');
             drawText(R, nomangle('breakpoints: ') + P.grenades, 10, 100, 4, '#fff');
 
             if(G.touch){
