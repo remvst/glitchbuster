@@ -1,9 +1,10 @@
 function Game(){
     G = this;
 
-    var glitchStart,
+    var
+        //glitchStart,
         glitchEnd,
-        glitchReset,
+        //glitchReset,
         nextGlitch = 0,
         glitchTimeleft = 0;
 
@@ -134,11 +135,11 @@ function Game(){
 
         glitchTimeleft -= e;
         if(glitchTimeleft <= 0){
-            if(glitchReset){
+            /*if(glitchReset){
                 glitchReset();
-            }
+            }*/
             glitchEnd = null;
-            glitchStart = null;
+            //glitchStart = null;
 
             nextGlitch -= e;
             if(nextGlitch <= 0){
@@ -146,9 +147,9 @@ function Game(){
             }
         }
 
-        if(glitchStart){
+        /*if(glitchStart){
             glitchStart();
-        }
+        }*/
 
         var deltas = ~~(e / maxDelta);
         for(var i = 0 ; i < deltas ; i++, e -= maxDelta){
@@ -226,10 +227,10 @@ function Game(){
         }*//*, function(){
             glitchStart = invertGlich;
             glitchReset = invertGlitchReset;
-        }*/, function(){
+        }*//*, function(){
             offsetGlitchEnable();
             glitchReset = offsetGlitchReset;
-        }];
+        }*/];
 
         (isNaN(id) ? pick(l) : l[id])();
 
