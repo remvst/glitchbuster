@@ -86,12 +86,9 @@ function GameOverMenu(success){
         interp(b, 'x', -b.d.width, 0, 0.25, i * 0.25 + 0.5);
     });
 
-    var s1 = success ? nomangle('success!') : nomangle('game over'),
+    var s1 = success ? nomangle('code fixed') : nomangle('game over'),
         t1 = 10,
-        w1 = s1.length * 3 * t1 + (s1.length - 1) * t1,
-        s2 = (G.currentLevel - 1).toString(),
-        t2 = 20,
-        w2 = s2.length * 3 * t2 + (s2.length - 1) * t2;
+        w1 = s1.length * 3 * t1 + (s1.length - 1) * t1
 
     this.button(cache(w1, t1 * 5 + 5, function(c, r){
     	drawText(r, s1, 0, 5, t1, '#444');
