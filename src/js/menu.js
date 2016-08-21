@@ -25,7 +25,7 @@ function Menu(){
     this.render = function(){
         R.globalAlpha = this.alpha;
 
-        R.fillStyle = '#000';
+        R.fillStyle = codePattern;
         fillRect(0, 0, CANVAS_WIDTH, CANVAS_HEIGHT);
 
         var a = this.alpha;
