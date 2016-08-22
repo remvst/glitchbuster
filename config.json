@@ -11,6 +11,7 @@
             "src/js/util/cache.js",
             "src/js/util/interp.js",
             "src/js/util/format-time.js",
+            "src/js/util/progress-string.js",
 
             "src/js/sound/jsfxr.js",
             "src/js/sound/sounds.js",

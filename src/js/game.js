@@ -1,10 +1,7 @@
 function Game(){
     G = this;
 
-    var
-        //glitchStart,
-        glitchEnd,
-        //glitchReset,
+    var glitchEnd,
         nextGlitch = 0,
         glitchTimeleft = 0;
 
@@ -136,21 +133,13 @@ function Game(){
 
         glitchTimeleft -= e;
         if(glitchTimeleft <= 0){
-            /*if(glitchReset){
-                glitchReset();
-            }*/
             glitchEnd = null;
-            //glitchStart = null;
 
             nextGlitch -= e;
             if(nextGlitch <= 0){
                 this.applyGlitch(this.menu ? 0 : NaN);
             }
         }
-
-        /*if(glitchStart){
-            glitchStart();
-        }*/
 
         var deltas = ~~(e / maxDelta);
         for(var i = 0 ; i < deltas ; i++, e -= maxDelta){
@@ -181,11 +170,11 @@ function Game(){
                 p += (i < G.currentLevel) ? '?' : '-';
             }
 
-            drawText(R, p, 10, 10, 4, '#fff');
+            drawText(R, nomangle('progress: ') + progressString('?', G.currentLevel, 13), 10, 10, 4, '#fff');
             drawText(R, nomangle('time left: ') + formatTime(G.timeLeft), 10, 40, 4, G.timeLeft < 15 ? '#f00' : '#fff');
 
-            drawText(R, h, 10, 70, 4, P.health < 3 || P.recoveryTime > 1.8 ? '#f00' : '#fff');
-            drawText(R, nomangle('breakpoints: ') + P.grenades, 10, 100, 4, '#fff');
+            drawText(R, nomangle('mental health: ') + progressString('!', P.health, PLAYER_INITIAL_HEALTH), 10, 70, 4, P.health < 3 || P.recoveryTime > 1.8 ? '#f00' : '#fff');
+            drawText(R, nomangle('breakpoints: ') + progressString('?', P.grenades, PLAYER_MAX_GRENADES), 10, 100, 4, '#fff');
 
             if(G.touch){
                 // Mobile controls
@@ -231,16 +220,7 @@ function Game(){
             glitchEnd = sliceGlitch;
         }, function(){
             glitchEnd = noiseGlitch;
-        }/*, function(){
-            glitchStart = matrixGlitch;
-            glitchEnd = matrixGlitchReset;
-        }*//*, function(){
-            glitchStart = invertGlich;
-            glitchReset = invertGlitchReset;
-        }*//*, function(){
-            offsetGlitchEnable();
-            glitchReset = offsetGlitchReset;
-        }*/];
+        }];
 
         (isNaN(id) ? pick(l) : l[id])();
 
