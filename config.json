@@ -1,23 +1,36 @@
 {
     "INPUT": {
         "JS": [
+            "src/js/sound/jsfxr.js",
+
+            "src/js/util/expose-math.js",
+            "src/js/util/cache.js",
+
             "src/js/util/globals.js",
+            "src/js/sound/sounds.js",
+
+            "src/js/graphics/particle.js",
+            "src/js/graphics/noise-pattern.js",
+            "src/js/graphics/halo.js",
+            "src/js/graphics/mobile-controls.js",
+            "src/js/graphics/font.js",
+            "src/js/graphics/spawn-animation.js",
+            "src/js/graphics/code-pattern.js",
+
+            "src/js/world/masks.js",
+            "src/js/tutorial-level.js",
+
             "src/js/util/rand.js",
             "src/js/util/dist.js",
             "src/js/util/resize.js",
             "src/js/util/pick.js",
             "src/js/util/between.js",
             "src/js/util/remove.js",
-            "src/js/util/cache.js",
             "src/js/util/interp.js",
             "src/js/util/format-time.js",
             "src/js/util/progress-string.js",
 
-            "src/js/sound/jsfxr.js",
-            "src/js/sound/sounds.js",
-
             "src/js/world/mirror-mask.js",
-            "src/js/world/masks.js",
             "src/js/world/generate-world.js",
             "src/js/world/grenade.js",
             "src/js/world/grenade-item.js",
@@ -30,22 +43,12 @@
             "src/js/world/camera.js",
             "src/js/world/tile.js",
 
-            "src/js/menu.js",
-            "src/js/controls.js",
-            "src/js/game.js",
-            "src/js/tutorial-level.js",
-
             "src/js/glitches/slice.js",
             "src/js/glitches/noise.js",
 
-            "src/js/graphics/particle.js",
-            "src/js/graphics/noise-pattern.js",
-            "src/js/graphics/halo.js",
-            "src/js/graphics/mobile-controls.js",
-            "src/js/graphics/font.js",
-            "src/js/graphics/spawn-animation.js",
-            "src/js/graphics/code-pattern.js",
-
+            "src/js/menu.js",
+            "src/js/game.js",
+            "src/js/controls.js",
             "src/js/main.js"
         ],
         "HTML": "src/index.html",
@@ -68,6 +71,16 @@
     "CONSTANTS": {
         "true": 1,
         "false": 0,
+
+        "mask": "m",
+        "exits": "e",
+        "alpha": "a",
+        "path": "p",
+        "button": "b",
+        "direction": "d",
+        "closest": "c",
+        "buttons": "bs",
+
         "CANVAS_WIDTH": 640,
         "CANVAS_HEIGHT": 920,
         "TILE_SIZE": 100,
