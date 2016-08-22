@@ -35,7 +35,6 @@
             "src/js/tutorial-level.js",
 
             "src/js/glitches/slice.js",
-            "src/js/glitches/offset.js",
             "src/js/glitches/noise.js",
 
             "src/js/graphics/particle.js",
