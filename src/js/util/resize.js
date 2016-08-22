@@ -1,24 +1,23 @@
 onresize = function(){
     T(function(){
-        var maxWidth = innerWidth,
-            maxHeight = innerHeight,
+        var mw = innerWidth,
+            mh = innerHeight,
 
-            availableRatio = maxWidth / maxHeight,
-            baseRatio = CANVAS_WIDTH / CANVAS_HEIGHT,
-            ratioDifference = abs(availableRatio - baseRatio),
-            width,
-            height,
+            ar = mw / mh, // available ratio
+            br = CANVAS_WIDTH / CANVAS_HEIGHT, // base ratio
+            w,
+            h,
             s = D.querySelector('#canvascontainer').style;
 
-        if(availableRatio <= baseRatio){
-            width = maxWidth;
-            height = width / baseRatio;
+        if(ar <= br){
+            w = mw;
+            h = w / br;
         }else{
-            height = maxHeight;
-            width = height * baseRatio;
+            h = mh;
+            w = h * br;
         }
 
-        s.width = width + 'px';
-        s.height = height + 'px';
+        s.width = w + 'px';
+        s.height = h + 'px';
     }, 100);
 };
