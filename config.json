@@ -55,6 +55,7 @@
         "CSS": "src/style.css"
     },
     "OUTPUT": {
+        "PACK": false,
         "ES6": false,
         "HTML": "build/game.html",
         "ZIP": "build/game.zip",
