@@ -6,6 +6,7 @@ var D = document,
     P, // player
     V, // camera,
     K = {}, // keyboard
+    PI = Math.PI,
     raf = (function(){
         return  this.requestAnimationFrame       ||
                 this.webkitRequestAnimationFrame ||
@@ -21,5 +22,3 @@ Object.getOwnPropertyNames(Math).forEach(function(n){
         this[n] = Math[n];
     }
 });
-
-var PI = Math.PI;
