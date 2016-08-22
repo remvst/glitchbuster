@@ -239,11 +239,16 @@ function Game(){
     };
 
     this.bugFixed = function(){
-        G.applyGlitch(0, 0.5);
-        G.hideTiles = true;
-        setTimeout(function(){
-            G.startNewWorld();
-        }, 500);
+        if(G.currentLevel == 13){
+            G.menu = new GameOverMenu(GAME_OVER_SUCCESS);
+            interp(G.menu, 'alpha', 0, 1, 0.5);
+        }else{
+            G.applyGlitch(0, 0.5);
+            G.hideTiles = true;
+            setTimeout(function(){
+                G.startNewWorld();
+            }, 500);
+        }
     };
 
     this.mainMenu = function(){
