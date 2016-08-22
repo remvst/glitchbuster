@@ -92,6 +92,8 @@
         "GRAVITY": 6000,
         "PLAYER_SPEED": 700,
         "PLAYER_JUMP_ACCELERATION": -1600,
+        "PLAYER_INITIAL_HEALTH": 5,
+        "PLAYER_MAX_GRENADES": 5,
 
         "GRENADE_RADIUS": 10,
         "GRENADE_RADIUS_2": 20,

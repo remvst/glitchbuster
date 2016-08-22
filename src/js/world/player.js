@@ -4,7 +4,7 @@ function Player(){
     this.controllable = true;
 
     this.grenades = 0;
-    this.health = 5;
+    this.health = PLAYER_INITIAL_HEALTH;
 
     this.bodyColor = '#fff';
     this.legColor = '#aaa';

@@ -24,23 +24,30 @@ function GrenadeItem(x, y){
 
     this.cycle = function(){
         if(dist(this, P) < GRENADE_PICKUP_RADIUS && !this.pickedUp){
-            var m = this;
-            T(function(){
-                remove(G.cyclables, m);
-                remove(G.renderables, m);
-            }, 0);
+            if(P.grenades >= PLAYER_MAX_GRENADES){
+                var s = nomangle('inventory.full');
+                if(P.saying[0] != s){
+                    P.say(s);
+                }
+            }else{
+                var m = this;
+                T(function(){
+                    remove(G.cyclables, m);
+                    remove(G.renderables, m);
+                }, 0);
 
-            P.grenades++;
+                P.grenades++;
 
-            this.pickedUp = true;
+                this.pickedUp = true;
 
-            pickupSound.play();
+                pickupSound.play();
 
-            P.say([pick([
-                nomangle('Here\'s a breakpoint!'),
-                nomangle('You found a breakpoint!'),
-                nomangle('That\'s a breakpoint!')
-            ]), nomangle('Press SPACE to throw it')]);
+                P.say([pick([
+                    nomangle('Here\'s a breakpoint!'),
+                    nomangle('You found a breakpoint!'),
+                    nomangle('That\'s a breakpoint!')
+                ]), nomangle('Press SPACE to throw it')]);
+            }
         }
     };
 }
