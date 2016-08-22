@@ -44,7 +44,7 @@ window.addEventListener('load', function(){
     };
 
     document.querySelector('#simulate').onclick = function(){
-        var w = generateWorld();
+        var w = generateWorld(-1);
 
         var can = document.querySelector('#simulation-canvas');
         can.width = w[0].length * P.simulationCellSize;
@@ -155,18 +155,27 @@ window.addEventListener('load', function(){
         textArea.value = JSON.stringify(masks, null, 4);
 
         textArea.value = '[' + masks.map(function(m){
+            var exits = [];
+            if(m.exits & RIGHT){
+                exits.push('RIGHT');
+            }
+            if(m.exits & LEFT){
+                exits.push('LEFT');
+            }
+            if(m.exits & DOWN){
+                exits.push('DOWN');
+            }
+            if(m.exits & UP){
+                exits.push('UP');
+            }
+
             return '{\n' +
                 '    "mask": matrix([\n' +
                     m.mask.map(function(row){
                         return '        [' + row.join(', ') + ']';
                     }).join(',\n') + '\n' +
                 '    ]),\n' +
-                '    "exits": [' + m.exits.map(function(e){
-                        if(e == DOWN) return 'DOWN';
-                        if(e == UP) return 'UP';
-                        if(e == LEFT) return 'LEFT';
-                        if(e == RIGHT) return 'RIGHT';
-                    }) + ']\n' +
+                '    "exits": ' + exits.join(' | ') + '\n' +
             '}';
         }).join(', ') + ']';
 
@@ -183,10 +192,10 @@ window.addEventListener('load', function(){
         select.value = currentMaskId;
 
         var mask = masks[currentMaskId];
-        rightCB.checked = mask.exits.indexOf(RIGHT) >= 0;
-        leftCB.checked = mask.exits.indexOf(LEFT) >= 0;
-        upCB.checked = mask.exits.indexOf(UP) >= 0;
-        downCB.checked = mask.exits.indexOf(DOWN) >= 0;
+        rightCB.checked = mask.exits & RIGHT > 0;
+        leftCB.checked = mask.exits & LEFT > 0;
+        upCB.checked = mask.exits & UP > 0;
+        downCB.checked = mask.exits & DOWN > 0;
     }
 
     select.onchange = function(){

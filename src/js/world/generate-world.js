@@ -1,9 +1,6 @@
 function pickMask(masks, requirements){
     return pick(masks.filter(function(m){
-        return requirements.length == m.exits.length
-            && requirements.filter(function(r){
-                return m.exits.indexOf(r) >= 0;
-            }).length == requirements.length;
+        return m.exits == requirements;
     }));
 }
 
@@ -16,8 +13,8 @@ function generateWorld(id){
     // Mirror all the masks to have more possibilities
     var usedMasks = masks.concat(masks.map(mirrorMask));
 
-    var maskMapRows = !id ? 4 : round((id - 1) * 0.2 + 2),
-        maskMapCols = !id ? 5 : round((id - 1) * 0.1 + 3),
+    var maskMapRows = id < 0 ? 4 : round((id - 1) * 0.2 + 2),
+        maskMapCols = id < 0 ? 5 : round((id - 1) * 0.1 + 3),
         maskMap = [],
         maskRows = 10,
         maskCols = 10,
@@ -34,23 +31,29 @@ function generateWorld(id){
         maskMap.push([]);
 
         for(col = 0 ; col < maskMapCols ; col++){
-            maskMap[row][col] = [];
+            maskMap[row][col] = 0;
 
             // The tile above was going down, need to ensure there's a to this one
-            downCols.indexOf(col) >= 0 && maskMap[row][col].push(UP);
+            if(downCols.indexOf(col) >= 0){
+                maskMap[row][col] |= UP;
+            }
 
             // Need to connect left if we're not on the far left
-            col > 0 && maskMap[row][col].push(LEFT);
+            if(col > 0){
+                maskMap[row][col] |= LEFT;
+            }
 
             // Need to connect right if we're not on the far right
-            col < maskMapCols - 1 && maskMap[row][col].push(RIGHT);
+            if(col < maskMapCols - 1){
+                maskMap[row][col] |= RIGHT;
+            }
         }
 
         // Generate the link to the lower row
         if(row < maskMapRows - 1){
             downCols = pick(cols, pick([1, 2, 3]), true);
             downCols.forEach(function(col){
-                maskMap[row][col].push(DOWN);
+                maskMap[row][col] |= DOWN;
             });
         }
     }
