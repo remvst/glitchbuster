@@ -201,6 +201,14 @@ function Game(){
         if(glitchEnd){
             glitchEnd();
         }
+
+        if(DEBUG){
+            R.fillStyle = 'white';
+            R.textAlign = 'left';
+            R.textBaseline = 'middle';
+            R.font = '24pt Courier New';
+            fillText('FPS: ' + G.fps, CANVAS_WIDTH * 0.75, 20);
+        }
     };
 
     this.doCycle = function(e){
@@ -268,6 +276,11 @@ function Game(){
         var n = Date.now();
 
         var e = (n - lf) / 1000;
+
+        if(DEBUG){
+            G.fps = ~~(1 / e);
+        }
+
         lf = n;
 
         G.cycle(e);
