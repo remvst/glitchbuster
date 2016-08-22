@@ -73,15 +73,6 @@
         "true": 1,
         "false": 0,
 
-        "mask": "m",
-        "exits": "e",
-        "alpha": "a",
-        "path": "p",
-        "button": "b",
-        "direction": "d",
-        "closest": "c",
-        "buttons": "bs",
-
         "CANVAS_WIDTH": 640,
         "CANVAS_HEIGHT": 920,
         "TILE_SIZE": 100,
