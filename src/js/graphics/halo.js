@@ -1,5 +1,5 @@
 function halo(s, c1, c2){
-    return cache(s, s, function(c, r){
+    return cache(s, s, function(r){
         var g = r.createRadialGradient(
             s / 2, s / 2, 0,
             s / 2, s / 2, s / 2

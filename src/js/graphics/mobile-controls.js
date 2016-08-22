@@ -1,5 +1,5 @@
 var
-    rightArrow = cache(MOBILE_BUTTON_SIZE, MOBILE_BUTTON_SIZE, function(c, r){
+    rightArrow = cache(MOBILE_BUTTON_SIZE, MOBILE_BUTTON_SIZE, function(r){
         with(r){
             fillStyle = '#fff';
             beginPath();
@@ -9,14 +9,14 @@ var
             fill();
         }
     }),
-    leftArrow = cache(MOBILE_BUTTON_SIZE, MOBILE_BUTTON_SIZE, function(c, r){
+    leftArrow = cache(MOBILE_BUTTON_SIZE, MOBILE_BUTTON_SIZE, function(r){
         with(r){
             translate(MOBILE_BUTTON_SIZE, 0);
             scale(-1, 1);
             drawImage(rightArrow, 0, 0);
         }
     }),
-    jumpArrow = cache(MOBILE_BUTTON_SIZE, MOBILE_BUTTON_SIZE, function(c, r){
+    jumpArrow = cache(MOBILE_BUTTON_SIZE, MOBILE_BUTTON_SIZE, function(r){
         with(r){
             translate(0, MOBILE_BUTTON_SIZE);
             rotate(-PI / 2);
@@ -24,7 +24,7 @@ var
             drawImage(rightArrow, 0, 0);
         }
     }),
-    grenadeButton = cache(MOBILE_BUTTON_SIZE, MOBILE_BUTTON_SIZE, function(c, r){
+    grenadeButton = cache(MOBILE_BUTTON_SIZE, MOBILE_BUTTON_SIZE, function(r){
         with(r){
             fillStyle = '#fff';
             beginPath();

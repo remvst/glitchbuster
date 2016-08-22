@@ -1,7 +1,7 @@
 function sliceGlitch(){
     var sh = CANVAS_HEIGHT / 10;
 
-    drawImage(cache(CANVAS_WIDTH, CANVAS_HEIGHT, function(c, r){
+    drawImage(cache(CANVAS_WIDTH, CANVAS_HEIGHT, function(r){
         for(var y = 0 ; y < CANVAS_HEIGHT ; y += sh){
             r.drawImage(
                 C,

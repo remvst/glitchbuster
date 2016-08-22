@@ -1,7 +1,7 @@
 var binaryPatterns = [];
 
 for(var i = 0 ; i < 5 ; i++){
-    binaryPatterns.push(cachePattern(TILE_SIZE * 2, TILE_SIZE * 2, function(c, r){
+    binaryPatterns.push(cachePattern(TILE_SIZE * 2, TILE_SIZE * 2, function(r){
         r.fillStyle = '#000';
         r.fillRect(0, 0, c.width, c.height);
 

@@ -60,7 +60,7 @@ function MainMenu(){
     this.animateButtons();
 
     var titleX = (CANVAS_WIDTH - 460) / 2;
-    this.button(cache(460, 230, function(c, r){
+    this.button(cache(460, 230, function(r){
     	drawText(r, 'glitch', 0, 10, 20, '#444');
     	drawText(r, 'glitch', 0, 0, 20, '#fff');
 
@@ -110,17 +110,17 @@ function GameOverMenu(reason){
         t3 = 5,
         w3 = requiredCells(s3) * t3;
 
-    this.button(cache(w1, t1 * 5 + 5, function(c, r){
+    this.button(cache(w1, t1 * 5 + 5, function(r){
     	drawText(r, s1, 0, 5, t1, '#444');
         drawText(r, s1, 0, 0, t1, '#fff');
     }), (CANVAS_WIDTH - w1) / 2, 120);
 
-    this.button(cache(w2, t2 * 5 + 5, function(c, r){
+    this.button(cache(w2, t2 * 5 + 5, function(r){
         drawText(r, s2, 0, 5, t2, '#444');
         drawText(r, s2, 0, 0, t2, '#fff');
     }), (CANVAS_WIDTH - w2) / 2, 200);
 
-    this.button(cache(w3, t3 * 5 + 5, function(c, r){
+    this.button(cache(w3, t3 * 5 + 5, function(r){
         drawText(r, s3, 0, 5, t3, '#444');
         drawText(r, s3, 0, 0, t3, '#fff');
     }), (CANVAS_WIDTH - w3) / 2, 280);

@@ -332,19 +332,21 @@ function requiredCells(t, s){
 }
 
 function button(t){
-    return cache(440, 100, function(c, r){
-        r.fillStyle = '#444';
-        r.fillRect(0, 90, 440, 10);
+    return cache(440, 100, function(r){
+        with(r){
+            fillStyle = '#444';
+            fillRect(0, 90, 440, 10);
 
-        r.fillStyle = '#fff';
-        r.fillRect(0, 0, 440, 90);
+            fillStyle = '#fff';
+            fillRect(0, 0, 440, 90);
 
-        drawText(r, '::' + t + '()', 100, 20, 10, '#000');
+            drawText(r, '::' + t + '()', 100, 20, 10, '#000');
 
-        r.beginPath();
-        r.moveTo(40, 20);
-        r.lineTo(80, 45);
-        r.lineTo(40, 70);
-        r.fill();
+            beginPath();
+            moveTo(40, 20);
+            lineTo(80, 45);
+            lineTo(40, 70);
+            fill();
+        }
     });
 }

@@ -1,10 +1,10 @@
-var codePattern = cachePattern(400, 400, function(c, r){
+var codePattern = cachePattern(400, 400, function(r){
     var lines = Character.toString().split(';').slice(0, 20),
-        step = c.height / lines.length,
+        step = 400 / lines.length,
         y = step / 2;
 
     r.fillStyle = '#000';
-    r.fillRect(0, 0, c.width, c.height);
+    r.fillRect(0, 0, 400, 400);
 
     r.fillStyle = '#fff';
     r.globalAlpha = 0.1;
