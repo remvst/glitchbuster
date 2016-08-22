@@ -95,7 +95,7 @@ function GameOverMenu(reason){
     if(reason == GAME_OVER_SUCCESS){
         ss.push(nomangle('time: ') + formatTime(G.totalTime));
     }else{
-        ss.push(nomangle('fixed ') + G.currentLevel + '/13');
+        ss.push(nomangle('fixed ') + (G.currentLevel - 1) + '/13');
     }
 
     var s1 = ss[0],
