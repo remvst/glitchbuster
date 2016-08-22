@@ -11,7 +11,9 @@ onload = function(){
 
     // Shortcut for all canvas methods
     Object.getOwnPropertyNames(CanvasRenderingContext2D.prototype).forEach(function(n){
-        R[n] && R[n].call && (window[n] = CanvasRenderingContext2D.prototype[n].bind(R));
+        if(R[n] && R[n].call){
+            window[n] = CanvasRenderingContext2D.prototype[n].bind(R);
+        }
     });
 
     onresize();
