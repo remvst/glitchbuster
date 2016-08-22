@@ -1,7 +1,7 @@
 function JumpingEnemy(){
     Enemy.call(this);
 
-    this.nextJump = 0;
+    this.nextJump = 4;
     this.frictionFactor = 0;
 
     this.speed = JUMPING_ENEMY_SPEED;
