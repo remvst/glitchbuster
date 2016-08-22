@@ -36,6 +36,12 @@ function Menu(){
 
         R.globalAlpha = 1;
     };
+
+    this.animateButtons = function(){
+        this.buttons.forEach(function(b, i){
+            interp(b, 'x', -b.d.width, 0, 0.25, i * 0.25 + 0.5);
+        });
+    };
 }
 
 function MainMenu(){
@@ -51,9 +57,7 @@ function MainMenu(){
         open(nomangle('http://twitter.com/remvst'));
     });
 
-    this.buttons.forEach(function(b, i){
-        interp(b, 'x', -b.d.width, 0, 0.25, i * 0.25 + 0.5);
-    });
+    this.animateButtons();
 
     var titleX = (CANVAS_WIDTH - 460) / 2;
     this.button(cache(460, 230, function(c, r){
@@ -82,9 +86,7 @@ function GameOverMenu(reason){
         this.d = button((b = !b) ? 'bar' : 'foo');
     });
 
-    this.buttons.forEach(function(b, i){
-        interp(b, 'x', -b.d.width, 0, 0.25, i * 0.25 + 0.5);
-    });
+    this.animateButtons();
 
     var ss = {
         GAME_OVER_DEATH: [nomangle('critical'), nomangle('mental health')],
