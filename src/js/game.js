@@ -206,8 +206,11 @@ function Game(){
             R.fillStyle = 'white';
             R.textAlign = 'left';
             R.textBaseline = 'middle';
-            R.font = '24pt Courier New';
-            fillText('FPS: ' + G.fps, CANVAS_WIDTH * 0.75, 20);
+            R.font = '18pt Courier New';
+            fillText('FPS: ' + G.fps, CANVAS_WIDTH * 0.6, 20);
+            fillText('Cyclables: ' + G.cyclables.length, CANVAS_WIDTH * 0.6, 40);
+            fillText('Renderables: ' + G.renderables.length, CANVAS_WIDTH * 0.6, 60);
+            fillText('Killables: ' + G.killables.length, CANVAS_WIDTH * 0.6, 80);
         }
     };
 
