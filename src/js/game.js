@@ -11,6 +11,7 @@ function Game(){
 
     V = new Camera();
     P = new Player();
+    P.controllable = false;
 
     this.newGame = function(tutorial){
         P = new Player();
@@ -26,16 +27,23 @@ function Game(){
     };
 
     this.startNewWorld = function(dummy){
-        this.hideTiles = false;
-
         this.cyclables = [];
         this.killables = [];
         this.renderables = [];
+
+        this.applyGlitch(0, 0.5);
+
+        if(dummy){
+            return;
+        }
 
         this.timeLeft = 60;
 
         // World
         W = new World(generateWorld(++this.currentLevel));
+
+        this.hideTiles = false;
+
 
         // Player
         P.x = W.spawn.x + TILE_SIZE / 2;
@@ -50,12 +58,6 @@ function Game(){
 
         // Prevent camera from lagging behind
         V.forceCenter();
-
-        this.applyGlitch(0, 0.5);
-
-        if(dummy){
-            return;
-        }
 
         // Enemies
         if(!this.currentLevel){
@@ -151,7 +153,9 @@ function Game(){
         }
 
         // Rendering
-        W.render();
+        if(W){
+            W.render();
+        }
 
         if(this.menu){
             this.menu.render();
@@ -211,7 +215,11 @@ function Game(){
                 G.menu = new GameOverMenu(GAME_OVER_TIME);
                 interp(G.menu, 'alpha', 0, 1, 0.5);
             }
-            G.totalTime += e;
+
+            if(G.currentLevel > 0){
+                // Not counting the tutorial time because it's skippable anyway
+                G.totalTime += e;
+            }
         }
     };
 
