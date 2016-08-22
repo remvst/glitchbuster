@@ -173,8 +173,8 @@ function Game(){
             drawText(R, nomangle('progress: ') + progressString('?', G.currentLevel, 13), 10, 10, 4, '#fff');
             drawText(R, nomangle('time left: ') + formatTime(G.timeLeft), 10, 40, 4, G.timeLeft < 15 ? '#f00' : '#fff');
 
-            drawText(R, nomangle('mental health: ') + progressString('!', P.health, PLAYER_INITIAL_HEALTH), 10, 70, 4, P.health < 3 || P.recoveryTime > 1.8 ? '#f00' : '#fff');
-            drawText(R, nomangle('breakpoints: ') + progressString('?', P.grenades, PLAYER_MAX_GRENADES), 10, 100, 4, '#fff');
+            drawText(R, h, 10, 70, 4, P.health < 3 || P.recoveryTime > 1.8 ? '#f00' : '#fff');
+            drawText(R, nomangle('breakpoints: ') + P.grenades, 10, 100, 4, '#fff');
 
             if(G.touch){
                 // Mobile controls
