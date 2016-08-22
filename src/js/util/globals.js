@@ -17,5 +17,9 @@ var D = document,
 
 // Exposing all math functions to the global scope
 Object.getOwnPropertyNames(Math).forEach(function(n){
-    this[n] = Math[n];
+    if(Math[n].call){
+        this[n] = Math[n];
+    }
 });
+
+var PI = Math.PI;
