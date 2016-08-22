@@ -73,12 +73,12 @@ function generateWorld(id){
     for(row = 0 ; row < maskMapRows ; row++){
         for(col = 0 ; col < maskMapCols ; col++){
 
-            try{
-                var mask = pickMask(usedMasks, maskMap[row][col]).mask;
-            }catch(e){
+            /*try{*/
+            var mask = pickMask(usedMasks, maskMap[row][col]).mask;
+            /*}catch(e){
                 console.log(maskMap[row][col]);
                 throw e;
-            }
+            }*/
 
             // Apply mask
             for(var maskRow = 0 ; maskRow < maskRows ; maskRow++){
