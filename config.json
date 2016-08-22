@@ -10,6 +10,7 @@
             "src/js/util/remove.js",
             "src/js/util/cache.js",
             "src/js/util/interp.js",
+            "src/js/util/format-time.js",
 
             "src/js/sound/jsfxr.js",
             "src/js/sound/sounds.js",

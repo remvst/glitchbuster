@@ -19,6 +19,7 @@ function Game(){
         P = new Player();
 
         this.currentLevel = tutorial ? -1 : 0;
+        this.totalTime = 0;
         this.startNewWorld();
         interp(this.menu, 'alpha', 1, 0, 0.5, 0, 0, function(){
             G.menu = null;
@@ -167,26 +168,23 @@ function Game(){
             this.menu.render();
         }else{
             // HUD
-            var s = '';
+
+            // Health string
+            var h = nomangle('mental health: ');
             for(i = 0 ; i < P.health ; i++){
-                s += '!';
+                h += '!';
             }
 
-            var mins = '0' + ~~(G.timeLeft / 60),
-                secs = ~~(G.timeLeft % 60);
-            if(secs < 10){
-                secs = '0' + secs;
-            }
-
-            var p = '';
+            // Progress string
+            var p = nomangle('progress: ');
             for(i = 0 ; i < 13 ; i++){
                 p += (i < G.currentLevel) ? '?' : '-';
             }
 
-            drawText(R, nomangle('progress: ') + p, 10, 10, 4, '#fff');
-            drawText(R, nomangle('time left: ') + mins + ':' + secs, 10, 40, 4, G.timeLeft < 15 ? '#f00' : '#fff');
+            drawText(R, p, 10, 10, 4, '#fff');
+            drawText(R, nomangle('time left: ') + formatTime(G.timeLeft), 10, 40, 4, G.timeLeft < 15 ? '#f00' : '#fff');
 
-            drawText(R, nomangle('mental health: ') + s, 10, 70, 4, P.health < 3 || P.recoveryTime > 1.8 ? '#f00' : '#fff');
+            drawText(R, h, 10, 70, 4, P.health < 3 || P.recoveryTime > 1.8 ? '#f00' : '#fff');
             drawText(R, nomangle('breakpoints: ') + P.grenades, 10, 100, 4, '#fff');
 
             if(G.touch){
@@ -218,10 +216,13 @@ function Game(){
             G.cyclables[i].cycle(e);
         }
 
-        if(!G.menu && P.controllable && (G.timeLeft -= e) <= 0){
-            G.timeLeft = 0;
-            G.menu = new GameOverMenu(GAME_OVER_TIME);
-            interp(G.menu, 'alpha', 0, 1, 0.5);
+        if(!G.menu && P.controllable){
+            if((G.timeLeft -= e) <= 0){
+                G.timeLeft = 0;
+                G.menu = new GameOverMenu(GAME_OVER_TIME);
+                interp(G.menu, 'alpha', 0, 1, 0.5);
+            }
+            G.totalTime += e;
         }
     };
 

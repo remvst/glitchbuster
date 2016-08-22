@@ -212,6 +212,13 @@ var defs = {
         [0,1,1,1,0],
         [0,0,1,0,0]
     ]),
+    '/': matrix([
+        [0, 0, 1],
+        [0, 0, 1],
+        [0, 1, 0],
+        [1, 0, 0],
+        [1, 0, 0]
+    ]),
     '1': matrix([
         [1,1,0],
         [0,1,0],
@@ -290,7 +297,7 @@ var defs = {
         [0,1]
     ]),
     ')': matrix([
-        [1,0],
+        [1, 0],
         [0, 1],
         [0, 1],
         [0, 1],
@@ -298,23 +305,11 @@ var defs = {
     ])
 };
 
-// TODO remove
-var used = {};
-for(var i in defs){
-    used[i] = false;
-}
-
 function drawText(r, t, x, y, s, c){
     r.fillStyle = c;
 
     for(var i = 0 ; i < t.length ; i++){
         var def = defs[t.charAt(i)];
-
-        used[t.charAt(i)] = true;
-
-        if(!def){
-            console.log(t.charAt(i));
-        }
 
         for(var row = 0 ; row < def.length ; row++){
             for(var col = 0 ; col < def[row].length ; col++){

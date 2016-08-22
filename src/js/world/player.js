@@ -31,6 +31,7 @@ function Player(){
                 interp(W.exit, 'alpha', 1, 0, 3);
 
                 T(function(){
+                    fixedSound.play();
                     G.bugFixed();
                 }, 3500);
             }else if(d < CANVAS_WIDTH * 0.5 && !this.found){
