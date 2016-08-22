@@ -56,7 +56,8 @@
         "HTML": "build/game.html",
         "ZIP": "build/game.zip",
         "DEBUG_HTML": "build/debug.html",
-        "DEBUG_JS": "build/debug.js"
+        "DEBUG_JS": "build/debug.js",
+        "DEBUG_MANGLED_JS": "build/debug_mangled.js"
     },
     "VERBOSE": true,
     "MACROS": {
