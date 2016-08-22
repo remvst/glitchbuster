@@ -138,7 +138,7 @@ function SfxrSynth() {
     * Resets the runing variables from the params
     * Used once at the start (total reset) and for the repeat effect (partial reset)
     */
-    this.reset = function() {
+    this.resetManglable = function() {
         // Shorter reference
         var p = this._params;
 
@@ -160,7 +160,7 @@ function SfxrSynth() {
 
     // I split the reset() function into two functions for better readability
     this.totalReset = function() {
-        this.reset();
+        this.resetManglable();
 
         // Shorter reference
         var p = this._params;
@@ -282,7 +282,7 @@ function SfxrSynth() {
             if (_repeatLimit) {
                 if (++_repeatTime >= _repeatLimit) {
                     _repeatTime = 0;
-                    this.reset();
+                    this.resetManglable();
                 }
             }
 
