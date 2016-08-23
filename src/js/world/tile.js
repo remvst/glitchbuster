@@ -56,6 +56,10 @@ function Tile(row, col, type){
         }
 
         R.fillStyle = '#fff';
+
+        var colorChar = ~~(between(0, 1 - dist(this.center, P) / 800, 1) * 0xf);
+        R.fillStyle = '#' + colorChar.toString(16) + colorChar.toString(16) + colorChar.toString(16);
+
         save();
         translate(this.x, this.y);
 
