@@ -22,7 +22,9 @@ function Character(){
         previousFloorY;
 
     this.render = function(){
-        if(this.recoveryTime > 0 && ~~((this.recoveryTime * 2 * 4) % 2) || !this.visible){
+        if(this.recoveryTime > 0 && ~~((this.recoveryTime * 2 * 4) % 2) ||
+            !this.visible ||
+            !V.contains(this.x, this.y, CHARACTER_WIDTH / 2)){
             return;
         }
 

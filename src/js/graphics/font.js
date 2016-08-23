@@ -315,6 +315,17 @@ function drawText(r, t, x, y, s, c){
     }
 }
 
+var cachedTexts = {};
+function drawCachedText(r, t, x, y, s, c){
+    var key = t + s + c;
+    if(!cachedTexts[key]){
+        cachedTexts[key] = cache(s * requiredCells(t, s), s * 5, function(r){
+            drawText(r, t, 0, 0, s, c);
+        });
+    }
+    r.drawImage(cachedTexts[key], x, y);
+}
+
 function requiredCells(t, s){
     var r = 0;
     for(var i = 0 ; i < t.length ; i++){

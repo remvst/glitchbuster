@@ -3,6 +3,10 @@ function GrenadeItem(x, y){
     this.y = y;
 
     this.render = function(){
+        if(!V.contains(this.x, this.y, TILE_SIZE)){
+            return;
+        }
+
         save();
         translate(x, y);
 

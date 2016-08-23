@@ -6,6 +6,10 @@ function particle(s, c, as, numeric){
         s: s,
         c: c,
         render: function(){
+            if(!V.contains(this.x, this.y, this.s)){
+                return;
+            }
+
             R.fillStyle = p.c;
             numeric ? fillText(n.toString(), p.x, p.y):fillRect(p.x - p.s / 2, p.y - p.s / 2, p.s, p.s);
         }
