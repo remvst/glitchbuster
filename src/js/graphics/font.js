@@ -306,20 +306,12 @@ var defs = {
 };
 
 function drawText(r, t, x, y, s, c){
-    r.fillStyle = c;
-
     for(var i = 0 ; i < t.length ; i++){
-        var def = defs[t.charAt(i)];
+        var cached = cachedCharacter(t.charAt(i), s, c);
 
-        for(var row = 0 ; row < def.length ; row++){
-            for(var col = 0 ; col < def[row].length ; col++){
-                if(def[row][col]){
-                    r.fillRect(x + col * s, y + row * s, s, s);
-                }
-            }
-        }
+        r.drawImage(cached, x, y);
 
-        x += def[0].length * s + s;
+        x += cached.width + s;
     }
 }
 
@@ -329,6 +321,25 @@ function requiredCells(t, s){
         r += defs[t.charAt(i)][0].length + 1;
     }
     return r - 1;
+}
+
+var cachedChars = {};
+function cachedCharacter(t, s, c){
+    var key = t + s + c;
+    if(!cachedChars[key]){
+        var def = defs[t];
+        cachedChars[key] = cache(def[0].length * s, def.length * s, function(r){
+            r.fillStyle = c;
+            for(var row = 0 ; row < def.length ; row++){
+                for(var col = 0 ; col < def[row].length ; col++){
+                    if(def[row][col]){
+                        r.fillRect(col * s, row * s, s, s);
+                    }
+                }
+            }
+        });
+    }
+    return cachedChars[key];
 }
 
 function button(t){
@@ -342,6 +353,7 @@ function button(t){
 
             drawText(r, '::' + t + '()', 100, 20, 10, '#000');
 
+            fillStyle = '#000';
             beginPath();
             moveTo(40, 20);
             lineTo(80, 45);
