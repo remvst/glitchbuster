@@ -1,4 +1,5 @@
 var D = document,
+    w = window,
     T = setTimeout,
     C, // canvas
     R, // canvas context
@@ -8,9 +9,9 @@ var D = document,
     K = {}, // keyboard
     PI = Math.PI,
     raf = (function(){
-        return  this.requestAnimationFrame       ||
-                this.webkitRequestAnimationFrame ||
-                this.mozRequestAnimationFrame    ||
+        return  w.requestAnimationFrame       ||
+                w.webkitRequestAnimationFrame ||
+                w.mozRequestAnimationFrame    ||
                 function(c){
                     T(c, 1000 / 60);
                 };

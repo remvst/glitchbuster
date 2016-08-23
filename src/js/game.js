@@ -6,8 +6,11 @@ function Game(){
         glitchTimeleft = 0;
 
     this.currentLevel = 0;
+    this.resolution = 1;
 
     this.t = 0;
+    this.frameCount = 0;
+    this.frameCountStart = Date.now();
 
     V = new Camera();
     P = new Player();
@@ -127,7 +130,16 @@ function Game(){
 
     // Game loop
     this.cycle = function(e){
-        this.t += e;
+        G.t += e;
+        G.frameCount++;
+
+        if(G.frameCount == 100){
+            var totalTime = Date.now() - G.frameCountStart,
+                fps = G.frameCount / (totalTime / 1000);
+            if(fps < 30 && !navigator.userAgent.match(/Android/i)){
+                G.setResolution(G.resolution * 0.6);
+            }
+        }
 
         R.textAlign = 'center';
 
@@ -153,6 +165,9 @@ function Game(){
         }
 
         // Rendering
+        save();
+        scale(this.resolution, this.resolution);
+
         if(W){
             W.render();
         }
@@ -203,6 +218,9 @@ function Game(){
         }
 
         if(DEBUG){
+            R.fillStyle = '#000';
+            fillRect(CANVAS_WIDTH * 0.6, 0, CANVAS_WIDTH * 0.4, 120);
+
             R.fillStyle = 'white';
             R.textAlign = 'left';
             R.textBaseline = 'middle';
@@ -211,7 +229,10 @@ function Game(){
             fillText('Cyclables: ' + G.cyclables.length, CANVAS_WIDTH * 0.6, 40);
             fillText('Renderables: ' + G.renderables.length, CANVAS_WIDTH * 0.6, 60);
             fillText('Killables: ' + G.killables.length, CANVAS_WIDTH * 0.6, 80);
+            fillText('Resolution: ' + G.resolution, CANVAS_WIDTH * 0.6, 100);
         }
+
+        restore();
     };
 
     this.doCycle = function(e){
@@ -236,7 +257,7 @@ function Game(){
 
     this.applyGlitch = function(id, d){
         var l = [function(){
-            glitchEnd = sliceGlitch;
+            glitchEnd = G.touch ? noiseGlitch : sliceGlitch;
         }, function(){
             glitchEnd = noiseGlitch;
         }];
@@ -274,6 +295,12 @@ function Game(){
         this.menu = new MainMenu();
     };
 
+    this.setResolution = function(r){
+        this.resolution = r;
+        C.width = CANVAS_WIDTH  * r;
+        C.height = CANVAS_HEIGHT * r;
+    };
+
     var lf = Date.now();
     T(function(){
         var n = Date.now();
@@ -290,6 +317,13 @@ function Game(){
 
         raf(arguments.callee);
     }, 0);
+
+    var displayablePixels = w.innerWidth * w.innerHeight * w.devicePixelRatio,
+        gamePixels = CANVAS_WIDTH / CANVAS_HEIGHT,
+        ratio = displayablePixels / gamePixels;
+    if(ratio < 0.5){
+        this.setResolution(ratio * 2);
+    }
 
     this.startNewWorld(true);
     this.mainMenu();
