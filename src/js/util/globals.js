@@ -1,6 +1,7 @@
 var D = document,
     w = window,
     T = setTimeout,
+    shittyMode = false,
     C, // canvas
     R, // canvas context
     W, // world

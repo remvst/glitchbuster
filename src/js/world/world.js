@@ -84,7 +84,7 @@ function World(map){
     };
 
     this.render = function(){
-        R.fillStyle = G.hideTiles ? '#000' : '#fff';
+        R.fillStyle = G.hideTiles || shittyMode ? '#000' : '#fff';
         fillRect(0, 0, CANVAS_WIDTH, CANVAS_HEIGHT);
 
         save();
@@ -97,6 +97,7 @@ function World(map){
         translate(-V.x, -V.y);
 
         R.fillStyle = codePattern;
+        R.fillStyle = '#000';
         fillRect(0, 0, this.cols * TILE_SIZE, this.rows * TILE_SIZE);
 
         var cameraRightX = V.x + CANVAS_WIDTH,
@@ -114,31 +115,33 @@ function World(map){
             G.renderables[i].render();
         }
 
-        var px = P.x,
-            py = P.y + (P.lookingDown ? 200 : 0);
+        if(!shittyMode){
+            var px = P.x,
+                py = P.y + (P.lookingDown ? 200 : 0);
 
-        px = V.x + CANVAS_WIDTH / 2;
-        py = V.y + CANVAS_HEIGHT / 2;
-        var haloX = ~~px - DARK_HALO_SIZE_HALF,
-            haloY = ~~py - DARK_HALO_SIZE_HALF,
-            haloX2 = haloX + DARK_HALO_SIZE,
-            haloY2 = haloY + DARK_HALO_SIZE;
+            px = V.x + CANVAS_WIDTH / 2;
+            py = V.y + CANVAS_HEIGHT / 2;
+            var haloX = ~~px - DARK_HALO_SIZE_HALF,
+                haloY = ~~py - DARK_HALO_SIZE_HALF,
+                haloX2 = haloX + DARK_HALO_SIZE,
+                haloY2 = haloY + DARK_HALO_SIZE;
 
-        R.fillStyle = '#000';
-        if(haloX > V.x){
-            fillRect(V.x, haloY, haloX - V.x, DARK_HALO_SIZE);
-        }
-        if(haloX2 < cameraRightX){
-            fillRect(haloX2, haloY, cameraRightX - haloX2, DARK_HALO_SIZE);
-        }
-        if(haloY > V.y){
-            fillRect(V.x, V.y, CANVAS_WIDTH, haloY - V.y);
-        }
-        if(haloY2 < cameraBottomY){
-            fillRect(V.x, haloY2, CANVAS_WIDTH, cameraBottomY - haloY2);
-        }
+            R.fillStyle = '#000';
+            if(haloX > V.x){
+                fillRect(V.x, haloY, haloX - V.x, DARK_HALO_SIZE);
+            }
+            if(haloX2 < cameraRightX){
+                fillRect(haloX2, haloY, cameraRightX - haloX2, DARK_HALO_SIZE);
+            }
+            if(haloY > V.y){
+                fillRect(V.x, V.y, CANVAS_WIDTH, haloY - V.y);
+            }
+            if(haloY2 < cameraBottomY){
+                fillRect(V.x, haloY2, CANVAS_WIDTH, cameraBottomY - haloY2);
+            }
 
-        drawImage(darkHalo, haloX, haloY);
+            drawImage(darkHalo, haloX, haloY);
+        }
 
         restore();
     };

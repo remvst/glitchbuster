@@ -189,11 +189,11 @@ function Game(){
                 p += (i < G.currentLevel) ? '?' : '-';
             }
 
-            drawText(R, nomangle('progress: ') + progressString('?', G.currentLevel, 13), 10, 10, 4, '#fff');
+            drawCachedText(R, nomangle('progress: ') + progressString('?', G.currentLevel, 13), 10, 10, 4, '#fff');
             drawText(R, nomangle('time left: ') + formatTime(G.timeLeft), 10, 40, 4, G.timeLeft < 15 ? '#f00' : '#fff');
 
-            drawText(R, h, 10, 70, 4, P.health < 3 || P.recoveryTime > 1.8 ? '#f00' : '#fff');
-            drawText(R, nomangle('breakpoints: ') + P.grenades, 10, 100, 4, '#fff');
+            drawCachedText(R, h, 10, 70, 4, P.health < 3 || P.recoveryTime > 1.8 ? '#f00' : '#fff');
+            drawCachedText(R, nomangle('breakpoints: ') + P.grenades, 10, 100, 4, '#fff');
 
             if(G.touch){
                 // Mobile controls
@@ -257,7 +257,7 @@ function Game(){
 
     this.applyGlitch = function(id, d){
         var l = [function(){
-            glitchEnd = G.touch ? noiseGlitch : sliceGlitch;
+            glitchEnd = shittyMode ? noiseGlitch : sliceGlitch;
         }, function(){
             glitchEnd = noiseGlitch;
         }];
@@ -326,7 +326,7 @@ function Game(){
     }
 
     this.startNewWorld(true);
-    this.mainMenu();
+    this.menu = new ModeMenu();
 
     glitchTimeleft = 0;
     nextGlitch = 1;

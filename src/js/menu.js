@@ -125,3 +125,23 @@ function GameOverMenu(reason){
         drawText(r, s3, 0, 0, t3, '#fff');
     }), (CANVAS_WIDTH - w3) / 2, 280);
 }
+
+function ModeMenu(){
+    Menu.call(this);
+
+    this.button(button(nomangle('high')), 0, 420, function(){
+        G.mainMenu();
+    });
+    this.button(button(nomangle('low')), 0, 560, function(){
+        shittyMode = true;
+        G.mainMenu();
+    });
+
+    this.animateButtons();
+
+    var titleX = (CANVAS_WIDTH - 270) / 2;
+    this.button(cache(270, 55, function(r){
+    	drawText(r, 'quality', 0, 5, 10, '#444');
+    	drawText(r, 'quality', 0, 0, 10, '#fff');
+    }), titleX, titleX);
+}
