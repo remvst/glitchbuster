@@ -257,7 +257,7 @@ function Game(){
 
     this.applyGlitch = function(id, d){
         var l = [function(){
-            glitchEnd = shittyMode ? noiseGlitch : sliceGlitch;
+            glitchEnd = shittyMode || shittyMode === undefined ? noiseGlitch : sliceGlitch;
         }, function(){
             glitchEnd = noiseGlitch;
         }];

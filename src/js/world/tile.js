@@ -92,7 +92,9 @@ function Tile(row, col, type){
         if(type == EXIT_ID){
 
             // Halo
-            drawImage(whiteHalo, TILE_SIZE / 2 - HALO_SIZE_HALF, TILE_SIZE / 2 - HALO_SIZE_HALF);
+            if(!shittyMode){
+                drawImage(whiteHalo, TILE_SIZE / 2 - HALO_SIZE_HALF, TILE_SIZE / 2 - HALO_SIZE_HALF);
+            }
 
             if(this.alpha == 1){
                 // Bug ID

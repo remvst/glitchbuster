@@ -32,7 +32,9 @@ function Character(){
         translate(this.x, this.y);
 
         // Halo
-        drawImage(this.halo, -HALO_SIZE_HALF, -HALO_SIZE_HALF);
+        if(!shittyMode){
+            drawImage(this.halo, -HALO_SIZE_HALF, -HALO_SIZE_HALF);
+        }
 
         // Dialog
         if(this.sayingTimeleft > 0 && this.saying.length){

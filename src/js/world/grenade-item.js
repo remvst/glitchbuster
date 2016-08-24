@@ -10,7 +10,9 @@ function GrenadeItem(x, y){
         save();
         translate(x, y);
 
-        drawImage(whiteHalo, -HALO_SIZE_HALF, -HALO_SIZE_HALF);
+        if(!shittyMode){
+            drawImage(whiteHalo, -HALO_SIZE_HALF, -HALO_SIZE_HALF);
+        }
 
         R.fillStyle = 'red';
         fillRect(-GRENADE_RADIUS, -GRENADE_RADIUS, GRENADE_RADIUS_2, GRENADE_RADIUS_2);
