@@ -96,8 +96,7 @@ function World(map){
 
         translate(-V.x, -V.y);
 
-        R.fillStyle = codePattern;
-        R.fillStyle = '#000';
+        R.fillStyle = shittyMode ? '#000' : codePattern;
         fillRect(0, 0, this.cols * TILE_SIZE, this.rows * TILE_SIZE);
 
         var cameraRightX = V.x + CANVAS_WIDTH,
