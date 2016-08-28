@@ -38,5 +38,9 @@ function Camera(){
 
         this.x = ~~(this.realX + this.offsetX);
         this.y = ~~(this.realY + this.offsetY);
+
+        var px = 1 / G.resolution;
+        this.x = ~~(this.x / px) * px;
+        this.y = ~~(this.y / px) * px;
     };
 }
