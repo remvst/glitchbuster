@@ -9,10 +9,8 @@ function showTilesAnimation(){
             if(W.tiles[row] && W.tiles[row][col]){
                 (function(t){
                     var r = dist(t.center, P);
-                    t.hidden = true;
-                    setTimeout(function(){
-                        t.hidden = false;
-                    }, r / CANVAS_WIDTH * 1000);
+                    t.scale = 0.5;
+                    interp(t, 'scale', 0, 1, r / CANVAS_WIDTH, 0, easeOutBounce);
                 })(W.tiles[row][col]);
             }
         }
