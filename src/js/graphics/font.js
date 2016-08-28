@@ -312,8 +312,31 @@ var defs = {
     ])
 };
 
+if(DEBUG){
+    (function(){
+        used = {};
+        for(var i in defs){
+            used[i] = false;
+        }
+
+        window.checkUsed = function(){
+            var unused = [];
+            for(var i in used){
+                if(!used[i]){
+                    unused.push(i);
+                }
+            }
+            return unused.sort();
+        };
+    })();
+}
+
 function drawText(r, t, x, y, s, c){
     for(var i = 0 ; i < t.length ; i++){
+        if(DEBUG){
+            used[t.charAt(i)] = true;
+        }
+
         var cached = cachedCharacter(t.charAt(i), s, c);
 
         r.drawImage(cached, x, y);
