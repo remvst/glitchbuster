@@ -34,24 +34,7 @@ function SpawnAnimation(){
 
     P.visible = P.controllable = false;
     P.talking = true;
-    G.hideTiles = false;
-
-    var cameraRightX = V.x + CANVAS_WIDTH,
-        cameraBottomY = V.y + CANVAS_HEIGHT;
-
-    for(var row = ~~(V.y / TILE_SIZE) ; row <  ~~(cameraBottomY / TILE_SIZE) + 1 ; row++){
-        for(var col = ~~(V.x / TILE_SIZE) ; col <  ~~(cameraRightX / TILE_SIZE) + 1 ; col++){
-            if(W.tiles[row] && W.tiles[row][col]){
-                (function(t){
-                    var r = dist(t.center, P);
-                    t.hidden = true;
-                    setTimeout(function(){
-                        t.hidden = false;
-                    }, 1000 + r / CANVAS_WIDTH * 400);
-                })(W.tiles[row][col]);
-            }
-        }
-    }
+    G.hideTiles = true;
 
     var tUnlock = 500;
     if(!G.currentLevel){
@@ -72,6 +55,6 @@ function SpawnAnimation(){
     T(function(){
         P.talking = false;
         P.controllable = true;
-        G.hideTiles = false;
+        showTilesAnimation();
     }, tUnlock);
 }

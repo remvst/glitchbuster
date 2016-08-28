@@ -15,6 +15,7 @@
             "src/js/graphics/mobile-controls.js",
             "src/js/graphics/font.js",
             "src/js/graphics/spawn-animation.js",
+            "src/js/graphics/show-tiles-animation.js",
             "src/js/graphics/code-pattern.js",
 
             "src/js/world/masks.js",

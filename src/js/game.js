@@ -287,6 +287,8 @@ function Game(){
             G.hideTiles = true;
             setTimeout(function(){
                 G.startNewWorld();
+                G.hideTiles = true;
+                setTimeout(showTilesAnimation, 500);
             }, 500);
         }
     };
