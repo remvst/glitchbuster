@@ -51,7 +51,7 @@ function Tile(row, col, type){
     };
 
     this.render = function(){
-        if(G.hideTiles){
+        if(G.hideTiles || this.hidden){
             return;
         }
 
