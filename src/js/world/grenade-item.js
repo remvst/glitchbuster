@@ -36,6 +36,17 @@ function GrenadeItem(x, y){
                 remove(G.renderables, m);
             }, 0);
 
+            for(var i = 0 ; i < 10 ; i++){
+                var x = rand(this.x - TILE_SIZE / 4, this.x + TILE_SIZE / 4),
+                    y = rand(this.y - TILE_SIZE / 4, this.y + TILE_SIZE / 4),
+                    d = rand(0.2, 0.5);
+                particle(4, '#fff', [
+                    ['x', x, x, 0.5],
+                    ['y', y, y - rand(50, 100), 0.5],
+                    ['s', 15, 0, 0.5]
+                ]);
+            }
+
             P.grenades++;
 
             this.pickedUp = true;
