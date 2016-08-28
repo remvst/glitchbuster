@@ -284,7 +284,7 @@ function Game(){
             interp(G.menu, 'alpha', 0, 1, 0.5);
         }else{
             G.applyGlitch(0, 0.5);
-            G.hideTiles = true;
+            hideTilesAnimation();
             setTimeout(function(){
                 G.startNewWorld();
                 G.hideTiles = true;
