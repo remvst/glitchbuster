@@ -12,7 +12,7 @@ function showTilesAnimation(){
                     t.hidden = true;
                     setTimeout(function(){
                         t.hidden = false;
-                    }, r / CANVAS_WIDTH * 700);
+                    }, r / CANVAS_WIDTH * 1000);
                 })(W.tiles[row][col]);
             }
         }
