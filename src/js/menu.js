@@ -129,11 +129,11 @@ function GameOverMenu(reason){
 function ModeMenu(){
     Menu.call(this);
 
-    this.button(button(nomangle('high')), 0, 420, function(){
+    this.button(button(nomangle('desktop'), 500), 0, 420, function(){
         shittyMode = false; // need to switch from undefined
         G.mainMenu();
     });
-    this.button(button(nomangle('low')), 0, 560, function(){
+    this.button(button(nomangle('mobile'), 500), 0, 560, function(){
         G.setResolution(0.5);
         shittyMode = true;
         G.mainMenu();
