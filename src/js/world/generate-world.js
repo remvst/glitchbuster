@@ -60,14 +60,28 @@ function generateWorld(id){
 
     var map = [];
 
-    for(row = 0 ; row < maskMapRows * maskRows + 2 ; row++){
-        map[row] = [UNBREAKABLE_TILE_ID]; // left
-        map[row][maskMapCols * maskCols + 1] = UNBREAKABLE_TILE_ID; // right
+    for(row = 0 ; row < maskMapRows * maskRows + WORLD_PADDING * 2 ; row++){
+        map[row] = [];
+
+        // Left padding
+        for(col = 0 ; col < WORLD_PADDING ; col++){
+            map[row][col] = UNBREAKABLE_TILE_ID; // left padding
+            map[row][maskMapCols * maskCols + col + WORLD_PADDING] = UNBREAKABLE_TILE_ID; // right padding
+        }
+
+        // Right padding
+
+        //map[row] = [UNBREAKABLE_TILE_ID]; // left
+        //map[row][maskMapCols * maskCols + 1] = UNBREAKABLE_TILE_ID; // right
     }
 
-    for(col = 0 ; col < maskMapCols * maskCols + 2 ; col++){
-        map[0][col] = UNBREAKABLE_TILE_ID; // top
-        map[map.length - 1][col] = UNBREAKABLE_TILE_ID; // bottom
+    for(col = 0 ; col < maskMapCols * maskCols + WORLD_PADDING * 2 ; col++){
+        for(row = 0 ; row < WORLD_PADDING ; row++){
+            map[row][col] = UNBREAKABLE_TILE_ID; // top padding
+            map[maskMapRows * maskRows + row + WORLD_PADDING][col] = UNBREAKABLE_TILE_ID; // right padding
+        }
+        //map[0][col] = UNBREAKABLE_TILE_ID; // top
+        //map[map.length - 1][col] = UNBREAKABLE_TILE_ID; // bottom
     }
 
     for(row = 0 ; row < maskMapRows ; row++){
@@ -83,7 +97,7 @@ function generateWorld(id){
             // Apply mask
             for(var maskRow = 0 ; maskRow < maskRows ; maskRow++){
                 for(var maskCol = 0 ; maskCol < maskCols ; maskCol++){
-                    map[row * maskRows + maskRow + 1][col * maskCols + maskCol + 1] = mask[maskRow][maskCol];
+                    map[row * maskRows + maskRow + WORLD_PADDING][col * maskCols + maskCol + WORLD_PADDING] = mask[maskRow][maskCol];
                 }
             }
         }
