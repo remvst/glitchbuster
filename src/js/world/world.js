@@ -104,7 +104,9 @@ function World(map){
 
         for(var row = ~~(V.y / TILE_SIZE) ; row <  ~~(cameraBottomY / TILE_SIZE) + 1 ; row++){
             for(var col = ~~(V.x / TILE_SIZE) ; col <  ~~(cameraRightX / TILE_SIZE) + 1 ; col++){
-                this.tiles[row] && this.tiles[row][col] && this.tiles[row][col].render();
+                if(this.tiles[row] && this.tiles[row][col]){
+                    this.tiles[row][col].render();
+                }
             }
         }
 
