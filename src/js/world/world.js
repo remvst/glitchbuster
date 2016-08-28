@@ -89,10 +89,10 @@ function World(map){
 
         save();
 
-        if(G.invert){
+        /*if(G.invert){
             translate(0, CANVAS_HEIGHT);
             scale(1, -1);
-        }
+        }*/
 
         translate(-V.x, -V.y);
 
