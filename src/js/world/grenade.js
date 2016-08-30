@@ -98,7 +98,7 @@ function Grenade(){
             W.destroyTileAt(p[0], p[1]);
         });
 
-        for(var i = 0 ; i < 50 ; i++){
+        for(var i = 0 ; i < 40 ; i++){
             var d = rand(0.5, 1.5),
                 x = rand(-TILE_SIZE, TILE_SIZE) + this.x,
                 y = rand(-TILE_SIZE, TILE_SIZE) + this.y;

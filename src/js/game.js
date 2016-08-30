@@ -40,7 +40,7 @@ function Game(){
             return;
         }
 
-        G.timeLeft = 60;
+        G.timeLeft = 90;
 
         // World
         W = new World(generateWorld(++G.currentLevel));
