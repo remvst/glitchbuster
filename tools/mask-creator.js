@@ -7,6 +7,17 @@ var P = {
     simulationCellSize: 10
 };
 
+function maskMap(){
+    var map = {};
+    masks.forEach(function(mask){
+        map[mask.exits] = map[mask.exits] || 0;
+        map[mask.exits]++;
+    });
+    return map;
+}
+
+console.log(maskMap());
+
 window.addEventListener('load', function(){
     var textArea = document.querySelector('textarea');
 
