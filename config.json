@@ -139,9 +139,9 @@
         "ARROW_Y_OFFSET": -10,
         "ITEM_ARROW_Y_OFFSET": -40,
         "GRENADE_PICKUP_RADIUS": 50,
-        "GRENADE_DENSITY": 0.5,
+        "GRENADE_DENSITY": 0.1,
 
-        "HEALTH_DENSITY": 0.5,
+        "HEALTH_DENSITY": 0.05,
 
         "MOBILE_BUTTON_SIZE": 80,
 
