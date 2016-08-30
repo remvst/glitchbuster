@@ -6,7 +6,7 @@ function Camera(){
     this.target = function(){
         return {
             x: ~~(P.x + (P.controllable ? P.facing * 50 : 0) - CANVAS_WIDTH / 2),
-            y: ~~(P.y - CANVAS_HEIGHT / 2 + (P.controllable && P.lookingDown ? 300 : 0))
+            y: ~~(P.y - CANVAS_HEIGHT / 2 + (P.controllable && P.lookingDown ? 400 : 0))
         };
     };
 
