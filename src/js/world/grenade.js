@@ -29,22 +29,24 @@ function Grenade(){
                 y: this.y
             };
 
-            var trail = {
-                alpha: 1,
-                render: function(){
-                    R.strokeStyle = 'rgba(255, 0, 0, ' + this.alpha + ')';
-                    R.lineWidth = 8;
-                    beginPath();
-                    moveTo(before.x, before.y);
-                    lineTo(after.x, after.y);
-                    stroke();
-                }
-            };
-            G.renderables.push(trail);
+            if(!shittyMode){
+                var trail = {
+                    alpha: 1,
+                    render: function(){
+                        R.strokeStyle = 'rgba(255, 0, 0, ' + this.alpha + ')';
+                        R.lineWidth = 8;
+                        beginPath();
+                        moveTo(before.x, before.y);
+                        lineTo(after.x, after.y);
+                        stroke();
+                    }
+                };
+                G.renderables.push(trail);
 
-            interp(trail, 'alpha', 1, 0, 0.3, 0, null, function(){
-                remove(G.renderables, trail);
-            });
+                interp(trail, 'alpha', 1, 0, 0.3, 0, null, function(){
+                    remove(G.renderables, trail);
+                });
+            }
         }
 
         this.timer -= e;
