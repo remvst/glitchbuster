@@ -6,8 +6,7 @@ var D = document,
     R, // canvas context
     W, // world
     P, // player
-    V, // camera,
-    K = {}, // keyboard
+    V, // camera
     PI = Math.PI,
     raf = (function(){
         return  w.requestAnimationFrame       ||

@@ -1,5 +1,5 @@
 function Game(){
-    G = G;
+    G = this;
 
     var glitchEnd,
         nextGlitch = 0,
