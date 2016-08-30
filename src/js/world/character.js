@@ -186,6 +186,8 @@ function Character(){
                     ['s', 15, 0, 0.3]
                 ]);
             }
+
+            return true;
         }
     };
 

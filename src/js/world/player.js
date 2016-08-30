@@ -51,8 +51,7 @@ function Player(){
 
     var superJump = this.jump;
     this.jump = function(p, f){
-        if(this.controllable){
-            superJump.call(this, p, f);
+        if(this.controllable && superJump.call(this, p, f)){
             jumpSound.play();
         }
     };
