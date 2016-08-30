@@ -1,51 +1,51 @@
 function Game(){
-    G = this;
+    G = G;
 
     var glitchEnd,
         nextGlitch = 0,
         glitchTimeleft = 0;
 
-    this.currentLevel = 0;
-    this.resolution = 1;
+    G.currentLevel = 0;
+    G.resolution = 1;
 
-    this.t = 0;
-    this.frameCount = 0;
-    this.frameCountStart = Date.now();
+    G.t = 0;
+    G.frameCount = 0;
+    G.frameCountStart = Date.now();
 
     V = new Camera();
     P = new Player();
     P.controllable = false;
 
-    this.newGame = function(tutorial){
+    G.newGame = function(tutorial){
         P = new Player();
 
-        this.currentLevel = tutorial ? -1 : 0;
-        this.totalTime = 0;
-        this.startNewWorld();
-        interp(this.menu, 'alpha', 1, 0, 0.5, 0, 0, function(){
+        G.currentLevel = tutorial ? -1 : 0;
+        G.totalTime = 0;
+        G.startNewWorld();
+        interp(G.menu, 'alpha', 1, 0, 0.5, 0, 0, function(){
             G.menu = null;
         });
 
         G.renderables.push(new SpawnAnimation(P.x, P.y));
     };
 
-    this.startNewWorld = function(dummy){
-        this.cyclables = [];
-        this.killables = [];
-        this.renderables = [];
+    G.startNewWorld = function(dummy){
+        G.cyclables = [];
+        G.killables = [];
+        G.renderables = [];
 
-        this.applyGlitch(0, 0.5);
+        G.applyGlitch(0, 0.5);
 
         if(dummy){
             return;
         }
 
-        this.timeLeft = 60;
+        G.timeLeft = 60;
 
         // World
-        W = new World(generateWorld(++this.currentLevel));
+        W = new World(generateWorld(++G.currentLevel));
 
-        this.hideTiles = false;
+        G.hideTiles = false;
 
 
         // Player
@@ -63,7 +63,7 @@ function Game(){
         V.forceCenter();
 
         // Enemies
-        if(!this.currentLevel){
+        if(!G.currentLevel){
             // Put the enemies at the right spots
             var enemy1 = new WalkingEnemy();
             enemy1.x = 4900;
@@ -129,7 +129,7 @@ function Game(){
     };
 
     // Game loop
-    this.cycle = function(e){
+    G.cycle = function(e){
         G.t += e;
         G.frameCount++;
 
@@ -151,29 +151,29 @@ function Game(){
 
             nextGlitch -= e;
             if(nextGlitch <= 0){
-                this.applyGlitch(this.menu ? 0 : NaN);
+                G.applyGlitch(G.menu ? 0 : NaN);
             }
         }
 
         var deltas = ~~(e / maxDelta);
         for(var i = 0 ; i < deltas ; i++, e -= maxDelta){
-            this.doCycle(maxDelta);
+            G.doCycle(maxDelta);
         }
 
         if(e > 0){
-            this.doCycle(e % maxDelta);
+            G.doCycle(e % maxDelta);
         }
 
         // Rendering
         save();
-        scale(this.resolution, this.resolution);
+        scale(G.resolution, G.resolution);
 
         if(W){
             W.render();
         }
 
-        if(this.menu){
-            this.menu.render();
+        if(G.menu){
+            G.menu.render();
         }else{
             // HUD
 
@@ -235,7 +235,7 @@ function Game(){
         restore();
     };
 
-    this.doCycle = function(e){
+    G.doCycle = function(e){
         // Cycles
         for(var i in G.cyclables){
             G.cyclables[i].cycle(e);
@@ -255,7 +255,7 @@ function Game(){
         }
     };
 
-    this.applyGlitch = function(id, d){
+    G.applyGlitch = function(id, d){
         var l = [function(){
             glitchEnd = shittyMode || shittyMode === undefined ? noiseGlitch : sliceGlitch;
         }, function(){
@@ -265,20 +265,20 @@ function Game(){
         (isNaN(id) ? pick(l) : l[id])();
 
         glitchTimeleft = d || rand(0.1, 0.3);
-        nextGlitch = this.currentLevel > 2 ? rand(4, 8) : 99;
-        if(this.menu){
+        nextGlitch = G.currentLevel > 2 ? rand(4, 8) : 99;
+        if(G.menu){
             nextGlitch = 2;
         }
     };
 
-    this.playerDied = function(){
+    G.playerDied = function(){
         T(function(){
             G.menu = new GameOverMenu(GAME_OVER_DEATH);
             interp(G.menu, 'alpha', 0, 1, 0.5);
         }, 2000);
     };
 
-    this.bugFixed = function(){
+    G.bugFixed = function(){
         if(G.currentLevel == 13){
             G.menu = new GameOverMenu(GAME_OVER_SUCCESS);
             interp(G.menu, 'alpha', 0, 1, 0.5);
@@ -293,12 +293,12 @@ function Game(){
         }
     };
 
-    this.mainMenu = function(){
-        this.menu = new MainMenu();
+    G.mainMenu = function(){
+        G.menu = new MainMenu();
     };
 
-    this.setResolution = function(r){
-        this.resolution = r;
+    G.setResolution = function(r){
+        G.resolution = r;
         C.width = CANVAS_WIDTH  * r;
         C.height = CANVAS_HEIGHT * r;
     };
@@ -324,11 +324,11 @@ function Game(){
         gamePixels = CANVAS_WIDTH / CANVAS_HEIGHT,
         ratio = displayablePixels / gamePixels;
     if(ratio < 0.5){
-        this.setResolution(ratio * 2);
+        G.setResolution(ratio * 2);
     }
 
-    this.startNewWorld(true);
-    this.menu = new ModeMenu();
+    G.startNewWorld(true);
+    G.menu = new ModeMenu();
 
     glitchTimeleft = 0;
     nextGlitch = 1;
