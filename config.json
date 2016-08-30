@@ -81,6 +81,8 @@
         "CHARACTER_WIDTH": 50,
         "CHARACTER_HEIGHT": 66,
         "WORLD_PADDING": 5,
+        "MASK_ROWS": 10,
+        "MASK_COLS": 10,
 
         "VOID_ID": 0,
         "TILE_ID": 1,

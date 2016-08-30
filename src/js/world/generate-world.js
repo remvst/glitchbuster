@@ -16,8 +16,6 @@ function generateWorld(id){
     var maskMapRows = id < 0 ? 4 : round((id - 1) * 0.2 + 2),
         maskMapCols = id < 0 ? 5 : round((id - 1) * 0.1 + 3),
         maskMap = [],
-        maskRows = 10,
-        maskCols = 10,
         col,
         row,
         downCols = [],
@@ -59,13 +57,13 @@ function generateWorld(id){
     }
 
     var map = [];
-    for(row = 0 ; row < maskMapRows * maskRows ; row++){
+    for(row = 0 ; row < maskMapRows * MASK_ROWS ; row++){
         map[row] = [];
     }
 
     function applyMask(matrix, mask, rowStart, colStart){
-        for(var row = 0 ; row < mask.length ; row++){
-            for(var col = 0 ; col < mask[0].length ; col++){
+        for(var row = 0 ; row < MASK_ROWS ; row++){
+            for(var col = 0 ; col < MASK_COLS ; col++){
                 matrix[row + rowStart][col + colStart] = mask[row][col];
             }
         }
@@ -77,7 +75,7 @@ function generateWorld(id){
             var mask = pickMask(usedMasks, maskMap[row][col]).mask;
 
             // Apply mask
-            applyMask(map, mask, row * maskRows, col * maskCols);
+            applyMask(map, mask, row * MASK_ROWS, col * MASK_COLS);
         }
     }
 
