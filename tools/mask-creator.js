@@ -9,7 +9,9 @@ var P = {
 
 function maskMap(){
     var map = {};
-    masks.forEach(function(mask){
+
+    var allMasks = masks.concat(masks.map(mirrorMask));
+    allMasks.forEach(function(mask){
         map[mask.exits] = map[mask.exits] || 0;
         map[mask.exits]++;
     });
@@ -186,7 +188,7 @@ window.addEventListener('load', function(){
                         return '        [' + row.join(', ') + ']';
                     }).join(',\n') + '\n' +
                 '    ]),\n' +
-                '    "exits": ' + exits.join(' | ') + '\n' +
+                '    "exits": ' + exits.sort().join(' | ') + '\n' +
             '}';
         }).join(', ') + ']';
 
