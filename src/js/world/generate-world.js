@@ -13,8 +13,8 @@ function generateWorld(id){
     // Mirror all the masks to have more possibilities
     var usedMasks = masks.concat(masks.map(mirrorMask));
 
-    var maskMapRows = id < 0 ? 4 : round((id - 1) * 0.2 + 2),
-        maskMapCols = id < 0 ? 5 : round((id - 1) * 0.1 + 3),
+    var maskMapRows = id < 0 ? 4 : round((id - 1) * 0.4 + 2),
+        maskMapCols = id < 0 ? 5 : round((id - 1) * 0.2 + 3),
         maskMap = [],
         col,
         row,
@@ -81,10 +81,12 @@ function generateWorld(id){
 
     var finalMap = [],
         floors = [],
-        ceilings = [];
+        ceilings = [],
+        floorsMap = [];
 
     for(row = 0 ; row < map.length ; row++){
         finalMap.push([]);
+        floorsMap.push([]);
 
         map[row][col] = parseInt(map[row][col]);
 
@@ -99,7 +101,9 @@ function generateWorld(id){
             // Detect floors and ceilings to add spikes, spawn and exit
             if(row > 0){
                 if(finalMap[row][col] == TILE_ID && finalMap[row - 1][col] == VOID_ID){
-                    floors.push([row, col]);
+                    var f = [row, col];
+                    floors.push(f);
+                    floorsMap[row].push(f);
                 }
 
                 if(finalMap[row][col] == VOID_ID && finalMap[row - 1][col] == TILE_ID){
@@ -110,8 +114,11 @@ function generateWorld(id){
     }
 
     // Add a random spawn and a random exit
-    var spawn = pick(floors.slice(0, floors.length * 0.1));
-    var exit = pick(floors.slice(floors.length * 0.9));
+    var potentialSpawns = flatten(floorsMap.slice(0, MASK_ROWS));
+    var potentialExits = flatten(floorsMap.slice(finalMap.length - MASK_ROWS));
+
+    var spawn = pick(potentialSpawns);
+    var exit = pick(potentialExits);
 
     finalMap[spawn[0] - 1][spawn[1]] = SPAWN_ID;
     finalMap[exit[0] - 1][exit[1]] = EXIT_ID;

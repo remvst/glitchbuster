@@ -44,7 +44,7 @@ window.addEventListener('load', function(){
     };
 
     document.querySelector('#simulate').onclick = function(){
-        var w = generateWorld(-1);
+        var w = generateWorld(12);
 
         var can = document.querySelector('#simulation-canvas');
         can.width = w[0].length * P.simulationCellSize;
