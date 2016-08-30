@@ -47,17 +47,11 @@ function HealthItem(x, y){
                 ]);
             }
 
-            // TODO apply health
-
+            P.health++;
             this.pickedUp = true;
-
             pickupSound.play();
 
-            P.say([pick([
-                nomangle('Here\'s a breakpoint!'),
-                nomangle('You found a breakpoint!'),
-                nomangle('That\'s a breakpoint!')
-            ]), nomangle('Press SPACE to throw it')]);
+            P.say(nomangle('health++')); // TODO more strings
         }
     };
 }
