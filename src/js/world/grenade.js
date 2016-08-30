@@ -50,6 +50,13 @@ function Grenade(){
         this.timer -= e;
         if(this.timer <= 0){
             this.explode();
+        }else{
+            for(var i = 0 ; i < G.killables.length ; i++){
+                if(G.killables[i] != P && dist(G.killables[i], this) < CHARACTER_WIDTH / 2){
+                    this.explode();
+                    break;
+                }
+            }
         }
 
         var tile = W.tileAt(this.x, this.y);
@@ -75,11 +82,23 @@ function Grenade(){
                     this.vX = abs(this.vX);
                 }
 
-                // TODO particle when bouncing
-
                 if(max(abs(this.vX), abs(this.vY)) < 150){
                     this.stuck = tile;
                     this.vX = this.vY = 0;
+                }else{
+                    // Particle when bouncing
+                    if(adjustments && !shittyMode){
+                        for(var i = 0 ; i < 2 ; i++){
+                            var x = this.x + rand(-10, 10),
+                                y = this.y + rand(-10, 10),
+                                d = rand(0.2, 0.5);
+                            particle(4, '#fff', [
+                                ['x', x, x, d],
+                                ['y', y, y - rand(50, 100), d],
+                                ['s', 15, 0, d]
+                            ]);
+                        }
+                    }
                 }
             }while(adjustments && iterations++ < 5);
         }
