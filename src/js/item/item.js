@@ -1,4 +1,4 @@
-function HealthItem(x, y){
+function Item(x, y){
     this.x = x;
     this.y = y;
 
@@ -14,9 +14,6 @@ function HealthItem(x, y){
             drawImage(whiteHalo, -HALO_SIZE_HALF, -HALO_SIZE_HALF);
         }
 
-        var o = -requiredCells('!', 5) * 5 / 2;
-        drawText(R, '!', o, o, 5, '#f00');
-
         // Arrow
         R.fillStyle = '#fff';
         beginPath();
@@ -24,6 +21,8 @@ function HealthItem(x, y){
         lineTo(ARROW_SIZE / 2, -ARROW_SIZE / 2 + GRENADE_ARROW_Y_OFFSET);
         lineTo(0, GRENADE_ARROW_Y_OFFSET);
         fill();
+
+        this.renderItem(); // defined in subclasses
 
         restore();
     };
@@ -47,11 +46,10 @@ function HealthItem(x, y){
                 ]);
             }
 
-            P.health++;
             this.pickedUp = true;
             pickupSound.play();
 
-            P.say(nomangle('health++')); // TODO more strings
+            this.pickup(); // defined in subclasses
         }
     };
 }
