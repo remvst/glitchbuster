@@ -14,12 +14,14 @@ function Item(x, y){
             drawImage(whiteHalo, -HALO_SIZE_HALF, -HALO_SIZE_HALF);
         }
 
+        var arrowOffsetY = sin(G.t * PI * 2 * 0.5) * 10 + ITEM_ARROW_Y_OFFSET;
+
         // Arrow
         R.fillStyle = '#fff';
         beginPath();
-        moveTo(-ARROW_SIZE / 2, -ARROW_SIZE / 2 + GRENADE_ARROW_Y_OFFSET);
-        lineTo(ARROW_SIZE / 2, -ARROW_SIZE / 2 + GRENADE_ARROW_Y_OFFSET);
-        lineTo(0, GRENADE_ARROW_Y_OFFSET);
+        moveTo(-ARROW_SIZE / 2, -ARROW_SIZE / 2 + arrowOffsetY);
+        lineTo(ARROW_SIZE / 2, -ARROW_SIZE / 2 + arrowOffsetY);
+        lineTo(0, arrowOffsetY);
         fill();
 
         this.renderItem(); // defined in subclasses
