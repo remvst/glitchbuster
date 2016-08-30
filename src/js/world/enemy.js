@@ -10,6 +10,11 @@ function Enemy(){
 
     var superCycle = this.cycle;
     this.cycle = function(e){
+        // Skipping cycles for far enemies
+        if(!V.contains(this.x, this.y, CHARACTER_WIDTH / 2)){
+            return;
+        }
+
         superCycle.call(this, e);
 
         if(this.sayingTimeleft <= 0){
