@@ -124,9 +124,9 @@ function generateWorld(id){
         }
     });
 
-    ceilings.forEach(function(f){
-        if(f != exit && f != spawn && rand() < SPIKE_DENSITY){
-            finalMap[f[0]][f[1]] = CEILING_SPIKE_ID;
+    ceilings.forEach(function(c){
+        if(c != exit && c != spawn && rand() < SPIKE_DENSITY){
+            finalMap[c[0]][c[1]] = CEILING_SPIKE_ID;
         }
     });
 
