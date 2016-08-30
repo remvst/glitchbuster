@@ -116,13 +116,23 @@ function Game(){
 
             // Add grenades for pick up
             W.detectPaths(1).forEach(function(path){
+                // Not very accurate type picking, but hey noone's ever gonna read that
+                var t;
                 if(rand() < GRENADE_DENSITY){
-                    var g = new GrenadeItem(
+                    t = GrenadeItem;
+                }
+                if(rand() < HEALTH_DENSITY){
+                    t = HealthItem;
+                }
+
+                if(t){
+                    // Create the item and place it on the path
+                    var i = new t(
                         (~~rand(path.colLeft, path.colRight) + 0.5) * TILE_SIZE,
                         (path.row + 0.5) * TILE_SIZE
                     );
-                    G.renderables.push(g);
-                    G.cyclables.push(g);
+                    G.renderables.push(i);
+                    G.cyclables.push(i);
                 }
             });
         }
