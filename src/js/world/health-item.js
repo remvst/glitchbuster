@@ -15,7 +15,10 @@ function HealthItem(x, y){
         }
 
         R.fillStyle = 'red';
-        fillRect(-GRENADE_RADIUS, -GRENADE_RADIUS, GRENADE_RADIUS_2, GRENADE_RADIUS_2);
+        //fillRect(-GRENADE_RADIUS, -GRENADE_RADIUS, GRENADE_RADIUS_2, GRENADE_RADIUS_2);
+
+        var o = -requiredCells('!', 5) * 5 / 2;
+        drawText(R, '!', o, o, 5, '#f00');
 
         // Arrow
         R.fillStyle = '#fff';
