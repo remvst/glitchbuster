@@ -14,9 +14,6 @@ function HealthItem(x, y){
             drawImage(whiteHalo, -HALO_SIZE_HALF, -HALO_SIZE_HALF);
         }
 
-        R.fillStyle = 'red';
-        //fillRect(-GRENADE_RADIUS, -GRENADE_RADIUS, GRENADE_RADIUS_2, GRENADE_RADIUS_2);
-
         var o = -requiredCells('!', 5) * 5 / 2;
         drawText(R, '!', o, o, 5, '#f00');
 
