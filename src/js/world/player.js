@@ -17,6 +17,10 @@ function Player(){
         if(!this.controllable){
             this.direction = 0;
         }else{
+            if(this.direction){
+                V.targetted = null;
+            }
+
             var d = dist(this, W.exit.center);
             if(d < TILE_SIZE / 2){
                 this.controllable = false;
@@ -64,6 +68,8 @@ function Player(){
             g.throw(-PI / 2 + this.facing * PI / 3, 1000);
             G.cyclables.push(g);
             G.renderables.push(g);
+
+            V.targetted = g; // make the camera target the grenade
         }else{
             P.say(pick([
                 nomangle('You don\'t have any breakpoints'),

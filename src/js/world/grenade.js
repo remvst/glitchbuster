@@ -98,7 +98,7 @@ function Grenade(){
             W.destroyTileAt(p[0], p[1]);
         });
 
-        for(var i = 0 ; i < 100 ; i++){
+        for(var i = 0 ; i < 50 ; i++){
             var d = rand(0.5, 1.5),
                 x = rand(-TILE_SIZE, TILE_SIZE) + this.x,
                 y = rand(-TILE_SIZE, TILE_SIZE) + this.y;
@@ -127,6 +127,12 @@ function Grenade(){
             remove(G.cyclables, m);
             remove(G.renderables, m);
         }, 0);
+
+        T(function(){
+            if(V.targetted == m){
+                V.targetted = null;
+            }
+        }, 1000);
 
         explosionSound.play();
     };

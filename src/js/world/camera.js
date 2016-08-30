@@ -4,9 +4,17 @@ function Camera(){
 
     // Position at which the camera would ideally be
     this.target = function(){
+        var x, y;
+        if(!this.targetted){
+            x = P.x + (P.controllable ? P.facing * 50 : 0);
+            y = P.y + (P.controllable && P.lookingDown ? 400 : 0);
+        }else{
+            x = this.targetted.x;
+            y = this.targetted.y;
+        }
         return {
-            x: ~~(P.x + (P.controllable ? P.facing * 50 : 0) - CANVAS_WIDTH / 2),
-            y: ~~(P.y - CANVAS_HEIGHT / 2 + (P.controllable && P.lookingDown ? 400 : 0))
+            x: ~~(x - CANVAS_WIDTH / 2),
+            y: ~~(y - CANVAS_HEIGHT / 2)
         };
     };
 
