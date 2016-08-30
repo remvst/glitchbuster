@@ -74,6 +74,7 @@
     "CONSTANTS": {
         "true": 1,
         "false": 0,
+        "null": 0,
 
         "CANVAS_WIDTH": 640,
         "CANVAS_HEIGHT": 920,
