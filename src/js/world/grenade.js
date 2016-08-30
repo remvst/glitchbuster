@@ -75,6 +75,8 @@ function Grenade(){
                     this.vX = abs(this.vX);
                 }
 
+                // TODO particle when bouncing
+
                 if(max(abs(this.vX), abs(this.vY)) < 150){
                     this.stuck = tile;
                     this.vX = this.vY = 0;
