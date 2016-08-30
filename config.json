@@ -143,6 +143,8 @@
 
         "HEALTH_DENSITY": 0.05,
 
+        "TIME_PER_LEVEL": 90,
+
         "MOBILE_BUTTON_SIZE": 80,
 
         "GAME_OVER_DEATH": 0,
