@@ -75,12 +75,12 @@ window.addEventListener('load', function(){
 
     downCB.onchange = rightCB.onchange = upCB.onchange = leftCB.onchange = function(){
         var mask = masks[currentMaskId];
-        mask.exits = [];
+        mask.exits = 0;
 
-        if(leftCB.checked) mask.exits.push(LEFT);
-        if(rightCB.checked) mask.exits.push(RIGHT);
-        if(upCB.checked) mask.exits.push(UP);
-        if(downCB.checked) mask.exits.push(DOWN);
+        if(leftCB.checked) mask.exits |= LEFT;
+        if(rightCB.checked) mask.exits |= RIGHT;
+        if(upCB.checked) mask.exits |= UP;
+        if(downCB.checked) mask.exits |= DOWN;
 
         updateUI();
     };
@@ -205,10 +205,13 @@ window.addEventListener('load', function(){
         select.value = currentMaskId;
 
         var mask = masks[currentMaskId];
-        rightCB.checked = mask.exits & RIGHT > 0;
-        leftCB.checked = mask.exits & LEFT > 0;
-        upCB.checked = mask.exits & UP > 0;
-        downCB.checked = mask.exits & DOWN > 0;
+
+        rightCB.checked = mask.exits & RIGHT;
+        leftCB.checked = mask.exits & LEFT;
+        upCB.checked = mask.exits & UP;
+        downCB.checked = mask.exits & DOWN;
+
+        updatingUI = false;
     }
 
     select.onchange = function(){
