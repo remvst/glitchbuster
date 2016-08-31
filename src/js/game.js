@@ -141,14 +141,9 @@ function Game(){
     // Game loop
     G.cycle = function(e){
         G.t += e;
-        G.frameCount++;
 
-        if(G.frameCount == 100){
-            var totalTime = Date.now() - G.frameCountStart,
-                fps = G.frameCount / (totalTime / 1000);
-            if(fps < 30){
-                G.setResolution(G.resolution * 0.6);
-            }
+        if(++G.frameCount == 100 && (G.frameCount / ((Date.now() - G.frameCountStart) / 1000) < 30)){
+            G.setResolution(G.resolution * 0.6);
         }
 
         R.textAlign = 'center';
