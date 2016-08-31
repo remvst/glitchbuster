@@ -107,6 +107,12 @@ function Grenade(){
     };
 
     this.explode = function(){
+        if(this.exploded){
+            return;
+        }
+
+        this.exploded = true;
+
         [
             [this.x - TILE_SIZE, this.y + TILE_SIZE],
             [this.x, this.y + TILE_SIZE],
