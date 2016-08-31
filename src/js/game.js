@@ -136,6 +136,12 @@ function Game(){
                 }
             });
         }
+
+        if(DEBUG){
+            T(function(){
+                W.findPathToExit();
+            }, 0);
+        }
     };
 
     // Game loop
