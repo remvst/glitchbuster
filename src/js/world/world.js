@@ -117,11 +117,13 @@ function World(map){
         if(DEBUG){
             if(this.path){
                 R.strokeStyle = '#fff';
-                beginPath();
-                for(var i = 0 ; i < this.path.path.length ; i++){
-                    R.lineTo((this.path.path[i].col + 0.5) * TILE_SIZE, (this.path.path[i].row + 0.5) * TILE_SIZE);
+                R.lineWidth = 10;
+                for(var i = 0 ; i < this.path.path.length - 1 ; i++){
+                    beginPath();
+                    moveTo((this.path.path[i].col + 0.5) * TILE_SIZE, (this.path.path[i].row + 0.5) * TILE_SIZE);
+                    lineTo((this.path.path[i + 1].col + 0.5) * TILE_SIZE, (this.path.path[i + 1].row + 0.5) * TILE_SIZE);
+                    stroke();
                 }
-                stroke();
             }
         }
 
