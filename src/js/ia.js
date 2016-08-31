@@ -62,7 +62,7 @@ PathFinder.prototype.explore = function(startRow, startCol, exitRow, exitCol){
 
     this.queued.push(firstItem);
 
-    for(var i = 0 ; i < 100 && this.queued.length > 0 ; i++){
+    for(var i = 0 ; i < 200 && this.queued.length > 0 ; i++){
         this.exploreStep();
 
         var exitCell = this.queuedCell(exitRow, exitCol);
@@ -77,7 +77,7 @@ PathFinder.prototype.explore = function(startRow, startCol, exitRow, exitCol){
 
 PathFinder.prototype.exploreStep = function(){
     var item = this.pickNonExploredItem();
-    if(item === null){
+    if(!item){
         console.log('Nothing left to explore');
         return;
     }
@@ -101,7 +101,22 @@ PathFinder.prototype.exploreItem = function(item){
 };
 
 PathFinder.prototype.pickNonExploredItem = function(){
-    return this.queued.shift() || null;
+    if(this.queued.length === 0){
+        return null;
+    }
+
+    var minDistance,
+        minDistanceIndex = -1;
+    this.queued.forEach(function(item, index){
+        var manhattanDistance = Math.abs(item.row - this.exitRow) + Math.abs(item.col - this.exitCol);
+        var estimatedDistance = manhattanDistance + item.distance;
+        if(minDistanceIndex < 0 || estimatedDistance < minDistance){
+            minDistance = estimatedDistance;
+            minDistanceIndex = index;
+        }
+    }.bind(this));
+
+    return this.queued.splice(minDistanceIndex, 1)[0];
 };
 
 PathFinder.prototype.neighbors = function(item){
@@ -133,12 +148,13 @@ PathFinder.prototype.neighbors = function(item){
 };
 
 PathFinder.prototype.maybeAddToNonExplored = function(item){
-    if(item.row === 9 && item.col === 15){
-        console.log('looool', item.energy);
-    }
-
     if(item.energy >= this.energyCutOff){
         // Too much energy required
+        return;
+    }
+
+    if(item.row < 0 || item.row >= this.matrix.length || item.col < 0 || item.col >= this.matrix[0].length){
+        // Out of bounds, let's ignore
         return;
     }
 
@@ -150,16 +166,6 @@ PathFinder.prototype.maybeAddToNonExplored = function(item){
             queuedCell.energy = item.energy;
         }
 
-        return;
-    }
-
-    if(this.isExplored(item.row, item.col)){
-        // Already explored, let's skip
-        return;
-    }
-
-    if(item.row < 0 || item.row >= this.matrix.length || item.col < 0 || item.col >= this.matrix[0].length){
-        // Out of bounds, let's ignore
         return;
     }
 
@@ -220,13 +226,8 @@ var matrix = [
 ];
 
 var finder = new PathFinder(tuto);
-finder.explore(12, 10, 10, 20);
+finder.explore(12, 10, 10, 40);
 
 console.log(finder.toString());
 
-/*console.log(finder.neighbors({
-    row: 10,
-    col: 15,
-    energy: 0,
-
-}));*/
+console.log(finder.exploredCell(10, 36));
