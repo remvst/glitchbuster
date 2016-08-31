@@ -66,15 +66,15 @@ function Game(){
         if(!G.currentLevel){
             // Put the enemies at the right spots
             var enemy1 = new WalkingEnemy();
-            enemy1.x = 4900;
-            enemy1.y = 500;
+            enemy1.x = 5400;
+            enemy1.y = 1000;
             G.cyclables.push(enemy1);
             G.killables.push(enemy1);
             G.renderables.push(enemy1);
 
             var enemy2 = new JumpingEnemy();
-            enemy2.x = 6500;
-            enemy2.y = 500;
+            enemy2.x = 7000;
+            enemy2.y = 1000;
             G.cyclables.push(enemy2);
             G.killables.push(enemy2);
             G.renderables.push(enemy2);
