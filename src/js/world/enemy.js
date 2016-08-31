@@ -5,7 +5,6 @@ function Enemy(){
     this.legColor = '#b22';
     this.halo = redHalo;
     this.health = 1;
-    this.sayingTimeleft = 0;
     this.speed = 0;
 
     var superCycle = this.cycle;

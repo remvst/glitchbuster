@@ -8,6 +8,7 @@ function Character(){
     this.bodyOffsetY = 0;
     this.bubbleTailLength = 0;
     this.saying = [];
+    this.sayingTimeleft = 0;
 
     this.scaleFactor = 1;
     this.recoveryTime = 0;
