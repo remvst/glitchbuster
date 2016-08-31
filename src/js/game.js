@@ -150,8 +150,6 @@ function Game(){
 
         R.textAlign = 'center';
 
-        var maxDelta = 1 / 120; // TODO adjust
-
         glitchTimeleft -= e;
         if(glitchTimeleft <= 0){
             glitchEnd = null;
@@ -162,13 +160,11 @@ function Game(){
             }
         }
 
-        var deltas = ~~(e / maxDelta);
-        for(var i = 0 ; i < deltas ; i++, e -= maxDelta){
-            G.doCycle(maxDelta);
-        }
-
-        if(e > 0){
-            G.doCycle(e % maxDelta);
+        var maxDelta = 1 / 120, // TODO adjust
+            deltas = ~~(e / maxDelta);
+        while(e > 0){
+            G.doCycle(min(e, maxDelta));
+            e -= maxDelta;
         }
 
         // Rendering
