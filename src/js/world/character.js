@@ -397,7 +397,7 @@ function Character(){
 
     this.say = function(s){
         this.saying = s.push ? s : [s];
-        this.sayingTimeleft = 3;
+        this.sayingTimeleft = this.saying.length ? 3 : 0;
         interp(this, 'bubbleTailLength', 0, 70, 0.3, 0, easeOutBack);
     };
 }
