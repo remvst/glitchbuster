@@ -292,10 +292,10 @@ function Game(){
         }else{
             G.applyGlitch(0, 0.5);
             hideTilesAnimation();
-            setTimeout(function(){
+            delayed(function(){
                 G.startNewWorld();
                 G.hideTiles = true;
-                setTimeout(showTilesAnimation, 500);
+                delayed(showTilesAnimation, 500);
             }, 500);
         }
     };
