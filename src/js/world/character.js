@@ -72,8 +72,8 @@ function Character(){
             var rightLegLength = this.direction || jumpCount > 0 ? legAmplitude - legLength : legAmplitude;
 
             R.fillStyle = this.legColor;
-            fillRect(12, 56, 8, leftLegLength);
-            fillRect(44, 56, 8, rightLegLength);
+            fillRect(10, 45, 6, leftLegLength);
+            fillRect(35, 45, 6, rightLegLength);
             restore();
         }
 
@@ -95,7 +95,7 @@ function Character(){
         save();
         translate(-CHARACTER_WIDTH / 2 + 2, -CHARACTER_HEIGHT / 2);
         R.fillStyle = this.bodyColor;
-        fillRect(0, 0, 58, 56);
+        fillRect(0, 0, 46, 45);
 
         // Eyes
         var p = 4, // blink interval
@@ -103,19 +103,19 @@ function Character(){
             mt = G.t % p, // modulo-ed time
             mi = p - bt / 2, // middle of the blink
             s = min(1, max(-mt + mi, mt - mi) / (bt / 2)), // scale of the eyes
-            h = s * 6;
+            h = s * 5;
 
         if(this.dead){
             h = 1;
         }
 
-        var eyesY = this.lookingDown ? 30 : 12;
+        var eyesY = this.lookingDown ? 24 : 10;
 
         if(!this.fixing){
             R.fillStyle = '#000';
-            var offset = this.talking ? -12 : 0;
-            fillRect(34 + offset, eyesY, 6, h);
-            fillRect(46 + offset, eyesY, 6, h);
+            var offset = this.talking ? -10 : 0;
+            fillRect(27 + offset, eyesY, 5, h);
+            fillRect(37 + offset, eyesY, 5, h);
         }
         restore();
 

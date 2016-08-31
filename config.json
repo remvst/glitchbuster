@@ -82,9 +82,9 @@
 
         "CANVAS_WIDTH": 640,
         "CANVAS_HEIGHT": 920,
-        "TILE_SIZE": 100,
-        "CHARACTER_WIDTH": 50,
-        "CHARACTER_HEIGHT": 66,
+        "TILE_SIZE": 80,
+        "CHARACTER_WIDTH": 40,
+        "CHARACTER_HEIGHT": 52,
         "WORLD_PADDING": 5,
         "MASK_ROWS": 10,
         "MASK_COLS": 10,
@@ -107,7 +107,7 @@
         "RIGHT": 8,
 
         "GRAVITY": 6000,
-        "PLAYER_SPEED": 700,
+        "PLAYER_SPEED": 560,
         "PLAYER_JUMP_ACCELERATION": -1600,
         "PLAYER_INITIAL_HEALTH": 5,
 
