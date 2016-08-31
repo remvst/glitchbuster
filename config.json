@@ -161,6 +161,7 @@
     ],
     "FORCE_MANGLING": [
         "alpha",
-        "button"
+        "button",
+        "mask"
     ]
 }
