@@ -1,8 +1,6 @@
-const colors = require('colors/safe');
-
 var VOID_ID = 0;
 
-var energyColorMap = [colors.white, colors.green, colors.blue, colors.yellow, colors.magenta, colors.red];
+//var energyColorMap = [colors.white, colors.green, colors.blue, colors.yellow, colors.magenta, colors.red];
 
 var PathFinder = function(matrix){
     this.matrix = matrix;
@@ -10,6 +8,7 @@ var PathFinder = function(matrix){
     this.queued = [];
     this.queuedMap = {};
     this.energyCutOff = 5;
+    this.jumpDistanceCutOff = 6;
 
     this.startRow = null;
     this.startCol = null;
@@ -61,7 +60,8 @@ PathFinder.prototype.explore = function(startRow, startCol, exitRow, exitCol){
         'row': this.startRow,
         'col': this.startCol,
         'distance': 0,
-        'energy': 0
+        'energy': 0,
+        'jumpDistance': 0
     };
 
     this.queued.push(firstItem);
@@ -94,7 +94,7 @@ PathFinder.prototype.exploreItem = function(item){
 
     var key = this.key(item.row, item.col);
     this.explored[key] = item;
-    this.queued[key] = null;
+    this.queuedMap[key] = null;
 
     var neighbors = this.neighbors(item);
     neighbors.forEach(function(neighbor){
@@ -124,36 +124,62 @@ PathFinder.prototype.pickNonExploredItem = function(){
 };
 
 PathFinder.prototype.neighbors = function(item){
-    return [{
-        // Up
-        'row': item.row - 1,
-        'col': item.col,
-        'distance': item.distance + 1,
-        'energy': item.energy + 1
-    }, {
+    var neighbors = [];
+
+    // If we're currently going downwards, let's not add the jump up
+    if(!item.falling){
+        neighbors.push({
+            // Up
+            'row': item.row - 1,
+            'col': item.col,
+            'distance': item.distance + 1,
+            'energy': item.energy + 1,
+            'jumpDistance': item.jumpDistance,
+            'falling': false
+        });
+    }
+
+    neighbors.push({
         // Down
         'row': item.row + 1,
         'col': item.col,
         'distance': item.distance + 1,
-        'energy': item.energy // can't have negative energy
-    }, {
+        'energy': item.energy, // can't have negative energy
+        'jumpDistance': item.jumpDistance,
+        'falling': true
+    });
+
+    neighbors.push({
         // Left
         'row': item.row,
         'col': item.col - 1,
         'distance': item.distance + 1,
-        'energy': item.energy + 1
-    }, {
+        'energy': item.energy,
+        'jumpDistance': item.jumpDistance + 1,
+        'falling': item.falling
+    });
+
+    neighbors.push({
         // Right
         'row': item.row,
         'col': item.col + 1,
         'distance': item.distance + 1,
-        'energy': item.energy + 1
-    }];
+        'energy': item.energy,
+        'jumpDistance': item.jumpDistance + 1,
+        'falling': item.falling
+    });
+
+    return neighbors;
 };
 
 PathFinder.prototype.maybeAddToNonExplored = function(item){
     if(item.energy >= this.energyCutOff){
         // Too much energy required
+        return;
+    }
+
+    if(item.jumpDistance >= this.jumpDistanceCutOff){
+        // Jump is too far
         return;
     }
 
@@ -165,10 +191,9 @@ PathFinder.prototype.maybeAddToNonExplored = function(item){
     var queuedCell = this.queuedCell(item.row, item.col);
     if(queuedCell){
         // Already queued
-        if(queuedCell.energy > item.energy){
-            // Energy shortcut
-            queuedCell.energy = item.energy;
-        }
+        queuedCell.energy = Math.min(queuedCell.jumpDistance, item.energy);
+        queuedCell.jumpDistance = Math.min(queuedCell.jumpDistance, item.jumpDistance);
+        queuedCell.falling = queuedCell.falling && item.falling;
 
         return;
     }
@@ -178,17 +203,23 @@ PathFinder.prototype.maybeAddToNonExplored = function(item){
         return;
     }
 
-    var exploredCell = this.isExplored(item.row, item.col);
+    var exploredCell = this.exploredCell(item.row, item.col);
     //if(exploredCell && exploredCell.distance < item.distance && exploredCell.energy < item.energy){
     if(exploredCell){
-        // Already explored and not a shortcut
-        // TODO do shortcuts
-        return;
+        if(exploredCell.jumpDistance > item.jumpDistance){
+            //this.explored[this.key(item.row, item.col)] = null;
+        }else{
+            // Already explored and not a shortcut
+            // TODO do shortcuts
+            return;
+        }
     }
 
-    // If the cell is just over the floor, no need to have energy
+    // If the cell is just over the floor, no need to have energy nor momentum
     if(this.isNotVoid(item.row + 1, item.col)){
         item.energy = 0;
+        item.jumpDistance = 0;
+        item.falling = false;
     }
 
     this.queuedMap[this.key(item.row, item.col)] = item;
@@ -205,7 +236,9 @@ PathFinder.prototype.toString = function(){
                 s += 'e';
             }else if(this.isExplored(row, col)){
                 var exploredCell = this.exploredCell(row, col);
-                s += energyColorMap[exploredCell.energy]('+');
+                //s += energyColorMap[exploredCell.energy]('+');
+                //s += colors[exploredCell.falling ? 'green' : 'red']('+');
+                s += '+';
             }else{
                 s += this.matrix[row][col] || ' ';
             }
@@ -233,8 +266,7 @@ var matrix = [
 ];
 
 var finder = new PathFinder(earlyLevel);
-finder.explore(12, 10, 14, 30);
+finder.explore(12, 10, 10, 29);
 
 console.log(finder.toString());
-
-console.log(finder.exploredCell(10, 36));
+console.log(finder.exploredCell(10, 18));
