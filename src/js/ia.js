@@ -49,6 +49,18 @@ PathFinder.prototype.isNotVoid = function(row, col){
     return this.matrix[row] && this.matrix[row][col] !== VOID_ID;
 };
 
+PathFinder.prototype.buildPathFromRoot = function(root){
+    var path = [];
+    while(root.parent){
+        path.unshift({
+            'row': root.row,
+            'col': root.col
+        });
+        root = root.parent;
+    }
+    return path;
+};
+
 PathFinder.prototype.explore = function(startRow, startCol, exitRow, exitCol){
     this.startRow = startRow;
     this.startCol = startCol;
@@ -66,17 +78,18 @@ PathFinder.prototype.explore = function(startRow, startCol, exitRow, exitCol){
 
     this.queued.push(firstItem);
 
-    for(var i = 0 ; i < 200 && this.queued.length > 0 ; i++){
+    var exitCell;
+    for(var i = 0 ; i < 200 && this.queued.length > 0 && !exitCell ; i++){
         this.exploreStep();
 
-        var exitCell = this.queuedCell(exitRow, exitCol);
-        if(exitCell){
-            console.log('found the exit, distance:' + exitCell.distance);
-            return;
-        }
+        exitCell = this.queuedCell(exitRow, exitCol);
     }
 
-    console.log('did not find the exit');
+    if(exitCell){
+        return this.buildPathFromRoot(exitCell);
+    }else{
+        return null;
+    }
 };
 
 PathFinder.prototype.exploreStep = function(){
@@ -135,7 +148,8 @@ PathFinder.prototype.neighbors = function(item){
             'distance': item.distance + 1,
             'energy': item.energy + 1,
             'jumpDistance': item.jumpDistance,
-            'falling': false
+            'falling': false,
+            'parent': item
         });
     }
 
@@ -146,7 +160,8 @@ PathFinder.prototype.neighbors = function(item){
         'distance': item.distance + 1,
         'energy': item.energy, // can't have negative energy
         'jumpDistance': item.jumpDistance,
-        'falling': true
+        'falling': true,
+        'parent': item
     });
 
     neighbors.push({
@@ -156,7 +171,8 @@ PathFinder.prototype.neighbors = function(item){
         'distance': item.distance + 1,
         'energy': item.energy,
         'jumpDistance': item.jumpDistance + 1,
-        'falling': item.falling
+        'falling': item.falling,
+        'parent': item
     });
 
     neighbors.push({
@@ -166,7 +182,8 @@ PathFinder.prototype.neighbors = function(item){
         'distance': item.distance + 1,
         'energy': item.energy,
         'jumpDistance': item.jumpDistance + 1,
-        'falling': item.falling
+        'falling': item.falling,
+        'parent': item
     });
 
     return neighbors;
@@ -266,7 +283,7 @@ var matrix = [
 ];
 
 var finder = new PathFinder(earlyLevel);
-finder.explore(12, 10, 10, 29);
+console.log(finder.explore(12, 10, 10, 29));
 
 console.log(finder.toString());
 console.log(finder.exploredCell(10, 18));
