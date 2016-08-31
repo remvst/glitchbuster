@@ -265,7 +265,11 @@ function Game(){
             glitchEnd = noiseGlitch;
         }];
 
-        (isNaN(id) ? pick(l) : l[id])();
+        if(isNaN(id)){
+            pick(l)();
+        }else{
+            l[id]();
+        }
 
         glitchTimeleft = d || rand(0.1, 0.3);
         nextGlitch = G.currentLevel > 2 ? rand(4, 8) : 99;
