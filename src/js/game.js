@@ -146,7 +146,7 @@ function Game(){
         if(G.frameCount == 100){
             var totalTime = Date.now() - G.frameCountStart,
                 fps = G.frameCount / (totalTime / 1000);
-            if(fps < 30 && !navigator.userAgent.match(/Android/i)){
+            if(fps < 30){
                 G.setResolution(G.resolution * 0.6);
             }
         }
