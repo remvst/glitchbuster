@@ -1,6 +1,6 @@
 var D = document,
     w = window,
-    T = setTimeout,
+    delayed = setTimeout,
     shittyMode, // undefined by default
     C, // canvas
     R, // canvas context
@@ -13,6 +13,6 @@ var D = document,
                 w.webkitRequestAnimationFrame ||
                 w.mozRequestAnimationFrame    ||
                 function(c){
-                    T(c, 1000 / 60);
+                    delayed(c, 1000 / 60);
                 };
     })();

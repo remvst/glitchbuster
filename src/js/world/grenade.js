@@ -151,12 +151,12 @@ function Grenade(){
 
 
         var m = this;
-        T(function(){
+        delayed(function(){
             remove(G.cyclables, m);
             remove(G.renderables, m);
         }, 0);
 
-        T(function(){
+        delayed(function(){
             if(V.targetted == m){
                 V.targetted = null;
             }

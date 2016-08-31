@@ -1,5 +1,5 @@
 onresize = function(){
-    T(function(){
+    delayed(function(){
         var mw = innerWidth,
             mh = innerHeight,
 

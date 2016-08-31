@@ -38,7 +38,7 @@ function SpawnAnimation(){
 
     var tUnlock = 500;
     if(!G.currentLevel){
-        T(function(){
+        delayed(function(){
             P.say([
                 nomangle('Hello there!'),
                 nomangle('This code is falling apart!'),
@@ -48,11 +48,11 @@ function SpawnAnimation(){
         tUnlock = 9000;
     }
 
-    T(function(){
+    delayed(function(){
         spawnSound.play();
     }, 500);
 
-    T(function(){
+    delayed(function(){
         P.talking = false;
         P.controllable = true;
         showTilesAnimation();

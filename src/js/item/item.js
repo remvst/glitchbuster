@@ -32,7 +32,7 @@ function Item(x, y){
     this.cycle = function(){
         if(dist(this, P) < GRENADE_PICKUP_RADIUS && !this.pickedUp){
             var m = this;
-            T(function(){
+            delayed(function(){
                 remove(G.cyclables, m);
                 remove(G.renderables, m);
             }, 0);

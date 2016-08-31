@@ -94,7 +94,7 @@ function Game(){
                 }
             });
         }else{
-            T(function(){
+            delayed(function(){
                 P.say(pick([
                     nomangle('There\'s more?!'),
                     nomangle('Yay more bugs'),
@@ -282,7 +282,7 @@ function Game(){
     };
 
     G.playerDied = function(){
-        T(function(){
+        delayed(function(){
             G.menu = new GameOverMenu(GAME_OVER_DEATH);
             interp(G.menu, 'alpha', 0, 1, 0.5);
         }, 2000);
@@ -314,7 +314,7 @@ function Game(){
     };
 
     var lf = Date.now();
-    T(function(){
+    delayed(function(){
         var n = Date.now();
 
         var e = (n - lf) / 1000;

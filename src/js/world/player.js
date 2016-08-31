@@ -34,7 +34,7 @@ function Player(){
                 interp(this, 'x', this.x, W.exit.center.x, 1);
                 interp(W.exit, 'alpha', 1, 0, 3);
 
-                T(function(){
+                delayed(function(){
                     fixedSound.play();
                     G.bugFixed();
                 }, 3500);

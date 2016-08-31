@@ -41,12 +41,12 @@ function Enemy(){
         superDie.call(this);
 
         var s = this;
-        T(function(){
+        delayed(function(){
             remove(G.cyclables, s);
             remove(G.killables, s);
         }, 0);
 
-        T(function(){
+        delayed(function(){
             remove(G.renderables, s);
         }, 3000);
 
