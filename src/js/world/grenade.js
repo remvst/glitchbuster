@@ -144,8 +144,7 @@ function Grenade(){
         }
 
         for(i in G.killables){
-            var d = dist(this, G.killables[i]);
-            if(d < TILE_SIZE * 2){
+            if(dist(this, G.killables[i]) < TILE_SIZE * 2){
                 G.killables[i].hurt(this, 3);
             }
         }
