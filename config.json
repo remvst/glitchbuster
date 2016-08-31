@@ -158,5 +158,9 @@
         "middle",
         "left",
         "px"
+    ],
+    "FORCE_MANGLING": [
+        "alpha",
+        "button"
     ]
 }
