@@ -5,7 +5,7 @@ function cache(w, h, f){
 
     var r = c.getContext('2d');
 
-    (f.call ? f : shape.bind(null, r, f))(r, c);
+    f(r, c);
 
     return c;
 }
