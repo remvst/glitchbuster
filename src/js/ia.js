@@ -5,7 +5,7 @@ var PathFinder = function(matrix){
     this.explored = {};
     this.queued = [];
     this.queuedMap = {};
-    this.energyCutOff = 2;
+    this.energyCutOff = 5;
 
     this.startRow = null;
     this.startCol = null;
@@ -42,6 +42,10 @@ PathFinder.prototype.isExit = function(row, col){
     return row === this.exitRow && col === this.exitCol;
 };
 
+PathFinder.prototype.isNotVoid = function(row, col){
+    return this.matrix[row] && this.matrix[row][col] !== VOID_ID;
+};
+
 PathFinder.prototype.explore = function(startRow, startCol, exitRow, exitCol){
     this.startRow = startRow;
     this.startCol = startCol;
@@ -58,7 +62,7 @@ PathFinder.prototype.explore = function(startRow, startCol, exitRow, exitCol){
 
     this.queued.push(firstItem);
 
-    for(var i = 0 ; i < 100 ; i++){
+    for(var i = 0 ; i < 100 && this.queued.length > 0 ; i++){
         this.exploreStep();
 
         var exitCell = this.queuedCell(exitRow, exitCol);
@@ -86,6 +90,7 @@ PathFinder.prototype.exploreItem = function(item){
 
     var key = this.key(item.row, item.col);
     this.explored[key] = item;
+    this.queued[key] = null;
 
     var neighbors = this.neighbors(item);
     neighbors.forEach(function(neighbor){
@@ -101,31 +106,50 @@ PathFinder.prototype.pickNonExploredItem = function(){
 
 PathFinder.prototype.neighbors = function(item){
     return [{
+        // Up
         'row': item.row - 1,
         'col': item.col,
         'distance': item.distance + 1,
         'energy': item.energy + 1
     }, {
+        // Down
         'row': item.row + 1,
         'col': item.col,
         'distance': item.distance + 1,
-        'energy': item.energy - 1
+        'energy': Math.max(0, item.energy - 1) // can't have negative energy
     }, {
+        // Left
         'row': item.row,
         'col': item.col - 1,
         'distance': item.distance + 1,
-        'energy': item.energy
+        'energy': item.energy + 1
     }, {
+        // Right
         'row': item.row,
         'col': item.col + 1,
         'distance': item.distance + 1,
-        'energy': item.energy
+        'energy': item.energy + 1
     }];
 };
 
 PathFinder.prototype.maybeAddToNonExplored = function(item){
-    if(this.isQueued(item.row, item.col)){
+    if(item.row === 9 && item.col === 15){
+        console.log('looool', item.energy);
+    }
+
+    if(item.energy >= this.energyCutOff){
+        // Too much energy required
+        return;
+    }
+
+    var queuedCell = this.queuedCell(item.row, item.col);
+    if(queuedCell){
         // Already queued
+        if(queuedCell.energy > item.energy){
+            // Energy shortcut
+            queuedCell.energy = item.energy;
+        }
+
         return;
     }
 
@@ -150,6 +174,11 @@ PathFinder.prototype.maybeAddToNonExplored = function(item){
         // Already explored and not a shortcut
         // TODO do shortcuts
         return;
+    }
+
+    // If the cell is just over the floor, no need to have energy
+    if(this.isNotVoid(item.row + 1, item.col)){
+        item.energy = 0;
     }
 
     this.queuedMap[this.key(item.row, item.col)] = item;
@@ -191,6 +220,13 @@ var matrix = [
 ];
 
 var finder = new PathFinder(tuto);
-finder.explore(10, 10, 10, 20);
+finder.explore(12, 10, 10, 20);
 
 console.log(finder.toString());
+
+/*console.log(finder.neighbors({
+    row: 10,
+    col: 15,
+    energy: 0,
+
+}));*/
