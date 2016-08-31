@@ -29,7 +29,7 @@ function Character(){
         }
 
         save();
-        translate(this.x, this.y);
+        translate(~~this.x, ~~this.y);
 
         // Halo
         if(!shittyMode){
