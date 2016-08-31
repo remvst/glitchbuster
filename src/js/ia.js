@@ -1,6 +1,4 @@
-var VOID_ID = 0;
-
-//var energyColorMap = [colors.white, colors.green, colors.blue, colors.yellow, colors.magenta, colors.red];
+if(DEBUG){
 
 var PathFinder = function(matrix){
     this.matrix = matrix;
@@ -46,7 +44,7 @@ PathFinder.prototype.isExit = function(row, col){
 };
 
 PathFinder.prototype.isNotVoid = function(row, col){
-    return this.matrix[row] && this.matrix[row][col] !== VOID_ID;
+    return this.matrix[row] && this.matrix[row][col] !== VOID_ID && this.matrix[row][col] !== EXIT_ID;
 };
 
 PathFinder.prototype.buildPathFromRoot = function(root){
@@ -79,14 +77,17 @@ PathFinder.prototype.explore = function(startRow, startCol, exitRow, exitCol){
     this.queued.push(firstItem);
 
     var exitCell;
-    for(var i = 0 ; i < 200 && this.queued.length > 0 && !exitCell ; i++){
+    for(var i = 0 ; i < 400 && this.queued.length > 0 && !exitCell ; i++){
         this.exploreStep();
 
         exitCell = this.queuedCell(exitRow, exitCol);
     }
 
     if(exitCell){
-        return this.buildPathFromRoot(exitCell);
+        return {
+            'path': this.buildPathFromRoot(exitCell),
+            'iterations': i
+        };
     }else{
         return null;
     }
@@ -95,7 +96,6 @@ PathFinder.prototype.explore = function(startRow, startCol, exitRow, exitCol){
 PathFinder.prototype.exploreStep = function(){
     var item = this.pickNonExploredItem();
     if(!item){
-        console.log('Nothing left to explore');
         return;
     }
 
@@ -103,8 +103,6 @@ PathFinder.prototype.exploreStep = function(){
 };
 
 PathFinder.prototype.exploreItem = function(item){
-    console.log('Exploring ' + item.row + ',' + item.col);
-
     var key = this.key(item.row, item.col);
     this.explored[key] = item;
     this.queuedMap[key] = null;
@@ -113,8 +111,6 @@ PathFinder.prototype.exploreItem = function(item){
     neighbors.forEach(function(neighbor){
         this.maybeAddToNonExplored(neighbor, item);
     }.bind(this));
-
-    console.log(this.queued.length + ' items left to explore');
 };
 
 PathFinder.prototype.pickNonExploredItem = function(){
@@ -215,7 +211,7 @@ PathFinder.prototype.maybeAddToNonExplored = function(item){
         return;
     }
 
-    if(this.matrix[item.row][item.col] != VOID_ID){
+    if(this.matrix[item.row][item.col] !== VOID_ID && this.matrix[item.row][item.col] !== EXIT_ID){
         // It's an obstacle, let's not explore it
         return;
     }
@@ -282,8 +278,12 @@ var matrix = [
     [1, 1, 1, 0, 0, 0, 0, 1, 1, 1]
 ];
 
+/*
 var finder = new PathFinder(earlyLevel);
 console.log(finder.explore(12, 10, 10, 29));
 
 console.log(finder.toString());
 console.log(finder.exploredCell(10, 18));
+*/
+
+}

@@ -52,6 +52,8 @@
             "src/js/glitches/slice.js",
             "src/js/glitches/noise.js",
 
+            "src/js/ia.js",
+
             "src/js/menu.js",
             "src/js/game.js",
             "src/js/controls.js",

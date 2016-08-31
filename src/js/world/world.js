@@ -110,10 +110,19 @@ function World(map){
             }
         }
 
-        P.render();
-
         for(var i in G.renderables){
             G.renderables[i].render();
+        }
+
+        if(DEBUG){
+            if(this.path){
+                R.strokeStyle = '#fff';
+                beginPath();
+                for(var i = 0 ; i < this.path.path.length ; i++){
+                    R.lineTo((this.path.path[i].col + 0.5) * TILE_SIZE, (this.path.path[i].row + 0.5) * TILE_SIZE);
+                }
+                stroke();
+            }
         }
 
         if(!shittyMode){
@@ -146,4 +155,11 @@ function World(map){
 
         restore();
     };
+
+    if(DEBUG){
+        this.findPathToExit = function(){
+            var pathFinder = new PathFinder(this.map);
+            this.path = pathFinder.explore(~~(P.y / TILE_SIZE), ~~(P.x / TILE_SIZE), this.exit.row, this.exit.col);
+        };
+    }
 }
