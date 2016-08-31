@@ -142,8 +142,10 @@ function Game(){
     G.cycle = function(e){
         G.t += e;
 
+        // 100th frame, checking if we are in a bad situation, and if yes, enable shitty mode
         if(++G.frameCount == 100 && (G.frameCount / ((Date.now() - G.frameCountStart) / 1000) < 30)){
-            G.setResolution(G.resolution * 0.6);
+            G.setResolution(G.resolution * 0.5);
+            shittyMode = true;
         }
 
         R.textAlign = 'center';
