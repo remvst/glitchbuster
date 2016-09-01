@@ -180,10 +180,10 @@ function Character(){
             var y = this.y + CHARACTER_HEIGHT / 2;
             for(var i = 0 ; i < 5 ; i++){
                 var x = rand(this.x - CHARACTER_WIDTH / 2, this.x + CHARACTER_WIDTH / 2);
-                particle(4, '#888', [
+                particle(3, '#888', [
                     ['x', x, x, 0.3],
-                    ['y', y, y - rand(50, 100), 0.3],
-                    ['s', 15, 0, 0.3]
+                    ['y', y, y - rand(40, 80), 0.3],
+                    ['s', 12, 0, 0.3]
                 ]);
             }
 
@@ -235,15 +235,15 @@ function Character(){
         }
 
         if(!this.dead){
-            interp(this, 'bodyOffsetY', 0, 10, 0.1);
-            interp(this, 'bodyOffsetY', 10, 0, 0.1, 0.1);
+            interp(this, 'bodyOffsetY', 0, 8, 0.1);
+            interp(this, 'bodyOffsetY', 8, 0, 0.1, 0.1);
 
             for(var i = 0 ; i < 5 ; i++){
                 var x = rand(this.x - CHARACTER_WIDTH / 2, this.x + CHARACTER_WIDTH / 2);
-                particle(4, '#888', [
+                particle(3, '#888', [
                     ['x', x, x, 0.3],
-                    ['y', tile.y, tile.y - rand(50, 100), 0.3],
-                    ['s', 15, 0, 0.3]
+                    ['y', tile.y, tile.y - rand(40, 80), 0.3],
+                    ['s', 12, 0, 0.3]
                 ]);
             }
         }
@@ -370,19 +370,19 @@ function Character(){
             var x = rand(this.x - CHARACTER_WIDTH / 2, this.x + CHARACTER_WIDTH / 2),
                 y = rand(this.y - CHARACTER_HEIGHT / 2, this.y + CHARACTER_HEIGHT / 2),
                 d = rand(0.5, 1);
-            particle(4, '#900', [
+            particle(3, '#900', [
                 ['x', x, x, 0.5],
-                ['y', y, y - rand(50, 100), 0.5],
-                ['s', 15, 0, 0.5]
+                ['y', y, y - rand(40, 80), 0.5],
+                ['s', 12, 0, 0.5]
             ]);
-            particle(4, '#900', [
+            particle(3, '#900', [
                 ['x', x, x, d],
                 ['y', y, this.y + CHARACTER_HEIGHT / 2, d, 0, easeOutBounce],
-                ['s', 15, 0, d]
+                ['s', 12, 0, d]
             ]);
         }
 
-        this.bodyOffsetY = 10;
+        this.bodyOffsetY = 8;
 
         interp(this, 'bodyRotation', 0, -PI / 2, 0.3);
 

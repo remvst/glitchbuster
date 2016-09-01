@@ -11,7 +11,11 @@ function particle(s, c, as, numeric){
             }
 
             R.fillStyle = p.c;
-            numeric ? fillText(n.toString(), p.x, p.y):fillRect(p.x - p.s / 2, p.y - p.s / 2, p.s, p.s);
+            if(numeric){
+                fillText(n.toString(), p.x, p.y);
+            }else{
+                fillRect(p.x - p.s / 2, p.y - p.s / 2, p.s, p.s);
+            }
         }
     });
 
