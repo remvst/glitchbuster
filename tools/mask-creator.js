@@ -188,7 +188,7 @@ window.addEventListener('load', function(){
                         return '        [' + row.join(', ') + ']';
                     }).join(',\n') + '\n' +
                 '    ]),\n' +
-                '    "exits": ' + exits.sort().join(' | ') + '\n' +
+                '    "exits": evaluate(' + exits.sort().join(' | ') + ')\n' +
             '}';
         }).join(', ') + ']';
 
