@@ -1,0 +1,57 @@
+[
+    "src/js/sound/jsfxr.js",
+
+    "src/js/util/expose-math.js",
+    "src/js/util/cache.js",
+    "src/js/util/pad.js",
+    "src/js/util/flatten.js",
+
+    "src/js/util/globals.js",
+    "src/js/sound/sounds.js",
+
+    "src/js/graphics/particle.js",
+    "src/js/graphics/noise-pattern.js",
+    "src/js/graphics/halo.js",
+    "src/js/graphics/mobile-controls.js",
+    "src/js/graphics/font.js",
+    "src/js/graphics/spawn-animation.js",
+    "src/js/graphics/show-tiles-animation.js",
+    "src/js/graphics/code-pattern.js",
+
+    "src/js/world/masks.js",
+    "src/js/tutorial-level.js",
+
+    "src/js/util/rand.js",
+    "src/js/util/dist.js",
+    "src/js/util/resize.js",
+    "src/js/util/pick.js",
+    "src/js/util/between.js",
+    "src/js/util/remove.js",
+    "src/js/util/interp.js",
+    "src/js/util/format-time.js",
+    "src/js/util/progress-string.js",
+
+    "src/js/item/item.js",
+    "src/js/item/grenade-item.js",
+    "src/js/item/health-item.js",
+
+    "src/js/world/mirror-mask.js",
+    "src/js/world/generate-world.js",
+    "src/js/world/grenade.js",
+    "src/js/world/character.js",
+    "src/js/world/enemy.js",
+    "src/js/world/walking-enemy.js",
+    "src/js/world/jumping-enemy.js",
+    "src/js/world/player.js",
+    "src/js/world/world.js",
+    "src/js/world/camera.js",
+    "src/js/world/tile.js",
+
+    "src/js/glitches/slice.js",
+    "src/js/glitches/noise.js",
+
+    "src/js/menu.js",
+    "src/js/game.js",
+    "src/js/controls.js",
+    "src/js/main.js"
+]

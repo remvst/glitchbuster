@@ -1,0 +1,21 @@
+{
+    "skip": [
+        "arguments",
+        "callee",
+        "center",
+        "middle",
+        "left",
+        "px"
+    ],
+    "force": [
+        "alpha",
+        "button",
+        "mask",
+        "matrix",
+        "contains",
+        "remove",
+        "speed",
+        "direction",
+        "visible"
+    ]
+}

@@ -1,0 +1,76 @@
+{
+    "true": 1,
+    "false": 0,
+    "null": 0,
+
+    "CANVAS_WIDTH": 640,
+    "CANVAS_HEIGHT": 920,
+    "TILE_SIZE": 80,
+    "CHARACTER_WIDTH": 40,
+    "CHARACTER_HEIGHT": 52,
+    "WORLD_PADDING": 5,
+    "MASK_ROWS": 10,
+    "MASK_COLS": 10,
+
+    "VOID_ID": 0,
+    "TILE_ID": 1,
+    "UNBREAKABLE_TILE_ID": 2,
+    "PROBABLE_TILE_ID": 3,
+    "SPAWN_ID": 4,
+    "EXIT_ID": 5,
+    "CEILING_SPIKE_ID": 6,
+    "FLOOR_SPIKE_ID": 7,
+
+    "PROBABLE_TILE_PROBABILITY": 0.5,
+    "SPIKE_DENSITY": 0.05,
+
+    "UP": 1,
+    "DOWN": 2,
+    "LEFT": 4,
+    "RIGHT": 8,
+
+    "GRAVITY": 7500,
+    "PLAYER_SPEED": 560,
+    "PLAYER_JUMP_ACCELERATION": -1600,
+    "PLAYER_INITIAL_HEALTH": 5,
+
+    "GRENADE_RADIUS": 8,
+    "GRENADE_RADIUS_2": 16,
+    "GRENADE_BOUNCE_FACTOR": 0.5,
+
+    "WALKING_ENEMY_SPEED": 120,
+    "JUMPING_ENEMY_SPEED": 480,
+    "ENEMY_PATH_MIN_LENGTH": 2,
+    "ENEMY_DENSITY": 0.2,
+
+    "NOISE_PATTERN_SIZE": 400,
+    "NOISE_PIXEL_SIZE": 4,
+
+    "HALO_SIZE": 160,
+    "HALO_SIZE_HALF": 80,
+    "DARK_HALO_SIZE": 1000,
+    "DARK_HALO_SIZE_HALF": 500,
+
+    "FILLSTYLE": 1,
+    "FILLRECT": 2,
+    "DRAWIMAGE": 4,
+
+    "SPIKE_HEIGHT": 24,
+    "SPIKES_PER_TILE": 4,
+
+    "ARROW_SIZE": 20,
+    "ARROW_Y_OFFSET": -10,
+    "ITEM_ARROW_Y_OFFSET": -40,
+    "ITEM_PICKUP_RADIUS": 40,
+    "GRENADE_DENSITY": 0.1,
+
+    "HEALTH_DENSITY": 0.05,
+
+    "TIME_PER_LEVEL": 105,
+
+    "MOBILE_BUTTON_SIZE": 80,
+
+    "GAME_OVER_DEATH": 0,
+    "GAME_OVER_TIME": 1,
+    "GAME_OVER_SUCCESS": 2
+}
