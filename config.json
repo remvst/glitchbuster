@@ -71,7 +71,6 @@
     },
     "MACROS": {
         "matrix": "matrix",
-        "string": "string",
         "nomangle": "nomangle",
         "evaluate": "evaluate"
     },
