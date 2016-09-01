@@ -91,13 +91,13 @@ function Grenade(){
                     // Particle when bouncing
                     if(adjustments && !shittyMode){
                         for(var i = 0 ; i < 2 ; i++){
-                            var x = this.x + rand(-10, 10),
-                                y = this.y + rand(-10, 10),
+                            var x = this.x + rand(-8, 8),
+                                y = this.y + rand(-8, 8),
                                 d = rand(0.2, 0.5);
-                            particle(4, '#fff', [
+                            particle(3, '#fff', [
                                 ['x', x, x, d],
-                                ['y', y, y - rand(50, 100), d],
-                                ['s', 15, 0, d]
+                                ['y', y, y - rand(40, 80), d],
+                                ['s', 12, 0, d]
                             ]);
                         }
                     }
@@ -132,14 +132,14 @@ function Grenade(){
                 x = rand(-TILE_SIZE, TILE_SIZE) + this.x,
                 y = rand(-TILE_SIZE, TILE_SIZE) + this.y;
 
-            particle(4, pick([
-                'red',
-                'orange',
-                'yellow'
+            particle(3, pick([
+                '#f00',
+                '#f80',
+                '#ff0'
             ]), [
-                ['x', x, x + 10, d, 0, oscillate],
-                ['y', y, y - rand(100, 300), d, 0],
-                ['s', rand(30, 50), 0, d]
+                ['x', x, x + 8, d, 0, oscillate],
+                ['y', y, y - rand(80, 240), d, 0],
+                ['s', rand(24, 40), 0, d]
             ]);
         }
 

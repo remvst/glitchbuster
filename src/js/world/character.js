@@ -39,7 +39,7 @@ function Character(){
 
         // Dialog
         if(this.sayingTimeleft > 0 && this.saying.length){
-            R.font = '20pt Arial';
+            R.font = '16pt Arial';
 
             var t = this.saying[0];
             var w = measureText(t).width + 8;

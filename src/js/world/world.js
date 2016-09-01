@@ -36,7 +36,7 @@ function World(map){
                 particle(4, '#fff', [
                     ['x', x, x, d],
                     ['y', tile.y + rand(TILE_SIZE), this.firstYUnder(x, tile.center.y), d, 0, easeOutBounce],
-                    ['s', 15, 0, d]
+                    ['s', 12, 0, d]
                 ]);
             }
 
