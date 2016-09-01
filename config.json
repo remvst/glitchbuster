@@ -166,6 +166,7 @@
         "contains",
         "remove",
         "speed",
-        "direction"
+        "direction",
+        "visible"
     ]
 }
