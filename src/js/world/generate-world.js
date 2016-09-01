@@ -56,9 +56,9 @@ function generateWorld(id){
         }
     }
 
-    var map = [];
+    var matrix = [];
     for(row = 0 ; row < maskMapRows * MASK_ROWS ; row++){
-        map[row] = [];
+        matrix[row] = [];
     }
 
     function applyMask(matrix, mask, rowStart, colStart){
@@ -75,7 +75,7 @@ function generateWorld(id){
             var mask = pickMask(usedMasks, maskMap[row][col]).mask;
 
             // Apply mask
-            applyMask(map, mask, row * MASK_ROWS, col * MASK_COLS);
+            applyMask(matrix, mask, row * MASK_ROWS, col * MASK_COLS);
         }
     }
 
@@ -84,17 +84,17 @@ function generateWorld(id){
         ceilings = [],
         floorsMap = [];
 
-    for(row = 0 ; row < map.length ; row++){
+    for(row = 0 ; row < matrix.length ; row++){
         finalMap.push([]);
         floorsMap.push([]);
 
-        map[row][col] = parseInt(map[row][col]);
+        matrix[row][col] = parseInt(matrix[row][col]);
 
-        for(col = 0 ; col < map[row].length ; col++){
-            finalMap[row].push(map[row][col]);
+        for(col = 0 ; col < matrix[row].length ; col++){
+            finalMap[row].push(matrix[row][col]);
 
             // Probabilistic wall, let's decide now
-            if(map[row][col] == PROBABLE_TILE_ID){
+            if(matrix[row][col] == PROBABLE_TILE_ID){
                 finalMap[row][col] = rand() < PROBABLE_TILE_PROBABILITY ? 1 : 0;
             }
 
