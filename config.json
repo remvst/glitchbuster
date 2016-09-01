@@ -72,7 +72,8 @@
     "MACROS": {
         "matrix": "matrix",
         "string": "string",
-        "nomangle": "nomangle"
+        "nomangle": "nomangle",
+        "evaluate": "evaluate"
     },
     "CONSTANTS": {
         "true": 1,
@@ -161,6 +162,11 @@
     "FORCE_MANGLING": [
         "alpha",
         "button",
-        "mask"
+        "mask",
+        "matrix",
+        "contains",
+        "remove",
+        "speed",
+        "direction"
     ]
 }

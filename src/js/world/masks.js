@@ -11,7 +11,7 @@ var masks = [{
         [1, 1, 1, 0, 0, 0, 0, 1, 1, 1],
         [1, 1, 1, 0, 0, 0, 0, 1, 1, 1]
     ]),
-    "exits": DOWN | LEFT | RIGHT | UP
+    "exits": evaluate(DOWN | LEFT | RIGHT | UP)
 }, {
     "mask": matrix([
         [1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
@@ -25,7 +25,7 @@ var masks = [{
         [1, 1, 1, 0, 0, 0, 0, 1, 1, 1],
         [1, 1, 1, 0, 0, 0, 0, 1, 1, 1]
     ]),
-    "exits": DOWN | LEFT | RIGHT
+    "exits": evaluate(DOWN | LEFT | RIGHT)
 }, {
     "mask": matrix([
         [1, 0, 0, 1, 1, 1, 1, 0, 0, 1],
@@ -39,7 +39,7 @@ var masks = [{
         [1, 0, 0, 1, 1, 1, 1, 0, 0, 1],
         [1, 1, 1, 1, 1, 1, 1, 1, 1, 1]
     ]),
-    "exits": RIGHT | UP
+    "exits": evaluate(RIGHT | UP)
 }, {
     "mask": matrix([
         [1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
@@ -53,7 +53,7 @@ var masks = [{
         [1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
         [1, 1, 1, 1, 1, 1, 1, 1, 1, 1]
     ]),
-    "exits": RIGHT
+    "exits": evaluate(RIGHT)
 }, {
     "mask": matrix([
         [1, 1, 1, 0, 0, 0, 0, 0, 0, 1],
@@ -67,7 +67,7 @@ var masks = [{
         [1, 0, 0, 0, 0, 0, 0, 0, 0, 1],
         [1, 0, 0, 0, 0, 0, 0, 0, 0, 1]
     ]),
-    "exits": DOWN | LEFT | UP
+    "exits": evaluate(DOWN | LEFT | UP)
 }, {
     "mask": matrix([
         [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
@@ -81,7 +81,7 @@ var masks = [{
         [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
         [0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
     ]),
-    "exits": DOWN | LEFT | RIGHT | UP
+    "exits": evaluate(DOWN | LEFT | RIGHT | UP)
 }, {
     "mask": matrix([
         [1, 1, 0, 0, 0, 0, 0, 0, 1, 1],
@@ -95,7 +95,7 @@ var masks = [{
         [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
         [0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
     ]),
-    "exits": DOWN | LEFT | RIGHT | UP
+    "exits": evaluate(DOWN | LEFT | RIGHT | UP)
 }, {
     "mask": matrix([
         [1, 0, 0, 0, 0, 0, 0, 0, 0, 1],
@@ -109,7 +109,7 @@ var masks = [{
         [1, 0, 0, 0, 0, 0, 0, 0, 0, 1],
         [1, 1, 1, 1, 1, 1, 1, 1, 1, 1]
     ]),
-    "exits": LEFT | RIGHT | UP
+    "exits": evaluate(LEFT | RIGHT | UP)
 }, {
     "mask": matrix([
         [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
@@ -123,7 +123,7 @@ var masks = [{
         [1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
         [1, 1, 1, 1, 1, 1, 1, 1, 1, 1]
     ]),
-    "exits": LEFT | RIGHT | UP
+    "exits": evaluate(LEFT | RIGHT | UP)
 }, {
     "mask": matrix([
         [1, 0, 0, 0, 0, 0, 0, 0, 1, 1],
@@ -137,7 +137,7 @@ var masks = [{
         [1, 1, 0, 0, 1, 1, 0, 0, 1, 1],
         [1, 1, 1, 1, 1, 1, 1, 1, 1, 1]
     ]),
-    "exits": RIGHT | UP
+    "exits": evaluate(RIGHT | UP)
 }, {
     "mask": matrix([
         [1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
@@ -151,7 +151,7 @@ var masks = [{
         [1, 1, 1, 0, 0, 0, 0, 1, 1, 1],
         [1, 1, 1, 1, 1, 1, 1, 1, 1, 1]
     ]),
-    "exits": LEFT | RIGHT
+    "exits": evaluate(LEFT | RIGHT)
 }, {
     "mask": matrix([
         [1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
@@ -165,7 +165,7 @@ var masks = [{
         [1, 1, 1, 1, 0, 0, 0, 0, 0, 1],
         [1, 1, 1, 1, 0, 0, 0, 0, 0, 1]
     ]),
-    "exits": DOWN | LEFT
+    "exits": evaluate(DOWN | LEFT)
 }, {
     "mask": matrix([
         [0, 0, 0, 0, 0, 0, 0, 0, 0, 1],
@@ -179,7 +179,7 @@ var masks = [{
         [1, 1, 1, 0, 0, 0, 0, 0, 0, 1],
         [1, 1, 1, 1, 1, 1, 1, 1, 1, 1]
     ]),
-    "exits": LEFT | UP
+    "exits": evaluate(LEFT | UP)
 }, {
     "mask": matrix([
         [1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
@@ -193,7 +193,7 @@ var masks = [{
         [0, 1, 1, 0, 0, 0, 0, 1, 1, 0],
         [1, 1, 1, 1, 1, 1, 1, 1, 1, 1]
     ]),
-    "exits": LEFT | RIGHT
+    "exits": evaluate(LEFT | RIGHT)
 }, {
     "mask": matrix([
         [1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
@@ -207,7 +207,7 @@ var masks = [{
         [1, 1, 0, 0, 1, 1, 0, 0, 1, 1],
         [1, 1, 1, 1, 1, 1, 1, 1, 1, 1]
     ]),
-    "exits": LEFT | RIGHT
+    "exits": evaluate(LEFT | RIGHT)
 }, {
     "mask": matrix([
         [1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
@@ -221,7 +221,7 @@ var masks = [{
         [1, 1, 1, 0, 0, 0, 0, 1, 1, 1],
         [1, 1, 1, 1, 1, 1, 1, 1, 1, 1]
     ]),
-    "exits": LEFT | RIGHT
+    "exits": evaluate(LEFT | RIGHT)
 }, {
     "mask": matrix([
         [1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
@@ -235,7 +235,7 @@ var masks = [{
         [1, 0, 0, 1, 1, 0, 0, 1, 1, 0],
         [1, 1, 1, 1, 1, 1, 1, 1, 1, 1]
     ]),
-    "exits": LEFT | RIGHT
+    "exits": evaluate(LEFT | RIGHT)
 }, {
     "mask": matrix([
         [1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
@@ -249,7 +249,7 @@ var masks = [{
         [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
         [1, 1, 1, 1, 1, 1, 1, 1, 1, 1]
     ]),
-    "exits": LEFT | RIGHT
+    "exits": evaluate(LEFT | RIGHT)
 }, {
     "mask": matrix([
         [1, 0, 0, 0, 0, 0, 0, 0, 0, 1],
@@ -263,7 +263,7 @@ var masks = [{
         [1, 0, 0, 0, 0, 0, 0, 0, 0, 1],
         [1, 0, 0, 0, 0, 0, 0, 0, 0, 1]
     ]),
-    "exits": DOWN | RIGHT | UP
+    "exits": evaluate(DOWN | RIGHT | UP)
 }, {
     "mask": matrix([
         [1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
@@ -277,7 +277,7 @@ var masks = [{
         [1, 0, 0, 1, 1, 1, 1, 1, 1, 1],
         [1, 1, 1, 1, 1, 1, 1, 1, 1, 1]
     ]),
-    "exits": RIGHT
+    "exits": evaluate(RIGHT)
 }, {
     "mask": matrix([
         [1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
@@ -291,7 +291,7 @@ var masks = [{
         [1, 0, 0, 0, 0, 0, 0, 0, 0, 1],
         [1, 1, 1, 1, 1, 1, 1, 1, 1, 1]
     ]),
-    "exits": RIGHT
+    "exits": evaluate(RIGHT)
 }, {
     "mask": matrix([
         [1, 1, 1, 0, 0, 0, 0, 1, 1, 1],
@@ -305,7 +305,7 @@ var masks = [{
         [1, 1, 1, 0, 0, 0, 0, 1, 1, 1],
         [1, 1, 1, 1, 1, 1, 1, 1, 1, 1]
     ]),
-    "exits": LEFT | RIGHT | UP
+    "exits": evaluate(LEFT | RIGHT | UP)
 }, {
     "mask": matrix([
         [1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
@@ -319,7 +319,7 @@ var masks = [{
         [1, 1, 0, 0, 0, 0, 0, 0, 0, 1],
         [1, 1, 1, 1, 1, 1, 1, 0, 0, 1]
     ]),
-    "exits": DOWN | LEFT
+    "exits": evaluate(DOWN | LEFT)
 }, {
     "mask": matrix([
         [1, 1, 0, 0, 0, 0, 0, 0, 1, 1],
@@ -333,5 +333,5 @@ var masks = [{
         [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
         [1, 1, 1, 1, 1, 1, 1, 1, 1, 1]
     ]),
-    "exits": LEFT | RIGHT | UP
+    "exits": evaluate(LEFT | RIGHT | UP)
 }];
