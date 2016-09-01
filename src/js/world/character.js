@@ -42,18 +42,17 @@ function Character(){
             R.font = '20pt Arial';
 
             var t = this.saying[0];
-            var w = measureText(t).width + 10;
+            var w = measureText(t).width + 8;
             R.fillStyle = '#000';
             R.textBaseline = 'middle';
             R.globalAlpha = 0.5;
-            fillRect(-w / 2, -85 - this.bubbleTailLength, w, 30);
+            fillRect(-w / 2, -68 - this.bubbleTailLength, w, 24);
             R.globalAlpha = 1;
 
             R.fillStyle = this.bodyColor;
-            fillRect(-2, -50, 4, -this.bubbleTailLength);
+            fillRect(-2, -40, 4, -this.bubbleTailLength);
 
-            R.font = '20pt Arial';
-            fillText(t, 0, -70 - this.bubbleTailLength);
+            fillText(t, 0, -56 - this.bubbleTailLength);
         }
 
         // Facing left or right
@@ -64,7 +63,7 @@ function Character(){
             save();
             translate(-CHARACTER_WIDTH / 2 + 2, -CHARACTER_HEIGHT / 2);
 
-            var legAmplitude = 10,
+            var legAmplitude = 8,
                 legPeriod = 0.3,
                 legLength = (sin((G.t * PI * 2) / legPeriod) / 2) * legAmplitude + legAmplitude / 2;
 
@@ -103,7 +102,7 @@ function Character(){
             mt = G.t % p, // modulo-ed time
             mi = p - bt / 2, // middle of the blink
             s = min(1, max(-mt + mi, mt - mi) / (bt / 2)), // scale of the eyes
-            h = s * 5;
+            h = s * 4;
 
         if(this.dead){
             h = 1;
@@ -114,8 +113,8 @@ function Character(){
         if(!this.fixing){
             R.fillStyle = '#000';
             var offset = this.talking ? -10 : 0;
-            fillRect(27 + offset, eyesY, 5, h);
-            fillRect(37 + offset, eyesY, 5, h);
+            fillRect(27 + offset, eyesY, 4, h);
+            fillRect(37 + offset, eyesY, 4, h);
         }
         restore();
 
@@ -398,6 +397,6 @@ function Character(){
     this.say = function(s){
         this.saying = s.push ? s : [s];
         this.sayingTimeleft = this.saying.length ? 3 : 0;
-        interp(this, 'bubbleTailLength', 0, 70, 0.3, 0, easeOutBack);
+        interp(this, 'bubbleTailLength', 0, 56, 0.3, 0, easeOutBack);
     };
 }

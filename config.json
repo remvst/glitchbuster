@@ -69,7 +69,6 @@
         "DEBUG_JS": "build/debug.js",
         "DEBUG_MANGLED_JS": "build/debug_mangled.js"
     },
-    "VERBOSE": true,
     "MACROS": {
         "matrix": "matrix",
         "string": "string",
@@ -106,25 +105,25 @@
         "LEFT": 4,
         "RIGHT": 8,
 
-        "GRAVITY": 6000,
+        "GRAVITY": 7500,
         "PLAYER_SPEED": 560,
-        "PLAYER_JUMP_ACCELERATION": -1600,
+        "PLAYER_JUMP_ACCELERATION": -1800,
         "PLAYER_INITIAL_HEALTH": 5,
 
-        "GRENADE_RADIUS": 10,
-        "GRENADE_RADIUS_2": 20,
+        "GRENADE_RADIUS": 8,
+        "GRENADE_RADIUS_2": 16,
         "GRENADE_BOUNCE_FACTOR": 0.5,
 
-        "WALKING_ENEMY_SPEED": 150,
-        "JUMPING_ENEMY_SPEED": 600,
+        "WALKING_ENEMY_SPEED": 120,
+        "JUMPING_ENEMY_SPEED": 480,
         "ENEMY_PATH_MIN_LENGTH": 2,
         "ENEMY_DENSITY": 0.2,
 
         "NOISE_PATTERN_SIZE": 400,
         "NOISE_PIXEL_SIZE": 4,
 
-        "HALO_SIZE": 200,
-        "HALO_SIZE_HALF": 100,
+        "HALO_SIZE": 160,
+        "HALO_SIZE_HALF": 80,
         "DARK_HALO_SIZE": 1000,
         "DARK_HALO_SIZE_HALF": 500,
 
@@ -132,13 +131,13 @@
         "FILLRECT": 2,
         "DRAWIMAGE": 4,
 
-        "SPIKE_HEIGHT": 30,
+        "SPIKE_HEIGHT": 24,
         "SPIKES_PER_TILE": 4,
 
         "ARROW_SIZE": 20,
         "ARROW_Y_OFFSET": -10,
         "ITEM_ARROW_Y_OFFSET": -40,
-        "GRENADE_PICKUP_RADIUS": 50,
+        "ITEM_PICKUP_RADIUS": 40,
         "GRENADE_DENSITY": 0.1,
 
         "HEALTH_DENSITY": 0.05,
