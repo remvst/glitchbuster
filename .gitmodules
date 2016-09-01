@@ -1,0 +1,3 @@
+[submodule "compiler"]
+	path = js13k-compiler
+	url = https://github.com/remvst/js13k-compiler
