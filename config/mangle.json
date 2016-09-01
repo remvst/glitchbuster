@@ -16,6 +16,7 @@
         "remove",
         "speed",
         "direction",
-        "visible"
+        "visible",
+        "pad"
     ]
 }
