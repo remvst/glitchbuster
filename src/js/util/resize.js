@@ -7,7 +7,7 @@ onresize = function(){
             br = CANVAS_WIDTH / CANVAS_HEIGHT, // base ratio
             w,
             h,
-            s = D.querySelector('#canvascontainer').style;
+            s = D.querySelector('#cc').style;
 
         if(ar <= br){
             w = mw;
