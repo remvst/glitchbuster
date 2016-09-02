@@ -216,10 +216,6 @@ function Game(){
             }
         }
 
-        if(glitchEnd){
-            glitchEnd();
-        }
-
         if(DEBUG){
             R.fillStyle = '#000';
             fillRect(CANVAS_WIDTH * 0.6, 0, CANVAS_WIDTH * 0.4, 120);
@@ -236,6 +232,10 @@ function Game(){
         }
 
         restore();
+
+        if(glitchEnd){
+            glitchEnd();
+        }
     };
 
     G.doCycle = function(e){
