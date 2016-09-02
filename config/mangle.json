@@ -17,6 +17,7 @@
         "speed",
         "direction",
         "visible",
-        "pad"
+        "pad",
+        "type"
     ]
 }
