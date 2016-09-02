@@ -114,18 +114,16 @@ function Game(){
                 }
             });
 
+            var healthItemsLeft = PLAYER_INITIAL_HEALTH - P.health;
+
             // Add grenades for pick up
             W.detectPaths(1).forEach(function(path){
-                // Not very accurate type picking, but hey noone's ever gonna read that
-                var t;
-                if(rand() < GRENADE_DENSITY){
-                    t = GrenadeItem;
-                }
-                if(rand() < HEALTH_DENSITY){
-                    t = HealthItem;
-                }
+                if(rand() < ITEM_DENSITY){
+                    var t = pick([GrenadeItem, GrenadeItem, GrenadeItem, HealthItem]);
+                    if(t === Health && healthItemsLeft-- <= 0){
+                        t = GrenadeItem;
+                    }
 
-                if(t){
                     // Create the item and place it on the path
                     var i = new t(
                         (~~rand(path.colLeft, path.colRight) + 0.5) * TILE_SIZE,
