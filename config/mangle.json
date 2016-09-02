@@ -18,6 +18,7 @@
         "direction",
         "visible",
         "pad",
-        "type"
+        "type",
+        "rotation"
     ]
 }
