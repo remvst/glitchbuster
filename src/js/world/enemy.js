@@ -38,18 +38,31 @@ function Enemy(){
 
     var superDie = this.die;
     this.die = function(){
+        if(this.dead){
+            return;
+        }
+
         superDie.call(this);
 
         var s = this;
-        delayed(function(){
-            remove(G.cyclables, s);
-            remove(G.killables, s);
-        }, 0);
 
-        delayed(function(){
-            remove(G.renderables, s);
-        }, 3000);
+        interp(this, 'scaleFactor', 1, 0, 1.5, 0.5, null, function(){
+            delayed(function(){
+                remove(G.cyclables, s);
+                remove(G.killables, s);
+                remove(G.renderables, s);
+            }, 0);
 
-        interp(this, 'scaleFactor', 1, 0, 2.5, 0.5);
+            if(rand() > ENEMY_DROP_PROBABILITY){
+                var t = pick([HealthItem, GrenadeItem]);
+
+                // Drop an health item
+                var item = new t(s.x, s.y);
+                G.renderables.push(item);
+                G.cyclables.push(item);
+
+                item.particles();
+            }
+        });
     };
 }

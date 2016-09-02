@@ -10,7 +10,7 @@ function JumpingEnemy(){
     this.cycle = function(e){
         superCycle.call(this, e);
 
-        if((this.nextJump -= e) <= 0){
+        if((this.nextJump -= e) <= 0 && !this.dead){
             this.vX = (this.direction = this.facing = pick([-1, 1])) * this.speed;
 
             this.jump(0.8);
