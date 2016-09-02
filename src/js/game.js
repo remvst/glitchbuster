@@ -114,7 +114,7 @@ function Game(){
                 }
             });
 
-            var healthItemsLeft = PLAYER_INITIAL_HEALTH - P.health;
+            var healthItemsLeft = 1 + PLAYER_INITIAL_HEALTH - P.health;
 
             // Add grenades for pick up
             W.detectPaths(1).forEach(function(path){
