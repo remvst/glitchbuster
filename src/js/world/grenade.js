@@ -75,21 +75,21 @@ function Grenade(simulated){
             do{
                 adjustments = tile.pushAway(this, GRENADE_RADIUS_2, GRENADE_RADIUS_2);
 
-                if(BOUNCY_GRENADES && !simulated){
-                    if(adjustments & UP){
-                        this.vY = -abs(this.vY);
-                    }
-                    if(adjustments & DOWN){
-                        this.vY = abs(this.vY);
-                    }
-                    if(adjustments & LEFT){
-                        this.vX = -abs(this.vX);
-                    }
-                    if(adjustments & RIGHT){
-                        this.vX = abs(this.vX);
-                    }
-                }else if(simulated && adjustments){
-                    this.stuck = true;
+                if(simulated){
+                    this.stuck |= adjustments;
+                }
+
+                if(adjustments & UP){
+                    this.vY = -abs(this.vY);
+                }
+                if(adjustments & DOWN){
+                    this.vY = abs(this.vY);
+                }
+                if(adjustments & LEFT){
+                    this.vX = -abs(this.vX);
+                }
+                if(adjustments & RIGHT){
+                    this.vX = abs(this.vX);
                 }
 
                 if(max(abs(this.vX), abs(this.vY)) < 150){

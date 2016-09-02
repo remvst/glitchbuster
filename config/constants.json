@@ -71,7 +71,5 @@
 
     "GAME_OVER_DEATH": 0,
     "GAME_OVER_TIME": 1,
-    "GAME_OVER_SUCCESS": 2,
-
-    "BOUNCY_GRENADES": true
+    "GAME_OVER_SUCCESS": 2
 }
