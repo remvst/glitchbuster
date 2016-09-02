@@ -18,7 +18,7 @@ onkeydown = function(e){
     }
 
     if(!downKeys[32] && e.keyCode == 32){
-        P.throwGrenade();
+        P.prepareGrenade();
     }
 
     downKeys[e.keyCode] = true;
@@ -26,6 +26,10 @@ onkeydown = function(e){
 };
 
 onkeyup = function(e){
+    if(e.keyCode == 32){
+        P.throwGrenade();
+    }
+
     downKeys[e.keyCode] = false;
     reevalControls(e);
 };

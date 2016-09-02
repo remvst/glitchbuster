@@ -3,7 +3,7 @@ function Player(){
 
     this.controllable = true;
 
-    this.grenades = 0;
+    this.grenades = 200;
     this.health = PLAYER_INITIAL_HEALTH;
 
     this.bodyColor = '#fff';
@@ -13,6 +13,7 @@ function Player(){
     this.speed = PLAYER_SPEED;
 
     this.preparingGrenade = false;
+    this.grenadePreparation = 0;
 
     var superCycle = this.cycle;
     this.cycle = function(e){
@@ -46,6 +47,11 @@ function Player(){
             }
         }
 
+        this.grenadePreparation += e / 4;
+        if(this.grenadePreparation > 1){
+            this.grenadePreparation = 0;
+        }
+
         superCycle.call(this, e);
     };
 
@@ -62,12 +68,30 @@ function Player(){
         }
     };
 
+    this.prepareGrenade = function(){
+        this.preparingGrenade = true;
+        this.grenadePreparation = 0;
+    };
+
+    this.grenadePower = function(){
+        return 500 + this.grenadePreparation * 1500;
+    };
+
+    this.grenadeAngle = function(){
+        return PI / 4;
+        return (1 - this.grenadePreparation) * PI / 3 + PI / 16;
+    };
+
     this.throwGrenade = function(){
+        if(!this.preparingGrenade){
+            return;
+        }
+
         if(!this.dead && this.grenades-- > 0){
             var g = new Grenade();
             g.x = this.x;
             g.y = this.y;
-            g.throw(-PI / 2 + this.facing * PI / 3, 1000);
+            g.throw(-PI / 2 + this.facing * this.grenadeAngle(), this.grenadePower());
             G.cyclables.push(g);
             G.renderables.push(g);
 
@@ -80,6 +104,7 @@ function Player(){
             ]));
         }
 
+        this.preparingGrenade = false;
         this.grenades = max(0, this.grenades);
     };
 
@@ -106,7 +131,7 @@ function Player(){
             var g = new Grenade(true);
             g.x = this.x;
             g.y = this.y;
-            g.throw(-PI / 2 + this.facing * PI / 3, 1000);
+            g.throw(-PI / 2 + this.facing * this.grenadeAngle(), this.grenadePower());
 
             R.fillStyle = '#fff';
             for(var i = 0 ; i < 40 && !g.stuck ; i++){
