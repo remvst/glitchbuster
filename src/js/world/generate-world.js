@@ -115,7 +115,7 @@ function generateWorld(id){
 
     // Add a random spawn and a random exit
     var potentialSpawns = flatten(floorsMap.slice(0, MASK_ROWS));
-    var potentialExits = flatten(floorsMap.slice(finalMap.length - MASK_ROWS));
+    var potentialExits = flatten(floorsMap.slice(finalMap.length - MASK_ROWS * 0.8));
 
     var spawn = pick(potentialSpawns);
     var exit = pick(potentialExits);
