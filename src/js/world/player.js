@@ -3,7 +3,7 @@ function Player(){
 
     this.controllable = true;
 
-    this.grenades = 200;
+    this.grenades = 0;
     this.health = PLAYER_INITIAL_HEALTH;
 
     this.bodyColor = '#fff';
@@ -47,10 +47,7 @@ function Player(){
             }
         }
 
-        this.grenadePreparation += e / 4;
-        if(this.grenadePreparation > 1){
-            this.grenadePreparation = 0;
-        }
+        this.grenadePreparation = (this.grenadePreparation + e / 4) % 1;
 
         superCycle.call(this, e);
     };
