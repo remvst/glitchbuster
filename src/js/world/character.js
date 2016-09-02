@@ -71,8 +71,8 @@ function Character(){
             var rightLegLength = this.direction || jumpCount > 0 ? legAmplitude - legLength : legAmplitude;
 
             R.fillStyle = this.legColor;
-            fillRect(10, 45, 6, leftLegLength);
-            fillRect(35, 45, 6, rightLegLength);
+            fillRect(0, 45, 6, leftLegLength);
+            fillRect(30, 45, 6, rightLegLength);
             restore();
         }
 
@@ -90,9 +90,10 @@ function Character(){
         translate(0, this.bodyOffsetY);
         rotate(bodyRotation);
 
-        // Body
         save();
-        translate(-CHARACTER_WIDTH / 2 + 2, -CHARACTER_HEIGHT / 2);
+        translate(-CHARACTER_WIDTH / 2 - 3, -CHARACTER_HEIGHT / 2);
+
+        // Body
         R.fillStyle = this.bodyColor;
         fillRect(0, 0, 46, 45);
 
