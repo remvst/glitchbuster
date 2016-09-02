@@ -46,14 +46,14 @@ function Enemy(){
 
         var s = this;
 
-        interp(this, 'scaleFactor', 1, 0, 1.5, 0.5, null, function(){
+        interp(this, 'scaleFactor', 1, 0, 0.8, 0.5, null, function(){
             delayed(function(){
                 remove(G.cyclables, s);
                 remove(G.killables, s);
                 remove(G.renderables, s);
             }, 0);
 
-            if(rand() > ENEMY_DROP_PROBABILITY){
+            if(rand() < ENEMY_DROP_PROBABILITY){
                 var t = pick([HealthItem, GrenadeItem]);
 
                 // Drop an health item
