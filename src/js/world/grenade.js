@@ -1,4 +1,4 @@
-function Grenade(){
+function Grenade(simulated){
     this.x = this.y = 0;
     this.timer = 2;
     this.rotation = 0;
@@ -29,7 +29,8 @@ function Grenade(){
                 y: this.y
             };
 
-            if(!shittyMode){
+            // Trail
+            if(!shittyMode && !simulated){
                 var trail = {
                     alpha: 1,
                     render: function(){
@@ -49,14 +50,17 @@ function Grenade(){
             }
         }
 
-        this.timer -= e;
-        if(this.timer <= 0){
-            this.explode();
-        }else{
-            for(var i = 0 ; i < G.killables.length ; i++){
-                if(G.killables[i] != P && dist(G.killables[i], this) < CHARACTER_WIDTH / 2){
-                    this.explode();
-                    break;
+        // Explosion
+        if(!simulated){
+            this.timer -= e;
+            if(this.timer <= 0){
+                this.explode();
+            }else{
+                for(var i = 0 ; i < G.killables.length ; i++){
+                    if(G.killables[i] != P && dist(G.killables[i], this) < CHARACTER_WIDTH / 2){
+                        this.explode();
+                        break;
+                    }
                 }
             }
         }
@@ -71,17 +75,21 @@ function Grenade(){
             do{
                 adjustments = tile.pushAway(this, GRENADE_RADIUS_2, GRENADE_RADIUS_2);
 
-                if(adjustments & UP){
-                    this.vY = -abs(this.vY);
-                }
-                if(adjustments & DOWN){
-                    this.vY = abs(this.vY);
-                }
-                if(adjustments & LEFT){
-                    this.vX = -abs(this.vX);
-                }
-                if(adjustments & RIGHT){
-                    this.vX = abs(this.vX);
+                if(BOUNCY_GRENADES && !simulated){
+                    if(adjustments & UP){
+                        this.vY = -abs(this.vY);
+                    }
+                    if(adjustments & DOWN){
+                        this.vY = abs(this.vY);
+                    }
+                    if(adjustments & LEFT){
+                        this.vX = -abs(this.vX);
+                    }
+                    if(adjustments & RIGHT){
+                        this.vX = abs(this.vX);
+                    }
+                }else if(simulated && adjustments){
+                    this.stuck = true;
                 }
 
                 if(max(abs(this.vX), abs(this.vY)) < 150){
@@ -89,7 +97,7 @@ function Grenade(){
                     this.vX = this.vY = 0;
                 }else{
                     // Particle when bouncing
-                    if(adjustments && !shittyMode){
+                    if(adjustments && !shittyMode && !simulated){
                         for(var i = 0 ; i < 2 ; i++){
                             var x = this.x + rand(-8, 8),
                                 y = this.y + rand(-8, 8),
@@ -102,7 +110,7 @@ function Grenade(){
                         }
                     }
                 }
-            }while(adjustments && iterations++ < 5);
+            }while(!this.stuck && adjustments && iterations++ < 5);
         }
     };
 

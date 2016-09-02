@@ -12,7 +12,7 @@ function Tile(row, col, type){
         y: this.y + TILE_SIZE / 2
     };
 
-    this.pushAway = function(character, w, h){
+    this.pushAway = function(character, w, h, smart){
         var adjustments = [{
             x: this.x - (w || CHARACTER_WIDTH) / 2,
             y: character.y,
@@ -32,16 +32,20 @@ function Tile(row, col, type){
         }];
 
         var closest,
-            closestDist;
+            closestDist,
+            smartPick;
 
         adjustments.forEach(function(adj){
             var d = sqrt(
                 pow(adj.x - character.x, 2) +
                 pow(adj.y - character.y, 2)
             );
-            if(!closest || d < closestDist){
+            var t = W.tileAt(adj.x, adj.y);
+            var isSmart = t.type === VOID_ID;
+            if(!closest || d < closestDist || !smartPick && isSmart){
                 closest = adj;
                 closestDist = d;
+                smartPick = isSmart;
             }
         });
 

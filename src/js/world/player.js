@@ -12,6 +12,8 @@ function Player(){
 
     this.speed = PLAYER_SPEED;
 
+    this.preparingGrenade = false;
+
     var superCycle = this.cycle;
     this.cycle = function(e){
         if(!this.controllable){
@@ -93,6 +95,27 @@ function Player(){
     this.landOn = function(t){
         if(superLand.call(this, t)){
             landSound.play();
+        }
+    };
+
+    var superRender = this.render;
+    this.render = function(e){
+        superRender.call(this, e);
+
+        if(this.preparingGrenade){
+            var g = new Grenade(true);
+            g.x = this.x;
+            g.y = this.y;
+            g.throw(-PI / 2 + this.facing * PI / 3, 1000);
+
+            R.fillStyle = '#fff';
+            for(var i = 0 ; i < 40 && !g.stuck ; i++){
+                g.cycle(1 / 60);
+
+                if(!(i % 2)){
+                    fillRect(~~g.x - 2, ~~g.y - 2, 4, 4);
+                }
+            }
         }
     };
 }

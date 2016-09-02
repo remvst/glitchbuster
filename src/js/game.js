@@ -120,7 +120,7 @@ function Game(){
             W.detectPaths(1).forEach(function(path){
                 if(rand() < ITEM_DENSITY){
                     var t = pick([GrenadeItem, GrenadeItem, GrenadeItem, HealthItem]);
-                    if(t === Health && healthItemsLeft-- <= 0){
+                    if(t === HealthItem && healthItemsLeft-- <= 0){
                         t = GrenadeItem;
                     }
 
