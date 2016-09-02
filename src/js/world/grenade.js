@@ -110,7 +110,7 @@ function Grenade(simulated){
                         }
                     }
                 }
-            }while(!this.stuck && adjustments && iterations++ < 5);
+            }while(adjustments && iterations++ < 5);
         }
     };
 
