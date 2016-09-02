@@ -19,6 +19,8 @@
         "visible",
         "pad",
         "type",
-        "rotation"
+        "rotation",
+        "rows",
+        "cols"
     ]
 }

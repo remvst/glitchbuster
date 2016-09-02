@@ -44,7 +44,6 @@ function Character(){
             var t = this.saying[0];
             var w = measureText(t).width + 8;
             R.fillStyle = '#000';
-            R.textBaseline = 'middle';
             R.globalAlpha = 0.5;
             fillRect(-w / 2, -68 - this.bubbleTailLength, w, 24);
             R.globalAlpha = 1;
