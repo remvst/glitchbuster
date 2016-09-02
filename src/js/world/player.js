@@ -74,12 +74,7 @@ function Player(){
     };
 
     this.grenadePower = function(){
-        return 500 + this.grenadePreparation * 1500;
-    };
-
-    this.grenadeAngle = function(){
-        return PI / 4;
-        return (1 - this.grenadePreparation) * PI / 3 + PI / 16;
+        return 500 + (1 - abs((this.grenadePreparation - 0.5) * 2)) * 1500;
     };
 
     this.throwGrenade = function(){
@@ -91,7 +86,7 @@ function Player(){
             var g = new Grenade();
             g.x = this.x;
             g.y = this.y;
-            g.throw(-PI / 2 + this.facing * this.grenadeAngle(), this.grenadePower());
+            g.throw(-PI / 2 + this.facing * PI / 4, this.grenadePower());
             G.cyclables.push(g);
             G.renderables.push(g);
 
@@ -131,7 +126,7 @@ function Player(){
             var g = new Grenade(true);
             g.x = this.x;
             g.y = this.y;
-            g.throw(-PI / 2 + this.facing * this.grenadeAngle(), this.grenadePower());
+            g.throw(-PI / 2 + this.facing * PI / 4, this.grenadePower());
 
             R.fillStyle = '#fff';
             for(var i = 0 ; i < 40 && !g.stuck ; i++){
