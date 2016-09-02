@@ -13,7 +13,7 @@ onload = function(){
     var p;
     Object.getOwnPropertyNames(p = CanvasRenderingContext2D.prototype).forEach(function(n){
         if(R[n] && R[n].call){
-            window[n] = p[n].bind(R);
+            W[n] = p[n].bind(R);
         }
     });
 
