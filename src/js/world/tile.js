@@ -39,7 +39,6 @@ function Tile(row, col, type){
                 pow(adj.x - character.x, 2) +
                 pow(adj.y - character.y, 2)
             );
-            var t = W.tileAt(adj.x, adj.y);
             if(!closest || d < closestDist){
                 closest = adj;
                 closestDist = d;
