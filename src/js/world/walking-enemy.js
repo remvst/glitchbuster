@@ -10,8 +10,8 @@ function WalkingEnemy(){
         superCycle.call(this, e);
 
         if(!this.dead){
-            var leftX = this.x - CHARACTER_WIDTH / 2,
-                rightX = this.x + CHARACTER_WIDTH / 2,
+            var leftX = this.x - CHARACTER_WIDTH,
+                rightX = this.x + CHARACTER_WIDTH,
                 bottomY = this.y + CHARACTER_HEIGHT / 2,
 
                 bottomLeft = W.tileAt(leftX, bottomY),
