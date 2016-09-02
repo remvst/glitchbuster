@@ -272,7 +272,7 @@ function Game(){
         }
 
         glitchTimeleft = d || rand(0.1, 0.3);
-        nextGlitch = G.currentLevel > 2 ? rand(4, 8) : 99;
+        nextGlitch = G.currentLevel ? rand(4, 8) : 99;
         if(G.menu){
             nextGlitch = 2;
         }
