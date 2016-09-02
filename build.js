@@ -67,7 +67,7 @@ compiler.run((tasks) => {
 
     function buildMain(){
         return tasks.sequence([
-            tasks.label('Building main files'),
+            tasks.block('Building main files'),
             tasks.parallel({
                 'js': buildJS(true, true),
                 'css': buildCSS(true),
@@ -75,6 +75,7 @@ compiler.run((tasks) => {
             }),
             tasks.combine(),
             tasks.output(__dirname + '/build/game.html'),
+            tasks.label('Building ZIP'),
             tasks.zip('index.html'),
             tasks.output(__dirname + '/build/game.zip'),
             tasks.checkSize(__dirname + '/build/game.zip')
@@ -83,7 +84,7 @@ compiler.run((tasks) => {
 
     function buildDebug(mangle, suffix){
         return tasks.sequence([
-            tasks.label('Building debug files'),
+            tasks.block('Building debug files'),
             tasks.parallel({
                 // Debug JS in a separate file
                 'debug_js': tasks.sequence([
@@ -103,11 +104,13 @@ compiler.run((tasks) => {
     }
 
     function main(){
-        return tasks.sequence([
-            buildMain(),
-            buildDebug(false, ''),
-            buildDebug(true, '_mangled')
-        ]);
+        return tasks.watch(JS_FILES, () => {
+            return tasks.sequence([
+                buildMain(),
+                buildDebug(false, ''),
+                buildDebug(true, '_mangled')
+            ]);
+        });
     }
 
     return main();
