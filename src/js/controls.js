@@ -65,13 +65,17 @@ var touch = function(e){
             }else if(col == 1){
                 P.direction = 1;
             }else if(col == 2){
-                P.throwGrenade();
+                P.prepareGrenade();
             }else if(col == 3){
                 P.jump(1);
             }
 
             touchButtons[col] = true;
         }
+    }
+
+    if(P.preparingGrenade && !touchButtons[2]){
+        P.throwGrenade();
     }
 };
 
