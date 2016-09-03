@@ -4,4 +4,4 @@ build:
 	node build.js
 
 update:
-	cd js13k-compiler && git pull
+	cd js13k-compiler && git checkout master && git pull
