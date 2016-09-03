@@ -107,7 +107,7 @@ function Player(){
     };
 
     this.landOn = function(t){
-        if(sup.land(t)){
+        if(sup.landOn(t)){
             landSound.play();
         }
     };
