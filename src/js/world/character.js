@@ -60,7 +60,7 @@ function Character(){
         // Legs
         if(!this.dead){
             save();
-            translate(-CHARACTER_WIDTH / 2 + 2, -CHARACTER_HEIGHT / 2);
+            translate(evaluate(-CHARACTER_WIDTH / 2 + 2), evaluate(-CHARACTER_HEIGHT / 2));
 
             var legAmplitude = 8,
                 legPeriod = 0.3,
@@ -90,7 +90,7 @@ function Character(){
         rotate(bodyRotation);
 
         save();
-        translate(-CHARACTER_WIDTH / 2 - 3, -CHARACTER_HEIGHT / 2);
+        translate(evaluate(-CHARACTER_WIDTH / 2 - 3), evaluate(-CHARACTER_HEIGHT / 2));
 
         // Body
         R.fillStyle = this.bodyColor;
@@ -177,9 +177,9 @@ function Character(){
             this.vY = p * PLAYER_JUMP_ACCELERATION;
             previousFloorY = -1;
 
-            var y = this.y + CHARACTER_HEIGHT / 2;
+            var y = this.y + evaluate(CHARACTER_HEIGHT / 2);
             for(var i = 0 ; i < 5 ; i++){
-                var x = rand(this.x - CHARACTER_WIDTH / 2, this.x + CHARACTER_WIDTH / 2);
+                var x = rand(this.x - evaluate(CHARACTER_WIDTH / 2), this.x + evaluate(CHARACTER_WIDTH / 2));
                 particle(3, '#888', [
                     ['x', x, x, 0.3],
                     ['y', y, y - rand(40, 80), 0.3],
@@ -239,7 +239,7 @@ function Character(){
             interp(this, 'bodyOffsetY', 8, 0, 0.1, 0.1);
 
             for(var i = 0 ; i < 5 ; i++){
-                var x = rand(this.x - CHARACTER_WIDTH / 2, this.x + CHARACTER_WIDTH / 2);
+                var x = rand(this.x - evaluate(CHARACTER_WIDTH / 2), this.x + evaluate(CHARACTER_WIDTH / 2));
                 particle(3, '#888', [
                     ['x', x, x, 0.3],
                     ['y', tile.y, tile.y - rand(40, 80), 0.3],
@@ -266,10 +266,10 @@ function Character(){
     };
 
     this.readjust = function(before){
-        var leftX = this.x - CHARACTER_WIDTH / 2,
-            rightX = this.x + CHARACTER_WIDTH / 2,
-            topY = this.y - CHARACTER_HEIGHT / 2,
-            bottomY = this.y + CHARACTER_HEIGHT / 2;
+        var leftX = this.x - evaluate(CHARACTER_WIDTH / 2),
+            rightX = this.x + evaluate(CHARACTER_WIDTH / 2),
+            topY = this.y - evaluate(CHARACTER_HEIGHT / 2),
+            bottomY = this.y + evaluate(CHARACTER_HEIGHT / 2);
 
         var topLeft = W.tileAt(leftX, topY),
             topRight = W.tileAt(rightX, topY),
@@ -289,14 +289,14 @@ function Character(){
         }
 
         else if(topLeft && topRight){
-            this.y = ceil(topY / TILE_SIZE) * TILE_SIZE + CHARACTER_HEIGHT / 2;
+            this.y = ceil(topY / TILE_SIZE) * TILE_SIZE + evaluate(CHARACTER_HEIGHT / 2);
             t |= DOWN;
 
             if(bottomLeft){
-                this.x = ceil(leftX / TILE_SIZE) * TILE_SIZE + CHARACTER_WIDTH / 2;
+                this.x = ceil(leftX / TILE_SIZE) * TILE_SIZE + evaluate(CHARACTER_WIDTH / 2);
                 t |= RIGHT;
             }else if(bottomRight){
-                this.x = floor(rightX / TILE_SIZE) * TILE_SIZE - CHARACTER_WIDTH / 2;
+                this.x = floor(rightX / TILE_SIZE) * TILE_SIZE - evaluate(CHARACTER_WIDTH / 2);
                 t |= LEFT;
             }
 
@@ -304,14 +304,14 @@ function Character(){
         }
 
         else if(bottomLeft && bottomRight){
-            this.y = floor(bottomY / TILE_SIZE) * TILE_SIZE - CHARACTER_HEIGHT / 2;
+            this.y = floor(bottomY / TILE_SIZE) * TILE_SIZE - evaluate(CHARACTER_HEIGHT / 2);
             t |= UP;
 
             if(topLeft){
-                this.x = ceil(leftX / TILE_SIZE) * TILE_SIZE + CHARACTER_WIDTH / 2;
+                this.x = ceil(leftX / TILE_SIZE) * TILE_SIZE + evaluate(CHARACTER_WIDTH / 2);
                 t |= RIGHT;
             }else if(topRight){
-                this.x = floor(rightX / TILE_SIZE) * TILE_SIZE - CHARACTER_WIDTH / 2;
+                this.x = floor(rightX / TILE_SIZE) * TILE_SIZE - evaluate(CHARACTER_WIDTH / 2);
                 t |= LEFT;
             }
 
@@ -320,12 +320,12 @@ function Character(){
 
         // Collision against a wall
         else if(topLeft && bottomLeft){
-            this.x = ceil(leftX / TILE_SIZE) * TILE_SIZE + CHARACTER_WIDTH / 2;
+            this.x = ceil(leftX / TILE_SIZE) * TILE_SIZE + evaluate(CHARACTER_WIDTH / 2);
             t |= RIGHT;
         }
 
         else if(topRight && bottomRight){
-            this.x = floor(rightX / TILE_SIZE) * TILE_SIZE - CHARACTER_WIDTH / 2;
+            this.x = floor(rightX / TILE_SIZE) * TILE_SIZE - evaluate(CHARACTER_WIDTH / 2);
             t |= LEFT;
         }
 
@@ -367,8 +367,8 @@ function Character(){
         this.health = 0;
 
         for(var i = 0 ; i < 40 ; i++){
-            var x = rand(this.x - CHARACTER_WIDTH / 2, this.x + CHARACTER_WIDTH / 2),
-                y = rand(this.y - CHARACTER_HEIGHT / 2, this.y + CHARACTER_HEIGHT / 2),
+            var x = rand(this.x - evaluate(CHARACTER_WIDTH / 2), this.x + evaluate(CHARACTER_WIDTH / 2)),
+                y = rand(this.y - evaluate(CHARACTER_HEIGHT / 2), this.y + evaluate(CHARACTER_HEIGHT / 2)),
                 d = rand(0.5, 1);
             particle(3, '#900', [
                 ['x', x, x, 0.5],
@@ -377,7 +377,7 @@ function Character(){
             ]);
             particle(3, '#900', [
                 ['x', x, x, d],
-                ['y', y, this.y + CHARACTER_HEIGHT / 2, d, 0, easeOutBounce],
+                ['y', y, this.y + evaluate(CHARACTER_HEIGHT / 2), d, 0, easeOutBounce],
                 ['s', 12, 0, d]
             ]);
         }

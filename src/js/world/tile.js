@@ -52,83 +52,80 @@ function Tile(row, col, type){
     };
 
     this.render = function(){
-        if(G.hideTiles || this.hidden){
-            return;
-        }
+        if(!G.hideTiles && !this.hidden){
+            R.fillStyle = '#fff';
 
-        R.fillStyle = '#fff';
-
-        if(shittyMode){
-            var colorChar = ~~(between(0, 1 - dist(this.center, P) / 800, 1) * 0xf);
-            R.fillStyle = '#' + colorChar.toString(16) + colorChar.toString(16) + colorChar.toString(16);
-        }
-
-        save();
-        translate(this.center.x, this.center.y);
-        scale(this.scale, this.scale);
-        translate(-TILE_SIZE / 2, -TILE_SIZE / 2);
-
-        if(type == TILE_ID || type == UNBREAKABLE_TILE_ID){
-            fillRect(0, 0, TILE_SIZE, TILE_SIZE);
-        }
-
-        if(type == FLOOR_SPIKE_ID || type == CEILING_SPIKE_ID){
-            if(type == CEILING_SPIKE_ID){
-                translate(0, TILE_SIZE);
-                scale(1, -1);
+            if(shittyMode){
+                var colorChar = ~~(between(0, 1 - dist(this.center, P) / 800, 1) * 0xf);
+                R.fillStyle = '#' + colorChar.toString(16) + colorChar.toString(16) + colorChar.toString(16);
             }
 
-            fillRect(0, SPIKE_HEIGHT, TILE_SIZE, TILE_SIZE - SPIKE_HEIGHT);
+            save();
+            translate(this.center.x, this.center.y);
+            scale(this.scale, this.scale);
+            translate(-TILE_SIZE / 2, -TILE_SIZE / 2);
 
-            beginPath();
-            moveTo(0, 0 + SPIKE_HEIGHT);
-
-            var step = TILE_SIZE / SPIKES_PER_TILE;
-            for(var x = step / 2 ; x < TILE_SIZE ; x += step){
-                lineTo(x, 0);
-                lineTo(x + step / 2, SPIKE_HEIGHT);
-            }
-            lineTo(TILE_SIZE, SPIKE_HEIGHT);
-            fill();
-        }
-
-        if(type == EXIT_ID){
-
-            // Halo
-            if(!shittyMode){
-                drawImage(whiteHalo, TILE_SIZE / 2 - HALO_SIZE_HALF, TILE_SIZE / 2 - HALO_SIZE_HALF);
+            if(type == TILE_ID || type == UNBREAKABLE_TILE_ID){
+                fillRect(0, 0, TILE_SIZE, TILE_SIZE);
             }
 
-            if(this.alpha == 1){
-                // Bug ID
-                R.font = '14pt Courier New';
+            if(type == FLOOR_SPIKE_ID || type == CEILING_SPIKE_ID){
+                if(type == CEILING_SPIKE_ID){
+                    translate(0, TILE_SIZE);
+                    scale(1, -1);
+                }
 
-                fillText(
-                    'Bug #' + G.currentLevel,
-                    TILE_SIZE / 2,
-                    -ARROW_SIZE + ARROW_Y_OFFSET - 10
-                );
+                fillRect(0, SPIKE_HEIGHT, TILE_SIZE, TILE_SIZE - SPIKE_HEIGHT);
 
-                // Arrow
                 beginPath();
-                moveTo(TILE_SIZE / 2 - ARROW_SIZE / 2, -ARROW_SIZE / 2 + ARROW_Y_OFFSET);
-                lineTo(TILE_SIZE / 2 + ARROW_SIZE / 2, -ARROW_SIZE / 2 + ARROW_Y_OFFSET);
-                lineTo(TILE_SIZE / 2, ARROW_Y_OFFSET);
+                moveTo(0, 0 + SPIKE_HEIGHT);
+
+                var step = TILE_SIZE / SPIKES_PER_TILE;
+                for(var x = step / 2 ; x < TILE_SIZE ; x += step){
+                    lineTo(x, 0);
+                    lineTo(x + step / 2, SPIKE_HEIGHT);
+                }
+                lineTo(TILE_SIZE, SPIKE_HEIGHT);
                 fill();
             }
 
-            R.globalAlpha = this.alpha;
+            if(type == EXIT_ID){
+                // Halo
+                if(!shittyMode){
+                    drawImage(whiteHalo, TILE_SIZE / 2 - HALO_SIZE_HALF, TILE_SIZE / 2 - HALO_SIZE_HALF);
+                }
 
-            R.fillStyle = noisePattern;
+                if(this.alpha == 1){
+                    // Bug ID
+                    R.font = '14pt Courier New';
 
-            var x = rand(NOISE_PATTERN_SIZE),
-                y = rand(NOISE_PATTERN_SIZE);
+                    fillText(
+                        'Bug #' + G.currentLevel,
+                        TILE_SIZE / 2,
+                        -ARROW_SIZE + ARROW_Y_OFFSET - 10
+                    );
 
-            translate(x, y);
-            fillRect(-x, -y, TILE_SIZE, TILE_SIZE);
+                    // Arrow
+                    beginPath();
+                    moveTo(TILE_SIZE / 2 - ARROW_SIZE / 2, -ARROW_SIZE / 2 + ARROW_Y_OFFSET);
+                    lineTo(TILE_SIZE / 2 + ARROW_SIZE / 2, -ARROW_SIZE / 2 + ARROW_Y_OFFSET);
+                    lineTo(TILE_SIZE / 2, ARROW_Y_OFFSET);
+                    fill();
+                }
+
+                R.globalAlpha = this.alpha;
+
+                R.fillStyle = noisePattern;
+
+                var x = rand(NOISE_PATTERN_SIZE),
+                    y = rand(NOISE_PATTERN_SIZE);
+
+                translate(x, y);
+                fillRect(-x, -y, TILE_SIZE, TILE_SIZE);
+            }
+
+            restore();
         }
-
-        restore();
     };
 
     this.landed = function(c){
