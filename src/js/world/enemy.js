@@ -10,7 +10,7 @@ function Enemy(){
     var superCycle = this.cycle;
     this.cycle = function(e){
         // Skipping cycles for far enemies
-        if(!V.contains(this.x, this.y, CHARACTER_WIDTH / 2)){
+        if(!V.contains(this.x, this.y, evaluate(CHARACTER_WIDTH / 2))){
             return;
         }
 
@@ -38,31 +38,29 @@ function Enemy(){
 
     var superDie = this.die;
     this.die = function(){
-        if(this.dead){
-            return;
+        if(!this.dead){
+            superDie.call(this);
+
+            var s = this;
+
+            interp(this, 'scaleFactor', 1, 0, 0.8, 0.5, null, function(){
+                delayed(function(){
+                    remove(G.cyclables, s);
+                    remove(G.killables, s);
+                    remove(G.renderables, s);
+                }, 0);
+
+                if(rand() < ENEMY_DROP_PROBABILITY){
+                    var t = pick([HealthItem, GrenadeItem]);
+
+                    // Drop an health item
+                    var item = new t(s.x, s.y);
+                    G.renderables.push(item);
+                    G.cyclables.push(item);
+
+                    item.particles();
+                }
+            });
         }
-
-        superDie.call(this);
-
-        var s = this;
-
-        interp(this, 'scaleFactor', 1, 0, 0.8, 0.5, null, function(){
-            delayed(function(){
-                remove(G.cyclables, s);
-                remove(G.killables, s);
-                remove(G.renderables, s);
-            }, 0);
-
-            if(rand() < ENEMY_DROP_PROBABILITY){
-                var t = pick([HealthItem, GrenadeItem]);
-
-                // Drop an health item
-                var item = new t(s.x, s.y);
-                G.renderables.push(item);
-                G.cyclables.push(item);
-
-                item.particles();
-            }
-        });
     };
 }
