@@ -8,7 +8,6 @@ for(var i = 0 ; i < 5 ; i++){
         r.fillStyle = '#fff';
         r.font = '14pt Courier Sans';
         r.textAlign = 'center';
-        r.textBaseline = 'middle';
 
         var alphabet = '证件驾照护照及出入境记录身份证'.split('');
         var alphabet = '01'.split('');

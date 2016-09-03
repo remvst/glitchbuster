@@ -12,18 +12,18 @@ body{
     width: 100%;
 }
 
-#table{
+#t{
     display: table;
     width: 100%;
     height: 100%;
 }
 
-#cell{
+#c{
     display: table-cell;
     vertical-align: middle
 }
 
-#canvascontainer{
+#cc{
     margin: auto;
     outline: 1px solid white;
 }

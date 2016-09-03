@@ -13,8 +13,8 @@ function halo(s, c1, c2){
     });
 }
 
-var whiteHalo = halo(HALO_SIZE, 'rgba(255, 255, 255, .25)', 'rgba(255, 255, 255, 0)'),
-    redHalo = halo(HALO_SIZE, 'rgba(255, 0, 0, .25)', 'rgba(255, 0, 0, 0)');
+var whiteHalo = halo(HALO_SIZE, 'rgba(255,255,255,.25)', 'rgba(255,255,255,0)'),
+    redHalo = halo(HALO_SIZE, 'rgba(255,0,0,.25)', 'rgba(255,0,0,0)');
 
 
-var darkHalo = halo(DARK_HALO_SIZE, 'rgba(0, 0, 0, 0)', 'rgba(0, 0, 0, 1)');
+var darkHalo = halo(DARK_HALO_SIZE, 'rgba(0,0,0,0)', 'rgba(0,0,0,1)');

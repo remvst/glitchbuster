@@ -9,7 +9,6 @@ var codePattern = cachePattern(400, 400, function(r){
     r.fillStyle = '#fff';
     r.globalAlpha = 0.1;
     r.font = '14pt Courier New';
-    r.textBaseline = 'middle';
 
     lines.forEach(function(l, i){
         r.fillText(l, 0, y);

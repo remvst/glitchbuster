@@ -102,8 +102,6 @@ function Tile(row, col, type){
             if(this.alpha == 1){
                 // Bug ID
                 R.font = '14pt Courier New';
-                R.textAlign = 'center';
-                R.textBaseline = 'middle';
 
                 fillText(
                     'Bug #' + G.currentLevel,

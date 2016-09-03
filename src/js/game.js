@@ -146,8 +146,6 @@ function Game(){
             shittyMode = true;
         }
 
-        R.textAlign = 'center';
-
         glitchTimeleft -= e;
         if(glitchTimeleft <= 0){
             glitchEnd = null;
@@ -215,18 +213,21 @@ function Game(){
         }
 
         if(DEBUG){
+            save();
+
             R.fillStyle = '#000';
             fillRect(CANVAS_WIDTH * 0.6, 0, CANVAS_WIDTH * 0.4, 120);
 
             R.fillStyle = 'white';
             R.textAlign = 'left';
-            R.textBaseline = 'middle';
             R.font = '18pt Courier New';
             fillText('FPS: ' + G.fps, CANVAS_WIDTH * 0.6, 20);
             fillText('Cyclables: ' + G.cyclables.length, CANVAS_WIDTH * 0.6, 40);
             fillText('Renderables: ' + G.renderables.length, CANVAS_WIDTH * 0.6, 60);
             fillText('Killables: ' + G.killables.length, CANVAS_WIDTH * 0.6, 80);
             fillText('Resolution: ' + G.resolution, CANVAS_WIDTH * 0.6, 100);
+
+            restore();
         }
 
         restore();

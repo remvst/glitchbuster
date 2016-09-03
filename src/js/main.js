@@ -10,9 +10,10 @@ onload = function(){
     R.textBaseline = 'middle';
 
     // Shortcut for all canvas methods
-    Object.getOwnPropertyNames(CanvasRenderingContext2D.prototype).forEach(function(n){
+    var p;
+    Object.getOwnPropertyNames(p = CanvasRenderingContext2D.prototype).forEach(function(n){
         if(R[n] && R[n].call){
-            window[n] = CanvasRenderingContext2D.prototype[n].bind(R);
+            w[n] = p[n].bind(R);
         }
     });
 

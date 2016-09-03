@@ -1,20 +1,20 @@
-function World(map){
+function World(matrix){
     this.tiles = [];
-    this.map = map;
+    this.matrix = matrix;
 
-    this.rows = map.length;
-    this.cols = map[0].length;
+    this.rows = matrix.length;
+    this.cols = matrix[0].length;
 
-    for(var row = 0 ; row < map.length ; row++){
+    for(var row = 0 ; row < matrix.length ; row++){
         this.tiles.push([]);
-        for(var col = 0 ; col < map[row].length ; col++){
+        for(var col = 0 ; col < matrix[row].length ; col++){
             this.tiles[row][col] = null;
-            if(map[row][col] > 0){
-                this.tiles[row][col] = new Tile(row, col, map[row][col]);
+            if(matrix[row][col] > 0){
+                this.tiles[row][col] = new Tile(row, col, matrix[row][col]);
 
-                if(map[row][col] == SPAWN_ID){
+                if(matrix[row][col] == SPAWN_ID){
                     this.spawn = this.tiles[row][col];
-                }else if(map[row][col] == EXIT_ID){
+                }else if(matrix[row][col] == EXIT_ID){
                     this.exit = this.tiles[row][col];
                 }
             }
@@ -55,8 +55,8 @@ function World(map){
         for(var row = 0 ; row < this.rows - 1 ; row++){ // skip the last row
             colCount = 0;
             for(var col = 0 ; col < this.cols ; col++){
-                var current = this.map[row][col] != VOID_ID;
-                var below = this.map[row + 1][col] == TILE_ID || this.map[row + 1][col] == UNBREAKABLE_TILE_ID;
+                var current = this.matrix[row][col] != VOID_ID;
+                var below = this.matrix[row + 1][col] == TILE_ID || this.matrix[row + 1][col] == UNBREAKABLE_TILE_ID;
 
                 if(!below || current){
                     if(colCount >= l){

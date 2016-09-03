@@ -17,6 +17,11 @@
         "speed",
         "direction",
         "visible",
-        "pad"
+        "pad",
+        "type",
+        "rotation",
+        "rows",
+        "cols",
+        "item"
     ]
 }
