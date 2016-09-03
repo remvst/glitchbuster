@@ -63,7 +63,7 @@ function Tile(row, col, type){
             save();
             translate(this.center.x, this.center.y);
             scale(this.scale, this.scale);
-            translate(-TILE_SIZE / 2, -TILE_SIZE / 2);
+            translate(evaluate(-TILE_SIZE / 2), evaluate(-TILE_SIZE / 2));
 
             if(type == TILE_ID || type == UNBREAKABLE_TILE_ID){
                 fillRect(0, 0, TILE_SIZE, TILE_SIZE);
@@ -75,12 +75,12 @@ function Tile(row, col, type){
                     scale(1, -1);
                 }
 
-                fillRect(0, SPIKE_HEIGHT, TILE_SIZE, TILE_SIZE - SPIKE_HEIGHT);
+                fillRect(0, SPIKE_HEIGHT, TILE_SIZE, evaluate(TILE_SIZE - SPIKE_HEIGHT));
 
                 beginPath();
-                moveTo(0, 0 + SPIKE_HEIGHT);
+                moveTo(0, SPIKE_HEIGHT);
 
-                var step = TILE_SIZE / SPIKES_PER_TILE;
+                var step = evaluate(TILE_SIZE / SPIKES_PER_TILE);
                 for(var x = step / 2 ; x < TILE_SIZE ; x += step){
                     lineTo(x, 0);
                     lineTo(x + step / 2, SPIKE_HEIGHT);
@@ -92,7 +92,7 @@ function Tile(row, col, type){
             if(type == EXIT_ID){
                 // Halo
                 if(!shittyMode){
-                    drawImage(whiteHalo, TILE_SIZE / 2 - HALO_SIZE_HALF, TILE_SIZE / 2 - HALO_SIZE_HALF);
+                    drawImage(whiteHalo, evaluate(TILE_SIZE / 2 - HALO_SIZE_HALF), evaluate(TILE_SIZE / 2 - HALO_SIZE_HALF));
                 }
 
                 if(this.alpha == 1){
@@ -101,15 +101,15 @@ function Tile(row, col, type){
 
                     fillText(
                         'Bug #' + G.currentLevel,
-                        TILE_SIZE / 2,
-                        -ARROW_SIZE + ARROW_Y_OFFSET - 10
+                        evaluate(TILE_SIZE / 2),
+                        evaluate(-ARROW_SIZE + ARROW_Y_OFFSET - 10)
                     );
 
                     // Arrow
                     beginPath();
-                    moveTo(TILE_SIZE / 2 - ARROW_SIZE / 2, -ARROW_SIZE / 2 + ARROW_Y_OFFSET);
-                    lineTo(TILE_SIZE / 2 + ARROW_SIZE / 2, -ARROW_SIZE / 2 + ARROW_Y_OFFSET);
-                    lineTo(TILE_SIZE / 2, ARROW_Y_OFFSET);
+                    moveTo(evaluate(TILE_SIZE / 2 - ARROW_SIZE / 2), evaluate(-ARROW_SIZE / 2 + ARROW_Y_OFFSET));
+                    lineTo(evaluate(TILE_SIZE / 2 + ARROW_SIZE / 2), evaluate(-ARROW_SIZE / 2 + ARROW_Y_OFFSET));
+                    lineTo(evaluate(TILE_SIZE / 2), evaluate(ARROW_Y_OFFSET));
                     fill();
                 }
 
