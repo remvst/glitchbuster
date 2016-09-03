@@ -65,8 +65,16 @@ function Player(){
     };
 
     this.prepareGrenade = function(){
-        this.preparingGrenade = true;
-        this.grenadePreparation = 0;
+        if(this.grenades){
+            this.preparingGrenade = true;
+            this.grenadePreparation = 0;
+        }else{
+            P.say(pick([
+                nomangle('You don\'t have any breakpoints'),
+                nomangle('breakpoints.count == 0'),
+                nomangle('Breakpoint not found')
+            ]));
+        }
     };
 
     this.grenadePower = function(){
@@ -74,11 +82,7 @@ function Player(){
     };
 
     this.throwGrenade = function(){
-        if(!this.preparingGrenade){
-            return;
-        }
-
-        if(!this.dead && this.grenades-- > 0){
+        if(this.preparingGrenade && !this.dead){
             var g = new Grenade();
             g.x = this.x;
             g.y = this.y;
@@ -87,16 +91,10 @@ function Player(){
             G.renderables.push(g);
 
             V.targetted = g; // make the camera target the grenade
-        }else{
-            P.say(pick([
-                nomangle('You don\'t have any breakpoints'),
-                nomangle('breakpoints.count == 0'),
-                nomangle('Breakpoint not found')
-            ]));
-        }
 
-        this.preparingGrenade = false;
-        this.grenades = max(0, this.grenades);
+            this.preparingGrenade = false;
+            this.grenades = max(0, this.grenades - 1);
+        }
     };
 
     this.say = function(a){
