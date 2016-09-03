@@ -1,6 +1,6 @@
 function Camera(){
     // Lazy init
-    this.realX = this.realY = this.x = this.y = this.offsetX = this.offsetY = 0;
+    this.realX = this.realY = this.x = this.y = 0;
 
     // Position at which the camera would ideally be
     this.target = function(){
