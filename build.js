@@ -105,13 +105,11 @@ compiler.run((tasks) => {
     }
 
     function main(){
-        return tasks.watch(JS_FILES, () => {
-            return tasks.sequence([
-                buildMain(),
-                buildDebug(false, ''),
-                buildDebug(true, '_mangled')
-            ]);
-        });
+        return tasks.sequence([
+            buildMain(),
+            buildDebug(false, ''),
+            buildDebug(true, '_mangled')
+        ]);
     }
 
     return main();
