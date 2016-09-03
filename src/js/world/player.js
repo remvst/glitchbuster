@@ -72,7 +72,7 @@ function Player(){
             P.say(pick([
                 nomangle('You don\'t have any breakpoints'),
                 nomangle('breakpoints.count == 0'),
-                nomangle('Breakpoint not found')
+                nomangle('NoBreakpointException')
             ]));
         }
     };
