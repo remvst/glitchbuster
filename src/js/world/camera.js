@@ -44,7 +44,7 @@ function Camera(){
             this.realY += sin(angle) * appliedDist;
         }
 
-        this.x = ~~((this.realX + this.offsetX) / px) * px;
-        this.y = ~~((this.realY + this.offsetY) / px) * px;
+        this.x = ~~(this.realX / px) * px;
+        this.y = ~~(this.realY / px) * px;
     };
 }
