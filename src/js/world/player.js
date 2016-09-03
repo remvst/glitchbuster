@@ -83,10 +83,12 @@ function Player(){
 
     this.throwGrenade = function(){
         if(this.preparingGrenade && !this.dead){
-            var g = new Grenade();
-            g.x = this.x;
-            g.y = this.y;
-            g.throw(-PI / 2 + this.facing * PI / 4, this.grenadePower());
+            var g = new Grenade(
+                this.x,
+                this.y,
+                -PI / 2 + this.facing * PI / 4,
+                this.grenadePower()
+            );
             G.cyclables.push(g);
             G.renderables.push(g);
 
@@ -114,10 +116,13 @@ function Player(){
         sup.render(e);
 
         if(this.preparingGrenade){
-            var g = new Grenade(true);
-            g.x = this.x;
-            g.y = this.y;
-            g.throw(-PI / 2 + this.facing * PI / 4, this.grenadePower());
+            var g = new Grenade(
+                this.x,
+                this.y,
+                -PI / 2 + this.facing * PI / 4,
+                this.grenadePower(),
+                true
+            );
 
             R.fillStyle = '#fff';
             for(var i = 0 ; i < 40 && !g.stuck ; i++){

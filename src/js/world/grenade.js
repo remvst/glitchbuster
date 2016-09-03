@@ -1,12 +1,11 @@
-function Grenade(simulated){
-    this.x = this.y = 0;
+function Grenade(x, y, angle, force, simulated){
+    this.x = x;
+    this.y = y;
     this.timer = 2;
     this.rotation = 0;
 
-    this.throw = function(angle, force){
-        this.vX = cos(angle) * force;
-        this.vY = sin(angle) * force;
-    };
+    this.vX = cos(angle) * force;
+    this.vY = sin(angle) * force;
 
     this.cycle = function(e){
         var before = {
