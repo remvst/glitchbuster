@@ -5,10 +5,6 @@ onload = function(){
 
     R = C.getContext('2d');
 
-    // Font settings are common across the game
-    R.textAlign = 'center';
-    R.textBaseline = 'middle';
-
     // Shortcut for all canvas methods
     var p;
     Object.getOwnPropertyNames(p = CanvasRenderingContext2D.prototype).forEach(function(n){

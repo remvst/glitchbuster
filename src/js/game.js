@@ -167,6 +167,10 @@ function Game(){
         save();
         scale(G.resolution, G.resolution);
 
+        // Font settings are common across the game
+        R.textAlign = 'center';
+        R.textBaseline = 'middle';
+
         if(W){
             W.render();
         }
