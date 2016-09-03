@@ -14,6 +14,6 @@ function GrenadeItem(x, y){
             nomangle('Here\'s a breakpoint!'),
             nomangle('You found a breakpoint!'),
             nomangle('That\'s a breakpoint!')
-        ]), G.touch ? nomangle('Press the circle button to throw it') : nomangle('Press SPACE to throw it')]);
+        ]), G.touch ? nomangle('Hold the circle button to throw it') : nomangle('Press SPACE to throw it')]);
     };
 }
