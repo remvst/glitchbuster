@@ -26,10 +26,8 @@ function Camera(){
     };
 
     this.contains = function(x, y, d){
-        return x + d > this.x &&
-                y + d > this.y &&
-                x - d < this.x + CANVAS_WIDTH &&
-                y - d < this.y + CANVAS_HEIGHT;
+        return between(this.x - d, x, this.x + CANVAS_WIDTH + d) &&
+                between(this.y - d, y, this.y + CANVAS_HEIGHT + d);
     };
 
     this.cycle = function(e){
@@ -39,16 +37,14 @@ function Camera(){
             angle = atan2(target.y - this.realY, target.x - this.realX),
             appliedDist = min(speed * e, d);
 
-        if(d > 1){
+        var px = 1 / G.resolution;
+
+        if(d > px){
             this.realX += cos(angle) * appliedDist;
             this.realY += sin(angle) * appliedDist;
         }
 
-        this.x = ~~(this.realX + this.offsetX);
-        this.y = ~~(this.realY + this.offsetY);
-
-        var px = 1 / G.resolution;
-        this.x = ~~(this.x / px) * px;
-        this.y = ~~(this.y / px) * px;
+        this.x = ~~((this.realX + this.offsetX) / px) * px;
+        this.y = ~~((this.realY + this.offsetY) / px) * px;
     };
 }
