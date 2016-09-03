@@ -1,13 +1,14 @@
 function WalkingEnemy(){
     Enemy.call(this);
 
+    var sup = proto(this);
+
     this.speed = WALKING_ENEMY_SPEED;
 
     this.direction = pick([-1, 1]);
 
-    var superCycle = this.cycle;
     this.cycle = function(e){
-        superCycle.call(this, e);
+        sup.cycle(e);
 
         if(!this.dead){
             var leftX = this.x - CHARACTER_WIDTH,

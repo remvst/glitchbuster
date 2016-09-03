@@ -1,6 +1,8 @@
 function Player(){
     Character.call(this);
 
+    var sup = proto(this);
+
     this.controllable = true;
 
     this.grenades = 0;
@@ -15,7 +17,6 @@ function Player(){
     this.preparingGrenade = false;
     this.grenadePreparation = 0;
 
-    var superCycle = this.cycle;
     this.cycle = function(e){
         if(!this.controllable){
             this.direction = 0;
@@ -49,18 +50,16 @@ function Player(){
 
         this.grenadePreparation = (this.grenadePreparation + e / 4) % 1;
 
-        superCycle.call(this, e);
+        sup.cycle(e);
     };
 
-    var superDie = this.die;
     this.die = function(){
-        superDie.call(this);
+        sup.die();
         G.playerDied();
     };
 
-    var superJump = this.jump;
     this.jump = function(p, f){
-        if(this.controllable && superJump.call(this, p, f)){
+        if(this.controllable && sup.jump(p, f)){
             jumpSound.play();
         }
     };
@@ -100,24 +99,21 @@ function Player(){
         this.grenades = max(0, this.grenades);
     };
 
-    var superSay = this.say;
     this.say = function(a){
-        superSay.call(this, a);
+        sup.say(a);
         if(a && a.length){
             saySound.play();
         }
     };
 
-    var superLand = this.landOn;
     this.landOn = function(t){
-        if(superLand.call(this, t)){
+        if(sup.land(t)){
             landSound.play();
         }
     };
 
-    var superRender = this.render;
     this.render = function(e){
-        superRender.call(this, e);
+        sup.render(e);
 
         if(this.preparingGrenade){
             var g = new Grenade(true);

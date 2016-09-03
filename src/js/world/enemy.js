@@ -1,20 +1,21 @@
 function Enemy(){
     Character.call(this);
 
+    var sup = proto(this);
+
     this.bodyColor = '#f00';
     this.legColor = '#b22';
     this.halo = redHalo;
     this.health = 1;
     this.speed = 0;
 
-    var superCycle = this.cycle;
     this.cycle = function(e){
         // Skipping cycles for far enemies
         if(!V.contains(this.x, this.y, evaluate(CHARACTER_WIDTH / 2))){
             return;
         }
 
-        superCycle.call(this, e);
+        sup.cycle(e);
 
         if(this.sayingTimeleft <= 0){
             this.say('0x' + (~~rand(0x100000, 0xffffff)).toString(16));
@@ -36,10 +37,9 @@ function Enemy(){
         }
     };
 
-    var superDie = this.die;
     this.die = function(){
         if(!this.dead){
-            superDie.call(this);
+            sup.die();
 
             var s = this;
 

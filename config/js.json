@@ -5,6 +5,7 @@
     "src/js/util/cache.js",
     "src/js/util/pad.js",
     "src/js/util/flatten.js",
+    "src/js/util/proto.js",
 
     "src/js/util/globals.js",
     "src/js/sound/sounds.js",
