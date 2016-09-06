@@ -1,6 +1,12 @@
 function GameOverMenu(reason){
     Menu.call(this);
 
+    var ss = {
+        GAME_OVER_DEATH: [nomangle('critical'), nomangle('mental health')],
+        GAME_OVER_TIME: [nomangle('time'), nomangle('expired')],
+        GAME_OVER_SUCCESS: [nomangle('code fixed'), '!!!']
+    }[reason];
+
     var t = formatTime(G.totalTime);
 
     this.button(button(nomangle('retry')), 0, 420, function(){
@@ -12,7 +18,7 @@ function GameOverMenu(reason){
     this.button(button(nomangle('share')), 0, 700, function(){
         var text = reason == GAME_OVER_SUCCESS ? nomangle('I fixed all glitches in ') + t : nomangle('I fixed ') + (G.currentLevel - 1) + nomangle('/13 glitches');
 
-        window.open(nomangle('https://twitter.com/intent/tweet?') +
+        open(nomangle('https://twitter.com/intent/tweet?') +
             nomangle('hashtags=js13k') +
             nomangle('&url=') + encodeURIComponent(nomangle('http://js13kgames.com/entries/glitchbuster')) +
             nomangle('&text=') + encodeURIComponent(text + nomangle(' on Glitchbuster!')));
@@ -24,12 +30,6 @@ function GameOverMenu(reason){
     });*/
 
     this.animateButtons();
-
-    var ss = {
-        GAME_OVER_DEATH: [nomangle('critical'), nomangle('mental health')],
-        GAME_OVER_TIME: [nomangle('time'), nomangle('expired')],
-        GAME_OVER_SUCCESS: [nomangle('code fixed'), '!!!']
-    }[reason];
 
     if(reason == GAME_OVER_SUCCESS){
         ss.push(nomangle('time: ') + t);
