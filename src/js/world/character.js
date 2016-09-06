@@ -198,17 +198,9 @@ function Character(){
     };
 
     this.hurt = function(source, power){
+        var facing = this.facing;
         if(this.recoveryTime <= 0 && !this.dead && !this.fixing){
             hitSound.play();
-
-            if((this.health -= power || 1) <= 0){
-                this.die();
-            }else{
-                this.say(pick([
-                    nomangle('Ouch!'),
-                    nomangle('health--')
-                ]));
-            }
 
             this.throw(atan2(
                 this.y - source.y,
@@ -216,6 +208,16 @@ function Character(){
             ), 1500);
 
             this.recoveryTime = 2;
+
+            if((this.health -= power || 1) <= 0){
+                this.die();
+                this.facing = facing;
+            }else{
+                this.say(pick([
+                    nomangle('Ouch!'),
+                    nomangle('health--')
+                ]));
+            }
         }
     };
 

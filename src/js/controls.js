@@ -21,6 +21,10 @@ onkeydown = function(e){
         P.prepareGrenade();
     }
 
+    if(DEBUG && e.keyCode === 68){
+        P.die();
+    }
+
     downKeys[e.keyCode] = true;
     reevalControls(e);
 };
