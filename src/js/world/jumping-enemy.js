@@ -15,7 +15,7 @@ function JumpingEnemy(){
             this.vX = (this.direction = this.facing = pick([-1, 1])) * this.speed;
 
             this.jump(0.8);
-            this.nextJump = 2;
+            this.nextJump = rand(1.5, 2.5);
         }
     };
 

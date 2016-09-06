@@ -47,7 +47,6 @@ function Game(){
 
         G.hideTiles = false;
 
-
         // Player
         P.x = W.spawn.x + TILE_SIZE / 2;
         P.y = W.spawn.y + TILE_SIZE - CHARACTER_WIDTH / 2;
@@ -104,10 +103,11 @@ function Game(){
 
             // Add enemies
             W.detectPaths(ENEMY_PATH_MIN_LENGTH).forEach(function(path){
-                if(rand() < ENEMY_DENSITY){
-                    var enemy = new (pick([WalkingEnemy, JumpingEnemy]))();
-                    enemy.x = TILE_SIZE * rand(path.colLeft, path.colRight);
-                    enemy.y = TILE_SIZE * (path.row + 1) - CHARACTER_HEIGHT / 2;
+                var enemy = new (pick([WalkingEnemy, JumpingEnemy]))();
+                enemy.x = TILE_SIZE * rand(path.colLeft, path.colRight);
+                enemy.y = TILE_SIZE * (path.row + 1) - CHARACTER_HEIGHT / 2;
+
+                if(rand() < ENEMY_DENSITY && dist(enemy, P) > CANVAS_WIDTH / 2){
                     G.cyclables.push(enemy);
                     G.renderables.push(enemy);
                     G.killables.push(enemy);
