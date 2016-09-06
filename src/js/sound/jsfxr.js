@@ -270,7 +270,7 @@ function SfxrSynth() {
             _phaserBuffer[i] = 0;
         }
         for (i = _noiseBuffer.length; i--; ) {
-            _noiseBuffer[i] = random() * 2 - 1;
+            _noiseBuffer[i] = rand(-1, 1);
         }
 
         for (i = 0; i < length; i++) {
@@ -389,7 +389,7 @@ function SfxrSynth() {
                     // Generates new random noise for this period
                     if (_waveType == 3) {
                         for (var n = _noiseBuffer.length; n--; ) {
-                            _noiseBuffer[n] = random() * 2 - 1;
+                            _noiseBuffer[n] = rand(-1, 1);
                         }
                     }
                 }
