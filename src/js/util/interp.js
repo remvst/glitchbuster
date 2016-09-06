@@ -12,16 +12,16 @@ function oscillate(t, b, c, d) {
 }
 
 function easeOutBounce(t, b, c, d) {
-    if ((t/=d) < (1/2.75)) {
-        return c*(7.5625*t*t) + b;
+    if ((t /= d) < (1/2.75)) {
+        return c * (7.5625 * t * t) + b;
     }
     if (t < (2/2.75)) {
-        return c*(7.5625*(t-=(1.5/2.75))*t + .75) + b;
+        return c * (7.5625 * (t -= (1.5 / 2.75)) * t + 0.75) + b;
     }
     if (t < (2.5/2.75)) {
-        return c*(7.5625*(t-=(2.25/2.75))*t + .9375) + b;
+        return c * (7.5625 * (t -= (2.25 / 2.75)) * t + 0.9375) + b;
     }
-    return c*(7.5625*(t-=(2.625/2.75))*t + .984375) + b;
+    return c * (7.5625 * (t -= (2.625 / 2.75)) * t + 0.984375) + b;
 }
 
 function interp(o, p, a, b, d, l, f, e){
