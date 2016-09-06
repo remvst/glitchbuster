@@ -89,8 +89,7 @@ function Player(){
                 -PI / 2 + this.facing * PI / 4,
                 this.grenadePower()
             );
-            G.cyclables.push(g);
-            G.renderables.push(g);
+            G.add(g, evaluate(RENDERABLE | CYCLABLE));
 
             V.targetted = g; // make the camera target the grenade
 

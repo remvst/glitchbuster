@@ -76,8 +76,7 @@ function Enemy(x, y){
 
                     // Drop an health item
                     var item = new t(s.x, s.y);
-                    G.renderables.push(item);
-                    G.cyclables.push(item);
+                    G.add(item, evaluate(RENDERABLE | CYCLABLE));
 
                     item.particles();
                 }

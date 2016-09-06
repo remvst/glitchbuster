@@ -25,8 +25,7 @@ function easeOutBounce(t, b, c, d) {
 }
 
 function interp(o, p, a, b, d, l, f, e){
-    var i;
-    G.cyclables.push(i = {
+    var i = {
         o: o, // object
         p: p, // property
         a: a, // from
@@ -51,5 +50,6 @@ function interp(o, p, a, b, d, l, f, e){
                 }
             }
         }
-    });
+    };
+    G.add(i, CYCLABLE);
 }

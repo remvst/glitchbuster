@@ -26,7 +26,7 @@ function Game(){
             G.menu = null;
         });
 
-        G.renderables.push(new SpawnAnimation(P.x, P.y));
+        G.add(new SpawnAnimation(P.x, P.y), RENDERABLE);
     };
 
     G.startNewWorld = function(dummy){
@@ -53,10 +53,8 @@ function Game(){
         P.controllable = true;
         P.fixing = false;
 
-        G.cyclables.push(P);
-        G.cyclables.push(V);
-        G.renderables.push(P);
-        G.killables.push(P);
+        G.add(V, CYCLABLE);
+        G.add(P, evaluate(CYCLABLE | RENDERABLE | KILLABLE));
 
         // Prevent camera from lagging behind
         V.forceCenter();
@@ -64,20 +62,15 @@ function Game(){
         // Enemies
         if(!G.currentLevel){
             // Put the enemies at the right spots
-            var enemy1 = new WalkingEnemy(4500, 800);
-            G.cyclables.push(enemy1);
-            G.killables.push(enemy1);
-            G.renderables.push(enemy1);
+            var e1;
 
-            var enemy2 = new JumpingEnemy(5700, 800);
-            G.cyclables.push(enemy2);
-            G.killables.push(enemy2);
-            G.renderables.push(enemy2);
+            G.add(e1 = new WalkingEnemy(4500, 800), evaluate(CYCLABLE | RENDERABLE | KILLABLE));
+            G.add(new JumpingEnemy(5700, 800), evaluate(CYCLABLE | RENDERABLE | KILLABLE));
 
             var metEnemy;
-            G.cyclables.push({
+            G.add({
                 cycle: function(){
-                    if(!metEnemy && abs(P.x - enemy1.x) < CANVAS_WIDTH){
+                    if(!metEnemy && abs(P.x - e1.x) < CANVAS_WIDTH){
                         metEnemy = true;
 
                         P.say([
@@ -87,7 +80,7 @@ function Game(){
                         ]);
                     }
                 }
-            });
+            }, CYCLABLE);
         }else{
             delayed(function(){
                 P.say(pick([
@@ -104,9 +97,7 @@ function Game(){
                     TILE_SIZE * (path.row + 1) - CHARACTER_HEIGHT / 2
                 );
                 if(rand() < ENEMY_DENSITY && dist(enemy, P) > CANVAS_WIDTH / 2){
-                    G.cyclables.push(enemy);
-                    G.renderables.push(enemy);
-                    G.killables.push(enemy);
+                    G.add(enemy, evaluate(CYCLABLE | RENDERABLE | KILLABLE));
                 }
             });
 
@@ -121,12 +112,10 @@ function Game(){
                     }
 
                     // Create the item and place it on the path
-                    var i = new t(
+                    G.add(new t(
                         (~~rand(path.colLeft, path.colRight) + 0.5) * TILE_SIZE,
                         (path.row + 0.5) * TILE_SIZE
-                    );
-                    G.renderables.push(i);
-                    G.cyclables.push(i);
+                    ), evaluate(CYCLABLE | RENDERABLE));
                 }
             });
         }

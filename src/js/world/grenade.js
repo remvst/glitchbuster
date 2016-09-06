@@ -30,7 +30,7 @@ function Grenade(x, y, angle, force, simulated){
 
             // Trail
             if(!shittyMode && !simulated){
-                var trail = {
+                var t = {
                     alpha: 1,
                     render: function(){
                         R.strokeStyle = 'rgba(255, 0, 0, ' + this.alpha + ')';
@@ -41,10 +41,10 @@ function Grenade(x, y, angle, force, simulated){
                         stroke();
                     }
                 };
-                G.renderables.push(trail);
+                G.add(t, RENDERABLE);
 
-                interp(trail, 'alpha', 1, 0, 0.3, 0, null, function(){
-                    remove(G.renderables, trail);
+                interp(t, 'alpha', 1, 0, 0.3, 0, null, function(){
+                    remove(G.renderables, t);
                 });
             }
         }

@@ -2,7 +2,7 @@ function particle(s, c, as, numeric){
     var p, n = pick([0, 1]);
 
     // Add to the list of particles
-    G.renderables.push(p = {
+    G.add(p = {
         s: s,
         c: c,
         render: function(){
@@ -17,7 +17,7 @@ function particle(s, c, as, numeric){
                 fillRect(p.x - p.s / 2, p.y - p.s / 2, p.s, p.s);
             }
         }
-    });
+    }, RENDERABLE);
 
     // Interpolations
     as.forEach(function(a, id){
