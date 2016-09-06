@@ -1,7 +1,10 @@
-function Enemy(){
+function Enemy(x, y){
     Character.call(this);
 
     var sup = proto(this);
+
+    this.x = x;
+    this.y = y;
 
     this.bodyColor = '#f00';
     this.legColor = '#b22';

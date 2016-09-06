@@ -1,5 +1,5 @@
-function JumpingEnemy(){
-    Enemy.call(this);
+function JumpingEnemy(x, y){
+    Enemy.call(this, x, y);
 
     var sup = proto(this);
 

@@ -1,5 +1,5 @@
-function WalkingEnemy(){
-    Enemy.call(this);
+function WalkingEnemy(x, y){
+    Enemy.call(this, x, y);
 
     var sup = proto(this);
 

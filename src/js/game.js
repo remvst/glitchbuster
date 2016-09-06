@@ -64,16 +64,12 @@ function Game(){
         // Enemies
         if(!G.currentLevel){
             // Put the enemies at the right spots
-            var enemy1 = new WalkingEnemy();
-            enemy1.x = 4500;
-            enemy1.y = 800;
+            var enemy1 = new WalkingEnemy(4500, 800);
             G.cyclables.push(enemy1);
             G.killables.push(enemy1);
             G.renderables.push(enemy1);
 
-            var enemy2 = new JumpingEnemy();
-            enemy2.x = 5700;
-            enemy2.y = 800;
+            var enemy2 = new JumpingEnemy(5700, 800);
             G.cyclables.push(enemy2);
             G.killables.push(enemy2);
             G.renderables.push(enemy2);
@@ -103,10 +99,10 @@ function Game(){
 
             // Add enemies
             W.detectPaths(ENEMY_PATH_MIN_LENGTH).forEach(function(path){
-                var enemy = new (pick([WalkingEnemy, JumpingEnemy]))();
-                enemy.x = TILE_SIZE * rand(path.colLeft, path.colRight);
-                enemy.y = TILE_SIZE * (path.row + 1) - CHARACTER_HEIGHT / 2;
-
+                var enemy = new (pick([WalkingEnemy, JumpingEnemy]))(
+                    TILE_SIZE * rand(path.colLeft, path.colRight),
+                    TILE_SIZE * (path.row + 1) - CHARACTER_HEIGHT / 2
+                );
                 if(rand() < ENEMY_DENSITY && dist(enemy, P) > CANVAS_WIDTH / 2){
                     G.cyclables.push(enemy);
                     G.renderables.push(enemy);
