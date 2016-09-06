@@ -1,11 +1,11 @@
 function GameOverMenu(reason){
     Menu.call(this);
 
-    var ss = {
-        GAME_OVER_DEATH: [nomangle('critical'), nomangle('mental health')],
-        GAME_OVER_TIME: [nomangle('time'), nomangle('expired')],
-        GAME_OVER_SUCCESS: [nomangle('code fixed'), '!!!']
-    }[reason];
+    var ss = [
+        [nomangle('critical'), nomangle('mental health')],
+        [nomangle('time'), nomangle('expired')],
+        [nomangle('code fixed'), '!!!']
+    ][reason];
 
     var t = formatTime(G.totalTime);
 
