@@ -27,7 +27,7 @@ function Enemy(){
             if(dX < CHARACTER_WIDTH && dY < CHARACTER_HEIGHT){
                 // Okay there's a collision, but is he landing on me or is he colliding with me?
                 if(dX < dY && P.y < this.y && P.vY > 0){
-                    P.jump(0.8, true);
+                    P.jump(1, true);
                     this.hurt(P);
                 }else{
                     P.hurt(this);
