@@ -34,6 +34,7 @@ function Enemy(x, y){
                 }
             }
 
+            // Say random shit
             if(this.sayingTimeleft <= 0){
                 this.say('0x' + (~~rand(0x100000, 0xffffff)).toString(16));
             }
