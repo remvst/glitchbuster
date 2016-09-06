@@ -4,7 +4,7 @@ function MainMenu(){
     this.button(button(nomangle('learn')), 0, 420, G.newGame);
     this.button(button(nomangle('start')), 0, 560, G.newGame);
     this.button(button(nomangle('whois')), 0, 700, function(){
-        open(nomangle('http://twitter.com/remvst'));
+        open(nomangle('//goo.gl/QRxjGP'));
     });
 
     this.animateButtons();

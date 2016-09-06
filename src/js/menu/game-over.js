@@ -12,9 +12,9 @@ function GameOverMenu(reason){
     this.button(button(nomangle('retry')), 0, 420, G.newGame);
     this.button(button(nomangle('back')), 0, 560, G.mainMenu);
     this.button(button(nomangle('share')), 0, 700, function(){
-        open(nomangle('https://twitter.com/intent/tweet?') +
+        open(nomangle('//twitter.com/intent/tweet?') +
             nomangle('hashtags=js13k') +
-            nomangle('&url=') + encodeURIComponent(nomangle('http://js13kgames.com/entries/glitchbuster')) +
+            nomangle('&url=') + encodeURIComponent(nomangle('//goo.gl/TIwjsW')) +
             nomangle('&text=') + encodeURIComponent(
                 reason == GAME_OVER_SUCCESS ? nomangle('I fixed all glitches in ') + t : nomangle('I fixed ') + (G.currentLevel - 1) + nomangle('/13 glitches') + nomangle(' on Glitchbuster!')
             )
