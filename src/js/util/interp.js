@@ -2,7 +2,7 @@ function linear(t, b, c, d){
     return (t / d) * c + b;
 }
 
-function easeOutBack(t, b, c, d, s) {
+function easeOutBack(t, b, c, d) {
     s = 1.70158;
     return c*((t=t/d-1)*t*((s+1)*t + s) + 1) + b;
 }
