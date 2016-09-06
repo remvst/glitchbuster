@@ -18,16 +18,16 @@ function SpawnAnimation(){
         P.visible = true;
 
         for(var i = 0 ; i < 50 ; i++){
-            var d = rand(0.5, 1.5),
+            var t = rand(0.5, 1.5),
                 a = rand(-PI, PI),
                 l = rand(8, 80),
                 x = cos(a) * l + P.x,
                 y = sin(a) * l + P.y - 40;
 
             particle(4, '#fff', [
-                ['x', x, x, d, 0, oscillate],
-                ['y', y, y + rand(80, 240), d, 0],
-                ['s', rand(8, 16), 0, d]
+                ['x', x, x, t, 0, oscillate],
+                ['y', y, y + rand(80, 240), t, 0],
+                ['s', rand(8, 16), 0, t]
             ], true);
         }
     });

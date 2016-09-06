@@ -246,7 +246,7 @@ function Game(){
         }
     };
 
-    G.applyGlitch = function(id, d){
+    G.applyGlitch = function(id, t){
         var l = [function(){
             glitchEnd = shittyMode || shittyMode === undefined ? noiseGlitch : sliceGlitch;
         }, function(){
@@ -259,7 +259,7 @@ function Game(){
             l[id]();
         }
 
-        glitchTimeleft = d || rand(0.1, 0.3);
+        glitchTimeleft = t || rand(0.1, 0.3);
         nextGlitch = G.currentLevel ? rand(4, 8) : 99;
         if(G.menu){
             nextGlitch = 2;
