@@ -1,15 +1,17 @@
 function halo(s, c1, c2){
     return cache(s, s, function(r){
-        var g = r.createRadialGradient(
-            s / 2, s / 2, 0,
-            s / 2, s / 2, s / 2
-        );
+        with(r){
+            var g = createRadialGradient(
+                s / 2, s / 2, 0,
+                s / 2, s / 2, s / 2
+            );
 
-        g.addColorStop(0, c1);
-        g.addColorStop(1, c2);
+            g.addColorStop(0, c1);
+            g.addColorStop(1, c2);
 
-        r.fillStyle = g;
-        r.fillRect(0, 0, s, s);
+            fillStyle = g;
+            fillRect(0, 0, s, s);
+        }
     });
 }
 

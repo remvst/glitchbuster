@@ -3,16 +3,18 @@ var codePattern = cachePattern(400, 400, function(r){
         step = 400 / lines.length,
         y = step / 2;
 
-    r.fillStyle = '#000';
-    r.fillRect(0, 0, 400, 400);
+    with(r){
+        fillStyle = '#000';
+        fillRect(0, 0, 400, 400);
 
-    r.fillStyle = '#fff';
-    r.globalAlpha = 0.1;
-    r.font = '14pt Courier New';
+        fillStyle = '#fff';
+        globalAlpha = 0.1;
+        font = '14pt Courier New';
 
-    lines.forEach(function(l, i){
-        r.fillText(l, 0, y);
+        lines.forEach(function(l, i){
+            fillText(l, 0, y);
 
-        y += step;
-    });
+            y += step;
+        });
+    }
 });
