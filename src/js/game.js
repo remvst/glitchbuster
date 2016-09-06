@@ -309,6 +309,18 @@ function Game(){
         C.height = CANVAS_HEIGHT * r;
     };
 
+    G.add = function(e, renderables, cyclables, killables){
+        if(renderables){
+            G.renderables.push(e);
+        }
+        if(cyclables){
+            G.cyclables.push(e);
+        }
+        if(killables){
+            G.killables.push(e);
+        }
+    };
+
     var lf = Date.now();
     delayed(function(){
         var n = Date.now();
