@@ -21,6 +21,7 @@
         "rows",
         "cols",
         "item",
-        "center"
+        "center",
+        "reason"
     ]
 }
