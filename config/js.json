@@ -32,6 +32,11 @@
     "src/js/util/format-time.js",
     "src/js/util/progress-string.js",
 
+    "src/js/menu/menu.js",
+    "src/js/menu/game-over.js",
+    "src/js/menu/main.js",
+    "src/js/menu/mode.js",
+
     "src/js/item/item.js",
     "src/js/item/grenade-item.js",
     "src/js/item/health-item.js",
@@ -51,7 +56,6 @@
     "src/js/glitches/slice.js",
     "src/js/glitches/noise.js",
 
-    "src/js/menu.js",
     "src/js/game.js",
     "src/js/controls.js",
     "src/js/main.js"
