@@ -8,7 +8,7 @@ function easeOutBack(t, b, c, d, s) {
 }
 
 function oscillate(t, b, c, d) {
-    return sin((t / d) * PI * 2 * 2) * c + b;
+    return sin((t / d) * PI * 4) * c + b;
 }
 
 function easeOutBounce(t, b, c, d) {
