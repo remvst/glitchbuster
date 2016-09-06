@@ -191,7 +191,7 @@ function Character(){
         }
     };
 
-    this.throw = function(angle, force){
+    this.throwAway = function(angle, force){
         this.vX = cos(angle) * force;
         this.vY = sin(angle) * force;
         this.facing = this.vX < 0 ? -1 : 1;
@@ -202,7 +202,7 @@ function Character(){
         if(this.recoveryTime <= 0 && !this.dead && !this.fixing){
             hitSound.play();
 
-            this.throw(atan2(
+            this.throwAway(atan2(
                 this.y - source.y,
                 this.x - source.x
             ), 1500);
