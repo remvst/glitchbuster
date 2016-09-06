@@ -327,12 +327,12 @@ function Game(){
         raf(arguments.callee);
     }, 0);
 
-    var displayablePixels = w.innerWidth * w.innerHeight * w.devicePixelRatio,
+    /*var displayablePixels = w.innerWidth * w.innerHeight * w.devicePixelRatio,
         gamePixels = CANVAS_WIDTH / CANVAS_HEIGHT,
         ratio = displayablePixels / gamePixels;
     if(ratio < 0.5){
         G.setResolution(ratio * 2);
-    }
+    }*/
 
     G.startNewWorld(true);
     G.menu = new ModeMenu();

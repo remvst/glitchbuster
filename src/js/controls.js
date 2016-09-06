@@ -60,7 +60,6 @@ var touch = function(e){
     var rect = C.getBoundingClientRect();
     for(var i = 0 ; i < e.touches.length ; i++){
         var x = CANVAS_WIDTH * (e.touches[i].pageX - rect.left) / rect.width,
-            y = CANVAS_HEIGHT * (e.touches[i].pageY - rect.top) / rect.height,
             col = ~~(x / (CANVAS_WIDTH / 4));
 
         if(!G.menu){
