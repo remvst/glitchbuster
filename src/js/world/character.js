@@ -5,12 +5,14 @@ function Character(){
 
     this.visible = true;
 
+    this.offsetY = 0;
     this.bodyOffsetY = 0;
     this.bubbleTailLength = 0;
     this.saying = [];
     this.sayingTimeleft = 0;
 
-    this.scaleFactor = 1;
+    this.scaleFactorX = 1;
+    this.scaleFactorY = 1;
     this.recoveryTime = 0;
     this.frictionFactor = 4;
 
@@ -30,10 +32,10 @@ function Character(){
         }
 
         save();
-        translate(~~this.x, ~~this.y);
+        translate(~~this.x, ~~this.y + this.offsetY);
 
         // Halo
-        if(!shittyMode){
+        if(!shittyMode && !this.dead){
             drawImage(this.halo, -HALO_SIZE_HALF, -HALO_SIZE_HALF);
         }
 
@@ -55,7 +57,7 @@ function Character(){
         }
 
         // Facing left or right
-        scale(this.facing * this.scaleFactor, 1);
+        scale(this.facing * this.scaleFactorX, this.scaleFactorY);
 
         // Legs
         if(!this.dead){
@@ -150,7 +152,7 @@ function Character(){
         this.x += this.vX * e;
 
         if(this.direction == -this.facing){
-            interp(this, 'scaleFactor', -1, 1, 0.1);
+            interp(this, 'scaleFactorX', -1, 1, 0.1);
         }
 
         this.facing = this.direction || this.facing;

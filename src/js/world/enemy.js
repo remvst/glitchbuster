@@ -17,10 +17,6 @@ function Enemy(){
 
         sup.cycle(e);
 
-        if(this.sayingTimeleft <= 0){
-            this.say('0x' + (~~rand(0x100000, 0xffffff)).toString(16));
-        }
-
         if(!this.dead){
             var dX = abs(P.x - this.x),
                 dY = abs(P.y - this.y);
@@ -34,6 +30,10 @@ function Enemy(){
                     this.direction = this.x > P.x ? 1 : -1;
                 }
             }
+
+            if(this.sayingTimeleft <= 0){
+                this.say('0x' + (~~rand(0x100000, 0xffffff)).toString(16));
+            }
         }
     };
 
@@ -43,13 +43,22 @@ function Enemy(){
 
             var s = this;
 
-            interp(this, 'scaleFactor', 1, 0, 0.8, 0.5, null, function(){
-                delayed(function(){
-                    remove(G.cyclables, s);
-                    remove(G.killables, s);
-                    remove(G.renderables, s);
-                }, 0);
+            delayed(function(){
+                s.say([]);
 
+                // Fly away animation
+                interp(s, 'scaleFactorX', 1, 0, 0.4);
+                interp(s, 'scaleFactorY', 1, 5, 0.3, 0.1);
+                interp(s, 'offsetY', 0, -400, 0.3, 0.1, null, function(){
+                    delayed(function(){
+                        remove(G.cyclables, s);
+                        remove(G.killables, s);
+                        remove(G.renderables, s);
+                    }, 0);
+                });
+
+                // Item drop
+                // TODO check if the player's inventory is full
                 if(rand() < ENEMY_DROP_PROBABILITY){
                     var t = pick([HealthItem, GrenadeItem]);
 
@@ -60,7 +69,7 @@ function Enemy(){
 
                     item.particles();
                 }
-            });
+            }, 500);
         }
     };
 }
