@@ -16,12 +16,13 @@ function GameOverMenu(reason){
         G.mainMenu();
     });
     this.button(button(nomangle('share')), 0, 700, function(){
-        var text = reason == GAME_OVER_SUCCESS ? nomangle('I fixed all glitches in ') + t : nomangle('I fixed ') + (G.currentLevel - 1) + nomangle('/13 glitches');
-
         open(nomangle('https://twitter.com/intent/tweet?') +
             nomangle('hashtags=js13k') +
             nomangle('&url=') + encodeURIComponent(nomangle('http://js13kgames.com/entries/glitchbuster')) +
-            nomangle('&text=') + encodeURIComponent(text + nomangle(' on Glitchbuster!')));
+            nomangle('&text=') + encodeURIComponent(
+                reason == GAME_OVER_SUCCESS ? nomangle('I fixed all glitches in ') + t : nomangle('I fixed ') + (G.currentLevel - 1) + nomangle('/13 glitches') + nomangle(' on Glitchbuster!')
+            )
+        );
     });
 
     /*var b;
