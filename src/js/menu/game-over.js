@@ -1,17 +1,27 @@
 function GameOverMenu(reason){
     Menu.call(this);
 
+    var t = formatTime(G.totalTime);
+
     this.button(button(nomangle('retry')), 0, 420, function(){
         G.newGame();
     });
     this.button(button(nomangle('back')), 0, 560, function(){
         G.mainMenu();
     });
+    this.button(button(nomangle('share')), 0, 700, function(){
+        var text = reason == GAME_OVER_SUCCESS ? nomangle('I fixed all glitches in ') + t : nomangle('I fixed ') + (G.currentLevel - 1) + nomangle('/13 glitches');
 
-    var b;
-    this.button(button(nomangle('foo')), 0, 700, function(){
-        this.d = button((b = !b) ? 'bar' : 'foo');
+        window.open(nomangle('https://twitter.com/intent/tweet?') +
+            nomangle('hashtags=js13k') +
+            nomangle('&url=') + encodeURIComponent(nomangle('http://js13kgames.com/entries/glitchbuster')) +
+            nomangle('&text=') + encodeURIComponent(text + nomangle(' on Glitchbuster!')));
     });
+
+    /*var b;
+    this.button(button(nomangleing('foo')), 0, 700, function(){
+        this.d = button((b = !b) ? 'bar' : 'foo');
+    });*/
 
     this.animateButtons();
 
@@ -22,7 +32,7 @@ function GameOverMenu(reason){
     }[reason];
 
     if(reason == GAME_OVER_SUCCESS){
-        ss.push(nomangle('time: ') + formatTime(G.totalTime));
+        ss.push(nomangle('time: ') + t);
     }else{
         ss.push(nomangle('fixed ') + (G.currentLevel - 1) + '/13');
     }
