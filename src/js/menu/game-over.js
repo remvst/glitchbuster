@@ -9,12 +9,8 @@ function GameOverMenu(reason){
 
     var t = formatTime(G.totalTime);
 
-    this.button(button(nomangle('retry')), 0, 420, function(){
-        G.newGame();
-    });
-    this.button(button(nomangle('back')), 0, 560, function(){
-        G.mainMenu();
-    });
+    this.button(button(nomangle('retry')), 0, 420, G.newGame);
+    this.button(button(nomangle('back')), 0, 560, G.mainMenu);
     this.button(button(nomangle('share')), 0, 700, function(){
         open(nomangle('https://twitter.com/intent/tweet?') +
             nomangle('hashtags=js13k') +

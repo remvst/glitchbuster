@@ -1,12 +1,8 @@
 function MainMenu(){
     Menu.call(this);
 
-    this.button(button(nomangle('learn')), 0, 420, function(){
-        G.newGame(true);
-    });
-    this.button(button(nomangle('start')), 0, 560, function(){
-        G.newGame();
-    });
+    this.button(button(nomangle('learn')), 0, 420, G.newGame);
+    this.button(button(nomangle('start')), 0, 560, G.newGame);
     this.button(button(nomangle('whois')), 0, 700, function(){
         open(nomangle('http://twitter.com/remvst'));
     });
