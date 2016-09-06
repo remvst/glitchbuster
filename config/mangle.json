@@ -23,6 +23,7 @@
         "item",
         "center",
         "reason",
-        "buttons"
+        "buttons",
+        "rect"
     ]
 }
