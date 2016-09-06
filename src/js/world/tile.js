@@ -5,7 +5,7 @@ function Tile(row, col, type){
     this.type = type;
 
     this.alpha = 1;
-    this.scale = 1;
+    this.sizeScale = 1;
 
     this.center = {
         x: this.x + TILE_SIZE / 2,
@@ -62,7 +62,7 @@ function Tile(row, col, type){
 
             save();
             translate(this.center.x, this.center.y);
-            scale(this.scale, this.scale);
+            scale(this.sizeScale, this.sizeScale);
             translate(evaluate(-TILE_SIZE / 2), evaluate(-TILE_SIZE / 2));
 
             if(type == TILE_ID || type == UNBREAKABLE_TILE_ID){

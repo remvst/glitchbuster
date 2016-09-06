@@ -16,8 +16,8 @@ function showTilesAnimation(){
 
     surroudingTiles(function(t){
         var r = dist(t.center, P);
-        t.scale = 0.5;
-        interp(t, 'scale', 0, 1, r / CANVAS_WIDTH, 0, easeOutBounce);
+        t.sizeScale = 0.5;
+        interp(t, 'sizeScale', 0, 1, r / CANVAS_WIDTH, 0, easeOutBounce);
     });
 }
 
@@ -26,7 +26,7 @@ function hideTilesAnimation(){
 
     surroudingTiles(function(t){
         var r = dist(t.center, P);
-        t.scale = 0.5;
-        interp(t, 'scale', 1, 0, r / CANVAS_WIDTH, 0, easeOutBounce);
+        t.sizeScale = 0.5;
+        interp(t, 'sizeScale', 1, 0, r / CANVAS_WIDTH, 0, easeOutBounce);
     });
 }
