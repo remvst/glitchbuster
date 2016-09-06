@@ -371,6 +371,7 @@ function Character(){
         for(var i = 0 ; i < 40 ; i++){
             var x = rand(this.x - evaluate(CHARACTER_WIDTH / 2), this.x + evaluate(CHARACTER_WIDTH / 2)),
                 y = rand(this.y - evaluate(CHARACTER_HEIGHT / 2), this.y + evaluate(CHARACTER_HEIGHT / 2)),
+                yUnder = W.firstYUnder(x, this.y),
                 d = rand(0.5, 1);
             particle(3, '#900', [
                 ['x', x, x, 0.5],
@@ -379,7 +380,7 @@ function Character(){
             ]);
             particle(3, '#900', [
                 ['x', x, x, d],
-                ['y', y, this.y + evaluate(CHARACTER_HEIGHT / 2), d, 0, easeOutBounce],
+                ['y', y, yUnder, d, 0, easeOutBounce],
                 ['s', 12, 0, d]
             ]);
         }
