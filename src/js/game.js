@@ -309,14 +309,14 @@ function Game(){
         C.height = CANVAS_HEIGHT * r;
     };
 
-    G.add = function(e, renderables, cyclables, killables){
-        if(renderables){
+    G.add = function(e, type){
+        if(type & RENDERABLE){
             G.renderables.push(e);
         }
-        if(cyclables){
+        if(type & CYCLABLE){
             G.cyclables.push(e);
         }
-        if(killables){
+        if(type & KILLABLE){
             G.killables.push(e);
         }
     };
