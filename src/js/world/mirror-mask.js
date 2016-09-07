@@ -1,20 +1,20 @@
 function mirrorMask(mask){
-    var mirroredExits = mask.exits;
+    var exits = mask.exits;
     if(mask.exits & RIGHT){
-        mirroredExits |= LEFT;
+        exits |= LEFT;
     }else{
-        mirroredExits ^= LEFT;
+        exits ^= LEFT;
     }
     if(mask.exits & LEFT){
-        mirroredExits |= RIGHT;
+        exits |= RIGHT;
     }else{
-        mirroredExits ^= RIGHT;
+        exits ^= RIGHT;
     }
 
     return {
         'mask': mask.mask.map(function(r){
             return r.slice(0).reverse(); // reverse() modifies the array so we need to make a copy of it
         }),
-        'exits': mirroredExits
+        'exits': exits
     };
 }
