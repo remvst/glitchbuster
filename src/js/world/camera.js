@@ -26,8 +26,10 @@ function Camera(){
     };
 
     this.contains = function(x, y, d){
-        return between(this.x - d, x, this.x + CANVAS_WIDTH + d) &&
-                between(this.y - d, y, this.y + CANVAS_HEIGHT + d);
+        return x + d > this.x &&
+            y + d > this.y &&
+            x - d < this.x + CANVAS_WIDTH &&
+            y - d < this.y + CANVAS_HEIGHT;
     };
 
     this.cycle = function(e){
