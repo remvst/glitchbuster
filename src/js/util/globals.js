@@ -16,6 +16,6 @@ var D = document,
                     delayed(c, 1000 / 60);
                 };
     })(),
-    mobile = navigator.userAgent.match(/android|iphone|ipad|ipod|windows phone/i),
+    mobile = navigator.userAgent.match(nomangle(/android|iphone|ipad|ipod|windows phone/i)),
     CANVAS_WIDTH = mobile ? 640 : 920,
     CANVAS_HEIGHT = 920;
