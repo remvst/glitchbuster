@@ -79,34 +79,34 @@ function generateWorld(id){
         }
     }
 
-    var finalMap = [],
+    var finalMatrix = [],
         floors = [],
         ceilings = [],
         floorsMap = [];
 
     for(row = 0 ; row < matrix.length ; row++){
-        finalMap.push([]);
+        finalMatrix.push([]);
         floorsMap.push([]);
 
         matrix[row][col] = parseInt(matrix[row][col]);
 
         for(col = 0 ; col < matrix[row].length ; col++){
-            finalMap[row].push(matrix[row][col]);
+            finalMatrix[row].push(matrix[row][col]);
 
             // Probabilistic wall, let's decide now
             if(matrix[row][col] == PROBABLE_TILE_ID){
-                finalMap[row][col] = rand() < PROBABLE_TILE_PROBABILITY ? TILE_ID : VOID_ID;
+                finalMatrix[row][col] = rand() < PROBABLE_TILE_PROBABILITY ? TILE_ID : VOID_ID;
             }
 
             // Detect floors and ceilings to add spikes, spawn and exit
             if(row > 0){
-                if(finalMap[row][col] == TILE_ID && finalMap[row - 1][col] == VOID_ID){
+                if(finalMatrix[row][col] == TILE_ID && finalMatrix[row - 1][col] == VOID_ID){
                     var f = [row, col];
                     floors.push(f);
                     floorsMap[row].push(f);
                 }
 
-                if(finalMap[row][col] == VOID_ID && finalMap[row - 1][col] == TILE_ID){
+                if(finalMatrix[row][col] == VOID_ID && finalMatrix[row - 1][col] == TILE_ID){
                     ceilings.push([row - 1, col]);
                 }
             }
@@ -115,27 +115,27 @@ function generateWorld(id){
 
     // Add a random spawn and a random exit
     var potentialSpawns = flatten(floorsMap.slice(0, MASK_ROWS));
-    var potentialExits = flatten(floorsMap.slice(finalMap.length - MASK_ROWS * 0.6));
+    var potentialExits = flatten(floorsMap.slice(finalMatrix.length - MASK_ROWS * 0.6));
 
     var spawn = pick(potentialSpawns);
     var exit = pick(potentialExits);
 
-    finalMap[spawn[0] - 1][spawn[1]] = SPAWN_ID;
-    finalMap[exit[0] - 1][exit[1]] = EXIT_ID;
-    finalMap[exit[0]][exit[1]] = UNBREAKABLE_TILE_ID;
+    finalMatrix[spawn[0] - 1][spawn[1]] = SPAWN_ID;
+    finalMatrix[exit[0] - 1][exit[1]] = EXIT_ID;
+    finalMatrix[exit[0]][exit[1]] = UNBREAKABLE_TILE_ID;
 
     // Add random spikes
     floors.forEach(function(f){
         if(f != exit && f != spawn && rand() < SPIKE_DENSITY){
-            finalMap[f[0]][f[1]] = FLOOR_SPIKE_ID;
+            finalMatrix[f[0]][f[1]] = FLOOR_SPIKE_ID;
         }
     });
 
     ceilings.forEach(function(c){
         if(c != exit && c != spawn && rand() < SPIKE_DENSITY){
-            finalMap[c[0]][c[1]] = CEILING_SPIKE_ID;
+            finalMatrix[c[0]][c[1]] = CEILING_SPIKE_ID;
         }
     });
 
-    return pad(finalMap, WORLD_PADDING);
+    return pad(finalMatrix, WORLD_PADDING);
 }
