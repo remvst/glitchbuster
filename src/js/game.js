@@ -352,6 +352,9 @@ function Game(){
 
     G.startNewWorld(true);
     G.menu = new (mobile ? ModeMenu : MainMenu)();
+    if(!mobile){
+        shittyMode = false;
+    }
 
     glitchTimeleft = 0;
     nextGlitch = 1;

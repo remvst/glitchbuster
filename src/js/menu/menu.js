@@ -16,7 +16,7 @@ function Menu(){
     this.click = function(x, y){
         if(this.alpha == 1){
             this.buttons.forEach(function(b){
-                if(between(0, x - b.x, b.d.width) && between(0, y - b.y, b.d.height)){
+                if(between(0, x - b.x, b.d.width) && between(0, y - b.y, b.d.height) && b.a){
                     menuSound.play();
                     b.a.call(b);
                 }
