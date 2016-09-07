@@ -12,29 +12,27 @@ function Enemy(x, y){
 
     this.cycle = function(e){
         // Skipping cycles for far enemies
-        if(!V.contains(this.x, this.y, evaluate(CHARACTER_WIDTH / 2))){
-            return;
-        }
+        if(V.contains(this.x, this.y, evaluate(CHARACTER_WIDTH / 2))){
+            sup.cycle(e);
 
-        sup.cycle(e);
-
-        if(!this.dead){
-            var dX = abs(P.x - this.x),
-                dY = abs(P.y - this.y);
-            if(dX < CHARACTER_WIDTH && dY < CHARACTER_HEIGHT){
-                // Okay there's a collision, but is he landing on me or is he colliding with me?
-                if(dX < dY && P.y < this.y && P.vY > 0){
-                    P.jump(1, true);
-                    this.hurt(P);
-                }else{
-                    P.hurt(this);
-                    this.direction = this.x > P.x ? 1 : -1;
+            if(!this.dead){
+                var dX = abs(P.x - this.x),
+                    dY = abs(P.y - this.y);
+                if(dX < CHARACTER_WIDTH && dY < CHARACTER_HEIGHT){
+                    // Okay there's a collision, but is he landing on me or is he colliding with me?
+                    if(dX < dY && P.y < this.y && P.vY > 0){
+                        P.jump(1, true);
+                        this.hurt(P);
+                    }else{
+                        P.hurt(this);
+                        this.direction = this.x > P.x ? 1 : -1;
+                    }
                 }
-            }
 
-            // Say random shit
-            if(this.sayingTimeleft <= 0){
-                this.say('0x' + (~~rand(0x100000, 0xffffff)).toString(16));
+                // Say random shit
+                if(this.sayingTimeleft <= 0){
+                    this.say('0x' + (~~rand(0x100000, 0xffffff)).toString(16));
+                }
             }
         }
     };

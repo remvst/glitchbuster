@@ -1,14 +1,14 @@
 function mirrorMask(mask){
     var mirroredExits = mask.exits;
-    if(!(mask.exits & RIGHT)){
-        mirroredExits ^= LEFT;
-    }else{
+    if(mask.exits & RIGHT){
         mirroredExits |= LEFT;
-    }
-    if(!(mask.exits & LEFT)){
-        mirroredExits ^= RIGHT;
     }else{
+        mirroredExits ^= LEFT;
+    }
+    if(mask.exits & LEFT){
         mirroredExits |= RIGHT;
+    }else{
+        mirroredExits ^= RIGHT;
     }
 
     return {
