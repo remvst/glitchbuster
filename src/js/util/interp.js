@@ -31,7 +31,7 @@ function interp(o, p, a, b, d, l, f, e){
         a: a, // from
         b: b, // to
         d: d, // duration
-        l: ~~l, // delay
+        l: l || 0, // delay
         f: f || linear, // easing function
         e: e, // end callback
         t: 0,
