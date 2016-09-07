@@ -32,11 +32,7 @@ function Item(x, y, type){
 
     this.cycle = function(){
         if(dist(this, P) < ITEM_PICKUP_RADIUS && !this.pickedUp){
-            var m = this;
-            delayed(function(){
-                remove(G.cyclables, m);
-                remove(G.renderables, m);
-            }, 0);
+            G.remove(this);
 
             this.particles();
 

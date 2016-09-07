@@ -24,9 +24,9 @@ function particle(s, c, as, numeric){
         var args = [p].concat(a);
 
         // Add the remove callback
-        if(id === 0){
+        if(!id){
             args[7] = function(){
-                remove(G.renderables, p);
+                G.remove(p);
             };
         }
 

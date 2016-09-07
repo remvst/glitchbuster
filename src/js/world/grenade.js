@@ -44,7 +44,7 @@ function Grenade(x, y, angle, force, simulated){
                 G.add(t, RENDERABLE);
 
                 interp(t, 'alpha', 1, 0, 0.3, 0, null, function(){
-                    remove(G.renderables, t);
+                    G.remove(t);
                 });
             }
         }
@@ -156,12 +156,7 @@ function Grenade(x, y, angle, force, simulated){
             }
         }
 
-
-        var m = this;
-        delayed(function(){
-            remove(G.cyclables, m);
-            remove(G.renderables, m);
-        }, 0);
+        G.remove(m);
 
         delayed(function(){
             if(V.targetted == m){

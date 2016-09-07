@@ -9,8 +9,8 @@ function Game(){
     G.resolution = 1;
 
     G.t = 0;
-    G.frameCount = 0;
-    G.frameCountStart = Date.now();
+    //G.frameCount = 0;
+    //G.frameCountStart = Date.now();
 
     V = new Camera();
     P = new Player();
@@ -37,14 +37,13 @@ function Game(){
         G.cyclables = [];
         G.killables = [];
         G.renderables = [];
+        G.timeLeft = TIME_PER_LEVEL;
 
         G.applyGlitch(0, 0.5);
 
         if(dummy){
             return;
         }
-
-        G.timeLeft = TIME_PER_LEVEL;
 
         // World
         W = new World(generateWorld(++G.currentLevel));
@@ -111,9 +110,6 @@ function Game(){
                 }
             });
 
-            var healthItemsLeft = 1 + PLAYER_INITIAL_HEALTH - P.health,
-                grenadeItemsLeft = 5 - P.grenades;
-
             // Add grenades for pick up
             W.detectPaths(1).forEach(function(path){
                 // Create the item and place it on the path
@@ -130,11 +126,11 @@ function Game(){
     G.cycle = function(e){
         G.t += e;
 
-        // 100th frame, checking if we are in a bad situation, and if yes, enable shitty mode
+        /*// 100th frame, checking if we are in a bad situation, and if yes, enable shitty mode
         if(++G.frameCount == 100 && (G.frameCount / ((Date.now() - G.frameCountStart) / 1000) < 30)){
             G.setResolution(G.resolution * 0.5);
             shittyMode = true;
-        }
+        }*/
 
         glitchTimeleft -= e;
         if(glitchTimeleft <= 0){
@@ -142,7 +138,7 @@ function Game(){
 
             nextGlitch -= e;
             if(nextGlitch <= 0){
-                G.applyGlitch(G.menu ? 0 : NaN);
+                G.applyGlitch();
             }
         }
 
@@ -253,10 +249,14 @@ function Game(){
 
     G.applyGlitch = function(id, t){
         var l = [function(){
-            glitchEnd = shittyMode || shittyMode === undefined ? noiseGlitch : sliceGlitch;
-        }, function(){
             glitchEnd = noiseGlitch;
         }];
+
+        if(!G.menu && !shittyMode){
+            l.push(function(){
+                glitchEnd = sliceGlitch;
+            });
+        }
 
         if(isNaN(id)){
             pick(l)();
@@ -266,9 +266,6 @@ function Game(){
 
         glitchTimeleft = t || rand(0.1, 0.3);
         nextGlitch = G.currentLevel ? rand(4, 8) : 99;
-        if(G.menu){
-            nextGlitch = 2;
-        }
     };
 
     G.playerDied = function(){
@@ -315,6 +312,14 @@ function Game(){
         }
     };
 
+    G.remove = function(e){
+        delayed(function(){
+            remove(G.cyclables, e);
+            remove(G.killables, e);
+            remove(G.renderables, e);
+        }, 0);
+    };
+
     G.droppable = function(x, y, probability, particles){
         if(rand() < probability){
             var item = new (pick([GrenadeItem, HealthItem]))(x, y);
@@ -335,6 +340,7 @@ function Game(){
     }*/
 
     G.startNewWorld(true);
+
     G.menu = new (mobile ? ModeMenu : MainMenu)();
     if(!mobile){
         shittyMode = false;
