@@ -16,7 +16,7 @@ function MainMenu(){
 
     	drawText(r, 'buster', 0, 130, 20, '#444');
     	drawText(r, 'buster', 0, 120, 20, '#fff');
-    }), titleX, 180);
+    }), titleX, 90);
 
     interp(this.buttons[this.buttons.length - 1], 'o', 0, 1, 0.25, 0.5);
 }
