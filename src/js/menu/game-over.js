@@ -16,7 +16,7 @@ function GameOverMenu(reason){
             nomangle('hashtags=js13k') +
             nomangle('&url=') + encodeURIComponent(nomangle('//goo.gl/TIwjsW')) +
             nomangle('&text=') + encodeURIComponent(
-                reason == GAME_OVER_SUCCESS ? nomangle('I fixed all glitches in ') + t : nomangle('I fixed ') + (G.currentLevel - 1) + nomangle('/13 glitches') + nomangle(' on Glitchbuster!')
+                (reason == GAME_OVER_SUCCESS ? nomangle('I fixed all glitches in ') + t : nomangle('I fixed ') + (G.currentLevel - 1) + nomangle('/13 glitches')) + nomangle(' on Glitchbuster!')
             )
         );
     });

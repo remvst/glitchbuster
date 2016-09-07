@@ -64,7 +64,7 @@ function Character(){
             save();
             translate(evaluate(-CHARACTER_WIDTH / 2 + 2), evaluate(-CHARACTER_HEIGHT / 2));
 
-            var legAmplitude = 8,
+            var legAmplitude = 7,
                 legPeriod = 0.3,
                 legLength = (sin((G.t * PI * 2) / legPeriod) / 2) * legAmplitude + legAmplitude / 2;
 
