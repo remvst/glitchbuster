@@ -327,22 +327,6 @@ function Game(){
         }
     };
 
-    var lf = Date.now();
-    delayed(function(){
-        var n = Date.now(),
-            e = (n - lf) / 1000;
-
-        if(DEBUG){
-            G.fps = ~~(1 / e);
-        }
-
-        lf = n;
-
-        G.cycle(e);
-
-        raf(arguments.callee);
-    }, 0);
-
     /*var displayablePixels = w.innerWidth * w.innerHeight * w.devicePixelRatio,
         gamePixels = CANVAS_WIDTH / CANVAS_HEIGHT,
         ratio = displayablePixels / gamePixels;
@@ -358,4 +342,20 @@ function Game(){
 
     glitchTimeleft = 0;
     nextGlitch = 1;
+
+    var lf = Date.now();
+    (function(){
+        var n = Date.now(),
+            e = (n - lf) / 1000;
+
+        if(DEBUG){
+            G.fps = ~~(1 / e);
+        }
+
+        lf = n;
+
+        G.cycle(e);
+
+        (requestAnimationFrame || webkitRequestAnimationFrame || mozRequestAnimationFrame)(arguments.callee);
+    })();
 }
