@@ -3,17 +3,17 @@ var touchButtons = {},
 
 function reevalControls(e){
     P.direction = 0;
-    if(downKeys[37]){
+    if(downKeys[37] || downKeys[65]){
         P.direction = -1;
     }
-    if(downKeys[39]){
+    if(downKeys[39] || downKeys[68]){
         P.direction = 1;
     }
     P.lookingDown = downKeys[40];
 }
 
 onkeydown = function(e){
-    if(!downKeys[38] && e.keyCode == 38){
+    if(!downKeys[38] && e.keyCode == 38 || !downKeys[87] && e.keyCode == 87){
         P.jump(1);
     }
 
