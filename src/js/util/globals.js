@@ -16,15 +16,6 @@ var D = document,
                     delayed(c, 1000 / 60);
                 };
     })(),
-    CANVAS_WIDTH = 920,
+    mobile = navigator.userAgent.match(/android|iphone|ipad|ipod|windows phone/i),
+    CANVAS_WIDTH = mobile ? 640 : 920,
     CANVAS_HEIGHT = 920;
-
- var mobile = navigator.userAgent.match(/Android/i) ||
-    navigator.userAgent.match(/iPhone/i) ||
-    navigator.userAgent.match(/iPad/i) ||
-    navigator.userAgent.match(/iPod/i) ||
-    navigator.userAgent.match(/Windows Phone/i);
-
-if(mobile){
-    CANVAS_WIDTH = 640;
-}
