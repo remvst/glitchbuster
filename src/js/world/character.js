@@ -402,6 +402,8 @@ function Character(){
     this.say = function(s){
         this.saying = s.push ? s : [s];
         this.sayingTimeleft = this.saying.length ? 3 : 0;
-        interp(this, 'bubbleTailLength', 0, 56, 0.3, 0, easeOutBack);
+        if(this.saying.length){
+            interp(this, 'bubbleTailLength', 0, 56, 0.3, 0, easeOutBack);
+        }
     };
 }
