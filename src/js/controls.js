@@ -42,8 +42,7 @@ onclick = function(e){
     var rect = C.getBoundingClientRect();
     if(G.menu){
         var x = CANVAS_WIDTH * (e.pageX - rect.left) / rect.width,
-            y = CANVAS_HEIGHT * (e.pageY - rect.top) / rect.height,
-            col = ~~(x / (CANVAS_WIDTH / 4));
+            y = CANVAS_HEIGHT * (e.pageY - rect.top) / rect.height;
 
         G.menu.click(x, y);
     }
