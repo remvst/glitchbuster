@@ -312,9 +312,8 @@ function Game(){
 
     var lf = Date.now();
     delayed(function(){
-        var n = Date.now();
-
-        var e = (n - lf) / 1000;
+        var n = Date.now(),
+            e = (n - lf) / 1000;
 
         if(DEBUG){
             G.fps = ~~(1 / e);
