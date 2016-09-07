@@ -1,7 +1,5 @@
 function Enemy(x, y){
-    Character.call(this);
-
-    var sup = proto(this);
+    var sup = Character.call(this);
 
     this.x = x;
     this.y = y;
@@ -66,4 +64,6 @@ function Enemy(x, y){
             }, 500);
         }
     };
+
+    return proto(this);
 }

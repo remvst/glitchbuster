@@ -1,7 +1,5 @@
 function JumpingEnemy(x, y){
-    Enemy.call(this, x, y);
-
-    var sup = proto(this);
+    var sup = Enemy.call(this, x, y);
 
     this.nextJump = 4;
     this.frictionFactor = 0;

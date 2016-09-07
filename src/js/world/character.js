@@ -406,4 +406,6 @@ function Character(){
             interp(this, 'bubbleTailLength', 0, 56, 0.3, 0, easeOutBack);
         }
     };
+
+    return proto(this);
 }

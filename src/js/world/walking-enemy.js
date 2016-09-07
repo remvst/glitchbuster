@@ -1,7 +1,5 @@
 function WalkingEnemy(x, y){
-    Enemy.call(this, x, y);
-
-    var sup = proto(this);
+    var sup = Enemy.call(this, x, y);
 
     this.speed = WALKING_ENEMY_SPEED;
 

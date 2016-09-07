@@ -1,7 +1,5 @@
 function Player(){
-    Character.call(this);
-
-    var sup = proto(this);
+    var sup = Character.call(this);
 
     this.controllable = true;
 
