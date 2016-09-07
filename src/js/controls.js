@@ -9,7 +9,7 @@ function reevalControls(e){
     if(downKeys[39] || downKeys[68]){
         P.direction = 1;
     }
-    P.lookingDown = downKeys[40];
+    P.lookingDown = downKeys[40] || downKeys[83];
 }
 
 onkeydown = function(e){
