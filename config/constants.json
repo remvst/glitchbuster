@@ -25,6 +25,9 @@
     "CYCLABLE": 2,
     "KILLABLE": 4,
 
+    "HEALTH": 1,
+    "GRENADE": 2,
+
     "PROBABLE_TILE_PROBABILITY": 0.5,
     "SPIKE_DENSITY": 0.05,
 

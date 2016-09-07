@@ -62,24 +62,7 @@ function Enemy(x, y){
                 });
 
                 // Item drop
-                // TODO check if the player's inventory is full
-                var ts = [];
-                if(P.health < PLAYER_INITIAL_HEALTH){
-                    ts.push(HealthItem);
-                }
-                if(P.grenades < 5){
-                    ts.push(GrenadeItem);
-                }
-
-                if(ts.length && rand() < ENEMY_DROP_PROBABILITY){
-                    var t = pick(ts);
-
-                    // Drop an health item
-                    var item = new t(s.x, s.y);
-                    G.add(item, evaluate(RENDERABLE | CYCLABLE));
-
-                    item.particles();
-                }
+                G.droppable(s.x, s.y, ENEMY_DROP_PROBABILITY, true);
             }, 500);
         }
     };

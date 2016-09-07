@@ -45,6 +45,12 @@ function Game(){
         // World
         W = new World(generateWorld(++G.currentLevel));
 
+        // Keeping track of the items we can spawn
+        W.itemsAllowed = {
+            HEALTH: 1 + PLAYER_INITIAL_HEALTH - P.health,
+            GRENADE: 5 - P.grenades
+        };
+
         G.hideTiles = false;
 
         // Player
@@ -101,22 +107,17 @@ function Game(){
                 }
             });
 
-            var healthItemsLeft = 1 + PLAYER_INITIAL_HEALTH - P.health;
+            var healthItemsLeft = 1 + PLAYER_INITIAL_HEALTH - P.health,
+                grenadeItemsLeft = 5 - P.grenades;
 
             // Add grenades for pick up
             W.detectPaths(1).forEach(function(path){
-                if(rand() < ITEM_DENSITY){
-                    var t = pick([GrenadeItem, GrenadeItem, GrenadeItem, HealthItem]);
-                    if(t === HealthItem && healthItemsLeft-- <= 0){
-                        t = GrenadeItem;
-                    }
-
-                    // Create the item and place it on the path
-                    G.add(new t(
-                        (~~rand(path.colLeft, path.colRight) + 0.5) * TILE_SIZE,
-                        (path.row + 0.5) * TILE_SIZE
-                    ), evaluate(CYCLABLE | RENDERABLE));
-                }
+                // Create the item and place it on the path
+                G.droppable(
+                    (~~rand(path.colLeft, path.colRight) + 0.5) * TILE_SIZE,
+                    (path.row + 0.5) * TILE_SIZE,
+                    ITEM_DENSITY
+                );
             });
         }
     };
@@ -307,6 +308,18 @@ function Game(){
         }
         if(type & KILLABLE){
             G.killables.push(e);
+        }
+    };
+
+    G.droppable = function(x, y, probability, particles){
+        if(rand() < probability){
+            var item = new (pick([GrenadeItem, HealthItem]))(x, y);
+            if(--W.itemsAllowed[item.type] > 0){
+                G.add(item, evaluate(CYCLABLE | RENDERABLE));
+                if(particles){
+                    item.particles();
+                }
+            }
         }
     };
 

@@ -1,5 +1,5 @@
 function GrenadeItem(x, y){
-    Item.call(this, x, y);
+    Item.call(this, x, y, GRENADE);
 
     this.renderItem = function(){
         R.fillStyle = 'red';

@@ -1,6 +1,7 @@
-function Item(x, y){
+function Item(x, y, type){
     this.x = x;
     this.y = y;
+    this.type = type;
 
     this.render = function(){
         if(!V.contains(this.x, this.y, TILE_SIZE)){

@@ -1,5 +1,5 @@
 function HealthItem(x, y){
-    Item.call(this, x, y);
+    Item.call(this, x, y, HEALTH);
 
     this.renderItem = function(){
         var o = -requiredCells('!', 5) * 5 / 2;
