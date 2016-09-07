@@ -14,12 +14,14 @@ function Menu(){
     };
 
     this.click = function(x, y){
-        this.buttons.forEach(function(b){
-            if(x > b.x && y > b.y && x < b.x + b.d.width && y < b.y + b.d.height && b.a){
-                menuSound.play();
-                b.a.call(b);
-            }
-        });
+        if(this.alpha == 1){
+            this.buttons.forEach(function(b){
+                if(between(0, x - b.x, b.d.width) && between(0, y - b.y, b.d.height)){
+                    menuSound.play();
+                    b.a.call(b);
+                }
+            });
+        }
     };
 
     this.render = function(){

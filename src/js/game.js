@@ -16,6 +16,10 @@ function Game(){
     P = new Player();
     P.controllable = false;
 
+    G.tutorial = function(){
+        G.newGame(true);
+    };
+
     G.newGame = function(tutorial){
         P = new Player();
 
