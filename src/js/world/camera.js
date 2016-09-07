@@ -3,11 +3,11 @@ function Camera(){
     this.realX = this.realY = this.x = this.y = 0;
 
     // Position at which the camera would ideally be
-    this.target = function(){
+    this.target = function(facing){
         var x, y;
         if(!this.targetted){
-            x = P.x + (P.controllable ? P.facing * 50 : 0);
-            y = P.y + (P.controllable && P.lookingDown ? 400 : 0);
+            x = P.x + (P.controllable && facing ? P.facing * 50 : 0);
+            y = P.y + (P.controllable && P.lookingDown && facing ? 400 : 0);
         }else{
             x = this.targetted.x;
             y = this.targetted.y;
@@ -31,7 +31,7 @@ function Camera(){
     };
 
     this.cycle = function(e){
-        var target = this.target(),
+        var target = this.target(true),
             d = dist(target, this),
             speed = max(1, d / 0.2),
             angle = atan2(target.y - this.realY, target.x - this.realX),
