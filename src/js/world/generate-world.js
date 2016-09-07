@@ -95,7 +95,7 @@ function generateWorld(id){
 
             // Probabilistic wall, let's decide now
             if(matrix[row][col] == PROBABLE_TILE_ID){
-                finalMap[row][col] = rand() < PROBABLE_TILE_PROBABILITY ? 1 : 0;
+                finalMap[row][col] = rand() < PROBABLE_TILE_PROBABILITY ? TILE_ID : VOID_ID;
             }
 
             // Detect floors and ceilings to add spikes, spawn and exit
