@@ -156,8 +156,9 @@ function Grenade(x, y, angle, force, simulated){
             }
         }
 
-        G.remove(m);
+        G.remove(this);
 
+        var m = this;
         delayed(function(){
             if(V.targetted == m){
                 V.targetted = null;
