@@ -42,7 +42,7 @@ function Player(){
                     fixedSound.play();
                     G.bugFixed();
                 }, 3500);
-            }else if(d < evaluate(CANVAS_WIDTH / 2) && !this.found){
+            }else if(d < (CANVAS_WIDTH / 2) && !this.found){
                 this.found = true;
                 this.say(nomangle('You found the bug!')); // TODO more strings
             }

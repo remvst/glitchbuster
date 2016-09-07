@@ -13,8 +13,8 @@ function Camera(){
             y = this.targetted.y;
         }
         return {
-            x: ~~(x - evaluate(CANVAS_WIDTH / 2)),
-            y: ~~(y - evaluate(CANVAS_HEIGHT / 2))
+            x: ~~(x - (CANVAS_WIDTH / 2)),
+            y: ~~(y - (CANVAS_HEIGHT / 2))
         };
     };
 

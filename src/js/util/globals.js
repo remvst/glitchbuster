@@ -15,4 +15,6 @@ var D = document,
                 function(c){
                     delayed(c, 1000 / 60);
                 };
-    })();
+    })(),
+    CANVAS_WIDTH = 920,
+    CANVAS_HEIGHT = 920;
