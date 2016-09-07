@@ -335,7 +335,7 @@ function Game(){
     }*/
 
     G.startNewWorld(true);
-    G.menu = new ModeMenu();
+    G.menu = new (mobile ? ModeMenu : MainMenu)();
 
     glitchTimeleft = 0;
     nextGlitch = 1;
