@@ -188,16 +188,16 @@ function Game(){
             if(G.touch){
                 // Mobile controls
                 R.globalAlpha = touchButtons[0] ? 1 : 0.5;
-                drawImage(leftArrow, CANVAS_WIDTH * 0.5 / 4 - leftArrow.width / 2, CANVAS_HEIGHT - 100);
+                drawImage(leftArrow, 0, CANVAS_HEIGHT - 100);
 
                 R.globalAlpha = touchButtons[1] ? 1 : 0.5;
-                drawImage(rightArrow, CANVAS_WIDTH * 1.5 / 4 - rightArrow.width / 2, CANVAS_HEIGHT - 100);
+                drawImage(rightArrow, MOBILE_BUTTON_SIZE, CANVAS_HEIGHT - 100);
 
                 R.globalAlpha = touchButtons[2] ? 1 : 0.5;
-                drawImage(grenadeButton, CANVAS_WIDTH * 2.5 / 4 - grenadeButton.width / 2, CANVAS_HEIGHT - 100);
+                drawImage(grenadeButton, evaluate(MOBILE_BUTTON_SIZE * 2), CANVAS_HEIGHT - 100);
 
                 R.globalAlpha = touchButtons[3] ? 1 : 0.5;
-                drawImage(jumpArrow, CANVAS_WIDTH * 3.5 / 4 - jumpArrow.width / 2, CANVAS_HEIGHT - 100);
+                drawImage(jumpArrow, evaluate(MOBILE_BUTTON_SIZE * 3), CANVAS_HEIGHT - 100);
 
                 R.globalAlpha = 1;
             }
