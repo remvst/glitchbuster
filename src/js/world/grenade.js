@@ -55,10 +55,9 @@ function Grenade(x, y, angle, force, simulated){
             if(this.timer <= 0){
                 this.explode();
             }else{
-                for(var i = 0 ; i < G.killables.length ; i++){
+                for(var i in G.killables){
                     if(G.killables[i] != P && dist(G.killables[i], this) < CHARACTER_WIDTH / 2){
-                        this.explode();
-                        break;
+                        return this.explode(); // no need to do the rest
                     }
                 }
             }
@@ -150,7 +149,7 @@ function Grenade(x, y, angle, force, simulated){
             ]);
         }
 
-        for(i in G.killables){
+        for(i = G.killables.length ; --i >= 0 ;){
             if(dist(this, G.killables[i]) < TILE_SIZE * 2){
                 G.killables[i].hurt(this, 3);
             }

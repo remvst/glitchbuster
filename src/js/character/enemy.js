@@ -50,7 +50,9 @@ function Enemy(x, y){
                 interp(s, 'scaleFactorX', 1, 0, 0.4);
                 interp(s, 'scaleFactorY', 1, 5, 0.3, 0.1);
                 interp(s, 'offsetY', 0, -400, 0.3, 0.1, null, function(){
-                    G.remove(s);
+                    delayed(function(){
+                        G.remove(s);
+                    }, 0);
                 });
 
                 // Item drop

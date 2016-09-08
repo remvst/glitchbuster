@@ -306,11 +306,9 @@ function Game(){
     };
 
     G.remove = function(e){
-        delayed(function(){
-            remove(G.cyclables, e);
-            remove(G.killables, e);
-            remove(G.renderables, e);
-        }, 0);
+        remove(G.cyclables, e);
+        remove(G.killables, e);
+        remove(G.renderables, e);
     };
 
     G.droppable = function(x, y, probability, particles){
