@@ -43,8 +43,8 @@ function Character(){
         if(this.sayingTimeleft > 0 && this.saying.length){
             R.font = '16pt Arial';
 
-            var t = this.saying[0];
-            var w = measureText(t).width + 8;
+            var t = this.saying[0],
+                w = measureText(t).width + 8;
             R.fillStyle = '#000';
             R.globalAlpha = 0.5;
             fillRect(-w / 2, -68 - this.bubbleTailLength, w, 24);
