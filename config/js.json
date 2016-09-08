@@ -30,7 +30,6 @@
     "src/js/util/remove.js",
     "src/js/util/interp.js",
     "src/js/util/format-time.js",
-    "src/js/util/progress-string.js",
 
     "src/js/menu/menu.js",
     "src/js/menu/game-over.js",

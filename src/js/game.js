@@ -168,22 +168,21 @@ function Game(){
             // HUD
 
             // Health string
-            var h = nomangle('mental health: ');
+            var healthString = '';
             for(i = 0 ; i < P.health ; i++){
-                h += '!';
+                healthString += '!';
             }
 
-            // Progress string
-            var p = nomangle('progress: ');
-            for(i = 0 ; i < 13 ; i++){
-                p += (i < G.currentLevel) ? '?' : '-';
-            }
+            // Timer string
+            var timerString = formatTime(G.timeLeft, true),
+                progressString = nomangle('progress: ') + G.currentLevel + '/13',
+                grenadesString = nomangle('breakpoints: ') + P.grenades;
 
-            drawCachedText(R, nomangle('progress: ') + progressString('?', G.currentLevel, 13), 10, 10, 4, '#fff');
-            drawText(R, nomangle('time left: ') + formatTime(G.timeLeft), 10, 40, 4, G.timeLeft < 15 ? '#f00' : '#fff');
+            drawText(R, timerString, (CANVAS_WIDTH - requiredCells(timerString) * 10) / 2, 10, 10, '#fff');
+            drawCachedText(R, healthString, (CANVAS_WIDTH - requiredCells(healthString) * 5) / 2, 80, 5, P.health < 3 || P.recoveryTime > 1.8 ? '#f00' : '#fff');
 
-            drawCachedText(R, h, 10, 70, 4, P.health < 3 || P.recoveryTime > 1.8 ? '#f00' : '#fff');
-            drawCachedText(R, nomangle('breakpoints: ') + P.grenades, 10, 100, 4, '#fff');
+            drawCachedText(R, progressString, (CANVAS_WIDTH - requiredCells(progressString) * 4) - 10, 10, 4, '#fff');
+            drawCachedText(R, grenadesString, 10, 10, 4, '#fff');
 
             if(G.touch){
                 // Mobile controls
