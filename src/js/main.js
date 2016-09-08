@@ -6,8 +6,8 @@ onload = function(){
     R = C.getContext('2d');
 
     // Shortcut for all canvas methods
-    var p;
-    Object.getOwnPropertyNames(p = CanvasRenderingContext2D.prototype).forEach(function(n){
+    var p = CanvasRenderingContext2D.prototype;
+    Object.getOwnPropertyNames(p).forEach(function(n){
         if(R[n] && R[n].call){
             w[n] = p[n].bind(R);
         }
