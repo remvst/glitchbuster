@@ -178,7 +178,7 @@ function Game(){
                 progressString = nomangle('progress: ') + G.currentLevel + '/13',
                 grenadesString = nomangle('breakpoints: ') + P.grenades;
 
-            drawText(R, timerString, (CANVAS_WIDTH - requiredCells(timerString) * 10) / 2, mobile ? 50 : 10, 10, '#fff');
+            drawText(R, timerString, (CANVAS_WIDTH - requiredCells(timerString) * 10) / 2, mobile ? 50 : 10, 10, G.timeLeft > 30 ? '#fff' : '#f00');
             drawCachedText(R, healthString, (CANVAS_WIDTH - requiredCells(healthString) * 5) / 2, mobile ? 120 : 80, 5, P.health < 3 || P.recoveryTime > 1.8 ? '#f00' : '#fff');
 
             drawCachedText(R, progressString, (CANVAS_WIDTH - requiredCells(progressString) * 4) - 10, 10, 4, '#fff');
