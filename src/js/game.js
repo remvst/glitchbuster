@@ -51,7 +51,7 @@ function Game(){
         // Keeping track of the items we can spawn
         W.itemsAllowed = {
             HEALTH: PLAYER_MAX_HEALTH - P.health, // max 6 health
-            GRENADE: 5 - P.grenades // max 5 nades
+            GRENADE: 10 - P.grenades // max 5 nades
         };
 
         G.hideTiles = false;
