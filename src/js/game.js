@@ -186,17 +186,10 @@ function Game(){
 
             if(G.touch){
                 // Mobile controls
-                R.globalAlpha = touchButtons[0] ? 1 : 0.5;
-                drawImage(leftArrow, 0, CANVAS_HEIGHT - 100);
-
-                R.globalAlpha = touchButtons[1] ? 1 : 0.5;
-                drawImage(rightArrow, MOBILE_BUTTON_SIZE, CANVAS_HEIGHT - 100);
-
-                R.globalAlpha = touchButtons[2] ? 1 : 0.5;
-                drawImage(grenadeButton, evaluate(MOBILE_BUTTON_SIZE * 2), CANVAS_HEIGHT - 100);
-
-                R.globalAlpha = touchButtons[3] ? 1 : 0.5;
-                drawImage(jumpArrow, evaluate(MOBILE_BUTTON_SIZE * 3), CANVAS_HEIGHT - 100);
+                [leftArrow, rightArrow, grenadeButton, jumpArrow].forEach(function(b, i){
+                    R.globalAlpha = touchButtons[i] ? 1 : 0.5;
+                    drawImage(b, (i + 0.5) * CANVAS_WIDTH / 4 - MOBILE_BUTTON_SIZE / 2, CANVAS_HEIGHT - 100);
+                });
 
                 R.globalAlpha = 1;
             }
