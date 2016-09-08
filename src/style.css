@@ -1,6 +1,5 @@
 *{
     margin: 0;
-    padding: 0;
 }
 
 body, html{
@@ -8,14 +7,12 @@ body, html{
 }
 
 body{
-    background-color: black;
+    background-color: #000;
     width: 100%;
 }
 
 #t{
     display: table;
-    width: 100%;
-    height: 100%;
 }
 
 #c{
@@ -28,8 +25,11 @@ body{
     outline: 1px solid white;
 }
 
-canvas{
+#t, canvas{
     width: 100%;
     height: 100%;
-    display: block
+}
+
+canvas{
+    display: block;
 }
