@@ -3,9 +3,7 @@ function cache(w, h, f){
     c.width = w;
     c.height = h;
 
-    var r = c.getContext('2d');
-
-    f(r, c);
+    f(c.getContext('2d'), c);
 
     return c;
 }
