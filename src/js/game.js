@@ -222,7 +222,7 @@ function Game(){
 
     G.doCycle = function(e){
         // Cycles
-        for(var i in G.cyclables){
+        for(var i = G.cyclables.length ; --i >= 0 ;){
             G.cyclables[i].cycle(e);
         }
 
@@ -233,7 +233,7 @@ function Game(){
                 interp(G.menu, 'alpha', 0, 1, 0.5);
             }
 
-            if(G.currentLevel > 0){
+            if(G.currentLevel){
                 // Not counting the tutorial time because it's skippable anyway
                 G.totalTime += e;
             }
