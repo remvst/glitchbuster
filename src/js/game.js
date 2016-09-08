@@ -110,8 +110,9 @@ function Game(){
                 }
             });
 
-            // Add grenades for pick up
-            W.detectPaths(1).forEach(function(path){
+            // Add items for pickup
+            var itemPaths = W.detectPaths(1);
+            pick(itemPaths, itemPaths.length).forEach(function(path){
                 // Create the item and place it on the path
                 G.droppable(
                     (~~rand(path.colLeft, path.colRight) + 0.5) * TILE_SIZE,
