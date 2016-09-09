@@ -78,7 +78,11 @@ compiler.run((tasks) => {
             tasks.label('Building ZIP'),
             tasks.zip('index.html'),
             tasks.output(__dirname + '/build/game.zip'),
-            tasks.checkSize(__dirname + '/build/game.zip')
+            tasks.checkSize(__dirname + '/build/game.zip'),
+
+            tasks.output(__dirname + '/build/game-rezipped.zip'),
+            tasks.advzip(__dirname + '/build/game-rezipped.zip'),
+            tasks.checkSize(__dirname + '/build/game-rezipped.zip')
         ]);
     }
 
