@@ -2,12 +2,11 @@ function ModeMenu(){
     Menu.call(this);
 
     this.button(button(nomangle('high'), 500), 0, 420, function(){
-        shittyMode = false; // need to switch from undefined
+        G.setShittyMode(false);
         G.mainMenu();
     });
     this.button(button(nomangle('low'), 500), 0, 560, function(){
-        G.setResolution(0.5);
-        shittyMode = true;
+        G.setShittyMode(true);
         G.mainMenu();
     });
 

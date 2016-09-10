@@ -4,16 +4,9 @@ function MainMenu(){
     this.button(button(nomangle('learn')), 0, 420, G.tutorial);
     this.button(button(nomangle('start')), 0, 560, G.newGame);
 
-    var soundOn = button(nomangle('mute'));
-    var soundOff = button(nomangle('unmute'));
-
-    var buttonType = function(){
-        return SoundManager.muted ? soundOff : soundOn;
-    };
-
-    this.button(buttonType(), 0, 700, function(){
+    this.button(SoundManager.button(), 0, 700, function(){
         SoundManager.muted = !SoundManager.muted;
-        this.d = buttonType();
+        this.d = SoundManager.button();
     });
 
     this.animateButtons();

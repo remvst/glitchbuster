@@ -5,13 +5,15 @@ function Menu(){
     this.bg = codePattern;
 
     this.button = function(d, x, y, a){
-        this.buttons.push({
-            d: d, // drawable
-            x: x,
-            y: y,
-            a: a, // action
-            o: 1 // opacity
-        });
+        var b = {
+            'd': d, // drawable
+            'x': x,
+            'y': y,
+            'a': a, // action
+            'o': 1 // opacity
+        };
+        this.buttons.push(b);
+        return b;
     };
 
     this.click = function(x, y){

@@ -10,5 +10,8 @@ var SoundManager = {
                 }
             }
         };
+    },
+    'button': function(){
+        return SoundManager.muted ? button(nomangle('unmute')) : button(nomangle('mute'));
     }
 };

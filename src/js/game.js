@@ -350,6 +350,11 @@ function Game(){
         }
     };
 
+    G.setShittyMode = function(b){
+        shittyMode = b;
+        G.setResolution(b ? 0.5 : 1);
+    };
+
     /*var displayablePixels = w.innerWidth * w.innerHeight * w.devicePixelRatio,
         gamePixels = CANVAS_WIDTH / CANVAS_HEIGHT,
         ratio = displayablePixels / gamePixels;
