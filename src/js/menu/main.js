@@ -16,10 +16,6 @@ function MainMenu(){
         this.d = buttonType();
     });
 
-    /*this.button(button(_nomangle('whois')), 0, 840, function(){
-        open(nomangle('//goo.gl/QRxjGP'));
-    });*/
-
     this.animateButtons();
 
     var titleX = (CANVAS_WIDTH - 460) / 2;
