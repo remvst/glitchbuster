@@ -127,7 +127,9 @@ function Game(){
 
     // Game loop
     G.cycle = function(e){
-        G.t += e;
+        if(!this.paused){
+            G.t += e;
+        }
 
         /*// 100th frame, checking if we are in a bad situation, and if yes, enable shitty mode
         if(++G.frameCount == 100 && (G.frameCount / ((Date.now() - G.frameCountStart) / 1000) < 30)){
@@ -332,7 +334,7 @@ function Game(){
     };
 
     G.pause = function(){
-        if(!G.paused){
+        if(!G.paused && !G.menu && !P.talking && !P.fixing){
             G.paused = true;
             G.menu = new PauseMenu();
             interp(G.menu, 'alpha', 0, 1, 0.3);

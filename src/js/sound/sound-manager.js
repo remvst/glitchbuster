@@ -5,7 +5,7 @@ var SoundManager = {
         var sound = jsfxr(settings);
         return {
             'play': function(){
-                if(!this.muted){
+                if(!SoundManager.muted){
                     sound.play();
                 }
             }
