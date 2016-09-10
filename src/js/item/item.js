@@ -15,7 +15,7 @@ function Item(x, y, type){
             drawImage(whiteHalo, -HALO_SIZE_HALF, -HALO_SIZE_HALF);
         }
 
-        var arrowOffsetY = sin(G.t * PI * 2 * 0.5) * 10 + ITEM_ARROW_Y_OFFSET;
+        var arrowOffsetY = sin(G.timeLeft * PI * 2 * 0.5) * 10 + ITEM_ARROW_Y_OFFSET;
 
         // Arrow
         R.fillStyle = '#fff';

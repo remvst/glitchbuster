@@ -16,4 +16,6 @@ onload = function(){
     onresize();
 
     new Game();
+
+    onblur = G.pause;
 };

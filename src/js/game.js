@@ -5,6 +5,7 @@ function Game(){
         nextGlitch = 0,
         glitchTimeleft = 0;
 
+    G.paused = false;
     G.currentLevel = 0;
     G.resolution = 1;
 
@@ -38,6 +39,7 @@ function Game(){
         G.killables = [];
         G.renderables = [];
         G.timeLeft = TIME_PER_LEVEL;
+        G.paused = false;
 
         G.applyGlitch(0, 0.5);
 
@@ -221,9 +223,15 @@ function Game(){
     };
 
     G.doCycle = function(e){
+        if(G.paused){
+            downKeys = {};
+        }
+
         // Cycles
         for(var i = G.cyclables.length ; --i >= 0 ;){
-            G.cyclables[i].cycle(e);
+            if(!G.paused || G.cyclables[i].o){
+                G.cyclables[i].cycle(e);
+            }
         }
 
         if(!G.menu && P.controllable){
@@ -320,6 +328,23 @@ function Game(){
                     item.particles();
                 }
             }
+        }
+    };
+
+    G.pause = function(){
+        if(!G.paused){
+            G.paused = true;
+            G.menu = new PauseMenu();
+            interp(G.menu, 'alpha', 0, 1, 0.3);
+        }
+    };
+
+    G.resume = function(){
+        if(G.paused){
+            G.paused = false;
+            interp(G.menu, 'alpha', 0, 1, 0.3, null, function(){
+                G.menu = null;
+            });
         }
     };
 

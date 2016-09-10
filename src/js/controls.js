@@ -13,29 +13,37 @@ function reevalControls(e){
 }
 
 onkeydown = function(e){
-    if(!downKeys[38] && e.keyCode == 38 || !downKeys[87] && e.keyCode == 87){
-        P.jump(1);
-    }
+    if(!G.paused){
+        if(!downKeys[38] && e.keyCode == 38 || !downKeys[87] && e.keyCode == 87){
+            P.jump(1);
+        }
 
-    if(!downKeys[32] && e.keyCode == 32){
-        P.prepareGrenade();
-    }
+        if(!downKeys[32] && e.keyCode == 32){
+            P.prepareGrenade();
+        }
 
-    if(DEBUG && e.keyCode === 68){
-        P.die();
-    }
+        if(DEBUG && e.keyCode === 68){
+            P.die();
+        }
 
-    downKeys[e.keyCode] = true;
-    reevalControls(e);
+        if(e.keyCode === 80){
+            G.pause();
+        }
+
+        downKeys[e.keyCode] = true;
+        reevalControls(e);
+    }
 };
 
 onkeyup = function(e){
-    if(e.keyCode == 32){
-        P.throwGrenade();
-    }
+    if(!G.paused){
+        if(e.keyCode == 32){
+            P.throwGrenade();
+        }
 
-    downKeys[e.keyCode] = false;
-    reevalControls(e);
+        downKeys[e.keyCode] = false;
+        reevalControls(e);
+    }
 };
 
 onclick = function(e){

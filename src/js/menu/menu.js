@@ -2,6 +2,7 @@ function Menu(){
     this.buttons = [];
 
     this.alpha = 1;
+    this.bg = codePattern;
 
     this.button = function(d, x, y, a){
         this.buttons.push({
@@ -27,7 +28,7 @@ function Menu(){
     this.render = function(){
         R.globalAlpha = this.alpha;
 
-        R.fillStyle = codePattern;
+        R.fillStyle = this.bg;
         fillRect(0, 0, CANVAS_WIDTH, CANVAS_HEIGHT);
 
         var a = this.alpha;

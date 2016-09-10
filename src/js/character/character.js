@@ -66,7 +66,7 @@ function Character(){
 
             var legAmplitude = 7,
                 legPeriod = 0.3,
-                legLength = (sin((G.t * PI * 2) / legPeriod) / 2) * legAmplitude + legAmplitude / 2;
+                legLength = (sin((G.timeLeft * PI * 2) / legPeriod) / 2) * legAmplitude + legAmplitude / 2;
 
             var leftLegLength = this.direction || jumpCount > 0 ? legLength : legAmplitude;
             var rightLegLength = this.direction || jumpCount > 0 ? legAmplitude - legLength : legAmplitude;
@@ -80,7 +80,7 @@ function Character(){
         // Let's bob a little
         var bodyRotationMaxAngle = PI / 16,
             bodyRotationPeriod = 0.5,
-            bodyRotation = (sin((G.t * PI * 2) / bodyRotationPeriod) / 2) * bodyRotationMaxAngle;
+            bodyRotation = (sin((G.timeLeft * PI * 2) / bodyRotationPeriod) / 2) * bodyRotationMaxAngle;
 
         if(this.bodyRotation){
             bodyRotation = this.bodyRotation;
@@ -101,7 +101,7 @@ function Character(){
         // Eyes
         var p = 4, // blink interval
             bt = 0.3, // blink time
-            mt = G.t % p, // modulo-ed time
+            mt = G.timeLeft % p, // modulo-ed time
             mi = p - bt / 2, // middle of the blink
             s = min(1, max(-mt + mi, mt - mi) / (bt / 2)), // scale of the eyes
             h = s * 4;
