@@ -1,5 +1,6 @@
 [
     "src/js/sound/jsfxr.js",
+    "src/js/sound/sound-manager.js",
 
     "src/js/util/expose-math.js",
     "src/js/util/cache.js",
