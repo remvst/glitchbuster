@@ -1,27 +1,27 @@
-var jumpSound = SoundManager.prepare([
+var jumpSound = SoundManager.prepare(
     [0,,0.1434,,0.1212,0.4471,,0.2511,,,,,,0.0426,,,,,0.8862,,,,,0.5]
-]);
-var hitSound = SoundManager.prepare([
+);
+var hitSound = SoundManager.prepare(
     [1,,0.0713,,0.1467,0.5483,,-0.4465,,,,,,,,,,,1,,,0.0639,,0.5]
-]);
-var pickupSound = SoundManager.prepare([
+);
+var pickupSound = SoundManager.prepare(
     [0,,0.0224,0.441,0.1886,0.6932,,,,,,,,,,,,,1,,,,,0.5]
-]);
-var spawnSound = SoundManager.prepare([
+);
+var spawnSound = SoundManager.prepare(
     [2,0.28,0.45,,0.56,0.35,,0.4088,,,,,0.03,0.1557,,0.5565,-0.02,-0.02,1,,,,,0.5]
-]);
-var explosionSound = SoundManager.prepare([
+);
+var explosionSound = SoundManager.prepare(
     [3,,0.244,0.6411,0.2242,0.7416,,-0.2717,,,,0.0171,0.0346,,,,-0.0305,0.0244,1,,,0.0275,-0.0076,0.5]
-]);
-var menuSound = SoundManager.prepare([
+);
+var menuSound = SoundManager.prepare(
     [0,,0.1394,,0.0864,0.48,,,,,,,,0.5326,,,,,1,,,0.1,,0.5]
-]);
-var saySound = SoundManager.prepare([
+);
+var saySound = SoundManager.prepare(
     [2,0.03,0.1,0.14,0.25,0.54,0.3167,-0.02,0.3999,,0.05,,,0.1021,0.0684,,0.1287,-0.1816,1,,,,,0.46]
-]);
-var landSound = SoundManager.prepare([
+);
+var landSound = SoundManager.prepare(
     [3,,0.0118,0.03,0.1681,0.565,,-0.2343,,,,0.26,0.6855,,,,,,1,,,,,0.2]
-]);
-var fixedSound = SoundManager.prepare([
+);
+var fixedSound = SoundManager.prepare(
     [0,,0.2098,,0.4725,0.3665,,0.1895,,,,,,0.0067,,0.5437,,,1,,,,,0.45]
-]);
+);
