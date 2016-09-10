@@ -363,11 +363,7 @@ function Game(){
     }*/
 
     G.startNewWorld(true);
-
-    G.menu = new (mobile ? ModeMenu : MainMenu)();
-    if(!mobile){
-        shittyMode = false;
-    }
+    G.mainMenu();
 
     glitchTimeleft = 0;
     nextGlitch = 1;

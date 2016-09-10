@@ -9,6 +9,11 @@ function MainMenu(){
         this.d = SoundManager.button();
     });
 
+    this.button(button(nomangle('hires', 0, '?')), 0, 840, function(){
+        G.setShittyMode(!shittyMode); // toggle shitty mode
+        this.o = shittyMode ? 0.5 : 1; // set the button opacity based on the mode
+    });
+
     this.animateButtons();
 
     var titleX = (CANVAS_WIDTH - 460) / 2;

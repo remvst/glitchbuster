@@ -36,7 +36,6 @@
     "src/js/menu/menu.js",
     "src/js/menu/game-over.js",
     "src/js/menu/main.js",
-    "src/js/menu/mode.js",
     "src/js/menu/pause.js",
 
     "src/js/item/item.js",

@@ -1,4 +1,7 @@
-function button(t, w){
+function button(t, w, end){
+    if(DEBUG && w){
+        alert('yoloooo');
+    }
     w = w || 440;
     return cache(w, 100, function(r){
         with(r){
@@ -8,7 +11,7 @@ function button(t, w){
             fillStyle = '#fff';
             fillRect(0, 0, w, 90);
 
-            drawText(r, '::' + t + '()', 100, 20, 10, '#000');
+            drawText(r, '::' + t + (end || '()'), 100, 20, 10, '#000');
 
             fillStyle = '#000';
             beginPath();

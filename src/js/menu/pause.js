@@ -10,7 +10,7 @@ function PauseMenu(){
         this.d = SoundManager.button();
     });
 
-    this.button(button(nomangle('hires')), 0, 560, function(){
+    this.button(button(nomangle('hires', 0, '?')), 0, 560, function(){
         G.setShittyMode(!shittyMode); // toggle shitty mode
         this.o = shittyMode ? 0.5 : 1; // set the button opacity based on the mode
     });
