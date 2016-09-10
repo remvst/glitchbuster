@@ -17,8 +17,8 @@ function Menu(){
         if(this.alpha == 1){
             this.buttons.forEach(function(b){
                 if(x > b.x && y > b.y && x < b.x + b.d.width && y < b.y + b.d.height){
-                    menuSound.play();
                     b.a.call(b);
+                    menuSound.play();
                 }
             });
         }
