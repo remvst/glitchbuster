@@ -79,5 +79,7 @@
 
     "GAME_OVER_DEATH": 0,
     "GAME_OVER_TIME": 1,
-    "GAME_OVER_SUCCESS": 2
+    "GAME_OVER_SUCCESS": 2,
+
+    "TUTORIAL_KEY": "\"_\""
 }

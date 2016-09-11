@@ -17,14 +17,16 @@ function Game(){
     P = new Player();
     P.controllable = false;
 
-    G.tutorial = function(){
-        G.newGame(true);
-    };
-
-    G.newGame = function(tutorial){
+    G.newGame = function(){
         P = new Player();
 
-        G.currentLevel = tutorial ? -1 : 0;
+        var didTutorial;
+        try{
+            // Need to be in a try/catch otherwise it will fail in private Safari
+            didTutorial = localStorage[TUTORIAL_KEY];
+        }catch(e){}
+
+        G.currentLevel = didTutorial ? 0 : -1;
         G.totalTime = 0;
         G.startNewWorld();
         interp(G.menu, 'alpha', 1, 0, 0.5, 0, 0, function(){
@@ -284,6 +286,10 @@ function Game(){
     };
 
     G.bugFixed = function(){
+        try{
+            localStorage[TUTORIAL_KEY] = true;
+        }catch(e){}
+
         if(G.currentLevel == 13){
             G.menu = new GameOverMenu(GAME_OVER_SUCCESS);
             interp(G.menu, 'alpha', 0, 1, 0.5);

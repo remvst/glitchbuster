@@ -1,15 +1,14 @@
 function MainMenu(){
     Menu.call(this);
 
-    this.button(button(nomangle('learn')), 0, 420, G.tutorial);
-    this.button(button(nomangle('start')), 0, 560, G.newGame);
+    this.button(button(nomangle('start')), 0, 420, G.newGame);
 
-    this.button(SoundManager.button(), 0, 700, function(){
+    this.button(SoundManager.button(), 0, 560, function(){
         SoundManager.muted = !SoundManager.muted;
         this.d = SoundManager.button();
     });
 
-    this.button(button(nomangle('hires', 0, '?')), 0, 840, function(){
+    this.button(button(nomangle('hires', 0, '?')), 0, 700, function(){
         G.setShittyMode(!shittyMode); // toggle shitty mode
         this.o = shittyMode ? 0.5 : 1; // set the button opacity based on the mode
     });
