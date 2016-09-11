@@ -15,11 +15,7 @@ function PauseMenu(){
         this.o = shittyMode ? 0.5 : 1; // set the button opacity based on the mode
     }).o = shittyMode ? 0.5 : 1;
 
-    this.button(button(nomangle('menu')), 0, 700, function(){
-        if(confirm(nomangle('Progress will be lost'))){
-            G.mainMenu();
-        }
-    });
+    this.button(button(nomangle('menu')), 0, 700, G.mainMenu);
 
     this.animateButtons();
 

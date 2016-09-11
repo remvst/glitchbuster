@@ -52,6 +52,7 @@
         "x",
         "y",
         "z",
+        "muted",
         "mute",
         "unmute",
         "sounds",
