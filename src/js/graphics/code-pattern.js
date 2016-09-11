@@ -1,7 +1,5 @@
 var codePattern = cachePattern(400, 400, function(r){
-    var lines = Character.toString().split(';').slice(0, 20),
-        step = 400 / lines.length,
-        y = step / 2;
+    var y = evaluate(0.5 * 400 / 20);
 
     with(r){
         fillStyle = '#000';
@@ -11,10 +9,10 @@ var codePattern = cachePattern(400, 400, function(r){
         globalAlpha = 0.1;
         font = '14pt Courier New';
 
-        lines.forEach(function(l, i){
+        Character.toString().split(';').slice(0, 20).forEach(function(l){
             fillText(l, 0, y);
 
-            y += step;
+            y += evaluate(400 / 20);
         });
     }
 });
