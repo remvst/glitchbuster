@@ -112,7 +112,7 @@ function Player(){
     this.render = function(e){
         sup.render(e);
 
-        if(this.preparingGrenade){
+        if(this.preparingGrenade && !this.dead){
             var g = new Grenade(
                 this.x,
                 this.y,
