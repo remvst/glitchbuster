@@ -179,7 +179,7 @@ function SfxrSynth() {
     * @param buffer A ByteArray to write the wave to
     * @return If the wave is finished
     */
-    this.synthWave = function(buffer, length) {
+    this.synthWave = function(buffer, l) {
         // Shorter reference
         var p = this._params;
 
@@ -273,7 +273,7 @@ function SfxrSynth() {
             _noiseBuffer[i] = rand(-1, 1);
         }
 
-        for (i = 0; i < length; i++) {
+        for (i = 0; i < l; i++) {
             if (_finished) {
                 return i;
             }
@@ -454,7 +454,7 @@ function SfxrSynth() {
             buffer[i] = _superSample >= 1 ? 32767 : _superSample <= -1 ? -32768 : _superSample * 32767 | 0;
         }
 
-        return length;
+        return l;
     };
 }
 

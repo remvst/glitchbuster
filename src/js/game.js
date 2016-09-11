@@ -202,6 +202,8 @@ function Game(){
                 R.fillStyle = '#fff';
                 fillRect(CANVAS_WIDTH / 2 - 8 / 2, 10, -8, 20);
                 fillRect(CANVAS_WIDTH / 2 + 8 / 2, 10, 8, 20);
+            }else{
+                drawCachedText(R, '(arrow keys/wasd) move    (space) use breakpoint', CANVAS_WIDTH / 2 - evaluate(549 / 2), CANVAS_HEIGHT - 20, 3, '#888');
             }
         }
 

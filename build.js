@@ -27,6 +27,7 @@ compiler.run((tasks) => {
         ];
 
         if(mangle){
+            sequence.push(tasks.longerNames(MANGLE_SETTINGS));
             sequence.push(tasks.mangle(MANGLE_SETTINGS));
         }
 

@@ -55,6 +55,7 @@
         "mute",
         "unmute",
         "sounds",
-        "sound"
+        "sound",
+        "add"
     ]
 }
