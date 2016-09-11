@@ -1,15 +1,11 @@
-function button(t, w, end){
-    if(DEBUG && w){
-        alert('yoloooo');
-    }
-    w = w || 440;
-    return cache(w, 100, function(r){
+function button(t, end){
+    return cache(440, 100, function(r){
         with(r){
             fillStyle = '#444';
-            fillRect(0, 90, w, 10);
+            fillRect(0, 90, 440, 10);
 
             fillStyle = '#fff';
-            fillRect(0, 0, w, 90);
+            fillRect(0, 0, 440, 90);
 
             drawText(r, '::' + t + (end || '()'), 100, 20, 10, '#000');
 
