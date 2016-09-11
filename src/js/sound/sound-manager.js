@@ -1,5 +1,4 @@
 var SoundManager = {
-    'sounds': [],
     'muted': false,
     'prepare': function(settings){
         var sound = jsfxr(settings);
