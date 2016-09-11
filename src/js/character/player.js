@@ -125,7 +125,7 @@ function Player(){
             for(var i = 0 ; i < 40 && !g.stuck ; i++){
                 g.cycle(1 / 60);
 
-                if(!(i % 2)){
+                if(i % 2){
                     fillRect(~~g.x - 2, ~~g.y - 2, 4, 4);
                 }
             }
