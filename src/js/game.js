@@ -203,7 +203,7 @@ function Game(){
                 fillRect(CANVAS_WIDTH / 2 - 8 / 2, 10, -8, 20);
                 fillRect(CANVAS_WIDTH / 2 + 8 / 2, 10, 8, 20);
             }else{
-                drawCachedText(R, '(arrow keys/wasd) move    (space) use breakpoint', CANVAS_WIDTH / 2 - evaluate(549 / 2), CANVAS_HEIGHT - 20, 3, '#888');
+                drawCachedText(R, '(arrows keys) move    (space) use breakpoint    (p) pause', CANVAS_WIDTH / 2 - evaluate(630 / 2), CANVAS_HEIGHT - 20, 3, '#888');
             }
         }
 

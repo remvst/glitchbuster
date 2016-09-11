@@ -16,7 +16,7 @@ function PauseMenu(){
     }).o = shittyMode ? 0.5 : 1;
 
     this.button(button(nomangle('menu')), 0, 700, function(){
-        if(confirm(nomangle('Progress will be lost'))){
+        if(confirm(nomangle('Quit?'))){
             G.mainMenu();
         }
     });
