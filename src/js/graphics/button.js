@@ -7,7 +7,7 @@ function button(t, end){
             fillStyle = '#fff';
             fillRect(0, 0, 440, 90);
 
-            drawText(r, '::' + t + (end || '()'), 100, 20, 10, '#000');
+            drawText(r, '.' + t + (end || '()'), 100, 20, 10, '#000');
 
             fillStyle = '#000';
             beginPath();
