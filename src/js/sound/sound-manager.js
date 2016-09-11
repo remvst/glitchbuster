@@ -3,15 +3,13 @@ var SoundManager = {
     'muted': false,
     'prepare': function(settings){
         var sound = jsfxr(settings);
-        return {
-            'play': function(){
-                if(!SoundManager.muted){
-                    sound.play();
-                }
+        return function(){
+            if(!SoundManager.muted){
+                sound.play();
             }
         };
     },
     'button': function(){
-        return SoundManager.muted ? button(nomangle('unmute')) : button(nomangle('mute'));
+        return button(SoundManager.muted ? nomangle('unmute') : nomangle('mute'));
     }
 };

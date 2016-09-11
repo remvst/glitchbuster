@@ -202,7 +202,7 @@ function Character(){
     this.hurt = function(source, power){
         var facing = this.facing;
         if(this.recoveryTime <= 0 && !this.dead && !this.fixing){
-            hitSound.play();
+            hitSound();
 
             this.throwAway(atan2(
                 this.y - source.y,

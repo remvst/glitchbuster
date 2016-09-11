@@ -37,7 +37,7 @@ function Player(){
                 interp(W.exit, 'alpha', 1, 0, 3);
 
                 delayed(function(){
-                    fixedSound.play();
+                    fixedSound();
                     G.bugFixed();
                 }, 3500);
             }else if(d < (CANVAS_WIDTH / 2) && !this.found){
@@ -58,7 +58,7 @@ function Player(){
 
     this.jump = function(p, f){
         if(this.controllable && sup.jump(p, f)){
-            jumpSound.play();
+            jumpSound();
         }
     };
 
@@ -99,13 +99,13 @@ function Player(){
     this.say = function(a){
         sup.say(a);
         if(a && a.length){
-            saySound.play();
+            saySound();
         }
     };
 
     this.landOn = function(t){
         if(sup.landOn(t)){
-            landSound.play();
+            landSound();
         }
     };
 

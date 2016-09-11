@@ -164,7 +164,7 @@ function Grenade(x, y, angle, force, simulated){
             }
         }, 1000);
 
-        explosionSound.play();
+        explosionSound();
     };
 
     this.render = function(){

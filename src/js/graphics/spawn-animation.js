@@ -49,7 +49,7 @@ function SpawnAnimation(){
     }
 
     delayed(function(){
-        spawnSound.play();
+        spawnSound();
     }, 500);
 
     delayed(function(){

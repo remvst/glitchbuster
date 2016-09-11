@@ -37,7 +37,7 @@ function Item(x, y, type){
             this.particles();
 
             this.pickedUp = true;
-            pickupSound.play();
+            pickupSound();
 
             this.pickup(); // defined in subclasses
         }
