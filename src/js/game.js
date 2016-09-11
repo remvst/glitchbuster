@@ -196,6 +196,10 @@ function Game(){
                 });
 
                 R.globalAlpha = 1;
+
+                R.fillStyle = '#fff';
+                fillRect(CANVAS_WIDTH / 2 - 8 / 2, 10, -8, 20);
+                fillRect(CANVAS_WIDTH / 2 + 8 / 2, 10, 8, 20);
             }
         }
 
