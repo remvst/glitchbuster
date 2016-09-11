@@ -241,6 +241,7 @@ function Game(){
                 G.timeLeft = 0;
                 G.menu = new GameOverMenu(GAME_OVER_TIME);
                 interp(G.menu, 'alpha', 0, 1, 0.5);
+                G.paused = true;
             }
 
             if(G.currentLevel){
