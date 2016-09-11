@@ -11,7 +11,7 @@ function MainMenu(){
     this.button(button(nomangle('hires', 0, '?')), 0, 700, function(){
         G.setShittyMode(!shittyMode); // toggle shitty mode
         this.o = shittyMode ? 0.5 : 1; // set the button opacity based on the mode
-    });
+    }).o = shittyMode ? 0.5 : 1;
 
     this.animateButtons();
 
