@@ -296,7 +296,11 @@ function Game(){
                 }
 
                 if (G.currentLevel % 2 === 1) {
-                    showRewardedBreak().then(goNext);
+                    if (G.currentLevel % 4 > 3) {
+                        showRewardedBreak().then(goNext);
+                    } else {
+                        showAd().then(goNext);
+                    }
                 } else {
                     goNext();
                 }
