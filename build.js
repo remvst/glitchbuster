@@ -27,7 +27,7 @@ compiler.run((tasks) => {
         ];
 
         if(mangle){
-            sequence.push(tasks.mangle(MANGLE_SETTINGS));
+            // sequence.push(tasks.mangle(MANGLE_SETTINGS));
         }
 
         if(uglify){
@@ -74,7 +74,7 @@ compiler.run((tasks) => {
                 'html': buildHTML(true)
             }),
             tasks.combine(),
-            tasks.output(__dirname + '/build/game.html'),
+            tasks.output(__dirname + '/build/index.html'),
             tasks.label('Building ZIP'),
             tasks.zip('index.html'),
             tasks.output(__dirname + '/build/game.zip'),

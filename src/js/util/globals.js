@@ -10,4 +10,5 @@ var D = document,
     PI = Math.PI,
     mobile = navigator.userAgent.match(nomangle(/andro|ipho|ipa|ipo|windows ph/i)),
     CANVAS_WIDTH = mobile ? 640 : 920,
-    CANVAS_HEIGHT = 920;
+    CANVAS_HEIGHT = 920,
+    POKI_PAUSED = false;

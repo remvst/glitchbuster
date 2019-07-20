@@ -34,6 +34,8 @@ function Game(){
     };
 
     G.startNewWorld = function(dummy){
+        PokiSDK.gameplayStart();
+
         G.cyclables = [];
         G.killables = [];
         G.renderables = [];
@@ -125,6 +127,12 @@ function Game(){
 
     // Game loop
     G.cycle = function(e){
+        if (POKI_PAUSED) {
+            R.fillStyle = '#000';
+            fillRect(0, 0, CANVAS_WIDTH, CANVAS_HEIGHT);
+            return;
+        }
+
         G.t += e;
 
         /*// 100th frame, checking if we are in a bad situation, and if yes, enable shitty mode
@@ -263,6 +271,9 @@ function Game(){
 
     G.playerDied = function(){
         delayed(function(){
+            PokiSDK.gameplayStop();
+            showAd();
+
             G.menu = new GameOverMenu(GAME_OVER_DEATH);
             interp(G.menu, 'alpha', 0, 1, 0.5);
         }, 2000);
@@ -272,14 +283,26 @@ function Game(){
         if(G.currentLevel == 13){
             G.menu = new GameOverMenu(GAME_OVER_SUCCESS);
             interp(G.menu, 'alpha', 0, 1, 0.5);
+
+            PokiSDK.happyTime(1);
         }else{
             G.applyGlitch(0, 0.5);
             hideTilesAnimation();
             delayed(function(){
-                G.startNewWorld();
-                G.hideTiles = true;
-                delayed(showTilesAnimation, 500);
+                function goNext() {
+                    G.startNewWorld();
+                    G.hideTiles = true;
+                    delayed(showTilesAnimation, 500);
+                }
+
+                if (G.currentLevel % 2 === 1) {
+                    showRewardedBreak().then(goNext);
+                } else {
+                    goNext();
+                }
             }, 500);
+
+            PokiSDK.happyTime(0.5);
         }
     };
 

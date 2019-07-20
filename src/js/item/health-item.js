@@ -7,6 +7,8 @@ function HealthItem(x, y){
     };
 
     this.pickup = function(){
+        PokiSDK.happyTime(0.2);
+
         P.health++;
         P.say(nomangle('health++')); // TODO more strings
     };

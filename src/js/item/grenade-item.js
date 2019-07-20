@@ -8,6 +8,7 @@ function GrenadeItem(x, y){
     };
 
     this.pickup = function(){
+        PokiSDK.happyTime(0.2);
         P.grenades++;
 
         P.say([pick([
