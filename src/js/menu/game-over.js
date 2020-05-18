@@ -9,9 +9,9 @@ function GameOverMenu(reason){
 
     var t = formatTime(G.totalTime);
 
-    this.button(button(nomangle('retry')), 0, 420, G.newGame);
-    this.button(button(nomangle('back')), 0, 560, G.mainMenu);
-    this.button(button(nomangle('share')), 0, 700, function(){
+    this.button(button(nomangle('retry')), (CANVAS_WIDTH - 440) / 2, 420, G.newGame);
+    this.button(button(nomangle('back')), (CANVAS_WIDTH - 440) / 2, 560, G.mainMenu);
+    this.button(button(nomangle('share')), (CANVAS_WIDTH - 440) / 2, 700, function(){
         open(nomangle('//twitter.com/intent/tweet?') +
             nomangle('hashtags=js13k') +
             nomangle('&url=') + encodeURIComponent(nomangle('http://js13kgames.com/entries/glitchbuster')) +

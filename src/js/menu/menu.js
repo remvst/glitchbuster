@@ -41,7 +41,7 @@ function Menu(){
 
     this.animateButtons = function(){
         this.buttons.forEach(function(b, i){
-            interp(b, 'x', -b.d.width, 0, 0.25, i * 0.25 + 0.5);
+            interp(b, 'x', -b.d.width, (CANVAS_WIDTH - 440) / 2, 0.25, i * 0.25 + 0.5);
         });
     };
 }

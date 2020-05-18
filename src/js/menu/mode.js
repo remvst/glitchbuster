@@ -1,11 +1,11 @@
 function ModeMenu(){
     Menu.call(this);
 
-    this.button(button(nomangle('high'), 500), 0, 420, function(){
+    this.button(button(nomangle('high'), 500), (CANVAS_WIDTH - 440) / 2, 420, function(){
         shittyMode = false; // need to switch from undefined
         G.mainMenu();
     });
-    this.button(button(nomangle('low'), 500), 0, 560, function(){
+    this.button(button(nomangle('low'), 500), (CANVAS_WIDTH - 440) / 2, 560, function(){
         G.setResolution(0.5);
         shittyMode = true;
         G.mainMenu();

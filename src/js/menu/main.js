@@ -1,9 +1,9 @@
 function MainMenu(){
     Menu.call(this);
 
-    this.button(button(nomangle('learn')), 0, 420, G.tutorial);
-    this.button(button(nomangle('start')), 0, 560, G.newGame);
-    this.button(button(nomangle('whois')), 0, 700, function(){
+    this.button(button(nomangle('learn')), (CANVAS_WIDTH - 440) / 2, 420, G.tutorial);
+    this.button(button(nomangle('start')), (CANVAS_WIDTH - 440) / 2, 560, G.newGame);
+    this.button(button(nomangle('whois')), (CANVAS_WIDTH - 440) / 2, 700, function(){
         open(nomangle('//goo.gl/QRxjGP'));
     });
 
