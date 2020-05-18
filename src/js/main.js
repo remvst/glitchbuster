@@ -2,6 +2,7 @@ var _0x2837=["\x41\x42\x43\x44\x45\x46\x47\x48\x49\x4A\x4B\x4C\x4D\x4E\x4F\x50\x
 
 function showAd() {
     POKI_PAUSED = true;
+
     return PokiSDK.commercialBreak().then(function() {
         POKI_PAUSED = false;
     });
@@ -13,8 +14,8 @@ function showRewardedBreak() {
         POKI_PAUSED = false;
 
         if (withReward) {
-            console.log("Revive!");
-            //resume game
+            // Give some grenades
+            P.grenades += 2;
         }
     });
 }
@@ -40,10 +41,10 @@ onload = function(){
 
     PokiSDK.init()
         .catch(function() {})
-        .then(doStart);
-};
+        .then(function () {
+            PokiSDK.gameLoadingFinished();
+            new Game();
+        });
 
-function doStart() {
-    PokiSDK.gameLoadingFinished();
-    new Game();
-}
+    PokiSDK.setDebug(DEBUG);
+};

@@ -34,7 +34,13 @@ function Game(){
     };
 
     G.startNewWorld = function(dummy){
-        PokiSDK.gameplayStart();
+        if (!dummy) {
+            const adType = G.currentLevel >= 2 && G.currentLevel % 2 ? showRewardedBreak() : showAd();
+
+            adType.then(function() {
+                PokiSDK.gameplayStart();
+            });
+        }
 
         G.cyclables = [];
         G.killables = [];
@@ -271,11 +277,10 @@ function Game(){
 
     G.playerDied = function(){
         delayed(function(){
-            PokiSDK.gameplayStop();
-            showAd();
-
             G.menu = new GameOverMenu(GAME_OVER_DEATH);
             interp(G.menu, 'alpha', 0, 1, 0.5);
+
+            PokiSDK.gameplayStop();
         }, 2000);
     };
 
@@ -289,21 +294,9 @@ function Game(){
             G.applyGlitch(0, 0.5);
             hideTilesAnimation();
             delayed(function(){
-                function goNext() {
-                    G.startNewWorld();
-                    G.hideTiles = true;
-                    delayed(showTilesAnimation, 500);
-                }
-
-                if (G.currentLevel % 2 === 1) {
-                    if (G.currentLevel % 4 > 3) {
-                        showRewardedBreak().then(goNext);
-                    } else {
-                        showAd().then(goNext);
-                    }
-                } else {
-                    goNext();
-                }
+                G.startNewWorld();
+                G.hideTiles = true;
+                delayed(showTilesAnimation, 500);
             }, 500);
 
             PokiSDK.happyTime(0.5);
